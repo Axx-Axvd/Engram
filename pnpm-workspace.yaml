@@ -1,0 +1,8 @@
+packages:
+  - "apps/web"
+  - "packages/*"
+
+# Allow these dependencies to run install/build scripts (pnpm blocks them by default).
+allowBuilds:
+  sharp: true
+  unrs-resolver: true

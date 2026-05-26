@@ -1,0 +1,24 @@
+name: engram
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: engram-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-engram}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-engram}
+      POSTGRES_DB: ${POSTGRES_DB:-engram}
+    ports:
+      - "5432:5432"
+    volumes:
+      - engram_pgdata:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-engram} -d ${POSTGRES_DB:-engram}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  engram_pgdata:

@@ -1,0 +1,15 @@
+{
+  "name": "engram",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Engram — project-memory platform for long AI projects (connected, versioned artifacts).",
+  "packageManager": "pnpm@11.3.0",
+  "scripts": {
+    "web:dev": "pnpm --filter @engram/web dev",
+    "web:build": "pnpm --filter @engram/web build",
+    "web:lint": "pnpm --filter @engram/web lint"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
