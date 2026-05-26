@@ -21,8 +21,9 @@ class Settings(BaseSettings):
     db_url: str = "postgresql+psycopg://engram:engram@localhost:5432/engram"
 
     # Provider selection (see engram.llm / engram.embeddings factories).
+    # embedding_provider: "mock" (default, offline) or "local" (fastembed; needs the `local` extra).
     llm_provider: str = "mock"
-    embedding_provider: str = "local"
+    embedding_provider: str = "mock"
     embedding_dim: int = 384
 
     # CORS: comma-separated list of allowed origins.

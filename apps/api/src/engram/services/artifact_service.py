@@ -10,11 +10,16 @@ import uuid
 
 from sqlalchemy.orm import Session
 
+from engram.embeddings import get_embedding_provider
 from engram.enums import ArtifactStatus, ChangeAction
 from engram.errors import NotFoundError
 from engram.models import Artifact, ArtifactVersion, ChangeLog
 from engram.repositories import artifact_repo
 from engram.schemas.artifact import ArtifactCreate, ArtifactUpdate
+
+
+def _embed(title: str, content: str) -> list[float]:
+    return get_embedding_provider().embed_one(f"{title}\n{content}")
 
 
 def create_artifact(session: Session, data: ArtifactCreate) -> Artifact:
@@ -26,6 +31,7 @@ def create_artifact(session: Session, data: ArtifactCreate) -> Artifact:
         status=status,
         current_version=1,
         source_ref=data.source_ref,
+        embedding=_embed(data.title, data.content),
         created_by=data.created_by,
         updated_by=data.created_by,
     )
@@ -69,12 +75,15 @@ def update_artifact(session: Session, artifact_id: uuid.UUID, data: ArtifactUpda
 
     changed = False
     status_changed = False
+    text_changed = False
     if data.title is not None and data.title != artifact.title:
         artifact.title = data.title
         changed = True
+        text_changed = True
     if data.content is not None and data.content != artifact.content:
         artifact.content = data.content
         changed = True
+        text_changed = True
     if data.source_ref is not None and data.source_ref != artifact.source_ref:
         artifact.source_ref = data.source_ref
         changed = True
@@ -85,6 +94,9 @@ def update_artifact(session: Session, artifact_id: uuid.UUID, data: ArtifactUpda
 
     if not changed:
         return artifact
+
+    if text_changed:
+        artifact.embedding = _embed(artifact.title, artifact.content)
 
     previous = artifact_repo.get_active_version(session, artifact.id)
     if previous is not None:

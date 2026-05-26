@@ -15,6 +15,10 @@ dependencies = [
     "pgvector>=0.4.2",
 ]
 
+[project.optional-dependencies]
+# Real local embeddings (ONNX, downloads a model on first use). Enable with: uv sync --extra local
+local = ["fastembed>=0.4"]
+
 [dependency-groups]
 dev = [
     "pytest>=8.2",
