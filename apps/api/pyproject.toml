@@ -12,6 +12,7 @@ dependencies = [
     "sqlalchemy>=2.0.30",
     "alembic>=1.13",
     "psycopg[binary]>=3.2",
+    "pgvector>=0.4.2",
 ]
 
 [dependency-groups]
@@ -31,9 +32,14 @@ packages = ["src/engram"]
 [tool.ruff]
 line-length = 100
 src = ["src", "tests"]
+extend-exclude = ["alembic/versions"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI's dependency-injection idiom calls these in argument defaults.
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Query"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

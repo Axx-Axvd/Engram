@@ -1,13 +1,12 @@
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config, pool
-
 from alembic import context
-from engram.config import settings
-from engram.db.base import Base
+from sqlalchemy import engine_from_config, pool
 
 # Import all models so they register on Base.metadata for autogenerate. (Empty until M1.)
 import engram.models  # noqa: E402,F401
+from engram.config import settings
+from engram.db.base import Base
 
 # Alembic Config object, providing access to values in alembic.ini.
 config = context.config
