@@ -17,6 +17,7 @@ import {
 import {
   ARTIFACT_TYPE_LABEL,
   type Artifact,
+  type ArtifactItem,
   type ArtifactStatus,
   LINK_TYPES,
   type LinkType,
@@ -177,6 +178,7 @@ function ContentTab({ artifact: a }: { artifact: Artifact }) {
           {a.content || <span className="text-neutral-400">No content.</span>}
         </p>
       </Card>
+      {a.items && a.items.length > 0 && <ItemsSection items={a.items} />}
       <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-1.5 text-sm">
         <dt className="text-neutral-400">Source</dt>
         <dd className="truncate">{a.source_ref ?? "—"}</dd>
@@ -285,6 +287,54 @@ function LinksTab({ artifactId }: { artifactId: string }) {
           <p className="text-xs text-red-500">Could not create link (duplicate or invalid).</p>
         )}
       </Card>
+    </div>
+  );
+}
+
+function ItemsSection({ items }: { items: ArtifactItem[] }) {
+  const groups = new Map<string, ArtifactItem[]>();
+  for (const item of items) {
+    const feature = item.feature ?? "General";
+    (groups.get(feature) ?? groups.set(feature, []).get(feature)!).push(item);
+  }
+
+  return (
+    <div className="space-y-4">
+      {[...groups.entries()].map(([feature, groupItems]) => (
+        <div key={feature}>
+          <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-neutral-400">
+            {feature}
+          </p>
+          <Card className="divide-y divide-neutral-100 dark:divide-neutral-800">
+            {groupItems.map((item) => (
+              <div key={item.key} className="px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <span className="rounded bg-neutral-100 px-1.5 py-0.5 text-xs font-semibold dark:bg-neutral-800">
+                    {item.key}
+                  </span>
+                  <span className="text-sm font-medium">{item.title}</span>
+                </div>
+                {item.text && (
+                  <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">{item.text}</p>
+                )}
+                {item.refs && item.refs.length > 0 && (
+                  <div className="mt-1.5 flex flex-wrap gap-1.5">
+                    {item.refs.map((ref, idx) => (
+                      <Link
+                        key={`${ref.artifact_id}-${ref.key}-${idx}`}
+                        href={`/artifacts/${ref.artifact_id}`}
+                        className="rounded bg-indigo-50 px-1.5 py-0.5 text-xs text-indigo-700 hover:underline dark:bg-indigo-950/40 dark:text-indigo-300"
+                      >
+                        → {ref.key}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </Card>
+        </div>
+      ))}
     </div>
   );
 }

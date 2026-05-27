@@ -36,8 +36,14 @@ export default function OverviewPage() {
         <>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             <Card className="p-4">
-              <p className="text-xs text-neutral-500">Total</p>
+              <p className="text-xs text-neutral-500">Documents</p>
               <p className="mt-1 text-2xl font-semibold">{artifacts.length}</p>
+            </Card>
+            <Card className="p-4">
+              <p className="text-xs text-neutral-500">Items</p>
+              <p className="mt-1 text-2xl font-semibold">
+                {artifacts.reduce((n, a) => n + (a.items?.length ?? 0), 0)}
+              </p>
             </Card>
             {ARTIFACT_TYPE_ORDER.map((type) => (
               <Card key={type} className="p-4">

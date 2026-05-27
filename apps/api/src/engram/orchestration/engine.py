@@ -9,10 +9,16 @@ from functools import lru_cache
 from sqlalchemy.orm import Session
 
 from engram.enums import ArtifactStatus, ArtifactType, LinkType
-from engram.llm import ContextItem, GeneratedArtifact, get_llm_provider
+from engram.llm import ContextItem, GenItem, get_llm_provider
 from engram.models import Artifact, ArtifactLink
 from engram.repositories import artifact_repo
-from engram.schemas.artifact import ArtifactCreate, ArtifactRead, ArtifactUpdate
+from engram.schemas.artifact import (
+    ArtifactCreate,
+    ArtifactItem,
+    ArtifactRead,
+    ArtifactUpdate,
+    ItemRef,
+)
 from engram.schemas.link import LinkCreate, LinkRead
 from engram.schemas.search import ContextQuery
 from engram.schemas.workflow import (
@@ -45,17 +51,52 @@ class WorkflowEngine(ABC):
 class ProceduralWorkflowEngine(WorkflowEngine):
     def formalize(self, session: Session, request: FormalizeRequest) -> FormalizeResult:
         llm = get_llm_provider()
+        project = llm.formalize_project(request.description)
         artifacts: list[Artifact] = []
         links: list[ArtifactLink] = []
 
-        def _create(type_: ArtifactType, gen: GeneratedArtifact, source_ref: str) -> Artifact:
+        # The project brief is the shared source/root that every document derives from.
+        brief = artifact_service.create_artifact(
+            session,
+            ArtifactCreate(
+                type=ArtifactType.project_brief,
+                title="Project brief",
+                content=project.brief,
+                status=ArtifactStatus.approved,
+                source_ref="chat",
+                created_by=request.created_by,
+            ),
+        )
+        artifacts.append(brief)
+
+        def _doc(
+            type_: ArtifactType,
+            title: str,
+            gen_items: list[GenItem],
+            ref_doc_id: uuid.UUID | None = None,
+        ) -> Artifact:
+            items = [
+                ArtifactItem(
+                    key=gen.key,
+                    title=gen.title,
+                    text=gen.text,
+                    feature=gen.feature,
+                    refs=(
+                        [ItemRef(artifact_id=ref_doc_id, key=k) for k in gen.refs]
+                        if ref_doc_id is not None
+                        else []
+                    ),
+                )
+                for gen in gen_items
+            ]
             artifact = artifact_service.create_artifact(
                 session,
                 ArtifactCreate(
                     type=type_,
-                    title=gen.title,
-                    content=gen.content,
-                    source_ref=source_ref,
+                    title=title,
+                    content=f"{len(items)} {title.lower()} grouped from the project brief.",
+                    items=items,
+                    source_ref=str(brief.id),
                     created_by=request.created_by,
                 ),
             )
@@ -75,20 +116,19 @@ class ProceduralWorkflowEngine(WorkflowEngine):
                 )
             )
 
-        for gen_req in llm.generate_requirements(request.description):
-            requirement = _create(ArtifactType.requirement, gen_req, "project_description")
+        # Requirements first so the other documents can reference its item keys.
+        requirements = _doc(ArtifactType.requirement, "Requirements", project.requirements)
+        stories = _doc(
+            ArtifactType.user_story, "User stories", project.user_stories, requirements.id
+        )
+        tasks = _doc(ArtifactType.task, "Tasks", project.tasks, requirements.id)
+        tests = _doc(ArtifactType.test_case, "Test cases", project.test_cases, requirements.id)
 
-            for gen_tc in llm.generate_test_cases(gen_req):
-                test_case = _create(ArtifactType.test_case, gen_tc, str(requirement.id))
-                _link(test_case, requirement, LinkType.tests)
-
-            for gen_story in llm.generate_user_stories(gen_req):
-                story = _create(ArtifactType.user_story, gen_story, str(requirement.id))
-                _link(story, requirement, LinkType.refines)
-
-                for gen_task in llm.generate_tasks(gen_story):
-                    task = _create(ArtifactType.task, gen_task, str(story.id))
-                    _link(task, story, LinkType.implements)
+        for doc in (requirements, stories, tasks, tests):
+            _link(doc, brief, LinkType.derived_from)
+        _link(stories, requirements, LinkType.refines)
+        _link(tasks, requirements, LinkType.implements)
+        _link(tests, requirements, LinkType.tests)
 
         return FormalizeResult(
             artifacts=[ArtifactRead.model_validate(a) for a in artifacts],
@@ -118,7 +158,8 @@ class ProceduralWorkflowEngine(WorkflowEngine):
         candidates = [
             a
             for a in bundle.artifacts
-            if a.id != change_request.id and a.type != ArtifactType.change_request
+            if a.id != change_request.id
+            and a.type not in (ArtifactType.change_request, ArtifactType.project_brief)
         ]
 
         analysis = llm.analyze_change_request(

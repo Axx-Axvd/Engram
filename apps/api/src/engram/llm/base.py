@@ -1,17 +1,31 @@
-"""Abstract LLM provider interface and the small DTOs it produces."""
+"""Abstract LLM provider interface and the DTOs it produces."""
 
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass(frozen=True)
-class GeneratedArtifact:
-    """A piece of generated content destined to become an artifact."""
+class GenItem:
+    """A generated document item. ``refs`` are item keys in the requirements document."""
 
+    key: str
     title: str
-    content: str
+    text: str
+    feature: str | None = None
+    refs: list[str] = field(default_factory=list)
+
+
+@dataclass(frozen=True)
+class FormalizedProject:
+    """A whole formalization grouped into one document's worth of items per type."""
+
+    brief: str
+    requirements: list[GenItem]
+    user_stories: list[GenItem]
+    tasks: list[GenItem]
+    test_cases: list[GenItem]
 
 
 @dataclass(frozen=True)
@@ -41,16 +55,8 @@ class ChangeAnalysis:
 
 class LLMProvider(ABC):
     @abstractmethod
-    def generate_requirements(self, description: str) -> list[GeneratedArtifact]: ...
-
-    @abstractmethod
-    def generate_user_stories(self, requirement: GeneratedArtifact) -> list[GeneratedArtifact]: ...
-
-    @abstractmethod
-    def generate_tasks(self, user_story: GeneratedArtifact) -> list[GeneratedArtifact]: ...
-
-    @abstractmethod
-    def generate_test_cases(self, requirement: GeneratedArtifact) -> list[GeneratedArtifact]: ...
+    def formalize_project(self, description: str) -> FormalizedProject:
+        """Turn a free-text description into grouped requirements/stories/tasks/test-case items."""
 
     @abstractmethod
     def analyze_change_request(

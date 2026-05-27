@@ -18,6 +18,7 @@ from sqlalchemy import (
 from sqlalchemy import (
     Enum as SAEnum,
 )
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from engram.config import settings
@@ -38,6 +39,7 @@ class Artifact(Base):
     type: Mapped[ArtifactType] = mapped_column(artifact_type_enum, index=True)
     title: Mapped[str] = mapped_column(String(500))
     content: Mapped[str] = mapped_column(Text, default="")
+    items: Mapped[list] = mapped_column(JSONB, default=list, server_default="[]")
     status: Mapped[ArtifactStatus] = mapped_column(
         artifact_status_enum, default=ArtifactStatus.draft, index=True
     )
@@ -73,6 +75,7 @@ class ArtifactVersion(Base):
     version: Mapped[int] = mapped_column(Integer)
     title: Mapped[str] = mapped_column(String(500))
     content: Mapped[str] = mapped_column(Text, default="")
+    items: Mapped[list] = mapped_column(JSONB, default=list, server_default="[]")
     status: Mapped[ArtifactStatus] = mapped_column(artifact_status_enum)
     reason: Mapped[str | None] = mapped_column(Text, nullable=True)
     is_active: Mapped[bool] = mapped_column(default=False)

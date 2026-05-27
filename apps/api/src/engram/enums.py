@@ -6,6 +6,7 @@ from enum import StrEnum
 
 
 class ArtifactType(StrEnum):
+    project_brief = "project_brief"
     requirement = "requirement"
     user_story = "user_story"
     task = "task"

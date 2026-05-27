@@ -8,8 +8,7 @@ def _seed(client: TestClient) -> None:
         "/api/workflows/formalize",
         json={
             "description": (
-                "Users can create tasks with a due date. "
-                "Users can share lists with teammates."
+                "Users can create tasks with a due date. Users can share lists with teammates."
             )
         },
     )

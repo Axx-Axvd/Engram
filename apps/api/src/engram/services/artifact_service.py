@@ -1,7 +1,8 @@
 """Artifact lifecycle logic: creation, versioning, and status changes.
 
-Every mutation creates an immutable ``ArtifactVersion`` snapshot (exactly one active) and appends a
-``ChangeLog`` entry. Callers are responsible for committing the session.
+An artifact is a *document* with a free-text ``content`` overview and a list of structured
+``items``. Every mutation creates an immutable ``ArtifactVersion`` snapshot (exactly one active)
+and appends a ``ChangeLog`` entry. Callers are responsible for committing the session.
 """
 
 from __future__ import annotations
@@ -15,23 +16,34 @@ from engram.enums import ArtifactStatus, ChangeAction
 from engram.errors import NotFoundError
 from engram.models import Artifact, ArtifactVersion, ChangeLog
 from engram.repositories import artifact_repo
-from engram.schemas.artifact import ArtifactCreate, ArtifactUpdate
+from engram.schemas.artifact import ArtifactCreate, ArtifactItem, ArtifactUpdate
 
 
-def _embed(title: str, content: str) -> list[float]:
-    return get_embedding_provider().embed_one(f"{title}\n{content}")
+def _items_to_json(items: list[ArtifactItem]) -> list[dict]:
+    return [item.model_dump(mode="json") for item in items]
+
+
+def _embed(title: str, content: str, items_json: list[dict]) -> list[float]:
+    parts = [title, content]
+    for item in items_json:
+        parts.append(str(item.get("title", "")))
+        parts.append(str(item.get("text", "")))
+    text = "\n".join(part for part in parts if part)
+    return get_embedding_provider().embed_one(text)
 
 
 def create_artifact(session: Session, data: ArtifactCreate) -> Artifact:
     status = data.status or ArtifactStatus.draft
+    items_json = _items_to_json(data.items)
     artifact = Artifact(
         type=data.type,
         title=data.title,
         content=data.content,
+        items=items_json,
         status=status,
         current_version=1,
         source_ref=data.source_ref,
-        embedding=_embed(data.title, data.content),
+        embedding=_embed(data.title, data.content, items_json),
         created_by=data.created_by,
         updated_by=data.created_by,
     )
@@ -44,6 +56,7 @@ def create_artifact(session: Session, data: ArtifactCreate) -> Artifact:
             version=1,
             title=artifact.title,
             content=artifact.content,
+            items=items_json,
             status=artifact.status,
             reason="created",
             is_active=True,
@@ -84,6 +97,12 @@ def update_artifact(session: Session, artifact_id: uuid.UUID, data: ArtifactUpda
         artifact.content = data.content
         changed = True
         text_changed = True
+    if data.items is not None:
+        new_items = _items_to_json(data.items)
+        if new_items != artifact.items:
+            artifact.items = new_items
+            changed = True
+            text_changed = True
     if data.source_ref is not None and data.source_ref != artifact.source_ref:
         artifact.source_ref = data.source_ref
         changed = True
@@ -96,7 +115,7 @@ def update_artifact(session: Session, artifact_id: uuid.UUID, data: ArtifactUpda
         return artifact
 
     if text_changed:
-        artifact.embedding = _embed(artifact.title, artifact.content)
+        artifact.embedding = _embed(artifact.title, artifact.content, artifact.items)
 
     previous = artifact_repo.get_active_version(session, artifact.id)
     if previous is not None:
@@ -112,6 +131,7 @@ def update_artifact(session: Session, artifact_id: uuid.UUID, data: ArtifactUpda
             version=artifact.current_version,
             title=artifact.title,
             content=artifact.content,
+            items=artifact.items,
             status=artifact.status,
             reason=data.reason,
             is_active=True,

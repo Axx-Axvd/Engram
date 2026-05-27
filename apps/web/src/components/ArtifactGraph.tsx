@@ -14,11 +14,12 @@ import { useMemo } from "react";
 import { ARTIFACT_TYPE_COLOR, type Artifact, type ArtifactType, type Link } from "@/lib/types";
 
 const LAYER: Record<ArtifactType, number> = {
-  requirement: 0,
-  user_story: 1,
-  task: 2,
-  test_case: 3,
-  change_request: 4,
+  project_brief: 0,
+  requirement: 1,
+  user_story: 2,
+  task: 3,
+  test_case: 4,
+  change_request: 5,
 };
 
 function buildNodes(artifacts: Artifact[], selectedId: string | null): Node[] {

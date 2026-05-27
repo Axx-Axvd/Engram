@@ -88,9 +88,7 @@ def select_context(session: Session, query: ContextQuery) -> ContextBundle:
 
     # Keep only links whose both endpoints are in the selected set.
     bundle_links = [
-        link
-        for link in links.values()
-        if link.source_id in selected and link.target_id in selected
+        link for link in links.values() if link.source_id in selected and link.target_id in selected
     ]
     return ContextBundle(
         seed_ids=[seed.id for seed in seeds],
