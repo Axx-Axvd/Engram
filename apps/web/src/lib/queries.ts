@@ -3,7 +3,14 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { api } from "@/lib/api/client";
-import type { Artifact, ArtifactStatus, ArtifactType, ArtifactVersion, Link } from "@/lib/types";
+import type {
+  Artifact,
+  ArtifactStatus,
+  ArtifactType,
+  ArtifactVersion,
+  ConsistencyReport,
+  Link,
+} from "@/lib/types";
 
 function unwrap<T>(result: { data?: T; error?: unknown }): T {
   if (result.error || result.data === undefined) {
@@ -150,6 +157,13 @@ export function useFormalize() {
       qc.invalidateQueries({ queryKey: ["artifacts"] });
       qc.invalidateQueries({ queryKey: ["all-links"] });
     },
+  });
+}
+
+export function useConsistency() {
+  return useQuery({
+    queryKey: ["consistency"],
+    queryFn: async (): Promise<ConsistencyReport> => unwrap(await api.GET("/api/consistency")),
   });
 }
 

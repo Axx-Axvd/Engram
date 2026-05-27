@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from engram import __version__
-from engram.api import artifacts, links, search, workflows
+from engram.api import artifacts, consistency, links, search, workflows
 from engram.config import settings
 from engram.errors import ConflictError, NotFoundError, ValidationError
 
@@ -55,6 +55,7 @@ def create_app() -> FastAPI:
     app.include_router(links.router)
     app.include_router(search.router)
     app.include_router(workflows.router)
+    app.include_router(consistency.router)
 
     return app
 
