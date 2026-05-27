@@ -229,33 +229,29 @@ function LinksTab({ artifactId }: { artifactId: string }) {
           {links.data.map((l) => {
             const outgoing = l.source_id === artifactId;
             const other = nameOf(outgoing ? l.target_id : l.source_id);
+            if (!other) return null;
             return (
-              <div key={l.id} className="flex items-center gap-2 px-4 py-2.5 text-sm">
-                <span className="text-neutral-400">{outgoing ? "this" : other?.title ?? "?"}</span>
-                <span className="rounded bg-neutral-100 px-1.5 py-0.5 text-xs font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300">
+              <Link
+                key={l.id}
+                href={`/artifacts/${other.id}`}
+                className="flex items-center justify-between gap-3 px-4 py-3 transition-colors hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
+              >
+                <span className="truncate text-sm font-medium text-indigo-600">{other.title}</span>
+                <span className="shrink-0 text-xs text-neutral-400">
                   {l.type.replace("_", " ")}
                 </span>
-                <span className="text-neutral-400">→</span>
-                {other ? (
-                  <Link
-                    href={`/artifacts/${other.id}`}
-                    className="flex-1 truncate text-indigo-600 hover:underline"
-                  >
-                    {outgoing ? other.title : "this"}
-                  </Link>
-                ) : (
-                  <span className="flex-1 truncate">{outgoing ? "?" : "this"}</span>
-                )}
-              </div>
+              </Link>
             );
           })}
         </Card>
       )}
 
       <Card className="space-y-3 p-4">
-        <p className="text-sm font-medium">Add link</p>
+        <div>
+          <p className="text-sm font-medium">Add link</p>
+          <p className="text-xs text-neutral-400">Relate this document to another one.</p>
+        </div>
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-sm text-neutral-400">this</span>
           <select
             value={type}
             onChange={(e) => setType(e.target.value as LinkType)}
