@@ -7,7 +7,13 @@ from __future__ import annotations
 
 import re
 
-from engram.llm.base import GeneratedArtifact, LLMProvider
+from engram.llm.base import (
+    ChangeAnalysis,
+    ChangeProposal,
+    ContextItem,
+    GeneratedArtifact,
+    LLMProvider,
+)
 
 _SENTENCE_SPLIT = re.compile(r"[.\n;!?]+")
 _MAX_REQUIREMENTS = 6
@@ -69,3 +75,21 @@ class MockLLMProvider(LLMProvider):
                 content=f"Given the system, when exercising '{subject}', it behaves as specified.",
             )
         ]
+
+    def analyze_change_request(
+        self, change_text: str, context: list[ContextItem]
+    ) -> ChangeAnalysis:
+        request = change_text.strip().rstrip(".")
+        proposals = [
+            ChangeProposal(
+                artifact_id=item.id,
+                proposed_content=f"{item.content}\n\n— Revised for change request: {request}.",
+                rationale=f"'{item.title}' is in scope of the change and was updated accordingly.",
+            )
+            for item in context
+        ]
+        summary = (
+            f"Change request '{request}' impacts {len(proposals)} artifact(s); "
+            "each received a new version reflecting the change."
+        )
+        return ChangeAnalysis(summary=summary, proposals=proposals)

@@ -152,3 +152,19 @@ export function useFormalize() {
     },
   });
 }
+
+export function useChangeRequest() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (text: string) =>
+      unwrap(
+        await api.POST("/api/workflows/change-request", {
+          body: { text, created_by: "web", max_impacted: 8 },
+        }),
+      ),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["artifacts"] });
+      qc.invalidateQueries({ queryKey: ["all-links"] });
+    },
+  });
+}

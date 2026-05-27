@@ -17,6 +17,7 @@ const NAV = [
   { href: "/artifacts", label: "Artifacts", exact: false },
   { href: "/graph", label: "Graph", exact: false },
   { href: "/formalize", label: "Formalize", exact: false },
+  { href: "/change-request", label: "Change request", exact: false },
 ];
 
 function isActive(pathname: string, href: string, exact: boolean) {
