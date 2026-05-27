@@ -1,124 +1,91 @@
 "use client";
 
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
+import Link from "next/link";
 
-import { ArtifactDetailPanel } from "@/components/ArtifactDetailPanel";
-import { ArtifactGraph } from "@/components/ArtifactGraph";
-import { api } from "@/lib/api/client";
-import type { FormalizeResult } from "@/lib/types";
+import { ButtonLink, Card, EmptyState, PageHeader, Spinner, StatusBadge, TypeBadge } from "@/components/ui";
+import { formatDateTime } from "@/lib/format";
+import { useArtifacts } from "@/lib/queries";
+import { ARTIFACT_TYPE_COLOR, ARTIFACT_TYPE_LABEL, ARTIFACT_TYPE_ORDER } from "@/lib/types";
 
-const SAMPLE = `Users can create tasks with a title and due date.
-Users can mark tasks as complete.
-Users can organize tasks into named lists.
-Users can share a list with other users.`;
+export default function OverviewPage() {
+  const { data: artifacts = [], isLoading, isError } = useArtifacts();
 
-function useHealth() {
-  return useQuery({
-    queryKey: ["health"],
-    queryFn: async () => {
-      const { data, error } = await api.GET("/health");
-      if (error) throw new Error("unreachable");
-      return data;
-    },
-    retry: false,
-  });
-}
-
-export default function Home() {
-  const [description, setDescription] = useState(SAMPLE);
-  const [result, setResult] = useState<FormalizeResult | null>(null);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const health = useHealth();
-
-  const formalize = useMutation({
-    mutationFn: async (desc: string): Promise<FormalizeResult> => {
-      const { data, error } = await api.POST("/api/workflows/formalize", {
-        body: { description: desc, created_by: "web" },
-      });
-      if (error || !data) throw new Error("Formalization failed");
-      return data;
-    },
-    onSuccess: (data) => {
-      setResult(data);
-      setSelectedId(null);
-    },
-  });
-
-  const selected = useMemo(
-    () => result?.artifacts.find((a) => a.id === selectedId) ?? null,
-    [result, selectedId],
-  );
-
-  const backendOk = health.isSuccess;
+  const recent = [...artifacts]
+    .sort((a, b) => (b.updated_at ?? "").localeCompare(a.updated_at ?? ""))
+    .slice(0, 8);
 
   return (
-    <div className="flex h-screen flex-col">
-      <header className="flex items-center justify-between border-b border-neutral-200 px-5 py-3 dark:border-neutral-800">
-        <div className="flex items-baseline gap-2">
-          <span className="text-lg font-semibold tracking-tight">Engram</span>
-          <span className="text-xs text-neutral-400">project memory</span>
-        </div>
-        <span className="inline-flex items-center gap-2 text-xs text-neutral-500">
-          <span
-            className={`size-2 rounded-full ${
-              health.isLoading ? "bg-amber-400" : backendOk ? "bg-emerald-500" : "bg-red-500"
-            }`}
-          />
-          {health.isLoading ? "connecting" : backendOk ? "backend connected" : "backend offline"}
-        </span>
-      </header>
+    <div className="mx-auto max-w-5xl space-y-6 p-6">
+      <PageHeader
+        title="Overview"
+        description="Project memory at a glance — typed, versioned, connected artifacts."
+        actions={
+          <>
+            <ButtonLink href="/formalize" variant="secondary">
+              Formalize
+            </ButtonLink>
+            <ButtonLink href="/artifacts/new">+ Create</ButtonLink>
+          </>
+        }
+      />
 
-      <div className="flex flex-1 overflow-hidden">
-        <aside className="flex w-80 flex-col gap-3 border-r border-neutral-200 p-4 dark:border-neutral-800">
-          <label htmlFor="desc" className="text-sm font-medium">
-            Project description
-          </label>
-          <textarea
-            id="desc"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="flex-1 resize-none rounded-lg border border-neutral-300 p-3 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
-            placeholder="Describe the project…"
-          />
-          <button
-            type="button"
-            onClick={() => formalize.mutate(description)}
-            disabled={formalize.isPending || !description.trim()}
-            className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-500 disabled:opacity-50"
-          >
-            {formalize.isPending ? "Formalizing…" : "Formalize"}
-          </button>
-          {result && (
-            <p className="text-xs text-neutral-500">
-              {result.artifacts.length} artifacts · {result.links.length} links
-            </p>
-          )}
-          {formalize.isError && (
-            <p className="text-xs text-red-500">Failed — is the backend running?</p>
-          )}
-        </aside>
+      {isLoading && <Spinner label="Loading workspace…" />}
+      {isError && <p className="text-sm text-red-500">Backend offline — start the API server.</p>}
 
-        <main className="flex-1 bg-neutral-50 dark:bg-neutral-950">
-          {result ? (
-            <ArtifactGraph
-              artifacts={result.artifacts}
-              links={result.links}
-              selectedId={selectedId}
-              onSelect={setSelectedId}
-            />
-          ) : (
-            <div className="flex h-full items-center justify-center p-8 text-center text-sm text-neutral-400">
-              Enter a project description and click <strong className="mx-1">Formalize</strong> to
-              generate a connected artifact graph.
-            </div>
-          )}
-        </main>
+      {!isLoading && !isError && (
+        <>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            <Card className="p-4">
+              <p className="text-xs text-neutral-500">Total</p>
+              <p className="mt-1 text-2xl font-semibold">{artifacts.length}</p>
+            </Card>
+            {ARTIFACT_TYPE_ORDER.map((type) => (
+              <Card key={type} className="p-4">
+                <p className="flex items-center gap-1.5 text-xs text-neutral-500">
+                  <span
+                    className="size-2 rounded-full"
+                    style={{ background: ARTIFACT_TYPE_COLOR[type] }}
+                  />
+                  {ARTIFACT_TYPE_LABEL[type]}
+                </p>
+                <p className="mt-1 text-2xl font-semibold">
+                  {artifacts.filter((a) => a.type === type).length}
+                </p>
+              </Card>
+            ))}
+          </div>
 
-        <aside className="w-80 border-l border-neutral-200 dark:border-neutral-800">
-          <ArtifactDetailPanel artifact={selected} />
-        </aside>
-      </div>
+          <section className="space-y-3">
+            <h2 className="text-sm font-semibold text-neutral-600 dark:text-neutral-300">
+              Recently updated
+            </h2>
+            {recent.length === 0 ? (
+              <EmptyState
+                title="No artifacts yet"
+                hint="Formalize a project description, or create an artifact by hand."
+                action={<ButtonLink href="/formalize">Formalize a description</ButtonLink>}
+              />
+            ) : (
+              <Card className="divide-y divide-neutral-100 dark:divide-neutral-800">
+                {recent.map((a) => (
+                  <Link
+                    key={a.id}
+                    href={`/artifacts/${a.id}`}
+                    className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
+                  >
+                    <TypeBadge type={a.type} />
+                    <span className="flex-1 truncate text-sm font-medium">{a.title}</span>
+                    <StatusBadge status={a.status} />
+                    <span className="hidden text-xs text-neutral-400 sm:inline">
+                      {formatDateTime(a.updated_at)}
+                    </span>
+                  </Link>
+                ))}
+              </Card>
+            )}
+          </section>
+        </>
+      )}
     </div>
   );
 }
