@@ -40,8 +40,8 @@ docs/
 - **Frontend:** Next.js (App Router) + TypeScript, Tailwind CSS + shadcn/ui, TanStack Query, React Flow
 - **Backend:** Python 3.11+ + FastAPI, SQLAlchemy 2 + Alembic, Pydantic v2
 - **Storage & search:** PostgreSQL 16 + pgvector (relational data + vector context retrieval)
-- **LLM:** abstract provider with a deterministic mock first; pluggable Anthropic/OpenAI
-- **Orchestration:** LangGraph behind a `WorkflowEngine` interface
+- **LLM:** abstract provider — a deterministic **mock by default** (no tokens, offline); pluggable Anthropic/OpenAI
+- **Orchestration:** a `WorkflowEngine` interface (procedural today; LangGraph-ready)
 
 ## Quick start
 
@@ -58,13 +58,29 @@ uv sync
 uv run alembic upgrade head
 uv run uvicorn engram.main:app --reload   # http://localhost:8000  (docs at /docs)
 
-# 3. Frontend (separate terminal, from repo root)
+# 3. (optional) Seed a demo project — a small todo manager
+uv run python ../../scripts/seed_demo.py --change
+
+# 4. Frontend (separate terminal, from repo root)
 pnpm install
 pnpm web:dev                               # http://localhost:3000
 ```
 
-## Status
+Then open http://localhost:3000: **Formalize** a description into grouped documents, browse them
+(each is a document of typed, numbered **items** with cross-references), inspect versions and links,
+run a **Change request** to see impact + new versions, and view the **Consistency** report.
 
-Early MVP. See the milestone plan in `docs/` (and the working plan referenced there).
+## What works today
+
+- Documents grouped by type (Requirements / User stories / Tasks / Test cases) plus a Project brief,
+  each holding structured **items** with cross-references — created by the formalize workflow or by hand.
+- Versioning + change log on every edit; typed links between documents.
+- Vector + graph **context retrieval** (`/api/search/context`).
+- **Change-request** impact analysis: finds affected documents, writes new versions, links them.
+- **Consistency** report: requirement coverage by tasks/tests, dangling references, etc.
+
+The LLM is the deterministic mock, so generated text is templated; swapping in a real provider
+changes only text quality, not the structure.
+
 Out of MVP scope for now: authentication, UML/diagram generation, DOCX export, external
 integrations (Jira/GitHub/Slack).
