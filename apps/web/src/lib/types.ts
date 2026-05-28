@@ -32,23 +32,15 @@ export const ARTIFACT_TYPE_LABEL: Record<ArtifactType, string> = {
   change_request: "Change request",
 };
 
+// Graph / category accents. These are the data-viz exception to the otherwise
+// monochrome brand; `task` is anchored on the brand emerald.
 export const ARTIFACT_TYPE_COLOR: Record<ArtifactType, string> = {
   project_brief: "#64748b", // slate (source root)
-  requirement: "#6366f1", // indigo
+  requirement: "#8b5cf6", // violet
   user_story: "#0ea5e9", // sky
-  task: "#10b981", // emerald
+  task: "#3ecf8e", // brand emerald
   test_case: "#f59e0b", // amber
   change_request: "#ef4444", // red
-};
-
-/** Tailwind classes for a soft type chip. */
-export const ARTIFACT_TYPE_CHIP: Record<ArtifactType, string> = {
-  project_brief: "bg-slate-100 text-slate-700 ring-slate-200",
-  requirement: "bg-indigo-50 text-indigo-700 ring-indigo-200",
-  user_story: "bg-sky-50 text-sky-700 ring-sky-200",
-  task: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-  test_case: "bg-amber-50 text-amber-700 ring-amber-200",
-  change_request: "bg-red-50 text-red-700 ring-red-200",
 };
 
 /** Allowed statuses per artifact type (matches the backend status sets). */
@@ -70,25 +62,3 @@ export const LINK_TYPES: LinkType[] = [
   "derived_from",
   "related_to",
 ];
-
-/** Tailwind chip classes by status family. */
-export function statusChip(status: ArtifactStatus): string {
-  switch (status) {
-    case "approved":
-    case "active":
-    case "applied":
-      return "bg-emerald-50 text-emerald-700 ring-emerald-200";
-    case "reviewed":
-    case "in_review":
-    case "proposed":
-      return "bg-sky-50 text-sky-700 ring-sky-200";
-    case "changed":
-      return "bg-amber-50 text-amber-700 ring-amber-200";
-    case "rejected":
-      return "bg-red-50 text-red-700 ring-red-200";
-    case "archived":
-      return "bg-neutral-100 text-neutral-500 ring-neutral-200";
-    default: // draft
-      return "bg-neutral-100 text-neutral-600 ring-neutral-200";
-  }
-}

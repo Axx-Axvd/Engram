@@ -33,10 +33,10 @@ export default function ChangeRequestPage() {
 
   return (
     <div className="flex h-full">
-      <aside className="flex w-96 shrink-0 flex-col gap-3 overflow-y-auto border-r border-neutral-200 p-4 dark:border-neutral-800">
+      <aside className="flex w-96 shrink-0 flex-col gap-3 overflow-y-auto border-r border-hairline p-4">
         <div>
-          <h1 className="text-base font-semibold">Change request</h1>
-          <p className="mt-1 text-xs text-neutral-500">
+          <h1 className="text-base font-medium tracking-tight text-ink">Change request</h1>
+          <p className="mt-1 text-xs text-ink-mute">
             Describe a change. Engram finds the impacted artifacts, revises them into new versions,
             and links them to the request.
           </p>
@@ -45,7 +45,7 @@ export default function ChangeRequestPage() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           rows={4}
-          className="resize-none rounded-lg border border-neutral-300 p-3 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+          className="resize-none rounded-md border border-hairline-strong bg-canvas p-3 text-sm text-ink outline-none placeholder:text-ink-faint focus:border-primary focus:ring-2 focus:ring-primary/20"
           placeholder="Describe the change…"
         />
         <Button onClick={run} disabled={change.isPending || !text.trim()}>
@@ -55,20 +55,20 @@ export default function ChangeRequestPage() {
 
         {result && (
           <div className="space-y-3">
-            <p className="rounded-lg bg-neutral-100 p-3 text-xs text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300">
+            <p className="rounded-md bg-canvas-soft p-3 text-xs text-ink-mute ring-1 ring-inset ring-hairline">
               {result.summary}
             </p>
-            <p className="text-xs font-semibold uppercase tracking-wide text-neutral-400">
+            <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
               Impacted ({result.impacted.length})
             </p>
             <ul className="space-y-2">
               {result.impacted.map((item) => (
                 <li
                   key={item.artifact.id}
-                  className={`rounded-lg border p-2.5 text-sm transition-colors ${
+                  className={`rounded-md border p-2.5 text-sm transition-colors ${
                     selectedId === item.artifact.id
-                      ? "border-indigo-400 bg-indigo-50/50 dark:bg-indigo-950/30"
-                      : "border-neutral-200 dark:border-neutral-800"
+                      ? "border-primary bg-primary/10"
+                      : "border-hairline"
                   }`}
                 >
                   <button
@@ -77,13 +77,13 @@ export default function ChangeRequestPage() {
                     className="flex w-full items-center gap-2 text-left"
                   >
                     <TypeBadge type={item.artifact.type} />
-                    <span className="flex-1 truncate font-medium">{item.artifact.title}</span>
-                    <span className="text-xs text-neutral-400">v{item.artifact.current_version}</span>
+                    <span className="flex-1 truncate font-medium text-ink">{item.artifact.title}</span>
+                    <span className="text-xs text-ink-faint">v{item.artifact.current_version}</span>
                   </button>
-                  <p className="mt-1 text-xs text-neutral-500">{item.rationale}</p>
+                  <p className="mt-1 text-xs text-ink-mute">{item.rationale}</p>
                   <Link
                     href={`/artifacts/${item.artifact.id}`}
-                    className="mt-1 inline-block text-xs text-indigo-600 hover:underline"
+                    className="mt-1 inline-block text-xs text-ink-secondary underline-offset-2 hover:text-primary-deep hover:underline"
                   >
                     Open page →
                   </Link>
@@ -94,7 +94,7 @@ export default function ChangeRequestPage() {
         )}
       </aside>
 
-      <div className="flex-1 bg-neutral-50 dark:bg-neutral-950">
+      <div className="flex-1 bg-canvas-soft">
         {result ? (
           <ArtifactGraph
             artifacts={graphArtifacts}
@@ -103,15 +103,15 @@ export default function ChangeRequestPage() {
             onSelect={setSelectedId}
           />
         ) : (
-          <div className="flex h-full items-center justify-center p-8 text-center text-sm text-neutral-400">
-            Describe a change and click <strong className="mx-1">Analyze impact</strong> to see what
+          <div className="flex h-full items-center justify-center p-8 text-center text-sm text-ink-faint">
+            Describe a change and click <strong className="mx-1 font-medium text-ink">Analyze impact</strong> to see what
             it touches.
           </div>
         )}
       </div>
 
       {selected && (
-        <aside className="w-80 border-l border-neutral-200 dark:border-neutral-800">
+        <aside className="w-80 border-l border-hairline">
           <ArtifactDetailPanel artifact={selected} />
         </aside>
       )}

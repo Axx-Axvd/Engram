@@ -36,25 +36,25 @@ export default function OverviewPage() {
         <>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             <Card className="p-4">
-              <p className="text-xs text-neutral-500">Documents</p>
-              <p className="mt-1 text-2xl font-semibold">{artifacts.length}</p>
+              <p className="text-xs text-ink-mute">Documents</p>
+              <p className="mt-1 text-2xl font-medium tracking-tight text-ink">{artifacts.length}</p>
             </Card>
             <Card className="p-4">
-              <p className="text-xs text-neutral-500">Items</p>
-              <p className="mt-1 text-2xl font-semibold">
+              <p className="text-xs text-ink-mute">Items</p>
+              <p className="mt-1 text-2xl font-medium tracking-tight text-ink">
                 {artifacts.reduce((n, a) => n + (a.items?.length ?? 0), 0)}
               </p>
             </Card>
             {ARTIFACT_TYPE_ORDER.map((type) => (
               <Card key={type} className="p-4">
-                <p className="flex items-center gap-1.5 text-xs text-neutral-500">
+                <p className="flex items-center gap-1.5 text-xs text-ink-mute">
                   <span
                     className="size-2 rounded-full"
                     style={{ background: ARTIFACT_TYPE_COLOR[type] }}
                   />
                   {ARTIFACT_TYPE_LABEL[type]}
                 </p>
-                <p className="mt-1 text-2xl font-semibold">
+                <p className="mt-1 text-2xl font-medium tracking-tight text-ink">
                   {artifacts.filter((a) => a.type === type).length}
                 </p>
               </Card>
@@ -62,7 +62,7 @@ export default function OverviewPage() {
           </div>
 
           <section className="space-y-3">
-            <h2 className="text-sm font-semibold text-neutral-600 dark:text-neutral-300">
+            <h2 className="text-sm font-medium text-ink-secondary">
               Recently updated
             </h2>
             {recent.length === 0 ? (
@@ -72,17 +72,17 @@ export default function OverviewPage() {
                 action={<ButtonLink href="/formalize">Formalize a description</ButtonLink>}
               />
             ) : (
-              <Card className="divide-y divide-neutral-100 dark:divide-neutral-800">
+              <Card className="divide-y divide-hairline-cool">
                 {recent.map((a) => (
                   <Link
                     key={a.id}
                     href={`/artifacts/${a.id}`}
-                    className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
+                    className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-canvas-soft"
                   >
                     <TypeBadge type={a.type} />
-                    <span className="flex-1 truncate text-sm font-medium">{a.title}</span>
+                    <span className="flex-1 truncate text-sm font-medium text-ink">{a.title}</span>
                     <StatusBadge status={a.status} />
-                    <span className="hidden text-xs text-neutral-400 sm:inline">
+                    <span className="hidden text-xs text-ink-faint sm:inline">
                       {formatDateTime(a.updated_at)}
                     </span>
                   </Link>

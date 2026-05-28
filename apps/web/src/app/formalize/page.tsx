@@ -33,26 +33,29 @@ export default function FormalizePage() {
 
   return (
     <div className="flex h-full">
-      <aside className="flex w-80 shrink-0 flex-col gap-3 border-r border-neutral-200 p-4 dark:border-neutral-800">
+      <aside className="flex w-80 shrink-0 flex-col gap-3 border-r border-hairline p-4">
         <div>
-          <h1 className="text-base font-semibold">Formalize</h1>
-          <p className="mt-1 text-xs text-neutral-500">
+          <h1 className="text-base font-medium tracking-tight text-ink">Formalize</h1>
+          <p className="mt-1 text-xs text-ink-mute">
             Turn a free-text project description into a connected artifact graph (mock LLM).
           </p>
         </div>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="flex-1 resize-none rounded-lg border border-neutral-300 p-3 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+          className="flex-1 resize-none rounded-md border border-hairline-strong bg-canvas p-3 text-sm text-ink outline-none placeholder:text-ink-faint focus:border-primary focus:ring-2 focus:ring-primary/20"
           placeholder="Describe the project…"
         />
         <Button onClick={run} disabled={formalize.isPending || !description.trim()}>
           {formalize.isPending ? "Formalizing…" : "Formalize"}
         </Button>
         {result && (
-          <p className="text-xs text-neutral-500">
+          <p className="text-xs text-ink-mute">
             Created {result.artifacts.length} artifacts · {result.links.length} links.{" "}
-            <Link href="/artifacts" className="text-indigo-600 hover:underline">
+            <Link
+              href="/artifacts"
+              className="text-ink-secondary underline-offset-2 hover:text-primary-deep hover:underline"
+            >
               Browse →
             </Link>
           </p>
@@ -62,7 +65,7 @@ export default function FormalizePage() {
         )}
       </aside>
 
-      <div className="flex-1 bg-neutral-50 dark:bg-neutral-950">
+      <div className="flex-1 bg-canvas-soft">
         {result ? (
           <ArtifactGraph
             artifacts={result.artifacts}
@@ -71,15 +74,15 @@ export default function FormalizePage() {
             onSelect={setSelectedId}
           />
         ) : (
-          <div className="flex h-full items-center justify-center p-8 text-center text-sm text-neutral-400">
-            Enter a description and click <strong className="mx-1">Formalize</strong> to generate a
+          <div className="flex h-full items-center justify-center p-8 text-center text-sm text-ink-faint">
+            Enter a description and click <strong className="mx-1 font-medium text-ink">Formalize</strong> to generate a
             connected artifact graph.
           </div>
         )}
       </div>
 
       {selected && (
-        <aside className="w-80 border-l border-neutral-200 dark:border-neutral-800">
+        <aside className="w-80 border-l border-hairline">
           <ArtifactDetailPanel artifact={selected} />
         </aside>
       )}

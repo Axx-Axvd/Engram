@@ -45,12 +45,12 @@ function ArtifactsBrowse() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Filter by text…"
-          className="w-56 rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+          className="w-56 rounded-md border border-hairline-strong bg-canvas px-3 py-1.5 text-sm text-ink outline-none placeholder:text-ink-faint focus:border-primary focus:ring-2 focus:ring-primary/20"
         />
         <select
           value={type}
           onChange={(e) => setType(e.target.value as ArtifactType | "")}
-          className="rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-sm dark:border-neutral-700 dark:bg-neutral-900"
+          className="rounded-md border border-hairline-strong bg-canvas px-3 py-1.5 text-sm text-ink focus:border-primary focus:ring-2 focus:ring-primary/20"
         >
           <option value="">All types</option>
           {ARTIFACT_TYPE_ORDER.map((t) => (
@@ -64,7 +64,7 @@ function ArtifactsBrowse() {
           onChange={(e) => setStatus(e.target.value as ArtifactStatus | "")}
           placeholder="status…"
           list="status-options"
-          className="w-32 rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+          className="w-32 rounded-md border border-hairline-strong bg-canvas px-3 py-1.5 text-sm text-ink outline-none placeholder:text-ink-faint focus:border-primary focus:ring-2 focus:ring-primary/20"
         />
         <datalist id="status-options">
           {["draft", "reviewed", "approved", "changed", "active", "archived", "proposed", "in_review", "rejected", "applied"].map(
@@ -73,7 +73,7 @@ function ArtifactsBrowse() {
             ),
           )}
         </datalist>
-        <span className="text-xs text-neutral-400">{filtered.length} shown</span>
+        <span className="text-xs text-ink-faint">{filtered.length} shown</span>
       </div>
 
       {isLoading && <Spinner label="Loading artifacts…" />}
@@ -87,18 +87,18 @@ function ArtifactsBrowse() {
       )}
 
       {filtered.length > 0 && (
-        <Card className="divide-y divide-neutral-100 overflow-hidden dark:divide-neutral-800">
+        <Card className="divide-y divide-hairline-cool overflow-hidden">
           {filtered.map((a) => (
             <Link
               key={a.id}
               href={`/artifacts/${a.id}`}
-              className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
+              className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-canvas-soft"
             >
               <TypeBadge type={a.type} />
-              <span className="flex-1 truncate text-sm font-medium">{a.title}</span>
-              <span className="text-xs text-neutral-400">v{a.current_version}</span>
+              <span className="flex-1 truncate text-sm font-medium text-ink">{a.title}</span>
+              <span className="text-xs text-ink-faint">v{a.current_version}</span>
               <StatusBadge status={a.status} />
-              <span className="hidden text-xs text-neutral-400 md:inline">
+              <span className="hidden text-xs text-ink-faint md:inline">
                 {formatDateTime(a.updated_at)}
               </span>
             </Link>

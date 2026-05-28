@@ -23,12 +23,12 @@ function IssueRow({ issue }: { issue: ConsistencyIssue }) {
       >
         {issue.severity}
       </span>
-      <div className="flex-1 text-sm">
+      <div className="flex-1 text-sm text-ink">
         <p>{issue.message}</p>
         {issue.artifact_id && (
           <Link
             href={`/artifacts/${issue.artifact_id}`}
-            className="text-xs text-indigo-600 hover:underline"
+            className="text-xs text-ink-secondary underline-offset-2 hover:text-primary-deep hover:underline"
           >
             {issue.artifact_title ?? "Open artifact"}
             {issue.item_key ? ` · ${issue.item_key}` : ""} →
@@ -63,17 +63,17 @@ export default function ConsistencyPage() {
             <span
               className={`flex size-10 items-center justify-center rounded-full text-lg ${
                 data.ok
-                  ? "bg-emerald-50 text-emerald-600"
+                  ? "bg-primary/15 text-primary-deep"
                   : "bg-red-50 text-red-600"
               }`}
             >
               {data.ok ? "✓" : "!"}
             </span>
             <div className="text-sm">
-              <p className="font-medium">
+              <p className="font-medium text-ink">
                 {data.ok ? "All checks passed" : "Issues found"}
               </p>
-              <p className="text-neutral-500">
+              <p className="text-ink-mute">
                 {data.errors} errors · {data.warnings} warnings · {data.checked_artifacts} documents
                 checked
               </p>
@@ -86,7 +86,7 @@ export default function ConsistencyPage() {
               hint="Every requirement is covered by a task and a test, references resolve, and change requests touch something."
             />
           ) : (
-            <Card className="divide-y divide-neutral-100 dark:divide-neutral-800">
+            <Card className="divide-y divide-hairline-cool">
               {[...data.issues]
                 .sort((a, b) => (a.severity === b.severity ? 0 : a.severity === "error" ? -1 : 1))
                 .map((issue, idx) => (

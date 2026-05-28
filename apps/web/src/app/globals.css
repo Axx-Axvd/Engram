@@ -1,26 +1,56 @@
 @import "tailwindcss";
 
+/*
+ * Engram design system — Supabase-inspired (see DESIGN.md).
+ * The brand is white-canvas, light-first: emerald is the only chromatic event,
+ * everything else is a calibrated ink/hairline grey ladder. We make `dark:`
+ * class-based so the OS colour-scheme preference never flips the white canvas;
+ * the canonical look is the light brand below.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Brand — emerald is the single chromatic accent */
+  --color-primary: #3ecf8e;
+  --color-primary-deep: #24b47e;
+  --color-primary-soft: #4ade80;
+
+  /* Ink ladder — near-black, never pure black */
+  --color-ink: #171717;
+  --color-ink-secondary: #212121;
+  --color-ink-mute: #707070;
+  --color-ink-faint: #9a9a9a;
+  --color-ink-ghost: #b2b2b2;
+
+  /* On-surface text */
+  --color-on-primary: #171717; /* near-black on emerald — the "lit" button */
+  --color-on-dark: #ffffff;
+
+  /* Surfaces */
+  --color-canvas: #ffffff;
+  --color-canvas-soft: #fafafa;
+  --color-canvas-night: #1c1c1c;
+  --color-canvas-night-soft: #202020;
+
+  /* Hairlines */
+  --color-hairline: #dfdfdf;
+  --color-hairline-strong: #c7c7c7;
+  --color-hairline-cool: #ededed;
+
+  /* Elevation */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-deep: 0 16px 48px rgba(0, 0, 0, 0.12);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: var(--color-canvas);
+  --foreground: var(--color-ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family:
+    var(--font-geist-sans), "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

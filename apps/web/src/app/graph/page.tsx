@@ -10,7 +10,7 @@ import { ARTIFACT_TYPE_COLOR, ARTIFACT_TYPE_LABEL, ARTIFACT_TYPE_ORDER } from "@
 
 function Legend() {
   return (
-    <div className="absolute left-3 top-3 z-10 flex flex-wrap gap-3 rounded-lg border border-neutral-200 bg-white/90 px-3 py-2 text-xs shadow-sm backdrop-blur dark:border-neutral-800 dark:bg-neutral-900/90">
+    <div className="absolute left-3 top-3 z-10 flex flex-wrap gap-3 rounded-lg border border-hairline bg-canvas/90 px-3 py-2 text-xs text-ink-mute shadow-card backdrop-blur">
       {ARTIFACT_TYPE_ORDER.map((t) => (
         <span key={t} className="inline-flex items-center gap-1.5">
           <span className="size-2.5 rounded-full" style={{ background: ARTIFACT_TYPE_COLOR[t] }} />
@@ -61,11 +61,11 @@ export default function GraphPage() {
         />
       </div>
       {selected && (
-        <aside className="flex w-80 flex-col border-l border-neutral-200 dark:border-neutral-800">
+        <aside className="flex w-80 flex-col border-l border-hairline">
           <div className="flex-1 overflow-y-auto">
             <ArtifactDetailPanel artifact={selected} />
           </div>
-          <div className="border-t border-neutral-200 p-3 dark:border-neutral-800">
+          <div className="border-t border-hairline p-3">
             <ButtonLink href={`/artifacts/${selected.id}`} className="w-full" variant="secondary">
               Open full page →
             </ButtonLink>

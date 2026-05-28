@@ -42,7 +42,10 @@ export default function ArtifactPage() {
     return (
       <div className="mx-auto max-w-3xl p-6">
         <p className="text-sm text-red-500">Artifact not found.</p>
-        <Link href="/artifacts" className="text-sm text-indigo-600 hover:underline">
+        <Link
+          href="/artifacts"
+          className="text-sm text-ink-secondary underline-offset-2 hover:text-primary-deep hover:underline"
+        >
           ← Back to artifacts
         </Link>
       </div>
@@ -53,12 +56,12 @@ export default function ArtifactPage() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-5 p-6">
-      <div className="flex items-center gap-2 text-xs text-neutral-400">
-        <Link href="/artifacts" className="hover:underline">
+      <div className="flex items-center gap-2 text-xs text-ink-faint">
+        <Link href="/artifacts" className="hover:text-ink hover:underline">
           Artifacts
         </Link>
         <span>›</span>
-        <span className="text-neutral-500">{ARTIFACT_TYPE_LABEL[a.type]}</span>
+        <span className="text-ink-mute">{ARTIFACT_TYPE_LABEL[a.type]}</span>
       </div>
 
       <div className="flex items-start justify-between gap-3">
@@ -66,13 +69,13 @@ export default function ArtifactPage() {
           <div className="flex items-center gap-2">
             <TypeBadge type={a.type} />
             <StatusBadge status={a.status} />
-            <span className="text-xs text-neutral-400">v{a.current_version}</span>
+            <span className="text-xs text-ink-faint">v{a.current_version}</span>
           </div>
-          <h1 className="text-xl font-semibold leading-snug">{a.title}</h1>
+          <h1 className="text-xl font-medium leading-snug tracking-tight text-ink">{a.title}</h1>
         </div>
       </div>
 
-      <div className="flex gap-1 border-b border-neutral-200 dark:border-neutral-800">
+      <div className="flex gap-1 border-b border-hairline">
         {(["content", "links", "history"] as Tab[]).map((t) => (
           <button
             key={t}
@@ -80,8 +83,8 @@ export default function ArtifactPage() {
             onClick={() => setTab(t)}
             className={`-mb-px border-b-2 px-3 py-2 text-sm font-medium capitalize transition-colors ${
               tab === t
-                ? "border-indigo-600 text-indigo-600"
-                : "border-transparent text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200"
+                ? "border-primary text-ink"
+                : "border-transparent text-ink-mute hover:text-ink"
             }`}
           >
             {t}
@@ -126,19 +129,19 @@ function ContentTab({ artifact: a }: { artifact: Artifact }) {
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm font-medium outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+          className="w-full rounded-md border border-hairline-strong bg-canvas px-3 py-2 text-sm font-medium text-ink outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
         />
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
           rows={8}
-          className="w-full resize-y rounded-lg border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+          className="w-full resize-y rounded-md border border-hairline-strong bg-canvas px-3 py-2 text-sm text-ink outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
         />
         <div className="flex flex-wrap items-center gap-2">
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value as ArtifactStatus)}
-            className="rounded-lg border border-neutral-300 px-3 py-1.5 text-sm dark:border-neutral-700 dark:bg-neutral-900"
+            className="rounded-md border border-hairline-strong bg-canvas px-3 py-1.5 text-sm text-ink focus:border-primary focus:ring-2 focus:ring-primary/20"
           >
             {STATUSES_FOR_TYPE[a.type].map((s) => (
               <option key={s} value={s}>
@@ -150,7 +153,7 @@ function ContentTab({ artifact: a }: { artifact: Artifact }) {
             value={reason}
             onChange={(e) => setReason(e.target.value)}
             placeholder="reason for change (optional)"
-            className="flex-1 rounded-lg border border-neutral-300 px-3 py-1.5 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+            className="flex-1 rounded-md border border-hairline-strong bg-canvas px-3 py-1.5 text-sm text-ink outline-none placeholder:text-ink-faint focus:border-primary focus:ring-2 focus:ring-primary/20"
           />
         </div>
         <div className="flex items-center gap-2">
@@ -174,20 +177,20 @@ function ContentTab({ artifact: a }: { artifact: Artifact }) {
         </Button>
       </div>
       <Card className="p-5">
-        <p className="whitespace-pre-wrap text-sm leading-relaxed">
-          {a.content || <span className="text-neutral-400">No content.</span>}
+        <p className="whitespace-pre-wrap text-sm leading-relaxed text-ink">
+          {a.content || <span className="text-ink-faint">No content.</span>}
         </p>
       </Card>
       {a.items && a.items.length > 0 && <ItemsSection items={a.items} />}
       <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-1.5 text-sm">
-        <dt className="text-neutral-400">Source</dt>
-        <dd className="truncate">{a.source_ref ?? "—"}</dd>
-        <dt className="text-neutral-400">Created</dt>
-        <dd>
+        <dt className="text-ink-faint">Source</dt>
+        <dd className="truncate text-ink">{a.source_ref ?? "—"}</dd>
+        <dt className="text-ink-faint">Created</dt>
+        <dd className="text-ink">
           {formatDateTime(a.created_at)} · {a.created_by}
         </dd>
-        <dt className="text-neutral-400">Updated</dt>
-        <dd>
+        <dt className="text-ink-faint">Updated</dt>
+        <dd className="text-ink">
           {formatDateTime(a.updated_at)} · {a.updated_by}
         </dd>
       </dl>
@@ -222,10 +225,10 @@ function LinksTab({ artifactId }: { artifactId: string }) {
     <div className="space-y-4">
       {links.isLoading && <Spinner />}
       {links.data && links.data.length === 0 && (
-        <p className="text-sm text-neutral-400">No links yet.</p>
+        <p className="text-sm text-ink-faint">No links yet.</p>
       )}
       {links.data && links.data.length > 0 && (
-        <Card className="divide-y divide-neutral-100 dark:divide-neutral-800">
+        <Card className="divide-y divide-hairline-cool">
           {links.data.map((l) => {
             const outgoing = l.source_id === artifactId;
             const other = nameOf(outgoing ? l.target_id : l.source_id);
@@ -234,10 +237,10 @@ function LinksTab({ artifactId }: { artifactId: string }) {
               <Link
                 key={l.id}
                 href={`/artifacts/${other.id}`}
-                className="flex items-center justify-between gap-3 px-4 py-3 transition-colors hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
+                className="flex items-center justify-between gap-3 px-4 py-3 transition-colors hover:bg-canvas-soft"
               >
-                <span className="truncate text-sm font-medium text-indigo-600">{other.title}</span>
-                <span className="shrink-0 text-xs text-neutral-400">
+                <span className="truncate text-sm font-medium text-ink">{other.title}</span>
+                <span className="shrink-0 text-xs text-ink-faint">
                   {l.type.replace("_", " ")}
                 </span>
               </Link>
@@ -248,14 +251,14 @@ function LinksTab({ artifactId }: { artifactId: string }) {
 
       <Card className="space-y-3 p-4">
         <div>
-          <p className="text-sm font-medium">Add link</p>
-          <p className="text-xs text-neutral-400">Relate this document to another one.</p>
+          <p className="text-sm font-medium text-ink">Add link</p>
+          <p className="text-xs text-ink-faint">Relate this document to another one.</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <select
             value={type}
             onChange={(e) => setType(e.target.value as LinkType)}
-            className="rounded-lg border border-neutral-300 px-3 py-1.5 text-sm dark:border-neutral-700 dark:bg-neutral-900"
+            className="rounded-md border border-hairline-strong bg-canvas px-3 py-1.5 text-sm text-ink focus:border-primary focus:ring-2 focus:ring-primary/20"
           >
             {LINK_TYPES.map((t) => (
               <option key={t} value={t}>
@@ -266,7 +269,7 @@ function LinksTab({ artifactId }: { artifactId: string }) {
           <select
             value={targetId}
             onChange={(e) => setTargetId(e.target.value)}
-            className="min-w-48 flex-1 rounded-lg border border-neutral-300 px-3 py-1.5 text-sm dark:border-neutral-700 dark:bg-neutral-900"
+            className="min-w-48 flex-1 rounded-md border border-hairline-strong bg-canvas px-3 py-1.5 text-sm text-ink focus:border-primary focus:ring-2 focus:ring-primary/20"
           >
             <option value="">Select target artifact…</option>
             {candidates.map((a) => (
@@ -298,20 +301,20 @@ function ItemsSection({ items }: { items: ArtifactItem[] }) {
     <div className="space-y-4">
       {[...groups.entries()].map(([feature, groupItems]) => (
         <div key={feature}>
-          <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-neutral-400">
+          <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-ink-faint">
             {feature}
           </p>
-          <Card className="divide-y divide-neutral-100 dark:divide-neutral-800">
+          <Card className="divide-y divide-hairline-cool">
             {groupItems.map((item) => (
               <div key={item.key} className="px-4 py-3">
                 <div className="flex items-center gap-2">
-                  <span className="rounded bg-neutral-100 px-1.5 py-0.5 text-xs font-semibold dark:bg-neutral-800">
+                  <span className="rounded bg-canvas-soft px-1.5 py-0.5 font-mono text-xs font-medium text-ink-secondary ring-1 ring-inset ring-hairline">
                     {item.key}
                   </span>
-                  <span className="text-sm font-medium">{item.title}</span>
+                  <span className="text-sm font-medium text-ink">{item.title}</span>
                 </div>
                 {item.text && (
-                  <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">{item.text}</p>
+                  <p className="mt-1 text-sm text-ink-mute">{item.text}</p>
                 )}
                 {item.refs && item.refs.length > 0 && (
                   <div className="mt-1.5 flex flex-wrap gap-1.5">
@@ -319,7 +322,7 @@ function ItemsSection({ items }: { items: ArtifactItem[] }) {
                       <Link
                         key={`${ref.artifact_id}-${ref.key}-${idx}`}
                         href={`/artifacts/${ref.artifact_id}`}
-                        className="rounded bg-indigo-50 px-1.5 py-0.5 text-xs text-indigo-700 hover:underline dark:bg-indigo-950/40 dark:text-indigo-300"
+                        className="rounded bg-canvas-soft px-1.5 py-0.5 font-mono text-xs text-ink-mute ring-1 ring-inset ring-hairline transition-colors hover:text-primary-deep"
                       >
                         → {ref.key}
                       </Link>
@@ -342,21 +345,21 @@ function HistoryTab({ artifactId }: { artifactId: string }) {
   const items = [...(versions.data ?? [])].sort((a, b) => b.version - a.version);
 
   return (
-    <Card className="divide-y divide-neutral-100 dark:divide-neutral-800">
+    <Card className="divide-y divide-hairline-cool">
       {items.map((v) => (
         <div key={v.id} className="flex items-start gap-3 px-4 py-3">
-          <span className="mt-0.5 rounded bg-neutral-100 px-2 py-0.5 text-xs font-semibold dark:bg-neutral-800">
+          <span className="mt-0.5 rounded bg-canvas-soft px-2 py-0.5 font-mono text-xs font-medium text-ink-secondary ring-1 ring-inset ring-hairline">
             v{v.version}
           </span>
           <div className="flex-1">
-            <p className="text-sm font-medium">{v.title}</p>
-            <p className="text-xs text-neutral-400">
+            <p className="text-sm font-medium text-ink">{v.title}</p>
+            <p className="text-xs text-ink-faint">
               {v.reason ?? "—"} · {formatDateTime(v.created_at)} · {v.created_by}
             </p>
           </div>
           <StatusBadge status={v.status} />
           {v.is_active && (
-            <span className="text-xs font-medium text-emerald-600">active</span>
+            <span className="text-xs font-medium text-primary-deep">active</span>
           )}
         </div>
       ))}

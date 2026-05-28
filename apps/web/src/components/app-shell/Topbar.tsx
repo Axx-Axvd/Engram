@@ -14,14 +14,17 @@ export function Topbar() {
   const status = health.isLoading
     ? { dot: "bg-amber-400", text: "connecting" }
     : health.isSuccess
-      ? { dot: "bg-emerald-500", text: "backend connected" }
+      ? { dot: "bg-primary", text: "backend connected" }
       : { dot: "bg-red-500", text: "backend offline" };
 
   return (
-    <header className="flex items-center gap-4 border-b border-neutral-200 bg-white/80 px-5 py-3 backdrop-blur dark:border-neutral-800 dark:bg-neutral-900/80">
+    <header className="flex items-center gap-4 border-b border-hairline bg-canvas/80 px-5 py-3 backdrop-blur">
       <Link href="/" className="flex items-baseline gap-2">
-        <span className="text-lg font-semibold tracking-tight">Engram</span>
-        <span className="hidden text-xs text-neutral-400 sm:inline">project memory</span>
+        <span className="flex items-center gap-1.5 text-lg font-medium tracking-tight text-ink">
+          <span className="size-2 translate-y-px rounded-full bg-primary" />
+          Engram
+        </span>
+        <span className="hidden text-xs text-ink-faint sm:inline">project memory</span>
       </Link>
 
       <form
@@ -35,18 +38,18 @@ export function Topbar() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search artifacts…"
-          className="w-full max-w-md rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+          className="w-full max-w-md rounded-md border border-hairline-strong bg-canvas px-3 py-1.5 text-sm text-ink outline-none placeholder:text-ink-faint focus:border-primary focus:ring-2 focus:ring-primary/20"
         />
       </form>
 
       <Link
         href="/artifacts/new"
-        className="inline-flex items-center gap-1 rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-500"
+        className="inline-flex min-h-9 items-center gap-1 rounded-md bg-primary px-3.5 py-2 text-sm font-medium text-on-primary transition-colors hover:bg-primary-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
       >
         + Create
       </Link>
 
-      <span className="inline-flex items-center gap-2 text-xs text-neutral-500">
+      <span className="inline-flex items-center gap-2 text-xs text-ink-mute">
         <span className={`size-2 rounded-full ${status.dot}`} />
         <span className="hidden md:inline">{status.text}</span>
       </span>

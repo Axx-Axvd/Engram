@@ -13,6 +13,9 @@ import {
   STATUSES_FOR_TYPE,
 } from "@/lib/types";
 
+const FIELD =
+  "w-full rounded-md border border-hairline-strong bg-canvas px-3 py-2 text-sm text-ink outline-none placeholder:text-ink-faint focus:border-primary focus:ring-2 focus:ring-primary/20";
+
 export default function NewArtifactPage() {
   const router = useRouter();
   const create = useCreateArtifact();
@@ -48,12 +51,8 @@ export default function NewArtifactPage() {
       <Card className="space-y-4 p-5">
         <div className="grid grid-cols-2 gap-3">
           <label className="space-y-1 text-sm">
-            <span className="text-neutral-500">Type</span>
-            <select
-              value={type}
-              onChange={(e) => onTypeChange(e.target.value as ArtifactType)}
-              className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm dark:border-neutral-700 dark:bg-neutral-900"
-            >
+            <span className="text-ink-mute">Type</span>
+            <select value={type} onChange={(e) => onTypeChange(e.target.value as ArtifactType)} className={FIELD}>
               {ARTIFACT_TYPE_ORDER.map((t) => (
                 <option key={t} value={t}>
                   {ARTIFACT_TYPE_LABEL[t]}
@@ -62,11 +61,11 @@ export default function NewArtifactPage() {
             </select>
           </label>
           <label className="space-y-1 text-sm">
-            <span className="text-neutral-500">Status</span>
+            <span className="text-ink-mute">Status</span>
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as ArtifactStatus)}
-              className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm dark:border-neutral-700 dark:bg-neutral-900"
+              className={FIELD}
             >
               {STATUSES_FOR_TYPE[type].map((s) => (
                 <option key={s} value={s}>
@@ -78,33 +77,33 @@ export default function NewArtifactPage() {
         </div>
 
         <label className="block space-y-1 text-sm">
-          <span className="text-neutral-500">Title</span>
+          <span className="text-ink-mute">Title</span>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Short, descriptive title"
-            className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+            className={FIELD}
           />
         </label>
 
         <label className="block space-y-1 text-sm">
-          <span className="text-neutral-500">Content</span>
+          <span className="text-ink-mute">Content</span>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={8}
             placeholder="The body of the artifact…"
-            className="w-full resize-y rounded-lg border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+            className={`${FIELD} resize-y`}
           />
         </label>
 
         <label className="block space-y-1 text-sm">
-          <span className="text-neutral-500">Source (optional)</span>
+          <span className="text-ink-mute">Source (optional)</span>
           <input
             value={sourceRef}
             onChange={(e) => setSourceRef(e.target.value)}
             placeholder="e.g. interview, project_description, parent artifact id"
-            className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+            className={FIELD}
           />
         </label>
 

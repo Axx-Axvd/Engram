@@ -29,19 +29,25 @@ function buildNodes(artifacts: Artifact[], selectedId: string | null): Node[] {
     const idx = perLayer[layer] ?? 0;
     perLayer[layer] = idx + 1;
     const color = ARTIFACT_TYPE_COLOR[a.type];
+    const selected = a.id === selectedId;
     return {
       id: a.id,
       position: { x: idx * 250, y: layer * 130 },
       data: { label: a.title },
       style: {
         border: `2px solid ${color}`,
-        borderRadius: 10,
+        borderRadius: 8,
         padding: 8,
         width: 210,
         fontSize: 12,
-        background: a.id === selectedId ? color : "white",
-        color: a.id === selectedId ? "white" : "#0f172a",
-        boxShadow: a.id === selectedId ? `0 0 0 3px ${color}33` : "none",
+        // White canvas with the category colour as the accent; selection adds a
+        // faint tint + ring + lift rather than flooding the node (keeps the
+        // near-black label legible across every hue, incl. light emerald).
+        background: selected ? `${color}1f` : "#ffffff",
+        color: "#171717",
+        boxShadow: selected
+          ? `0 0 0 3px ${color}40, 0 8px 24px rgba(0,0,0,0.08)`
+          : "0 1px 3px rgba(0,0,0,0.06)",
       },
     };
   });
@@ -53,8 +59,8 @@ function buildEdges(links: Link[]): Edge[] {
     source: l.source_id,
     target: l.target_id,
     label: l.type,
-    style: { stroke: "#94a3b8" },
-    labelStyle: { fontSize: 10, fill: "#475569" },
+    style: { stroke: "#c7c7c7" },
+    labelStyle: { fontSize: 10, fill: "#707070" },
   }));
 }
 

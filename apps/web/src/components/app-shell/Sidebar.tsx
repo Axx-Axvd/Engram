@@ -35,16 +35,16 @@ export function Sidebar() {
   })).filter((group) => group.items.length > 0);
 
   return (
-    <aside className="flex w-64 shrink-0 flex-col gap-4 overflow-y-auto border-r border-neutral-200 bg-neutral-50/60 px-3 py-4 dark:border-neutral-800 dark:bg-neutral-950">
+    <aside className="flex w-64 shrink-0 flex-col gap-4 overflow-y-auto border-r border-hairline bg-canvas-soft px-3 py-4">
       <nav className="flex flex-col gap-0.5">
         {NAV.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+            className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
               isActive(pathname, item.href, item.exact)
-                ? "bg-indigo-600 text-white"
-                : "text-neutral-600 hover:bg-neutral-200/60 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                ? "bg-primary text-on-primary"
+                : "text-ink-mute hover:bg-hairline-cool hover:text-ink"
             }`}
           >
             {item.label}
@@ -53,11 +53,11 @@ export function Sidebar() {
       </nav>
 
       <div className="flex flex-col gap-1">
-        <p className="px-3 pb-1 text-xs font-semibold uppercase tracking-wide text-neutral-400">
+        <p className="px-3 pb-1 text-xs font-semibold uppercase tracking-wide text-ink-faint">
           Workspace
         </p>
         {byType.length === 0 && (
-          <p className="px-3 text-xs text-neutral-400">No artifacts yet.</p>
+          <p className="px-3 text-xs text-ink-faint">No artifacts yet.</p>
         )}
         {byType.map((group) => (
           <TreeSection
@@ -87,18 +87,18 @@ function TreeSection({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-neutral-600 hover:bg-neutral-200/60 dark:text-neutral-300 dark:hover:bg-neutral-800"
+        className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm text-ink-mute hover:bg-hairline-cool hover:text-ink"
       >
-        <span className="text-[10px] text-neutral-400">{open ? "▾" : "▸"}</span>
+        <span className="text-[10px] text-ink-faint">{open ? "▾" : "▸"}</span>
         <span
           className="size-2 shrink-0 rounded-full"
           style={{ background: ARTIFACT_TYPE_COLOR[type] }}
         />
         <span className="flex-1 text-left">{ARTIFACT_TYPE_LABEL[type]}</span>
-        <span className="text-xs text-neutral-400">{items.length}</span>
+        <span className="text-xs text-ink-faint">{items.length}</span>
       </button>
       {open && (
-        <ul className="ml-4 border-l border-neutral-200 pl-2 dark:border-neutral-800">
+        <ul className="ml-4 border-l border-hairline pl-2">
           {items.map((a) => {
             const active = pathname === `/artifacts/${a.id}`;
             return (
@@ -108,8 +108,8 @@ function TreeSection({
                   title={a.title}
                   className={`block truncate rounded-md px-2 py-1 text-xs transition-colors ${
                     active
-                      ? "bg-neutral-200 font-medium text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100"
-                      : "text-neutral-500 hover:bg-neutral-200/60 dark:hover:bg-neutral-800"
+                      ? "bg-hairline-cool font-medium text-ink"
+                      : "text-ink-mute hover:bg-hairline-cool hover:text-ink"
                   }`}
                 >
                   {a.title}
