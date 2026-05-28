@@ -38,3 +38,6 @@ Thumbs.db
 
 # ───────── Temp ─────────
 .tmp/
+
+# ───────── Claude Code (local machine config) ─────────
+.claude/settings.local.json
