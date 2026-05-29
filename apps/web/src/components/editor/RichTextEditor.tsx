@@ -77,11 +77,16 @@ export function RichTextEditor({
 
   // In read-only mode, keep the rendered doc in sync with external value changes
   // (e.g. navigating between documents). We never reset while editing to avoid
-  // clobbering in-progress input.
+  // clobbering in-progress input. setContent runs flushSync internally, so defer
+  // it to a microtask — calling it during the effect's commit phase makes React
+  // throw "flushSync was called from inside a lifecycle method".
   useEffect(() => {
-    if (editor && !editable) {
-      editor.commands.setContent(parseDocContent(value));
-    }
+    if (!editor || editable) return;
+    queueMicrotask(() => {
+      if (!editor.isDestroyed) {
+        editor.commands.setContent(parseDocContent(value));
+      }
+    });
   }, [editor, value, editable]);
 
   if (!editor) {
