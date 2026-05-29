@@ -124,11 +124,29 @@ export function useUpdateArtifact(id: string) {
       qc.invalidateQueries({ queryKey: ["artifact", id] });
       qc.invalidateQueries({ queryKey: ["versions", id] });
       qc.invalidateQueries({ queryKey: ["artifacts"] });
+      qc.invalidateQueries({ queryKey: ["consistency"] });
     },
   });
 }
 
-export function useCreateLink(artifactId?: string) {
+export function useDeleteArtifact() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string): Promise<void> => {
+      const { error } = await api.DELETE("/api/artifacts/{artifact_id}", {
+        params: { path: { artifact_id: id } },
+      });
+      if (error) throw new Error("Delete failed");
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["artifacts"] });
+      qc.invalidateQueries({ queryKey: ["all-links"] });
+      qc.invalidateQueries({ queryKey: ["consistency"] });
+    },
+  });
+}
+
+export function useCreateLink() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (body: {
@@ -139,7 +157,9 @@ export function useCreateLink(artifactId?: string) {
       unwrap(await api.POST("/api/links", { body: { ...body, created_by: "web" } })),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["all-links"] });
-      if (artifactId) qc.invalidateQueries({ queryKey: ["links", artifactId] });
+      // Prefix invalidation covers both source and target artifacts, not just the current one.
+      qc.invalidateQueries({ queryKey: ["links"] });
+      qc.invalidateQueries({ queryKey: ["consistency"] });
     },
   });
 }

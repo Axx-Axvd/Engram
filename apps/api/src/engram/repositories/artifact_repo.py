@@ -38,6 +38,13 @@ def add(session: Session, artifact: Artifact) -> Artifact:
     return artifact
 
 
+def delete(session: Session, artifact: Artifact) -> None:
+    """Delete an artifact. DB-level ON DELETE CASCADE removes its versions,
+    links (incoming and outgoing), and change logs."""
+    session.delete(artifact)
+    session.flush()
+
+
 def add_version(session: Session, version: ArtifactVersion) -> ArtifactVersion:
     session.add(version)
     session.flush()

@@ -16,6 +16,7 @@ from engram.llm.base import (
     GenItem,
     LLMProvider,
 )
+from engram.services.artifact_service import content_to_text
 
 _SENTENCE_SPLIT = re.compile(r"[.\n;!?]+")
 _MAX_ITEMS = 10
@@ -58,10 +59,8 @@ def _statements(text: str) -> list[str]:
     return [chunk.strip() for chunk in _SENTENCE_SPLIT.split(text) if len(chunk.strip()) >= 8]
 
 
-def _titleize(text: str, max_len: int = 70) -> str:
-    head = text.strip().split(",")[0].strip()
-    if len(head) > max_len:
-        head = head[:max_len].rstrip() + "…"
+def _titleize(text: str, max_len: int = 500) -> str:
+    head = text.strip().split(",")[0].strip()[:max_len].rstrip()
     return head[0].upper() + head[1:] if head else "Untitled"
 
 
@@ -143,7 +142,9 @@ class MockLLMProvider(LLMProvider):
         proposals = [
             ChangeProposal(
                 artifact_id=item.id,
-                proposed_content=f"{item.content}\n\n— Revised for change request: {request}.",
+                proposed_content=(
+                    f"{content_to_text(item.content)}\n\n— Revised for change request: {request}."
+                ),
                 rationale=f"'{item.title}' is in scope of the change and was updated accordingly.",
             )
             for item in context

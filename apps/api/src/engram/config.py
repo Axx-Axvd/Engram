@@ -18,7 +18,8 @@ class Settings(BaseSettings):
     )
 
     # Database (PostgreSQL + pgvector).
-    db_url: str = "postgresql+psycopg://engram:engram@localhost:5432/engram"
+    # Default port 5433 matches the dev Postgres published by infra/docker-compose.yml.
+    db_url: str = "postgresql+psycopg://engram:engram@localhost:5433/engram"
 
     # Provider selection (see engram.llm / engram.embeddings factories).
     # embedding_provider: "mock" (default, offline) or "local" (fastembed; needs the `local` extra).

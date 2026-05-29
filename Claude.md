@@ -71,6 +71,12 @@ pnpm --filter @engram/web gen:api         # regen TS API types (backend must be 
   (`uv run alembic revision --autogenerate -m "..."`), reviewed before `upgrade head`.
 - **Layering (backend):** `api/` (routers) → `services/` (logic) → `repositories/` (data access)
   → `models/` (ORM). Keep LLM/embedding access behind their adapter interfaces.
+- **Overlays (frontend):** all popups (dropdowns, menus, popovers, dialogs, slide-in panels) must
+  use the shared primitives in `apps/web/src/components/overlay/` (`Popover`, `Modal`, `SidePanel`),
+  which provide animated enter **and** exit + outside-click/Escape dismissal via the
+  `usePresence` / `useDismiss` hooks (`apps/web/src/lib/ui/`). Don't hand-roll `{open && <div>}`
+  popovers — that snaps with no exit animation and re-implements dismissal. Animation is CSS keyed
+  on `data-state` in `globals.css` and respects `prefers-reduced-motion`.
 - **Tests:** backend uses pytest; add tests with each milestone (workflows + validation rules).
 
 ## Domain model (reference)

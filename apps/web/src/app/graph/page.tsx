@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { ArtifactDetailPanel } from "@/components/ArtifactDetailPanel";
 import { ArtifactGraph } from "@/components/ArtifactGraph";
+import { SidePanel } from "@/components/overlay/SidePanel";
 import { ButtonLink, EmptyState, Spinner } from "@/components/ui";
 import { useAllLinks, useArtifacts } from "@/lib/queries";
 import { ARTIFACT_TYPE_COLOR, ARTIFACT_TYPE_LABEL, ARTIFACT_TYPE_ORDER } from "@/lib/types";
@@ -26,6 +27,11 @@ export default function GraphPage() {
   const { data: links = [] } = useAllLinks();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selected = artifacts.find((a) => a.id === selectedId) ?? null;
+
+  // Retain the last selection so the panel can finish sliding out after deselect
+  // (set-state-during-render, guarded so it can't loop).
+  const [panelArtifact, setPanelArtifact] = useState(selected);
+  if (selected && selected !== panelArtifact) setPanelArtifact(selected);
 
   if (isLoading) {
     return (
@@ -60,18 +66,24 @@ export default function GraphPage() {
           onSelect={setSelectedId}
         />
       </div>
-      {selected && (
-        <aside className="flex w-80 flex-col border-l border-hairline">
-          <div className="flex-1 overflow-y-auto">
-            <ArtifactDetailPanel artifact={selected} />
-          </div>
-          <div className="border-t border-hairline p-3">
-            <ButtonLink href={`/artifacts/${selected.id}`} className="w-full" variant="secondary">
-              Open full page →
-            </ButtonLink>
-          </div>
-        </aside>
-      )}
+      <SidePanel open={!!selected} className="flex w-80 flex-col border-l border-hairline">
+        {panelArtifact && (
+          <>
+            <div className="flex-1 overflow-y-auto">
+              <ArtifactDetailPanel artifact={panelArtifact} />
+            </div>
+            <div className="border-t border-hairline p-3">
+              <ButtonLink
+                href={`/artifacts/${panelArtifact.id}`}
+                className="w-full"
+                variant="secondary"
+              >
+                Open full page →
+              </ButtonLink>
+            </div>
+          </>
+        )}
+      </SidePanel>
     </div>
   );
 }

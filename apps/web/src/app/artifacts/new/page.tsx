@@ -1,9 +1,12 @@
 "use client";
 
+import type { JSONContent } from "@tiptap/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { RichTextEditor } from "@/components/editor/RichTextEditor";
 import { Button, Card, PageHeader } from "@/components/ui";
+import { EMPTY_DOC, serializeDoc } from "@/lib/editor/content";
 import { useCreateArtifact } from "@/lib/queries";
 import {
   ARTIFACT_TYPE_LABEL,
@@ -22,7 +25,7 @@ export default function NewArtifactPage() {
 
   const [type, setType] = useState<ArtifactType>("requirement");
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [doc, setDoc] = useState<JSONContent>(EMPTY_DOC);
   const [status, setStatus] = useState<ArtifactStatus>("draft");
   const [sourceRef, setSourceRef] = useState("");
 
@@ -36,7 +39,7 @@ export default function NewArtifactPage() {
       {
         type,
         title: title.trim(),
-        content,
+        content: serializeDoc(doc),
         status,
         source_ref: sourceRef.trim() || null,
       },
@@ -86,16 +89,12 @@ export default function NewArtifactPage() {
           />
         </label>
 
-        <label className="block space-y-1 text-sm">
+        <div className="space-y-1 text-sm">
           <span className="text-ink-mute">Content</span>
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            rows={8}
-            placeholder="The body of the artifact…"
-            className={`${FIELD} resize-y`}
-          />
-        </label>
+          <div className="min-h-32 rounded-md border border-hairline-strong bg-canvas px-3 py-2 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20">
+            <RichTextEditor value="" editable blockHandle={false} onChange={setDoc} />
+          </div>
+        </div>
 
         <label className="block space-y-1 text-sm">
           <span className="text-ink-mute">Source (optional)</span>

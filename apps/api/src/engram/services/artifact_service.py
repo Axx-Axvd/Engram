@@ -7,13 +7,15 @@ and appends a ``ChangeLog`` entry. Callers are responsible for committing the se
 
 from __future__ import annotations
 
+import json
+import re
 import uuid
 
 from sqlalchemy.orm import Session
 
 from engram.embeddings import get_embedding_provider
-from engram.enums import ArtifactStatus, ChangeAction
-from engram.errors import NotFoundError
+from engram.enums import ArtifactStatus, ChangeAction, status_allowed_for_type
+from engram.errors import NotFoundError, ValidationError
 from engram.models import Artifact, ArtifactVersion, ChangeLog
 from engram.repositories import artifact_repo
 from engram.schemas.artifact import ArtifactCreate, ArtifactItem, ArtifactUpdate
@@ -23,8 +25,66 @@ def _items_to_json(items: list[ArtifactItem]) -> list[dict]:
     return [item.model_dump(mode="json") for item in items]
 
 
+def content_to_text(content: str) -> str:
+    """Plain text from a document body.
+
+    The body is rich-text stored as serialized Tiptap JSON; legacy/seed bodies and
+    change-request output are raw text. We extract just the words so embeddings index the
+    prose, not JSON syntax. Non-JSON (or non-Tiptap) input is returned unchanged.
+    """
+    stripped = content.strip() if content else ""
+    if not stripped:
+        return ""
+    try:
+        doc = json.loads(stripped)
+    except (ValueError, TypeError):
+        return content
+    if not isinstance(doc, dict) or doc.get("type") != "doc":
+        return content
+
+    parts: list[str] = []
+
+    def walk(node: object) -> None:
+        if isinstance(node, dict):
+            if isinstance(node.get("text"), str):
+                parts.append(node["text"])
+            attrs = node.get("attrs")
+            if isinstance(attrs, dict) and isinstance(attrs.get("summary"), str):
+                parts.append(attrs["summary"])
+            walk(node.get("content"))
+        elif isinstance(node, list):
+            for child in node:
+                walk(child)
+
+    walk(doc)
+    return " ".join(part for part in parts if part)
+
+
+def text_to_doc(text: str) -> str:
+    """Serialize plain text into a minimal Tiptap document (JSON string).
+
+    Inverse of :func:`content_to_text`. Mirrors the frontend ``plainTextToDoc``: blank lines
+    separate paragraphs, single newlines become hard breaks. Used to wrap plain-text LLM output
+    so the stored ``content`` is always valid Tiptap JSON.
+    """
+    paragraphs = re.split(r"\n{2,}", text.replace("\r\n", "\n"))
+    content: list[dict] = []
+    for para in paragraphs:
+        lines = para.split("\n")
+        inline: list[dict] = []
+        for i, line in enumerate(lines):
+            if i > 0:
+                inline.append({"type": "hardBreak"})
+            if line:
+                inline.append({"type": "text", "text": line})
+        content.append(
+            {"type": "paragraph", "content": inline} if inline else {"type": "paragraph"}
+        )
+    return json.dumps({"type": "doc", "content": content})
+
+
 def _embed(title: str, content: str, items_json: list[dict]) -> list[float]:
-    parts = [title, content]
+    parts = [title, content_to_text(content)]
     for item in items_json:
         parts.append(str(item.get("title", "")))
         parts.append(str(item.get("text", "")))
@@ -82,6 +142,12 @@ def get_artifact(session: Session, artifact_id: uuid.UUID) -> Artifact:
     return artifact
 
 
+def delete_artifact(session: Session, artifact_id: uuid.UUID) -> None:
+    """Remove an artifact and everything that hangs off it (versions, links, change logs)."""
+    artifact = get_artifact(session, artifact_id)
+    artifact_repo.delete(session, artifact)
+
+
 def update_artifact(session: Session, artifact_id: uuid.UUID, data: ArtifactUpdate) -> Artifact:
     """Apply a partial update. Any real change produces a new active version."""
     artifact = get_artifact(session, artifact_id)
@@ -107,6 +173,10 @@ def update_artifact(session: Session, artifact_id: uuid.UUID, data: ArtifactUpda
         artifact.source_ref = data.source_ref
         changed = True
     if data.status is not None and data.status != artifact.status:
+        if not status_allowed_for_type(artifact.type, data.status):
+            raise ValidationError(
+                f"status '{data.status.value}' is not valid for type '{artifact.type.value}'"
+            )
         artifact.status = data.status
         changed = True
         status_changed = True

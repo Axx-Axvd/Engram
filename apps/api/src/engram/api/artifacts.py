@@ -56,6 +56,12 @@ def update_artifact(
     return artifact
 
 
+@router.delete("/{artifact_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_artifact(artifact_id: uuid.UUID, session: Session = Depends(get_session)) -> None:
+    artifact_service.delete_artifact(session, artifact_id)
+    session.commit()
+
+
 @router.get("/{artifact_id}/versions", response_model=list[ArtifactVersionRead])
 def list_versions(
     artifact_id: uuid.UUID, session: Session = Depends(get_session)

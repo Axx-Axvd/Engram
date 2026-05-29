@@ -31,8 +31,27 @@ from engram.schemas.workflow import (
 from engram.services import artifact_service, context_service, link_service
 
 
+def _first_line(text: str) -> str:
+    return next((line.strip() for line in text.splitlines() if line.strip()), "Change request")
+
+
+def _title(text: str, max_len: int = 200) -> str:
+    """Clean artifact title for a change request — the full request text lives in
+    the content.
+
+    Never bake an ellipsis into the stored title: views with room (detail panel,
+    document header, graph node) wrap it in full, and narrow list rows clip it with
+    a CSS ellipsis on their own. A title that already *contains* "…" would show that
+    literal character even where the whole title fits.
+    """
+    head = _first_line(text)
+    if len(head) <= max_len:
+        return head or "Change request"
+    return head[:max_len].rsplit(" ", 1)[0].rstrip() or head[:max_len].rstrip()
+
+
 def _summarize(text: str, max_len: int = 70) -> str:
-    head = next((line.strip() for line in text.splitlines() if line.strip()), "Change request")
+    head = _first_line(text)
     if len(head) > max_len:
         head = head[:max_len].rstrip() + "…"
     return head or "Change request"
@@ -142,7 +161,7 @@ class ProceduralWorkflowEngine(WorkflowEngine):
             session,
             ArtifactCreate(
                 type=ArtifactType.change_request,
-                title=_summarize(request.text),
+                title=_title(request.text),
                 content=request.text,
                 status=ArtifactStatus.proposed,
                 source_ref="user",
@@ -192,7 +211,7 @@ class ProceduralWorkflowEngine(WorkflowEngine):
                 session,
                 target.id,
                 ArtifactUpdate(
-                    content=proposal.proposed_content,
+                    content=artifact_service.text_to_doc(proposal.proposed_content),
                     status=new_status,
                     reason=f"change request: {_summarize(request.text)}",
                     updated_by=request.created_by,

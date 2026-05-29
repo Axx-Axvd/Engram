@@ -5,9 +5,9 @@ from __future__ import annotations
 import uuid
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from engram.enums import ArtifactStatus, ArtifactType
+from engram.enums import ArtifactStatus, ArtifactType, status_allowed_for_type
 
 
 class ItemRef(BaseModel):
@@ -35,6 +35,14 @@ class ArtifactCreate(BaseModel):
     status: ArtifactStatus | None = None
     source_ref: str | None = None
     created_by: str = "system"
+
+    @model_validator(mode="after")
+    def _status_matches_type(self) -> ArtifactCreate:
+        if self.status is not None and not status_allowed_for_type(self.type, self.status):
+            raise ValueError(
+                f"status '{self.status.value}' is not valid for type '{self.type.value}'"
+            )
+        return self
 
 
 class ArtifactUpdate(BaseModel):
