@@ -24,6 +24,20 @@ def check_consistency(session: Session) -> ConsistencyReport:
     links = link_repo.list_all(session)
     by_id: dict[str, Artifact] = {str(a.id): a for a in artifacts}
 
+    # Document-level adjacency (undirected) from the Links graph, so checks can fall back to
+    # hand-authored links when a document carries no items.
+    linked_ids: dict[str, set[str]] = {}
+    for link in links:
+        s, t = str(link.source_id), str(link.target_id)
+        linked_ids.setdefault(s, set()).add(t)
+        linked_ids.setdefault(t, set()).add(s)
+
+    def doc_links_to_type(artifact: Artifact, kind: ArtifactType) -> bool:
+        return any(
+            (other := by_id.get(other_id)) is not None and other.type == kind
+            for other_id in linked_ids.get(str(artifact.id), ())
+        )
+
     issues: list[ConsistencyIssue] = []
 
     # Collect, per referrer type, the (requirement_doc_id, key) targets that are referenced.
@@ -140,12 +154,28 @@ def check_consistency(session: Session) -> ConsistencyReport:
                 )
             )
 
-    # User story items should trace to a requirement.
+    # User stories should trace to a requirement (spec §10.1.2). A document-level link to a
+    # requirement satisfies the rule; otherwise each item must reference one. Hand-authored stories
+    # with no items are checked at the document level.
     for artifact in artifacts:
         if artifact.type != ArtifactType.user_story:
             continue
-        for item in _items(artifact):
-            traces = any(
+        doc_traces = doc_links_to_type(artifact, ArtifactType.requirement)
+        items = _items(artifact)
+        if not items:
+            if not doc_traces:
+                issues.append(
+                    ConsistencyIssue(
+                        severity="warning",
+                        code="user_story_without_requirement",
+                        message=f"User story '{artifact.title}' is not linked to a requirement",
+                        artifact_id=artifact.id,
+                        artifact_title=artifact.title,
+                    )
+                )
+            continue
+        for item in items:
+            traces = doc_traces or any(
                 (target := by_id.get(ref.get("artifact_id"))) is not None
                 and target.type == ArtifactType.requirement
                 for ref in item.get("refs", [])

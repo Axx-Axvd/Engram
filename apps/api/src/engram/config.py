@@ -22,8 +22,12 @@ class Settings(BaseSettings):
     db_url: str = "postgresql+psycopg://engram:engram@localhost:5433/engram"
 
     # Provider selection (see engram.llm / engram.embeddings factories).
+    # llm_provider: "mock" (default, offline/deterministic) or "claude_code" (subscription-auth
+    # Claude CLI via the Agent SDK; needs the `llm` extra). llm_model is an optional override
+    # (None = the plan's default model).
     # embedding_provider: "mock" (default, offline) or "local" (fastembed; needs the `local` extra).
     llm_provider: str = "mock"
+    llm_model: str | None = None
     embedding_provider: str = "mock"
     embedding_dim: int = 384
 

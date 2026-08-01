@@ -14,5 +14,10 @@ def get_llm_provider() -> LLMProvider:
     name = settings.llm_provider.lower()
     if name == "mock":
         return MockLLMProvider()
-    # Real providers (anthropic / openai) are added in a later milestone.
+    if name == "claude_code":
+        # Subscription-authenticated Claude CLI via the Agent SDK (no per-token API key).
+        from engram.llm.claude_code import ClaudeCodeLLMProvider
+
+        return ClaudeCodeLLMProvider()
+    # Direct API providers (anthropic / openai) are added in a later milestone.
     raise ValueError(f"Unknown or unsupported LLM provider: {settings.llm_provider!r}")

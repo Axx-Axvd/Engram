@@ -108,6 +108,38 @@ def test_requirement_without_user_story_warns(client: TestClient) -> None:
     assert "requirement_without_test" not in codes
 
 
+def test_handauthored_user_story_without_requirement_warns(client: TestClient) -> None:
+    # A user story authored by hand (no items, no links) must still be flagged (spec §10.1.2).
+    client.post(
+        "/api/artifacts",
+        json={"type": "user_story", "title": "Тестовая дока", "content": "as a user…"},
+    )
+    report = client.get("/api/consistency").json()
+    assert report["ok"] is True  # warning only
+    assert any(i["code"] == "user_story_without_requirement" for i in report["issues"])
+
+
+def test_user_story_traces_via_document_link(client: TestClient) -> None:
+    req = client.post(
+        "/api/artifacts",
+        json={
+            "type": "requirement",
+            "title": "Requirements",
+            "items": [{"key": "R1", "title": "Login", "text": "log in"}],
+        },
+    ).json()
+    story = client.post(
+        "/api/artifacts",
+        json={"type": "user_story", "title": "Тестовая дока", "content": "as a user…"},
+    ).json()
+    client.post(
+        "/api/links",
+        json={"source_id": story["id"], "target_id": req["id"], "type": "refines"},
+    )
+    report = client.get("/api/consistency").json()
+    assert not any(i["code"] == "user_story_without_requirement" for i in report["issues"])
+
+
 def test_archived_used_as_active_warns(client: TestClient) -> None:
     req = client.post(
         "/api/artifacts",
