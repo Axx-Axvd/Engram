@@ -1,0 +1,102 @@
+[
+  {
+    "id": "ENG-001",
+    "change": "Add a required project boundary to every artifact and link operation.",
+    "relevant_paths": [
+      "apps/api/src/engram/models/project.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/models/link.py",
+      "apps/api/src/engram/api/project_scope.py",
+      "apps/api/tests/test_true_path.py"
+    ]
+  },
+  {
+    "id": "ENG-002",
+    "change": "Import a GitHub repository at an immutable commit SHA without writing upstream.",
+    "relevant_paths": [
+      "apps/api/src/engram/services/github_source_service.py",
+      "apps/api/src/engram/api/sources.py",
+      "apps/api/src/engram/models/source.py",
+      "apps/api/tests/test_github_source.py"
+    ]
+  },
+  {
+    "id": "ENG-003",
+    "change": "Reject an invalid LLM impact response atomically.",
+    "relevant_paths": [
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/services/analysis_service.py",
+      "apps/api/tests/test_true_path.py"
+    ]
+  },
+  {
+    "id": "ENG-004",
+    "change": "Enforce a hard token budget after typed graph expansion.",
+    "relevant_paths": [
+      "apps/api/src/engram/services/context_service.py",
+      "apps/api/src/engram/services/analysis_service.py",
+      "apps/api/tests/test_true_path.py"
+    ]
+  },
+  {
+    "id": "ENG-005",
+    "change": "Turn document JSON items into independently versioned knowledge elements.",
+    "relevant_paths": [
+      "apps/api/src/engram/models/item.py",
+      "apps/api/src/engram/services/item_service.py",
+      "apps/api/alembic/versions/c41f0e9a2b11_true_path_domain_model.py",
+      "apps/api/tests/test_true_path.py"
+    ]
+  },
+  {
+    "id": "ENG-006",
+    "change": "Prevent inferred links from affecting retrieval before human confirmation.",
+    "relevant_paths": [
+      "apps/api/src/engram/models/item.py",
+      "apps/api/src/engram/services/item_service.py",
+      "apps/api/src/engram/services/context_service.py",
+      "apps/api/tests/test_true_path.py"
+    ]
+  },
+  {
+    "id": "ENG-007",
+    "change": "Review impact candidates without updating active knowledge versions.",
+    "relevant_paths": [
+      "apps/api/src/engram/api/analyses.py",
+      "apps/api/src/engram/services/analysis_service.py",
+      "apps/api/src/engram/models/analysis.py",
+      "apps/api/tests/test_true_path.py"
+    ]
+  },
+  {
+    "id": "ENG-008",
+    "change": "Link an imported commit to exact before and after item versions.",
+    "relevant_paths": [
+      "apps/api/src/engram/models/analysis.py",
+      "apps/api/src/engram/services/github_source_service.py",
+      "apps/api/src/engram/api/analyses.py",
+      "apps/api/tests/test_github_source.py"
+    ]
+  },
+  {
+    "id": "ENG-009",
+    "change": "Run CI against PostgreSQL with pgvector and deterministic providers.",
+    "relevant_paths": [
+      ".github/workflows/ci.yml",
+      "infra/docker-compose.yml",
+      "apps/api/tests/conftest.py",
+      "apps/api/pyproject.toml"
+    ]
+  },
+  {
+    "id": "ENG-010",
+    "change": "Make Projects, Sources, Changes, Impact analyses and Context packages the primary navigation.",
+    "relevant_paths": [
+      "apps/web/src/components/app-shell/Sidebar.tsx",
+      "apps/web/src/components/app-shell/Topbar.tsx",
+      "apps/web/src/app/page.tsx",
+      "apps/web/src/app/change-request/page.tsx"
+    ]
+  }
+]

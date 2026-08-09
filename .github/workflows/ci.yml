@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: engram
+          POSTGRES_PASSWORD: engram
+          POSTGRES_DB: engram
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U engram -d engram"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      ENGRAM_DB_URL: postgresql+psycopg://engram:engram@127.0.0.1:5432/engram
+      ENGRAM_LLM_PROVIDER: mock
+      ENGRAM_EMBEDDING_PROVIDER: mock
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.8.x"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install backend
+        working-directory: apps/api
+        run: uv sync --locked --dev
+      - name: Check migrations
+        working-directory: apps/api
+        run: uv run alembic upgrade head
+      - name: Lint backend
+        working-directory: apps/api
+        run: uv run ruff check .
+      - name: Test backend
+        working-directory: apps/api
+        run: uv run pytest -q
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.3.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Lint frontend
+        run: pnpm --filter @engram/web exec eslint .
+      - name: Build frontend
+        run: pnpm --filter @engram/web exec next build

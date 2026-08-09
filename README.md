@@ -1,86 +1,101 @@
 # Engram
 
-**Engram** is a project-memory platform for long AI projects. It stores project knowledge
-*outside* the LLM as **connected, versioned artifacts** (requirements, user stories, tasks, test
-cases, change requests), selects the **minimal relevant context** for each task instead of feeding
-the whole project to the model, saves results back, and checks consistency across artifacts.
+Engram is an evidence-backed change-impact analysis layer for long-lived software projects.
+It indexes knowledge from existing sources, tracks the exact source revisions behind that
+knowledge, finds requirements, decisions, code and tests affected by a proposed change, and builds
+a small reproducible context package for an AI agent.
 
-> *Engram* (neuroscience): a physical trace of memory. That's the idea — the durable memory of a
-> project, living next to the model rather than inside it.
+Engram is **not** a replacement for GitHub, an issue tracker, or a documentation editor. External
+systems remain the source of truth. Engram's job is to connect and explain their information.
 
-## Why
+## Product loop
 
-Long AI projects overflow the context window, lose old decisions, let artifacts drift out of sync,
-make change-impact hard to reason about, and burn tokens re-reading everything. Engram is the
-management layer that keeps project knowledge structured, linked, versioned, and retrievable.
-
-## End-to-end scenario
-
-```
-project description → requirements → user stories → tasks → test cases
-                    → change request → impact analysis → new versions + consistency report
-```
-
-## Monorepo layout
-
-```
-apps/
-  api/        FastAPI backend — artifacts, versions, links, search, workflows (Python, uv)
-  web/        Next.js + TypeScript frontend (pnpm)
-packages/
-  shared/     Shared TS types / generated API client
-infra/
-  docker-compose.yml   PostgreSQL 16 + pgvector
-scripts/      Dev/seed scripts
-docs/
+```text
+fixed source revision
+        ↓
+versioned knowledge elements + typed evidence-backed links
+        ↓
+change request → impact analysis → human review
+        ↓
+bounded context package for an external agent
+        ↓
+actual commit / pull request → ChangeSet → consistency check
 ```
 
-## Tech stack
+The current repository contains a functional prototype of the full non-mutating product loop. It
+is not yet a validated MVP: the ten-change benchmark is prepared, but comparative results on a
+real imported repository have not been recorded. See [`ENGRAM_TRUE_PATH_PLAN.md`](ENGRAM_TRUE_PATH_PLAN.md),
+[`ROADMAP.md`](ROADMAP.md), and [`research/README.md`](research/README.md).
 
-- **Frontend:** Next.js (App Router) + TypeScript, Tailwind CSS + shadcn/ui, TanStack Query, React Flow
-- **Backend:** Python 3.11+ + FastAPI, SQLAlchemy 2 + Alembic, Pydantic v2
-- **Storage & search:** PostgreSQL 16 + pgvector (relational data + vector context retrieval)
-- **LLM:** abstract provider — a deterministic **mock by default** (no tokens, offline); pluggable Anthropic/OpenAI
-- **Orchestration:** a `WorkflowEngine` interface (procedural today; LangGraph-ready)
+## What works
 
-## Quick start
+- FastAPI service with PostgreSQL, pgvector, SQLAlchemy and Alembic.
+- Strict project isolation and immutable source provenance.
+- Independently versioned knowledge items and reviewed, typed item links.
+- Evidence-backed impact candidates with atomic structured-output validation and no automatic edits.
+- Reproducible Context Packages with a hard post-expansion token budget.
+- Read-only GitHub import at a fixed commit SHA, including Markdown, code, tests, issues, pull
+  requests and causal ChangeSets.
+- Deterministic mock LLM and embeddings for offline tests.
+- Optional Claude Code provider for research runs.
+- Project-oriented Next.js interface; the artifact editor and generic graph remain diagnostic tools.
+- PostgreSQL-backed API tests, migration checks, frontend lint/build checks and GitHub Actions CI.
+
+## Repository layout
+
+```text
+apps/api/      FastAPI application, domain model, migrations and tests
+apps/web/      Next.js application and generated API client
+infra/         PostgreSQL + pgvector development environment
+docs/adr/      Architecture decisions
+scripts/       Development and import utilities
+```
+
+## Local development
+
+Requirements: Python 3.11+, Node.js 20+, pnpm 11, Docker and Docker Compose.
 
 ```bash
-# 0. Copy env
-cp .env.example .env
-
-# 1. Start the database
 docker compose -f infra/docker-compose.yml up -d
 
-# 2. Backend
 cd apps/api
 uv sync
 uv run alembic upgrade head
-uv run uvicorn engram.main:app --reload   # http://localhost:8000  (docs at /docs)
+uv run uvicorn engram.main:app --reload
 
-# 3. (optional) Seed a demo project — a small todo manager
-uv run python ../../scripts/seed_demo.py --change
-
-# 4. Frontend (separate terminal, from repo root)
+# another terminal, repository root
 pnpm install
-pnpm web:dev                               # http://localhost:3000
+pnpm web:dev
 ```
 
-Then open http://localhost:3000: **Formalize** a description into grouped documents, browse them
-(each is a document of typed, numbered **items** with cross-references), inspect versions and links,
-run a **Change request** to see impact + new versions, and view the **Consistency** report.
+The API is available at <http://localhost:8000> and the web application at
+<http://localhost:3000>.
 
-## What works today
+After reviewing impact candidates, build or retrieve the approved Context Package via the API or
+the dependency-free CLI:
 
-- Documents grouped by type (Requirements / User stories / Tasks / Test cases) plus a Project brief,
-  each holding structured **items** with cross-references — created by the formalize workflow or by hand.
-- Versioning + change log on every edit; typed links between documents.
-- Vector + graph **context retrieval** (`/api/search/context`).
-- **Change-request** impact analysis: finds affected documents, writes new versions, links them.
-- **Consistency** report: requirement coverage by tasks/tests, dangling references, etc.
+```bash
+python scripts/engram_context.py --project <uuid> --analysis <uuid> --budget 4000
+python scripts/engram_context.py --project <uuid> --package <uuid>
+```
 
-The LLM is the deterministic mock, so generated text is templated; swapping in a real provider
-changes only text quality, not the structure.
+## Verification
 
-Out of MVP scope for now: authentication, UML/diagram generation, DOCX export, external
-integrations (Jira/GitHub/Slack).
+The automated suite always uses the deterministic providers, regardless of a developer's `.env`.
+
+```bash
+cd apps/api
+ENGRAM_LLM_PROVIDER=mock uv run pytest
+uv run ruff check .
+
+cd ../..
+pnpm --filter @engram/web exec eslint .
+pnpm --filter @engram/web exec next build
+```
+
+## Product boundary
+
+Until the impact-analysis hypothesis is measured on a real repository, development is deliberately
+focused on project isolation, provenance, item-level versioning, safe review, context delivery and
+GitHub ingestion. Rich-text authoring, collaboration, extra integrations, auto-repair, Neo4j and
+agent orchestration are frozen rather than expanded.
