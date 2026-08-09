@@ -31,6 +31,11 @@ class Settings(BaseSettings):
     embedding_provider: str = "mock"
     embedding_dim: int = 384
 
+    # Read-only GitHub source adapter. The token is optional for public repositories and is never
+    # persisted in a Source configuration.
+    github_token: str | None = None
+    github_api_url: str = "https://api.github.com"
+
     # CORS: comma-separated list of allowed origins.
     cors_origins: str = "http://localhost:3000"
 

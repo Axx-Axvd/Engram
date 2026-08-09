@@ -9,7 +9,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from engram import __version__
-from engram.api import artifacts, consistency, links, search, workflows
+from engram.api import (
+    analyses,
+    artifacts,
+    consistency,
+    links,
+    project_scope,
+    projects,
+    search,
+    sources,
+    workflows,
+)
 from engram.config import settings
 from engram.errors import ConflictError, NotFoundError, ValidationError
 
@@ -33,7 +43,10 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title="Engram API",
         version=__version__,
-        description="Project-memory platform: connected, versioned artifacts with context search.",
+        description=(
+            "Evidence-backed change-impact analysis with project isolation, provenance and "
+            "reproducible context packages."
+        ),
     )
 
     app.add_middleware(
@@ -56,6 +69,10 @@ def create_app() -> FastAPI:
     app.include_router(search.router)
     app.include_router(workflows.router)
     app.include_router(consistency.router)
+    app.include_router(projects.router)
+    app.include_router(project_scope.router)
+    app.include_router(analyses.router)
+    app.include_router(sources.router)
 
     return app
 

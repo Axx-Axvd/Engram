@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from collections.abc import Generator
 
 import pytest
@@ -10,14 +11,18 @@ from sqlalchemy import Engine, create_engine, text
 from sqlalchemy.engine import make_url
 from sqlalchemy.orm import Session, sessionmaker
 
-import engram.models  # noqa: F401  -- register models on Base.metadata
+# Tests are deterministic regardless of a developer's local .env.
+os.environ["ENGRAM_LLM_PROVIDER"] = "mock"
+os.environ["ENGRAM_EMBEDDING_PROVIDER"] = "mock"
+
+import engram.models  # noqa: E402, F401  -- register models on Base.metadata
 from engram.config import settings
 from engram.db.base import Base
 from engram.db.session import get_session
 from engram.main import app
 
 TEST_DB_NAME = "engram_test"
-_TABLES = "artifacts, artifact_versions, artifact_links, change_logs"
+_TABLES = "projects"
 
 
 @pytest.fixture(scope="session")

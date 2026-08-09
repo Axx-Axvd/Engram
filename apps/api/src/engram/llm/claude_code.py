@@ -15,12 +15,16 @@ import asyncio
 import json
 
 from engram.config import settings
+from engram.enums import ImpactType
 from engram.llm.base import (
     ChangeAnalysis,
     ChangeProposal,
+    ContextElement,
     ContextItem,
     FormalizedProject,
     GenItem,
+    ImpactAnalysisResult,
+    ImpactProposal,
     LLMProvider,
 )
 from engram.services.artifact_service import content_to_text
@@ -65,6 +69,33 @@ Rules:
 - Only propose changes to documents whose id appears in the provided context. Never invent ids.
 - "proposed_content" is the FULL new body of the document as plain text (no JSON, no markdown).
 - Include only documents that genuinely need to change; omit the rest.
+- Output valid JSON only."""
+
+_IMPACT_SYSTEM = """\
+You are an evidence-constrained change-impact analyst. You receive exact, immutable knowledge-item \
+versions selected from one project. Classify impact, but never rewrite or apply source data.
+
+Return ONLY one JSON object with this shape:
+{
+  "summary": "...",
+  "proposals": [
+    {
+      "item_id": "id copied from context",
+      "item_version_id": "version id copied from context",
+      "impact_type": "modify|verify|potentially_stale|no_change",
+      "confidence": 0.0,
+      "rationale": "why the evidence supports this classification",
+      "evidence": ["source locator id copied from context"],
+      "proposed_action": "a review action, not an applied edit"
+    }
+  ]
+}
+
+Rules:
+- Never invent item ids, version ids or evidence ids.
+- Every proposal must include at least one supplied evidence id and a non-empty rationale.
+- Emit at most one proposal per item.
+- Do not produce revised document text or claim that a change was applied.
 - Output valid JSON only."""
 
 
@@ -152,6 +183,63 @@ def _parse_change_analysis(data: dict, valid_ids: set[str]) -> ChangeAnalysis:
     return ChangeAnalysis(summary=summary, proposals=proposals)
 
 
+def _parse_impact_analysis(
+    data: dict,
+    valid_versions: dict[str, str],
+    valid_evidence: set[str],
+) -> ImpactAnalysisResult:
+    raw = data.get("proposals")
+    if not isinstance(raw, list):
+        raise ValueError("LLM impact analysis must contain a proposals array")
+    proposals: list[ImpactProposal] = []
+    seen: set[str] = set()
+    allowed_types = {value.value for value in ImpactType}
+    for entry in raw:
+        if not isinstance(entry, dict):
+            raise ValueError("Every impact proposal must be an object")
+        item_id = str(entry.get("item_id") or "").strip()
+        version_id = str(entry.get("item_version_id") or "").strip()
+        impact_type = str(entry.get("impact_type") or "").strip()
+        rationale = str(entry.get("rationale") or "").strip()
+        proposed_action = str(entry.get("proposed_action") or "").strip()
+        evidence_raw = entry.get("evidence")
+        try:
+            confidence = float(entry.get("confidence"))
+        except (TypeError, ValueError) as exc:
+            raise ValueError("Impact confidence must be numeric") from exc
+        if item_id not in valid_versions or valid_versions[item_id] != version_id:
+            raise ValueError("LLM returned an unknown item or stale item version")
+        if item_id in seen:
+            raise ValueError("LLM returned duplicate impact proposals")
+        if impact_type not in allowed_types:
+            raise ValueError(f"Unknown impact type: {impact_type}")
+        if not 0 <= confidence <= 1:
+            raise ValueError("Impact confidence must be between 0 and 1")
+        if not rationale or not proposed_action:
+            raise ValueError("Impact proposal rationale and action are required")
+        if not isinstance(evidence_raw, list) or not evidence_raw:
+            raise ValueError("Every impact proposal requires evidence")
+        evidence = [str(value) for value in evidence_raw]
+        if any(value not in valid_evidence for value in evidence):
+            raise ValueError("LLM returned evidence outside the supplied context")
+        seen.add(item_id)
+        proposals.append(
+            ImpactProposal(
+                item_id=item_id,
+                item_version_id=version_id,
+                impact_type=impact_type,
+                confidence=confidence,
+                rationale=rationale,
+                evidence=evidence,
+                proposed_action=proposed_action,
+            )
+        )
+    return ImpactAnalysisResult(
+        summary=str(data.get("summary") or "").strip() or "No impact summary provided.",
+        proposals=proposals,
+    )
+
+
 def _render_change_prompt(change_text: str, context: list[ContextItem]) -> str:
     if context:
         blocks = "\n\n---\n\n".join(
@@ -163,6 +251,28 @@ def _render_change_prompt(change_text: str, context: list[ContextItem]) -> str:
     return (
         f"Change request:\n\n{change_text.strip()}\n\n"
         f"Existing documents you may revise:\n\n{blocks}"
+    )
+
+
+def _render_impact_prompt(change_text: str, context: list[ContextElement]) -> str:
+    payload = [
+        {
+            "item_id": element.id,
+            "item_version_id": element.item_version_id,
+            "type": element.type,
+            "key": element.key,
+            "title": element.title,
+            "text": element.text,
+            "status": element.status,
+            "source_locator": element.source_locator,
+            "links": element.links,
+            "selection_reason": element.selection_reason,
+        }
+        for element in context
+    ]
+    return (
+        f"Change request:\n\n{change_text.strip()}\n\n"
+        f"Selected context elements:\n{json.dumps(payload, ensure_ascii=False)}"
     )
 
 
@@ -180,6 +290,19 @@ class ClaudeCodeLLMProvider(LLMProvider):
         valid_ids = {item.id for item in context}
         reply = self._ask(_CHANGE_SYSTEM, _render_change_prompt(change_text, context))
         return _parse_change_analysis(_extract_json(reply), valid_ids)
+
+    def analyze_impact(
+        self, change_text: str, context: list[ContextElement]
+    ) -> ImpactAnalysisResult:
+        valid_versions = {element.id: element.item_version_id for element in context}
+        valid_evidence = {
+            str(element.source_locator["id"])
+            if element.source_locator and element.source_locator.get("id")
+            else f"item-version:{element.item_version_id}"
+            for element in context
+        }
+        reply = self._ask(_IMPACT_SYSTEM, _render_impact_prompt(change_text, context))
+        return _parse_impact_analysis(_extract_json(reply), valid_versions, valid_evidence)
 
     def _ask(self, system_prompt: str, user_prompt: str) -> str:
         """Run one tools-disabled query through the Agent SDK and return its text result.

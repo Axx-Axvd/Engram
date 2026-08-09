@@ -28,12 +28,14 @@ class ArtifactItem(BaseModel):
 
 
 class ArtifactCreate(BaseModel):
+    project_id: uuid.UUID | None = None
     type: ArtifactType
     title: str = Field(min_length=1, max_length=500)
     content: str = ""
     items: list[ArtifactItem] = Field(default_factory=list)
     status: ArtifactStatus | None = None
     source_ref: str | None = None
+    source_locator_id: uuid.UUID | None = None
     created_by: str = "system"
 
     @model_validator(mode="after")
@@ -53,6 +55,7 @@ class ArtifactUpdate(BaseModel):
     items: list[ArtifactItem] | None = None
     status: ArtifactStatus | None = None
     source_ref: str | None = None
+    source_locator_id: uuid.UUID | None = None
     reason: str | None = None
     updated_by: str = "system"
 
@@ -61,6 +64,7 @@ class ArtifactRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     id: uuid.UUID
+    project_id: uuid.UUID
     type: ArtifactType
     title: str
     content: str
@@ -68,6 +72,7 @@ class ArtifactRead(BaseModel):
     status: ArtifactStatus
     current_version: int
     source_ref: str | None
+    source_locator_id: uuid.UUID | None
     created_at: datetime
     updated_at: datetime
     created_by: str

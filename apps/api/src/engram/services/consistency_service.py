@@ -7,21 +7,26 @@ requirements, and change requests touching something.
 
 from __future__ import annotations
 
+import uuid
+
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from engram.enums import ArtifactStatus, ArtifactType, LinkType
-from engram.models import Artifact
-from engram.repositories import artifact_repo, link_repo
+from engram.enums import ArtifactStatus, ArtifactType, LinkState, LinkType
+from engram.models import Artifact, ContextPackage, ImpactAnalysis, ImpactCandidate
+from engram.repositories import artifact_repo, item_repo, link_repo
 from engram.schemas.consistency import ConsistencyIssue, ConsistencyReport
+from engram.services import project_service
 
 
 def _items(artifact: Artifact) -> list[dict]:
     return artifact.items or []
 
 
-def check_consistency(session: Session) -> ConsistencyReport:
-    artifacts = artifact_repo.list_artifacts(session, limit=10_000)
-    links = link_repo.list_all(session)
+def check_consistency(session: Session, project_id: uuid.UUID | None = None) -> ConsistencyReport:
+    selected_project_id = project_service.resolve_project_id(session, project_id)
+    artifacts = artifact_repo.list_artifacts(session, limit=10_000, project_id=selected_project_id)
+    links = link_repo.list_all(session, selected_project_id)
     by_id: dict[str, Artifact] = {str(a.id): a for a in artifacts}
 
     # Document-level adjacency (undirected) from the Links graph, so checks can fall back to
@@ -39,6 +44,85 @@ def check_consistency(session: Session) -> ConsistencyReport:
         )
 
     issues: list[ConsistencyIssue] = []
+
+    knowledge_items = item_repo.list_items(session, selected_project_id, include_stale=True)
+    for item in knowledge_items:
+        if item.valid_to is not None:
+            continue
+        version = item_repo.current_version(session, item)
+        if item.source_locator_id is None or version is None or version.source_locator_id is None:
+            issues.append(
+                ConsistencyIssue(
+                    severity="error",
+                    code="active_item_without_provenance",
+                    message=f"Active knowledge item {item.key} has no fixed source locator",
+                    artifact_id=item.artifact_id,
+                    item_key=item.key,
+                )
+            )
+        elif not version.is_active:
+            issues.append(
+                ConsistencyIssue(
+                    severity="error",
+                    code="inactive_current_item_version",
+                    message=f"Knowledge item {item.key} points to an inactive current version",
+                    artifact_id=item.artifact_id,
+                    item_key=item.key,
+                )
+            )
+
+    for link in item_repo.list_links(session, selected_project_id):
+        if not link.evidence_locator_ids:
+            issues.append(
+                ConsistencyIssue(
+                    severity="error",
+                    code="item_link_without_evidence",
+                    message=f"Item link {link.id} has no source evidence",
+                )
+            )
+        if link.state == LinkState.stale.value:
+            issues.append(
+                ConsistencyIssue(
+                    severity="warning",
+                    code="stale_item_link",
+                    message=f"Item link {link.id} depends on an outdated item version",
+                )
+            )
+        elif link.state == LinkState.proposed.value:
+            issues.append(
+                ConsistencyIssue(
+                    severity="warning",
+                    code="proposed_item_link",
+                    message=f"Item link {link.id} still requires human review",
+                )
+            )
+
+    packages = session.scalars(
+        select(ContextPackage).where(ContextPackage.project_id == selected_project_id)
+    )
+    for package in packages:
+        if package.token_estimate > package.token_budget:
+            issues.append(
+                ConsistencyIssue(
+                    severity="error",
+                    code="context_package_over_budget",
+                    message=f"Context Package {package.id} exceeds its hard token budget",
+                )
+            )
+
+    analysis_ids = select(ImpactAnalysis.id).where(ImpactAnalysis.project_id == selected_project_id)
+    candidates = session.scalars(
+        select(ImpactCandidate).where(ImpactCandidate.analysis_id.in_(analysis_ids))
+    )
+    for candidate in candidates:
+        if not candidate.evidence:
+            issues.append(
+                ConsistencyIssue(
+                    severity="error",
+                    code="impact_candidate_without_evidence",
+                    message=f"Impact candidate {candidate.id} has no evidence",
+                )
+            )
 
     # Collect, per referrer type, the (requirement_doc_id, key) targets that are referenced.
     task_refs: set[tuple[str, str]] = set()
@@ -192,10 +276,15 @@ def check_consistency(session: Session) -> ConsistencyReport:
                     )
                 )
 
-    # A change request must touch at least one artifact (a `changes` link).
+    # Only an approved/applied legacy change request must touch an artifact. New in-review
+    # requests are represented by ImpactAnalysis candidates and are intentionally non-mutating.
     changes_sources = {str(link.source_id) for link in links if link.type == LinkType.changes}
     for artifact in artifacts:
-        if artifact.type == ArtifactType.change_request and str(artifact.id) not in changes_sources:
+        if (
+            artifact.type == ArtifactType.change_request
+            and artifact.status in (ArtifactStatus.approved, ArtifactStatus.applied)
+            and str(artifact.id) not in changes_sources
+        ):
             issues.append(
                 ConsistencyIssue(
                     severity="error",

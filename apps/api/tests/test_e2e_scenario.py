@@ -26,16 +26,32 @@ def test_full_scenario(client: TestClient) -> None:
     assert len(versions) == 1
     assert versions[0]["is_active"] is True
 
-    # 4. A change request finds impact, writes new versions, and links them.
-    impact = client.post(
-        "/api/workflows/change-request",
-        json={"text": "Users can share lists with teammates and external guests"},
+    # 4. Analyse without changing source knowledge, then review candidates.
+    project_id = requirements["project_id"]
+    analysis = client.post(
+        f"/api/projects/{project_id}/impact-analyses",
+        json={"query": "Users can share lists with teammates and external guests"},
     ).json()
-    assert impact["change_request"]["status"] == "applied"
-    assert impact["impacted"], "the change should impact at least one document"
-    assert all(item["artifact"]["current_version"] >= 2 for item in impact["impacted"])
-    assert impact["links"] and all(link["type"] == "changes" for link in impact["links"])
+    assert analysis["status"] == "in_review"
+    assert analysis["candidates"]
+    assert client.get(f"/api/artifacts/{requirements['id']}/versions").json() == versions
 
-    # 5. The consistency report stays clean (coverage intact, change request touched artifacts).
-    report = client.get("/api/consistency").json()
+    for candidate in analysis["candidates"]:
+        response = client.patch(
+            f"/api/projects/{project_id}/impact-analyses/{analysis['id']}"
+            f"/candidates/{candidate['id']}",
+            json={"decision": "approved", "reviewed_by": "test"},
+        )
+        assert response.status_code == 200
+
+    # 5. Produce a bounded reproducible package from approved item versions.
+    package = client.post(
+        f"/api/projects/{project_id}/impact-analyses/{analysis['id']}/context-packages",
+        json={"token_budget": 4000},
+    ).json()
+    assert package["items"]
+    assert package["token_estimate"] <= package["token_budget"]
+
+    # 6. The scoped consistency report stays clean.
+    report = client.get(f"/api/projects/{project_id}/consistency").json()
     assert report["errors"] == 0

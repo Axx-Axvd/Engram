@@ -38,5 +38,8 @@ def list_for_artifact(session: Session, artifact_id: uuid.UUID) -> list[Artifact
     return list(session.scalars(stmt))
 
 
-def list_all(session: Session) -> list[ArtifactLink]:
-    return list(session.scalars(select(ArtifactLink)))
+def list_all(session: Session, project_id: uuid.UUID | None = None) -> list[ArtifactLink]:
+    stmt = select(ArtifactLink)
+    if project_id is not None:
+        stmt = stmt.where(ArtifactLink.project_id == project_id)
+    return list(session.scalars(stmt))

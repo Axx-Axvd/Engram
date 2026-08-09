@@ -86,3 +86,68 @@ class ChangeAction(StrEnum):
     version_created = "version_created"
     linked = "linked"
     unlinked = "unlinked"
+
+
+class SourceKind(StrEnum):
+    manual = "manual"
+    github = "github"
+
+
+class ItemType(StrEnum):
+    document = "document"
+    requirement = "requirement"
+    decision = "decision"
+    user_story = "user_story"
+    task = "task"
+    test = "test"
+    code_component = "code_component"
+    issue = "issue"
+    pull_request = "pull_request"
+    commit = "commit"
+    change_request = "change_request"
+
+
+class LinkOrigin(StrEnum):
+    manual = "manual"
+    imported = "imported"
+    inferred = "inferred"
+
+
+class LinkState(StrEnum):
+    proposed = "proposed"
+    confirmed = "confirmed"
+    rejected = "rejected"
+    stale = "stale"
+
+
+class ImpactType(StrEnum):
+    modify = "modify"
+    verify = "verify"
+    potentially_stale = "potentially_stale"
+    no_change = "no_change"
+
+
+class ReviewDecision(StrEnum):
+    pending = "pending"
+    approved = "approved"
+    rejected = "rejected"
+    needs_review = "needs_review"
+
+
+class AnalysisStatus(StrEnum):
+    completed = "completed"
+    in_review = "in_review"
+    approved = "approved"
+    rejected = "rejected"
+
+
+class RetrievalMode(StrEnum):
+    full = "full"
+    vector = "vector"
+    graph = "graph"
+    combined = "combined"
+
+
+class ChangeSetStatus(StrEnum):
+    imported = "imported"
+    verified = "verified"

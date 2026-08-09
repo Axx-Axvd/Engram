@@ -36,6 +36,9 @@ class Artifact(Base):
     __tablename__ = "artifacts"
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
+    project_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("projects.id", ondelete="CASCADE"), index=True
+    )
     type: Mapped[ArtifactType] = mapped_column(artifact_type_enum, index=True)
     title: Mapped[str] = mapped_column(String(500))
     content: Mapped[str] = mapped_column(Text, default="")
@@ -45,6 +48,9 @@ class Artifact(Base):
     )
     current_version: Mapped[int] = mapped_column(Integer, default=1)
     source_ref: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    source_locator_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("source_locators.id", ondelete="SET NULL"), nullable=True, index=True
+    )
     embedding: Mapped[list[float] | None] = mapped_column(
         Vector(settings.embedding_dim), nullable=True
     )

@@ -52,8 +52,16 @@ def test_dangling_reference_errors(client: TestClient) -> None:
     assert any(issue["code"] == "dangling_reference" for issue in report["issues"])
 
 
-def test_change_request_without_impact_errors(client: TestClient) -> None:
-    client.post("/api/artifacts", json={"type": "change_request", "title": "CR", "content": "do x"})
+def test_approved_change_request_without_impact_errors(client: TestClient) -> None:
+    client.post(
+        "/api/artifacts",
+        json={
+            "type": "change_request",
+            "title": "CR",
+            "content": "do x",
+            "status": "approved",
+        },
+    )
     report = client.get("/api/consistency").json()
     assert report["ok"] is False
     assert any(issue["code"] == "change_request_without_impact" for issue in report["issues"])

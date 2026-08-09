@@ -28,6 +28,9 @@ class ArtifactLink(Base):
     __table_args__ = (UniqueConstraint("source_id", "target_id", "type", name="uq_artifact_link"),)
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
+    project_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("projects.id", ondelete="CASCADE"), index=True
+    )
     source_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("artifacts.id", ondelete="CASCADE"), index=True
     )

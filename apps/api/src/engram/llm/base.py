@@ -53,6 +53,39 @@ class ChangeAnalysis:
     proposals: list[ChangeProposal]
 
 
+@dataclass(frozen=True)
+class ContextElement:
+    """An exact item version with provenance and its context-selection evidence."""
+
+    id: str
+    item_version_id: str
+    type: str
+    key: str
+    title: str
+    text: str
+    status: str
+    source_locator: dict | None
+    links: list[dict] = field(default_factory=list)
+    selection_reason: dict = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class ImpactProposal:
+    item_id: str
+    item_version_id: str
+    impact_type: str
+    confidence: float
+    rationale: str
+    evidence: list[str]
+    proposed_action: str
+
+
+@dataclass(frozen=True)
+class ImpactAnalysisResult:
+    summary: str
+    proposals: list[ImpactProposal]
+
+
 class LLMProvider(ABC):
     @abstractmethod
     def formalize_project(self, description: str) -> FormalizedProject:
@@ -62,3 +95,9 @@ class LLMProvider(ABC):
     def analyze_change_request(
         self, change_text: str, context: list[ContextItem]
     ) -> ChangeAnalysis: ...
+
+    @abstractmethod
+    def analyze_impact(
+        self, change_text: str, context: list[ContextElement]
+    ) -> ImpactAnalysisResult:
+        """Classify evidence-backed impact without mutating project knowledge."""

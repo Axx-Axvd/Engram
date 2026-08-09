@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from engram.db.session import get_session
 from engram.repositories import link_repo
 from engram.schemas.link import LinkCreate, LinkRead
-from engram.services import link_service
+from engram.services import link_service, project_service
 
 router = APIRouter(prefix="/api/links", tags=["links"])
 
@@ -16,7 +16,8 @@ router = APIRouter(prefix="/api/links", tags=["links"])
 @router.get("", response_model=list[LinkRead])
 def list_links(session: Session = Depends(get_session)) -> list[LinkRead]:
     """All links in the project (used by the relationships graph)."""
-    return link_repo.list_all(session)
+    project_id = project_service.ensure_default_project(session).id
+    return link_repo.list_all(session, project_id)
 
 
 @router.post("", response_model=LinkRead, status_code=status.HTTP_201_CREATED)

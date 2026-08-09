@@ -11,9 +11,12 @@ import re
 from engram.llm.base import (
     ChangeAnalysis,
     ChangeProposal,
+    ContextElement,
     ContextItem,
     FormalizedProject,
     GenItem,
+    ImpactAnalysisResult,
+    ImpactProposal,
     LLMProvider,
 )
 from engram.services.artifact_service import content_to_text
@@ -154,3 +157,47 @@ class MockLLMProvider(LLMProvider):
             "each received a new version reflecting the change."
         )
         return ChangeAnalysis(summary=summary, proposals=proposals)
+
+    def analyze_impact(
+        self, change_text: str, context: list[ContextElement]
+    ) -> ImpactAnalysisResult:
+        proposals: list[ImpactProposal] = []
+        request_terms = set(re.findall(r"[A-Za-zА-Яа-я0-9_]{3,}", change_text.lower()))
+        for element in context:
+            element_terms = set(
+                re.findall(
+                    r"[A-Za-zА-Яа-я0-9_]{3,}",
+                    f"{element.key} {element.title} {element.text}".lower(),
+                )
+            )
+            overlap = sorted(request_terms & element_terms)
+            confidence = min(0.99, 0.55 + 0.08 * len(overlap))
+            locator_id = (
+                str(element.source_locator.get("id"))
+                if element.source_locator and element.source_locator.get("id")
+                else f"item-version:{element.item_version_id}"
+            )
+            impact_type = "verify" if element.type == "test" else "modify"
+            proposals.append(
+                ImpactProposal(
+                    item_id=element.id,
+                    item_version_id=element.item_version_id,
+                    impact_type=impact_type,
+                    confidence=confidence,
+                    rationale=(
+                        f"Selected evidence overlaps on: {', '.join(overlap)}."
+                        if overlap
+                        else "The typed graph places this item in the bounded impact context."
+                    ),
+                    evidence=[locator_id],
+                    proposed_action=(
+                        "Verify this test against the proposed behavior."
+                        if impact_type == "verify"
+                        else "Review and update this item if the proposed behavior is accepted."
+                    ),
+                )
+            )
+        return ImpactAnalysisResult(
+            summary=f"Found {len(proposals)} evidence-backed impact candidate(s).",
+            proposals=proposals,
+        )

@@ -11,8 +11,13 @@ from engram.enums import ArtifactStatus, ArtifactType
 from engram.models import Artifact, ArtifactVersion, ChangeLog
 
 
-def get(session: Session, artifact_id: uuid.UUID) -> Artifact | None:
-    return session.get(Artifact, artifact_id)
+def get(
+    session: Session, artifact_id: uuid.UUID, project_id: uuid.UUID | None = None
+) -> Artifact | None:
+    artifact = session.get(Artifact, artifact_id)
+    if artifact is None or (project_id is not None and artifact.project_id != project_id):
+        return None
+    return artifact
 
 
 def list_artifacts(
@@ -22,8 +27,11 @@ def list_artifacts(
     status: ArtifactStatus | None = None,
     limit: int = 100,
     offset: int = 0,
+    project_id: uuid.UUID | None = None,
 ) -> list[Artifact]:
     stmt = select(Artifact)
+    if project_id is not None:
+        stmt = stmt.where(Artifact.project_id == project_id)
     if type_ is not None:
         stmt = stmt.where(Artifact.type == type_)
     if status is not None:

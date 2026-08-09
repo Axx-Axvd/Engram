@@ -19,6 +19,7 @@ from engram.errors import NotFoundError, ValidationError
 from engram.models import Artifact, ArtifactVersion, ChangeLog
 from engram.repositories import artifact_repo
 from engram.schemas.artifact import ArtifactCreate, ArtifactItem, ArtifactUpdate
+from engram.services import item_service, project_service, provenance_service
 
 
 def _items_to_json(items: list[ArtifactItem]) -> list[dict]:
@@ -93,9 +94,24 @@ def _embed(title: str, content: str, items_json: list[dict]) -> list[float]:
 
 
 def create_artifact(session: Session, data: ArtifactCreate) -> Artifact:
-    status = data.status or ArtifactStatus.draft
+    project_id = project_service.resolve_project_id(session, data.project_id)
+    status = data.status or (
+        ArtifactStatus.proposed if data.type.value == "change_request" else ArtifactStatus.draft
+    )
     items_json = _items_to_json(data.items)
+    if data.source_locator_id is not None:
+        locator = provenance_service.require_locator(session, project_id, data.source_locator_id)
+    else:
+        locator = provenance_service.ensure_manual_locator(
+            session,
+            project_id,
+            label=data.title,
+            content=f"{data.title}\n{content_to_text(data.content)}",
+            source_ref=data.source_ref,
+            created_by=data.created_by,
+        )
     artifact = Artifact(
+        project_id=project_id,
         type=data.type,
         title=data.title,
         content=data.content,
@@ -103,6 +119,7 @@ def create_artifact(session: Session, data: ArtifactCreate) -> Artifact:
         status=status,
         current_version=1,
         source_ref=data.source_ref,
+        source_locator_id=locator.id,
         embedding=_embed(data.title, data.content, items_json),
         created_by=data.created_by,
         updated_by=data.created_by,
@@ -126,25 +143,36 @@ def create_artifact(session: Session, data: ArtifactCreate) -> Artifact:
     artifact_repo.add_changelog(
         session,
         ChangeLog(
+            project_id=project_id,
             artifact_id=artifact.id,
             action=ChangeAction.created,
             detail=f"{artifact.type.value} created",
             created_by=data.created_by,
         ),
     )
+    item_service.sync_artifact_items(
+        session,
+        artifact,
+        reason="artifact created",
+        created_by=data.created_by,
+    )
     return artifact
 
 
-def get_artifact(session: Session, artifact_id: uuid.UUID) -> Artifact:
-    artifact = artifact_repo.get(session, artifact_id)
+def get_artifact(
+    session: Session, artifact_id: uuid.UUID, project_id: uuid.UUID | None = None
+) -> Artifact:
+    artifact = artifact_repo.get(session, artifact_id, project_id)
     if artifact is None:
         raise NotFoundError(f"Artifact {artifact_id} not found")
     return artifact
 
 
-def delete_artifact(session: Session, artifact_id: uuid.UUID) -> None:
+def delete_artifact(
+    session: Session, artifact_id: uuid.UUID, project_id: uuid.UUID | None = None
+) -> None:
     """Remove an artifact and everything that hangs off it (versions, links, change logs)."""
-    artifact = get_artifact(session, artifact_id)
+    artifact = get_artifact(session, artifact_id, project_id)
     artifact_repo.delete(session, artifact)
 
 
@@ -172,6 +200,11 @@ def update_artifact(session: Session, artifact_id: uuid.UUID, data: ArtifactUpda
     if data.source_ref is not None and data.source_ref != artifact.source_ref:
         artifact.source_ref = data.source_ref
         changed = True
+    if data.source_locator_id is not None and data.source_locator_id != artifact.source_locator_id:
+        provenance_service.require_locator(session, artifact.project_id, data.source_locator_id)
+        artifact.source_locator_id = data.source_locator_id
+        changed = True
+        text_changed = True
     if data.status is not None and data.status != artifact.status:
         if not status_allowed_for_type(artifact.type, data.status):
             raise ValidationError(
@@ -185,6 +218,16 @@ def update_artifact(session: Session, artifact_id: uuid.UUID, data: ArtifactUpda
         return artifact
 
     if text_changed:
+        if data.source_locator_id is None:
+            locator = provenance_service.ensure_manual_locator(
+                session,
+                artifact.project_id,
+                label=artifact.title,
+                content=f"{artifact.title}\n{content_to_text(artifact.content)}",
+                source_ref=artifact.source_ref,
+                created_by=data.updated_by,
+            )
+            artifact.source_locator_id = locator.id
         artifact.embedding = _embed(artifact.title, artifact.content, artifact.items)
 
     previous = artifact_repo.get_active_version(session, artifact.id)
@@ -211,6 +254,7 @@ def update_artifact(session: Session, artifact_id: uuid.UUID, data: ArtifactUpda
     artifact_repo.add_changelog(
         session,
         ChangeLog(
+            project_id=artifact.project_id,
             artifact_id=artifact.id,
             action=ChangeAction.version_created,
             detail=f"v{artifact.current_version}",
@@ -222,11 +266,19 @@ def update_artifact(session: Session, artifact_id: uuid.UUID, data: ArtifactUpda
         artifact_repo.add_changelog(
             session,
             ChangeLog(
+                project_id=artifact.project_id,
                 artifact_id=artifact.id,
                 action=ChangeAction.status_changed,
                 detail=f"-> {artifact.status.value}",
                 created_by=data.updated_by,
             ),
+        )
+    if text_changed:
+        item_service.sync_artifact_items(
+            session,
+            artifact,
+            reason=data.reason or "artifact updated",
+            created_by=data.updated_by,
         )
     return artifact
 

@@ -18,14 +18,14 @@ def test_create_and_list_link(client: TestClient) -> None:
     b = _create(client, type="user_story", title="S")
 
     resp = client.post(
-        "/api/links", json={"source_id": a["id"], "target_id": b["id"], "type": "refines"}
+        "/api/links", json={"source_id": b["id"], "target_id": a["id"], "type": "refines"}
     )
     assert resp.status_code == 201, resp.text
     assert resp.json()["type"] == "refines"
 
-    links = client.get(f"/api/artifacts/{a['id']}/links").json()
+    links = client.get(f"/api/artifacts/{b['id']}/links").json()
     assert len(links) == 1
-    assert links[0]["target_id"] == b["id"]
+    assert links[0]["target_id"] == a["id"]
 
 
 def test_duplicate_link_conflict(client: TestClient) -> None:
