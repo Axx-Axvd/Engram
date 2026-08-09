@@ -13,6 +13,14 @@ export type ConsistencyIssue = components["schemas"]["ConsistencyIssue"];
 export type ArtifactType = Artifact["type"];
 export type ArtifactStatus = Artifact["status"];
 export type LinkType = Link["type"];
+export type Project = components["schemas"]["ProjectRead"];
+export type Source = components["schemas"]["SourceRead"];
+export type SourceRevision = components["schemas"]["SourceRevisionRead"];
+export type KnowledgeItem = components["schemas"]["ItemRead"];
+export type ImpactAnalysis = components["schemas"]["ImpactAnalysisRead"];
+export type ImpactCandidate = components["schemas"]["ImpactCandidateRead"];
+export type ContextPackage = components["schemas"]["ContextPackageRead"];
+export type ChangeSet = components["schemas"]["ChangeSetRead"];
 
 export const ARTIFACT_TYPE_ORDER: ArtifactType[] = [
   "project_brief",

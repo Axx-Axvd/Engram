@@ -6,6 +6,7 @@ import { Suspense, useMemo, useState } from "react";
 
 import { ButtonLink, Card, EmptyState, PageHeader, Spinner, StatusBadge, TypeBadge } from "@/components/ui";
 import { formatDateTime } from "@/lib/format";
+import { useProject } from "@/lib/project-context";
 import { useArtifacts } from "@/lib/queries";
 import {
   ARTIFACT_TYPE_LABEL,
@@ -19,8 +20,9 @@ function ArtifactsBrowse() {
   const [q, setQ] = useState(searchParams.get("q") ?? "");
   const [type, setType] = useState<ArtifactType | "">("");
   const [status, setStatus] = useState<ArtifactStatus | "">("");
+  const { projectId, project } = useProject();
 
-  const { data: artifacts = [], isLoading, isError } = useArtifacts();
+  const { data: artifacts = [], isLoading, isError } = useArtifacts({}, projectId);
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
@@ -36,7 +38,7 @@ function ArtifactsBrowse() {
     <div className="mx-auto max-w-5xl space-y-5 p-6">
       <PageHeader
         title="Artifacts"
-        description="Browse the connected project memory."
+        description={`Diagnostic document containers for ${project?.name ?? "the selected project"}. First-class items are the canonical analysis unit.`}
         actions={<ButtonLink href="/artifacts/new">+ Create</ButtonLink>}
       />
 

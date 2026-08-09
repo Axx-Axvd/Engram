@@ -1,97 +1,131 @@
 "use client";
 
-import Link from "next/link";
+import { useState } from "react";
 
-import { ButtonLink, Card, EmptyState, PageHeader, Spinner, StatusBadge, TypeBadge } from "@/components/ui";
+import { Button, ButtonLink, Card, EmptyState, PageHeader, Spinner } from "@/components/ui";
 import { formatDateTime } from "@/lib/format";
-import { useArtifacts } from "@/lib/queries";
-import { ARTIFACT_TYPE_COLOR, ARTIFACT_TYPE_LABEL, ARTIFACT_TYPE_ORDER } from "@/lib/types";
+import { useProject } from "@/lib/project-context";
+import {
+  useChangeSets,
+  useContextPackages,
+  useCreateProject,
+  useImpactAnalyses,
+  useProjectItems,
+  useSources,
+} from "@/lib/queries";
 
-export default function OverviewPage() {
-  const { data: artifacts = [], isLoading, isError } = useArtifacts();
+export default function ProjectsPage() {
+  const { projects, project, projectId, setProjectId, isLoading } = useProject();
+  const [name, setName] = useState("");
+  const create = useCreateProject();
+  const items = useProjectItems(projectId);
+  const sources = useSources(projectId);
+  const analyses = useImpactAnalyses(projectId);
+  const packages = useContextPackages(projectId);
+  const changes = useChangeSets(projectId);
 
-  const recent = [...artifacts]
-    .sort((a, b) => (b.updated_at ?? "").localeCompare(a.updated_at ?? ""))
-    .slice(0, 8);
+  function createProject() {
+    if (!name.trim()) return;
+    create.mutate(
+      { name: name.trim() },
+      {
+        onSuccess: (value) => {
+          setName("");
+          setProjectId(value.id);
+        },
+      },
+    );
+  }
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6 p-6">
+    <div className="mx-auto max-w-6xl space-y-7 p-6">
       <PageHeader
-        title="Overview"
-        description="Project memory at a glance — typed, versioned, connected artifacts."
-        actions={
-          <>
-            <ButtonLink href="/formalize" variant="secondary">
-              Formalize
-            </ButtonLink>
-            <ButtonLink href="/artifacts/new">+ Create</ButtonLink>
-          </>
-        }
+        title="Projects"
+        description="Each project is a hard isolation boundary for sources, knowledge, links, analyses and packages."
+        actions={<ButtonLink href="/sources">Connect a source</ButtonLink>}
       />
 
-      {isLoading && <Spinner label="Loading workspace…" />}
-      {isError && <p className="text-sm text-red-500">Backend offline — start the API server.</p>}
+      {isLoading ? (
+        <Spinner label="Loading projects…" />
+      ) : (
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {projects.map((value) => (
+            <button
+              type="button"
+              key={value.id}
+              onClick={() => setProjectId(value.id)}
+              className={`rounded-lg border p-4 text-left shadow-card transition-colors ${
+                value.id === projectId
+                  ? "border-primary bg-primary/5"
+                  : "border-hairline bg-canvas hover:border-hairline-strong"
+              }`}
+            >
+              <span className="flex items-center justify-between gap-3">
+                <span className="font-medium text-ink">{value.name}</span>
+                {value.id === projectId && (
+                  <span className="rounded-full bg-primary px-2 py-0.5 text-[11px] font-medium text-on-primary">
+                    active
+                  </span>
+                )}
+              </span>
+              <span className="mt-2 block text-xs text-ink-mute">
+                {value.description || `Created ${formatDateTime(value.created_at)}`}
+              </span>
+              <span className="mt-3 block font-mono text-[10px] text-ink-faint">{value.id}</span>
+            </button>
+          ))}
+          <Card className="p-4">
+            <p className="text-sm font-medium text-ink">Create project</p>
+            <div className="mt-3 flex gap-2">
+              <input
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") createProject();
+                }}
+                placeholder="Project name"
+                className="min-w-0 flex-1 rounded-md border border-hairline-strong px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+              />
+              <Button onClick={createProject} disabled={!name.trim() || create.isPending}>
+                Add
+              </Button>
+            </div>
+          </Card>
+        </div>
+      )}
 
-      {!isLoading && !isError && (
-        <>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            <Card className="p-4">
-              <p className="text-xs text-ink-mute">Documents</p>
-              <p className="mt-1 text-2xl font-medium tracking-tight text-ink">{artifacts.length}</p>
-            </Card>
-            <Card className="p-4">
-              <p className="text-xs text-ink-mute">Items</p>
-              <p className="mt-1 text-2xl font-medium tracking-tight text-ink">
-                {artifacts.reduce((n, a) => n + (a.items?.length ?? 0), 0)}
-              </p>
-            </Card>
-            {ARTIFACT_TYPE_ORDER.map((type) => (
-              <Card key={type} className="p-4">
-                <p className="flex items-center gap-1.5 text-xs text-ink-mute">
-                  <span
-                    className="size-2 rounded-full"
-                    style={{ background: ARTIFACT_TYPE_COLOR[type] }}
-                  />
-                  {ARTIFACT_TYPE_LABEL[type]}
-                </p>
-                <p className="mt-1 text-2xl font-medium tracking-tight text-ink">
-                  {artifacts.filter((a) => a.type === type).length}
-                </p>
+      {project ? (
+        <section className="space-y-4">
+          <div>
+            <h2 className="text-lg font-medium tracking-tight text-ink">{project.name} at a glance</h2>
+            <p className="mt-1 text-sm text-ink-mute">
+              Live counts from the isolated project scope, not the legacy global workspace.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+            {[
+              ["GitHub sources", sources.data?.filter((source) => source.kind === "github").length ?? 0],
+              ["Knowledge items", items.data?.length ?? 0],
+              ["Changes", changes.data?.length ?? 0],
+              ["Impact analyses", analyses.data?.length ?? 0],
+              ["Context packages", packages.data?.length ?? 0],
+            ].map(([label, count]) => (
+              <Card key={label} className="p-4">
+                <p className="text-xs text-ink-mute">{label}</p>
+                <p className="mt-1 text-2xl font-medium tracking-tight text-ink">{count}</p>
               </Card>
             ))}
           </div>
-
-          <section className="space-y-3">
-            <h2 className="text-sm font-medium text-ink-secondary">
-              Recently updated
-            </h2>
-            {recent.length === 0 ? (
-              <EmptyState
-                title="No artifacts yet"
-                hint="Formalize a project description, or create an artifact by hand."
-                action={<ButtonLink href="/formalize">Formalize a description</ButtonLink>}
-              />
-            ) : (
-              <Card className="divide-y divide-hairline-cool">
-                {recent.map((a) => (
-                  <Link
-                    key={a.id}
-                    href={`/artifacts/${a.id}`}
-                    className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-canvas-soft"
-                  >
-                    <TypeBadge type={a.type} />
-                    <span className="flex-1 truncate text-sm font-medium text-ink">{a.title}</span>
-                    <StatusBadge status={a.status} />
-                    <span className="hidden text-xs text-ink-faint sm:inline">
-                      {formatDateTime(a.updated_at)}
-                    </span>
-                  </Link>
-                ))}
-              </Card>
-            )}
-          </section>
-        </>
-      )}
+          {!sources.isLoading &&
+            (sources.data?.filter((source) => source.kind === "github").length ?? 0) === 0 && (
+            <EmptyState
+              title="Connect the first source"
+              hint="GitHub is the only supported integration in this MVP. Engram imports a fixed commit SHA and remains read-only."
+              action={<ButtonLink href="/sources">Connect GitHub</ButtonLink>}
+            />
+          )}
+        </section>
+      ) : null}
     </div>
   );
 }

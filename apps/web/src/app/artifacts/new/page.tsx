@@ -9,6 +9,7 @@ import { RichTextEditor } from "@/components/editor/RichTextEditor";
 import { Popover } from "@/components/overlay/Popover";
 import { Button } from "@/components/ui";
 import { EMPTY_DOC, serializeDoc } from "@/lib/editor/content";
+import { useProject } from "@/lib/project-context";
 import { useCreateArtifact } from "@/lib/queries";
 import {
   ARTIFACT_TYPE_COLOR,
@@ -21,7 +22,8 @@ import {
 
 export default function NewArtifactPage() {
   const router = useRouter();
-  const create = useCreateArtifact();
+  const { projectId } = useProject();
+  const create = useCreateArtifact(projectId);
 
   const [type, setType] = useState<ArtifactType>("requirement");
   const [title, setTitle] = useState("");

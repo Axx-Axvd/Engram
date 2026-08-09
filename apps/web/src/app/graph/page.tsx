@@ -6,6 +6,7 @@ import { ArtifactDetailPanel } from "@/components/ArtifactDetailPanel";
 import { ArtifactGraph } from "@/components/ArtifactGraph";
 import { SidePanel } from "@/components/overlay/SidePanel";
 import { ButtonLink, EmptyState, Spinner } from "@/components/ui";
+import { useProject } from "@/lib/project-context";
 import { useAllLinks, useArtifacts } from "@/lib/queries";
 import { ARTIFACT_TYPE_COLOR, ARTIFACT_TYPE_LABEL, ARTIFACT_TYPE_ORDER } from "@/lib/types";
 
@@ -23,8 +24,9 @@ function Legend() {
 }
 
 export default function GraphPage() {
-  const { data: artifacts = [], isLoading, isError } = useArtifacts();
-  const { data: links = [] } = useAllLinks();
+  const { projectId } = useProject();
+  const { data: artifacts = [], isLoading, isError } = useArtifacts({}, projectId);
+  const { data: links = [] } = useAllLinks(projectId);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selected = artifacts.find((a) => a.id === selectedId) ?? null;
 

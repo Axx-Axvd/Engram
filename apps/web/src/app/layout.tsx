@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Engram",
-  description: "Project-memory platform for long AI projects.",
+  description: "Evidence-backed change-impact analysis for software projects.",
 };
 
 export default function RootLayout({

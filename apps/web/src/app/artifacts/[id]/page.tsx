@@ -12,6 +12,7 @@ import { SidePanel } from "@/components/overlay/SidePanel";
 import { Button, Card, Spinner, StatusBadge, TypeBadge } from "@/components/ui";
 import { EMPTY_DOC, parseDocContent, serializeDoc } from "@/lib/editor/content";
 import { formatDateTime } from "@/lib/format";
+import { useProject } from "@/lib/project-context";
 import {
   useArtifact,
   useArtifactLinks,
@@ -36,8 +37,9 @@ type Tab = "content" | "links" | "history";
 
 export default function ArtifactPage() {
   const { id } = useParams<{ id: string }>();
-  const artifact = useArtifact(id);
-  const update = useUpdateArtifact(id);
+  const { projectId } = useProject();
+  const artifact = useArtifact(id, projectId);
+  const update = useUpdateArtifact(id, projectId);
 
   const [tab, setTab] = useState<Tab>("content");
   const [editing, setEditing] = useState(false);
@@ -219,12 +221,12 @@ export default function ArtifactPage() {
 
       {tab === "links" && (
         <div className="mt-7 max-w-3xl">
-          <LinksTab artifactId={a.id} />
+          <LinksTab artifactId={a.id} projectId={projectId} />
         </div>
       )}
       {tab === "history" && (
         <div className="mt-7 max-w-3xl">
-          <HistoryTab artifactId={a.id} />
+          <HistoryTab artifactId={a.id} projectId={projectId} />
         </div>
       )}
     </div>
@@ -356,10 +358,10 @@ function StatusControl({
   );
 }
 
-function LinksTab({ artifactId }: { artifactId: string }) {
-  const links = useArtifactLinks(artifactId);
-  const { data: allArtifacts = [] } = useArtifacts();
-  const createLink = useCreateLink();
+function LinksTab({ artifactId, projectId }: { artifactId: string; projectId: string | null }) {
+  const links = useArtifactLinks(artifactId, projectId);
+  const { data: allArtifacts = [] } = useArtifacts({}, projectId);
+  const createLink = useCreateLink(projectId);
 
   const nameOf = useMemo(() => {
     const map = new Map(allArtifacts.map((a) => [a.id, a]));
@@ -714,8 +716,8 @@ function ItemsSection({ items }: { items: ArtifactItem[] }) {
   );
 }
 
-function HistoryTab({ artifactId }: { artifactId: string }) {
-  const versions = useArtifactVersions(artifactId);
+function HistoryTab({ artifactId, projectId }: { artifactId: string; projectId: string | null }) {
+  const versions = useArtifactVersions(artifactId, projectId);
 
   if (versions.isLoading) return <Spinner />;
   const items = [...(versions.data ?? [])].sort((a, b) => b.version - a.version);

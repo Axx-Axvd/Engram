@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ArtifactDetailPanel } from "@/components/ArtifactDetailPanel";
 import { ArtifactGraph } from "@/components/ArtifactGraph";
 import { Button } from "@/components/ui";
+import { useProject } from "@/lib/project-context";
 import { useFormalize } from "@/lib/queries";
 import type { FormalizeResult } from "@/lib/types";
 
@@ -15,10 +16,11 @@ Users can organize tasks into named lists.
 Users can share a list with other users.`;
 
 export default function FormalizePage() {
+  const { projectId } = useProject();
   const [description, setDescription] = useState(SAMPLE);
   const [result, setResult] = useState<FormalizeResult | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const formalize = useFormalize();
+  const formalize = useFormalize(projectId);
 
   const selected = result?.artifacts.find((a) => a.id === selectedId) ?? null;
 

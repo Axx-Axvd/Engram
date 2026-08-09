@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import { Button, Card, EmptyState, PageHeader, Spinner } from "@/components/ui";
+import { useProject } from "@/lib/project-context";
 import { useConsistency } from "@/lib/queries";
 import type { ConsistencyIssue } from "@/lib/types";
 
@@ -40,7 +41,8 @@ function IssueRow({ issue }: { issue: ConsistencyIssue }) {
 }
 
 export default function ConsistencyPage() {
-  const { data, isLoading, isError, refetch, isFetching } = useConsistency();
+  const { projectId } = useProject();
+  const { data, isLoading, isError, refetch, isFetching } = useConsistency(projectId);
 
   return (
     <div className="mx-auto max-w-3xl space-y-5 p-6">
