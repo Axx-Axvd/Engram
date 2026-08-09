@@ -32,3 +32,9 @@ python scripts/evaluate_retrieval.py research/benchmark_cases.json results.json
 
 The report contains micro precision/recall/F1, false warnings, average tokens and time, plus the
 number of cases whose repeated snapshots were not reproducible.
+
+A raw GitHub import only produces `commit -> file` provenance links, so the semantic typed graph is
+built deterministically from Python imports with `scripts/link_python_imports.py` before the graph
+and combined variants are meaningful. The first measured comparison (mock baseline vs. real
+embeddings plus the import graph) and how to reproduce it are written up in
+[`RESULTS.md`](RESULTS.md), with the raw runs in `results.json` and `results_baseline_mock.json`.
