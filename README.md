@@ -53,7 +53,7 @@ scripts/       Development and import utilities
 
 ## Local development
 
-Requirements: Python 3.11+, Node.js 20+, pnpm 11, Docker and Docker Compose.
+Requirements: Python 3.11+, Node.js 22+, pnpm 11, Docker and Docker Compose.
 
 ```bash
 docker compose -f infra/docker-compose.yml up -d
