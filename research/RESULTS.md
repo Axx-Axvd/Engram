@@ -3,9 +3,10 @@
 Measured comparison of the four retrieval variants on the Engram repository, on the **23-case**
 path-level gold set (`benchmark_cases.json`), every case run twice.
 
-**Headline: the central hypothesis is not confirmed.** At an equal token budget the typed graph does
-not beat plain semantic retrieval on F1. It buys precision and quiet output at the cost of recall.
-An earlier ten-case run suggested the opposite; that ordering did not survive the larger set.
+**Headline: at an equal token budget the hybrid now matches plain semantic retrieval on F1 while
+emitting a third fewer false warnings — but it does not beat it, and the typed graph still adds no
+recall.** An earlier ten-case run claimed the hybrid was ahead; that ordering did not survive the
+larger set, and the current parity is a tie, not a win.
 
 ## Setup
 
@@ -18,7 +19,9 @@ An earlier ten-case run suggested the opposite; that ordering did not survive th
   [`scripts/link_python_imports.py`](../scripts/link_python_imports.py): `test -> tests -> code`
   and `code -> depends_on -> code` (194 `depends_on` + 12 `tests` links).
 - **Budget:** hard 6000-token context budget, `<=30` candidates.
-- **Providers:** deterministic mock LLM; real local (fastembed) embeddings.
+- **Providers:** real local (fastembed) embeddings; deterministic mock LLM. The mock proposes
+  *every* retrieved element without filtering, so these numbers measure retrieval alone — and the
+  filtering role a real model could play is not exercised anywhere in them.
 - **Reproduce:**
   ```bash
   ENGRAM_EMBEDDING_PROVIDER=local ENGRAM_LLM_PROVIDER=mock uv run uvicorn engram.main:app
@@ -30,58 +33,80 @@ An earlier ten-case run suggested the opposite; that ordering did not survive th
 
 ## Current result (`results.json`)
 
-| variant      | precision | recall    | F1        | false warnings | avg tokens | avg ms | non-reproducible |
-|--------------|-----------|-----------|-----------|----------------|------------|--------|------------------|
-| **vector**   | 0.168     | **0.381** | **0.233** | 213            | 5853       | 1295   | 0/23             |
-| combined     | **0.185** | 0.283     | 0.224     | 141            | 5982       | 1825   | 0/23             |
-| graph        | 0.120     | 0.168     | 0.140     | **139**        | 5977       | 1802   | 0/23             |
-| full         | 0.031     | 0.106     | 0.048     | 379            | 5994       | 4095   | 0/23             |
+| variant      | precision | recall    | F1        | false warnings | avg tokens | non-reproducible |
+|--------------|-----------|-----------|-----------|----------------|------------|------------------|
+| combined     | **0.194** | 0.292     | **0.233** | 137            | 5962       | 0/23             |
+| vector       | 0.168     | **0.381** | **0.233** | 213            | 5853       | 0/23             |
+| graph        | 0.143     | 0.186     | 0.162     | **126**        | 5971       | 0/23             |
+| full         | 0.031     | 0.106     | 0.048     | 379            | 5994       | 0/23             |
+
+`combined` and `vector` differ by 0.0001 in F1. That is a tie, not a ranking.
+
+## How the hybrid got here
+
+Two structural defects were found by measurement and fixed. Neither is weight tuning: both change
+what the graph is allowed to mean.
+
+1. **The provenance star.** A GitHub import creates one `changes` link from the commit item to
+   every file it touched (422 of them), and `changes` carried the highest expansion weight. One hop
+   from any seed reached the commit and the second reached the whole repository at ~0.9 of the seed
+   score. Expansion now skips `changes` links whose source is a commit or pull request — those
+   record what a revision touched. `changes` from a change request is kept: that one is intent.
+2. **Expansion ran against the direction of impact.** Typed links point from the dependent element
+   to the one it relies on (`test -> tests -> code`, `code -> depends_on -> code`,
+   `task -> implements -> requirement`), but traversal was undirected. Half of every expansion
+   therefore walked into what an element *uses* — the shared models, enums and error helpers that
+   almost nothing changes — instead of what depends on it. Expansion now follows the reverse
+   direction for dependency-shaped links, and each origin's contribution is damped by its fan-out
+   (`1 / (1 + log(1 + n - 1))`), because an element reaching twenty neighbours says less about each
+   one. Both the fan-out and the damping factor are recorded in `selection_reason`.
+
+| `combined`             | precision | recall | F1    | false warnings |
+|------------------------|-----------|--------|-------|----------------|
+| with provenance star   | 0.157     | 0.283  | 0.202 | 172            |
+| star excluded          | 0.185     | 0.283  | 0.224 | 141            |
+| + directed and damped  | 0.194     | 0.292  | 0.233 | 137            |
+
+`graph` alone improved along the same path: F1 0.106 -> 0.140 -> 0.162. `vector` and `full` do not
+expand and their outputs are byte-identical across all three runs — a control confirming each
+change touched only what it was meant to touch. Raw runs: `results_before_graph_fix.json`,
+`results_undirected_graph.json`, `results.json`.
+
+**Runtime is not measured reliably here and no speed claim is made.** The unchanged `vector`
+variant averaged 4949 ms, 1295 ms and 3263 ms across the three runs while producing identical
+output, so per-analysis timings are dominated by machine load, not by these changes.
+
+## Where the graph helps and where it hurts
+
+Splitting the gold set by whether the Python import graph has any edges in that region:
+
+| subset                                | best F1                  | runner-up        |
+|---------------------------------------|--------------------------|------------------|
+| 15 cases touching the Python backend  | vector **0.220**         | combined 0.185   |
+| 8 documentation / CI / web cases      | combined **0.359**       | vector 0.261     |
+
+This is the opposite of the intuitive story, and it is the most useful thing the expanded set
+revealed. The hybrid wins where the typed graph is *absent* — on documentation and CI changes its
+advantage comes from lexical matching, since those change requests share literal terms with their
+targets. Where the graph is *active*, plain vector retrieval is still better: expansion continues
+to spend budget on neighbours that are not in the gold set, and recall drops from 0.311 to 0.211.
+
+An import edge is evidently a weak predictor of "will need editing together". That is a finding
+about the edge type, not proof that typed graphs cannot work.
 
 ## Reading the result
 
-1. **Vector-only wins on F1 and recall; the hybrid wins on precision and noise.** `combined` finds
-   correct paths at the highest rate per returned path (0.185) and emits a third fewer false
-   warnings (141 vs 213), but it recovers noticeably fewer of the truly affected paths (0.283 vs
-   0.381). Under a fixed budget, graph-expanded neighbours displace good vector hits. Net F1 lands
-   just below vector-only.
-2. **The typed graph is not currently earning its place in retrieval.** What it demonstrably
-   provides is noise suppression, not better coverage. Any stronger claim would not be supported by
-   these numbers. This is a measured negative result for the hypothesis as implemented — not a
-   reason to remove the graph, which also carries the explanation and provenance the product needs,
-   but a reason not to advertise it as a retrieval improvement yet.
-3. **Bounded selection still beats full context by a wide margin.** At the same budget `full` is
-   worst on every metric (F1 0.048, 379 false warnings). Explaining and bounding the selection is
-   the part that clearly pays off.
-4. **Reproducibility is measured, not assumed.** Each case ran twice per variant: 23/23 cases
-   checked, 0 non-reproducible, all four variants. A fixed revision plus deterministic providers
-   yields identical selection snapshots.
-
-## The provenance-star fix
-
-The first 23-case run exposed a structural defect rather than a tuning problem. A GitHub import
-creates one `changes` link from the commit item to **every** file it touched (422 of them), and
-`changes` carried the highest expansion weight (0.95). One hop from any seed reached the commit and
-the second hop reached the entire repository at ~0.9 of the seed score, so the budget filled with
-arbitrary files.
-
-Excluding provenance edges from expansion had been registered as a candidate refinement *before*
-these numbers existed. `changes` links from a commit or pull request are now skipped during
-expansion (they record what a revision touched); `changes` from a change request is kept, because
-that one is intent rather than provenance.
-
-Effect, same gold set and budget (`results_before_graph_fix.json` -> `results.json`):
-
-| variant  | F1            | precision     | false warnings | avg ms          |
-|----------|---------------|---------------|----------------|-----------------|
-| combined | 0.202 → 0.224 | 0.157 → 0.185 | 172 → 141      | 9472 → 1825     |
-| graph    | 0.106 → 0.140 | 0.084 → 0.120 | 174 → 139      | 10144 → 1802    |
-| vector   | 0.233 (same)  | 0.168 (same)  | 213 (same)     | 4949 → 1295     |
-| full     | 0.048 (same)  | 0.031 (same)  | 379 (same)     | 9426 → 4095     |
-
-`vector` and `full` do not use graph expansion and their scores are byte-identical before and
-after — a control confirming the change touched only what it was meant to touch. Recall of
-`combined` is also unchanged (0.283): removing the star deleted noise, but the typed graph still
-contributed no additional correct path.
+1. **The hypothesis is still not confirmed.** The hybrid matches semantic search; it does not beat
+   it. Recall is strictly worse (0.292 vs 0.381) — under a fixed budget the graph's neighbours
+   displace correct vector hits.
+2. **What the graph reliably buys is quiet, precise output.** Best precision (0.194) and 36% fewer
+   false warnings (137 vs 213) at equal budget. For a reviewer reading candidates by hand, that is
+   worth something; it is not the same claim as better retrieval.
+3. **Bounded selection still beats full context by a wide margin.** `full` remains worst on every
+   metric (F1 0.048, 379 false warnings). Bounding and explaining the selection is the part that is
+   clearly established.
+4. **Reproducibility is measured, not assumed.** Every case ran twice per variant: 23/23 checked,
+   0 non-reproducible, all four variants.
 
 ## Earlier ten-case runs (superseded)
 
@@ -95,19 +120,20 @@ embeddings, no semantic links), one run per case:
 | graph    | 0.133                    | 0.121                    |
 | full     | 0.010                    | 0.020                    |
 
-The ten-case ordering put `combined` first and should no longer be quoted: it did not hold at 23
-cases. The mock-vs-real comparison does still hold — switching mock -> local embeddings roughly
-triples the vector baseline, so the mock provider is a deterministic CI device and never a
+The ten-case ordering put `combined` first on a 0.012 gap and should not be quoted: it did not hold
+at 23 cases. The mock-vs-real comparison does still hold — switching mock -> local embeddings
+roughly triples the vector baseline, so the mock provider is a deterministic CI device and never a
 retrieval baseline.
 
 ## Honest limitations (next steps)
 
-- The semantic graph only covers Python imports, while 13 of the 23 cases are documentation, CI or
-  TypeScript changes where it has almost no useful edges. Widening link extraction is the most
-  direct way to give the graph a fair chance.
+- **The LLM's filtering role is untested.** The mock passes every retrieved element through, so
+  pipeline precision equals retrieval precision. A real model asked to drop irrelevant candidates
+  attacks exactly the metric the hybrid is meant to win, and has never been measured.
 - Retrieval works at file-chunk level, so a large file matches or misses as a whole. Sub-file
   chunking is the main headroom for the low absolute recall.
-- Under a fixed budget the hybrid trades recall for precision. Whether that trade is right depends
-  on what the agent needs, which argues for measuring downstream task success, not only retrieval
-  metrics.
+- Python import edges predict co-change weakly. Co-change edges mined from git history would test
+  the graph idea far more directly than more import parsing.
+- 23 cases is small: a 0.0001 F1 gap is noise, and even the subset splits (15 and 8 cases) are
+  indicative rather than conclusive.
 - Single repository (dogfood). An external repository would strengthen external validity.

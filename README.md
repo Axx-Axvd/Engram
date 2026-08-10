@@ -24,8 +24,9 @@ actual commit / pull request → ChangeSet → consistency check
 
 The current repository contains a functional prototype of the full non-mutating product loop,
 measured on a real imported repository against three retrieval baselines. It is not yet a validated
-MVP: on the 23-case benchmark the typed graph does not beat plain semantic search — it improves
-precision and cuts false warnings, but loses recall. That result is recorded honestly in
+MVP: on the 23-case benchmark the typed graph matches plain semantic search on F1 rather than
+beating it — it improves precision and cuts false warnings by a third, but loses recall. That
+result is recorded honestly in
 [`research/RESULTS.md`](research/RESULTS.md). See also [`ENGRAM_TRUE_PATH_PLAN.md`](ENGRAM_TRUE_PATH_PLAN.md),
 [`ROADMAP.md`](ROADMAP.md), and [`research/README.md`](research/README.md).
 

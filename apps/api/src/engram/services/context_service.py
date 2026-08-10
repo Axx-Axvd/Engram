@@ -5,6 +5,7 @@ from __future__ import annotations
 import math
 import re
 import uuid
+from collections import defaultdict
 from collections.abc import Iterable
 from dataclasses import dataclass
 
@@ -17,6 +18,7 @@ from engram.models import (
     Artifact,
     ArtifactItemRecord,
     ArtifactLink,
+    ItemLink,
     ItemVersion,
     SourceLocator,
 )
@@ -30,6 +32,21 @@ _TERM = re.compile(r"[\w.-]+", re.UNICODE)
 # expanding through it reaches the whole repository in two hops and floods the budget. Expansion
 # therefore skips those, while `changes` from a change request stays — that one is intent.
 _PROVENANCE_SOURCES = {ItemType.commit.value, ItemType.pull_request.value}
+# Which way impact may travel along a link. Most typed links point from the dependent element
+# to the one it relies on (`test -> tests -> code`, `code -> depends_on -> code`,
+# `task -> implements -> requirement`), so impact travels the opposite way: change the target
+# and the source may be affected. Walking such a link forwards instead reaches everything the
+# element happens to use — the shared models, enums and helpers that are rarely the answer.
+_REVERSE, _FORWARD, _BOTH = "reverse", "forward", "both"
+_EXPANSION_DIRECTION: dict[LinkType, str] = {
+    LinkType.depends_on: _REVERSE,
+    LinkType.tests: _REVERSE,
+    LinkType.implements: _REVERSE,
+    LinkType.refines: _REVERSE,
+    LinkType.derived_from: _REVERSE,
+    LinkType.changes: _FORWARD,
+    LinkType.related_to: _BOTH,
+}
 _GRAPH_WEIGHT: dict[LinkType, float] = {
     LinkType.changes: 0.95,
     LinkType.implements: 0.9,
@@ -50,6 +67,26 @@ class SelectedElement:
     reason: dict
     graph_path: list[dict]
     token_estimate: int
+
+
+def _expansion_steps(
+    link: ItemLink,
+    frontier: set[uuid.UUID],
+    type_by_id: dict[uuid.UUID, str],
+) -> list[tuple[uuid.UUID, uuid.UUID]]:
+    """Return the (origin, neighbour) steps this link permits out of the current frontier."""
+    if (
+        link.type == LinkType.changes
+        and type_by_id.get(link.source_item_id) in _PROVENANCE_SOURCES
+    ):
+        return []
+    direction = _EXPANSION_DIRECTION.get(link.type, _BOTH)
+    steps: list[tuple[uuid.UUID, uuid.UUID]] = []
+    if direction in {_REVERSE, _BOTH} and link.target_item_id in frontier:
+        steps.append((link.target_item_id, link.source_item_id))
+    if direction in {_FORWARD, _BOTH} and link.source_item_id in frontier:
+        steps.append((link.source_item_id, link.target_item_id))
+    return steps
 
 
 def estimate_tokens(title: str, text: str) -> int:
@@ -239,24 +276,26 @@ def select_context_elements(
         if not frontier:
             break
         next_frontier: set[uuid.UUID] = set()
+        # Collect the hop's admissible steps first: fan-out damping has to know how many
+        # neighbours an element reaches before any of them is scored.
+        pending: dict[uuid.UUID, list[tuple[uuid.UUID, ItemLink]]] = defaultdict(list)
         for link in item_repo.links_touching(session, project_id, frontier):
             if link.state != LinkState.confirmed.value:
                 continue
-            if (
-                link.type == LinkType.changes
-                and type_by_id.get(link.source_item_id) in _PROVENANCE_SOURCES
-            ):
-                continue
-            endpoints = (link.source_item_id, link.target_item_id)
-            for origin_id in frontier & set(endpoints):
-                neighbor_id = endpoints[1] if endpoints[0] == origin_id else endpoints[0]
+            for origin_id, neighbor_id in _expansion_steps(link, frontier, type_by_id):
+                if neighbor_id not in selected_ids:
+                    pending[origin_id].append((neighbor_id, link))
+        for origin_id, steps in pending.items():
+            # An element that reaches many neighbours says less about each single one of them.
+            damping = 1 / (1 + math.log1p(max(0, len(steps) - 1)))
+            for neighbor_id, link in steps:
                 if neighbor_id in selected_ids:
                     continue
                 neighbor = item_repo.get(session, neighbor_id, project_id)
                 if neighbor is None or neighbor.valid_to is not None:
                     continue
                 parent_score, _, parent_path = scored.get(origin_id, (0.1, {"stage": "graph"}, []))
-                graph_score = parent_score * _GRAPH_WEIGHT.get(link.type, 0.5)
+                graph_score = parent_score * _GRAPH_WEIGHT.get(link.type, 0.5) * damping
                 scored[neighbor_id] = (
                     graph_score,
                     {
@@ -265,6 +304,8 @@ def select_context_elements(
                         "link_id": str(link.id),
                         "link_type": link.type.value,
                         "link_origin": link.origin,
+                        "fan_out": len(steps),
+                        "fan_out_damping": round(damping, 6),
                     },
                     [
                         *parent_path,

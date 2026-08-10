@@ -89,12 +89,14 @@ that repository.
 - Recall, precision/F1, false warnings, context tokens, runtime and reproducibility measured; see
   [`research/RESULTS.md`](research/RESULTS.md).
 
-**Result so far:** vector-only has the best F1 (0.233) and recall (0.381); the hybrid has the best
-precision (0.185) and a third fewer false warnings, at lower recall. Bounded selection beats full
-context by a wide margin. Reproducibility is exact (0/23 non-reproducible).
+**Result so far:** the hybrid and vector-only tie on F1 (0.233 both); the hybrid has the best
+precision (0.194) and 36% fewer false warnings, vector-only the best recall (0.381 vs 0.292).
+Bounded selection beats full context by a wide margin. Reproducibility is exact (0/23).
 
 **Done when:** the typed graph measurably improves context selection at comparable recall — not yet
-the case. Widening link extraction beyond Python imports and sub-file chunking are the open leads.
+the case. Two structural defects have been fixed by measurement (commit provenance star, undirected
+expansion), which lifted the hybrid from F1 0.202 to 0.233. Open leads: exercise the LLM as a
+candidate filter, mine co-change edges from git history instead of import edges, sub-file chunking.
 
 ### 7. Interface cutover
 
