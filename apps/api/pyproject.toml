@@ -21,6 +21,8 @@ dependencies = [
 local = ["fastembed>=0.4"]
 # Real LLM via the subscription-authenticated Claude CLI. Enable with: uv sync --extra llm
 llm = ["claude-agent-sdk>=0.1.0"]
+# MCP stdio channel for external agents. Enable with: uv sync --extra mcp
+mcp = ["mcp>=1.2"]
 
 [dependency-groups]
 dev = [

@@ -31,6 +31,9 @@ scripts/       seed, Context Package CLI and evaluation utilities
 - Only confirmed item links may expand retrieval. Inferred links begin as proposed.
 - Impact analysis is non-mutating. Invalid structured model output is rejected as one transaction.
 - Context Packages pin exact versions and enforce their budget after graph expansion.
+- `engram/mcp/` delivers packages to an external agent: `operations.py` holds protocol-independent
+  calls over the existing services, `server.py` is a stdio adapter needing the `mcp` extra.
+  Candidate review is never exposed to the agent.
 - GitHub is read-only and is the only active integration.
 - The mock LLM and embeddings are deterministic CI/default providers. Claude Code is optional for
   research runs.

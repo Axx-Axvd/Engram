@@ -82,6 +82,23 @@ python scripts/engram_context.py --project <uuid> --analysis <uuid> --budget 400
 python scripts/engram_context.py --project <uuid> --package <uuid>
 ```
 
+### MCP channel for an external agent
+
+An agent that speaks MCP can run the analysis and collect the bounded package itself:
+
+```bash
+cd apps/api && uv sync --extra mcp
+claude mcp add engram -- uv --directory apps/api run python -m engram.mcp.server
+```
+
+Tools: `list_projects`, `analyze_change`, `get_context`, `list_context_packages`. Reviewing a
+candidate is deliberately **not** exposed — approving impact is the human decision the loop is
+built around, so `get_context` fails while review is pending.
+
+An MCP host launches the server with a sanitized environment, so provider and database settings
+must come from the repo-root `.env` (or from the `env` block of the host's MCP configuration),
+not from the shell that registered the server.
+
 ## Verification
 
 The automated suite always uses the deterministic providers, regardless of a developer's `.env`.

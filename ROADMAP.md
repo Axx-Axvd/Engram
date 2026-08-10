@@ -60,14 +60,16 @@ reviewable.
 
 ### 4. Context package
 
-**Status: implemented through API, web UI and dependency-free CLI.**
+**Status: implemented through API, web UI, dependency-free CLI and an MCP stdio channel.**
 
 - Apply a hard token budget after typed-graph expansion and reranking.
 - Persist the exact included item versions and selection explanations.
-- Expose the approved package through API and CLI/MCP.
+- Expose the approved package through API, CLI and MCP (`engram.mcp.server`: `list_projects`,
+  `analyze_change`, `get_context`, `list_context_packages`; candidate review stays human-only).
 
 **Done when:** an external agent can reproduce and consume a bounded package without reading the
-whole Engram database.
+whole Engram database. Verified over the real protocol: analyse → blocked while review is pending →
+bounded package with sources and reasons after approval.
 
 ### 5. GitHub source
 
