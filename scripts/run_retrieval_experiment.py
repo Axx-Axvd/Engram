@@ -51,11 +51,22 @@ def main() -> int:
         default=1,
         help="Runs per case and variant; >1 makes the reproducibility check meaningful",
     )
+    parser.add_argument(
+        "--only",
+        default="",
+        help="Comma-separated case ids to run; used to evaluate one leave-one-out fold",
+    )
     args = parser.parse_args()
     if args.repeats < 1:
         raise SystemExit("--repeats must be at least 1")
 
     gold = json.loads(args.gold.read_text(encoding="utf-8"))
+    wanted = {value.strip() for value in args.only.split(",") if value.strip()}
+    if wanted:
+        gold = [case for case in gold if case["id"] in wanted]
+        missing = wanted - {case["id"] for case in gold}
+        if missing:
+            raise SystemExit(f"Unknown benchmark cases: {', '.join(sorted(missing))}")
     base = args.api.rstrip("/")
     items = _request(f"{base}/api/projects/{args.project}/items")
     item_by_id = {item["id"]: item for item in items}

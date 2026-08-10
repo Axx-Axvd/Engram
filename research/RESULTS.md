@@ -94,11 +94,67 @@ to spend budget on neighbours that are not in the gold set, and recall drops fro
 An import edge is evidently a weak predictor of "will need editing together". That is a finding
 about the edge type, not proof that typed graphs cannot work.
 
+## Does a different edge type help? (co-change probe)
+
+The diagnosis above says an import edge is a weak predictor of "changes together", so the obvious
+test is to build the graph from exactly that relation: files that appeared in the same commit.
+[`scripts/link_cochange.py`](../scripts/link_cochange.py) mines those edges, and the probe replaced
+the import graph with them rather than adding to it, so the two edge types are compared alone.
+
+Guards, because the gold set is itself commit-derived:
+
+- **Leave-one-out.** A case derived from commit `C` is evaluated on a graph mined without `C`.
+  14 folds, edge set rebuilt per fold.
+- **No looking ahead.** Only history reachable from the pinned revision `18e3162` is mined; commits
+  made after the analysed snapshot are knowledge the analysis could not have had.
+- Same `<=15 importable files` rule as the gold set, so milestone commits cannot form huge cliques.
+
+| variant (co-change) | precision | recall | F1        | false warnings |
+|---------------------|-----------|--------|-----------|----------------|
+| combined            | 0.169     | 0.283  | 0.212     | 157            |
+| graph               | 0.114     | 0.168  | 0.136     | 148            |
+
+**Co-change edges did worse than import edges** (combined 0.212 vs 0.233, graph 0.136 vs 0.162).
+Co-change links are `related_to` and expand at weight 0.55 against 0.8/0.88 for import links, so a
+control run repeated the probe with the weight matched at 0.8: combined 0.213, graph 0.135 — the
+weight explains nothing (`results_cochange.json`, `results_cochange_weight_matched.json`).
+
+The probe was **biased in co-change's favour and still lost**. This repository has only 15 commits
+that qualify, and neighbouring commits touch overlapping files, so even after leave-one-out a case
+keeps edges directly between its own gold paths — 47 of them for ENG-023, 10 for ENG-014. On a
+history this short, "changed together before" and "is the answer" nearly coincide; a positive result
+would have been memorisation. A negative one under that bias is informative.
+
+## The recall ceiling is the real finding
+
+Across five graph configurations, `combined` recall barely moves, while vector-only retrieval sits
+far above all of them:
+
+| graph configuration                 | recall | F1    |
+|-------------------------------------|--------|-------|
+| commit provenance star              | 0.283  | 0.202 |
+| star excluded                       | 0.283  | 0.224 |
+| directed + fan-out damped (imports) | 0.292  | 0.233 |
+| co-change, leave-one-out            | 0.283  | 0.212 |
+| co-change, weight matched           | 0.283  | 0.213 |
+| **no graph at all (vector)**        | **0.381** | 0.233 |
+
+Changing the edge type, the direction, the weights and the hub handling changed *which wrong items
+entered the budget*, not *how many right ones were found*. That points away from edge quality and
+at the mechanism: under a fixed budget, expansion competes with retrieval for the same ~30 slots,
+and a neighbour that displaces a correct semantic hit has to be correct itself to break even —
+which, in this corpus, it rarely is.
+
+Two honest readings follow, and they suggest different work. Either expansion must stop competing
+(a reserved quota, or admitting a neighbour only when it also has semantic support), or the typed
+graph's value is not in *selecting* context at all but in explaining and dating it — in which case
+that is what should be measured.
+
 ## Reading the result
 
 1. **The hypothesis is still not confirmed.** The hybrid matches semantic search; it does not beat
    it. Recall is strictly worse (0.292 vs 0.381) — under a fixed budget the graph's neighbours
-   displace correct vector hits.
+   displace correct vector hits, and no edge type tried so far changes that.
 2. **What the graph reliably buys is quiet, precise output.** Best precision (0.194) and 36% fewer
    false warnings (137 vs 213) at equal budget. For a reviewer reading candidates by hand, that is
    worth something; it is not the same claim as better retrieval.
@@ -132,8 +188,12 @@ retrieval baseline.
   attacks exactly the metric the hybrid is meant to win, and has never been measured.
 - Retrieval works at file-chunk level, so a large file matches or misses as a whole. Sub-file
   chunking is the main headroom for the low absolute recall.
-- Python import edges predict co-change weakly. Co-change edges mined from git history would test
-  the graph idea far more directly than more import parsing.
+- Co-change edges have now been tried and did worse than import edges, under a bias that favoured
+  them. Mining them on a repository with real history (thousands of commits) is the only way to
+  give that idea a fair test — 15 qualifying commits cannot support it.
 - 23 cases is small: a 0.0001 F1 gap is noise, and even the subset splits (15 and 8 cases) are
   indicative rather than conclusive.
+- The gold-set file itself lives in the imported corpus and competes for budget (858 tokens in one
+  observed package). It cannot inflate recall, since it is never a gold path, but excluding
+  `research/` from the corpus would make the setup cleaner.
 - Single repository (dogfood). An external repository would strengthen external validity.
