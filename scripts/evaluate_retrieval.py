@@ -29,30 +29,39 @@ def _score(gold_rows: list[dict], result_rows: list[dict]) -> dict[str, dict]:
         true_positive = false_positive = false_negative = 0
         tokens = elapsed = 0.0
         digests: dict[str, set[str]] = defaultdict(set)
-        cases: set[str] = set()
+        runs_per_case: dict[str, int] = defaultdict(int)
+        scored: set[str] = set()
         for row in rows:
             case_id = row["case_id"]
+            runs_per_case[case_id] += 1
+            if row.get("snapshot_digest"):
+                digests[case_id].add(str(row["snapshot_digest"]))
+            tokens += float(row.get("token_estimate", 0))
+            elapsed += float(row.get("elapsed_ms", 0))
+            # Repeated runs of the same case exist to test reproducibility; scoring them
+            # again would only multiply the absolute counts.
+            if case_id in scored:
+                continue
+            scored.add(case_id)
             actual = set(row.get("retrieved_paths", []))
             expected = gold[case_id]
             true_positive += len(actual & expected)
             false_positive += len(actual - expected)
             false_negative += len(expected - actual)
-            tokens += float(row.get("token_estimate", 0))
-            elapsed += float(row.get("elapsed_ms", 0))
-            cases.add(case_id)
-            if row.get("snapshot_digest"):
-                digests[case_id].add(str(row["snapshot_digest"]))
         precision = true_positive / max(1, true_positive + false_positive)
         recall = true_positive / max(1, true_positive + false_negative)
         f1 = 2 * precision * recall / max(1e-12, precision + recall)
         report[variant] = {
-            "cases": len(cases),
+            "cases": len(scored),
+            "runs": len(rows),
             "precision": round(precision, 4),
             "recall": round(recall, 4),
             "f1": round(f1, 4),
             "false_warnings": false_positive,
             "average_tokens": round(tokens / max(1, len(rows)), 2),
             "average_elapsed_ms": round(elapsed / max(1, len(rows)), 2),
+            # A case only tests reproducibility when it was actually run more than once.
+            "repeated_cases": sum(1 for count in runs_per_case.values() if count > 1),
             "non_reproducible_cases": sum(
                 1 for values in digests.values() if len(values) > 1
             ),

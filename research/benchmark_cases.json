@@ -1,6 +1,7 @@
 [
   {
     "id": "ENG-001",
+    "origin": "curated",
     "change": "Add a required project boundary to every artifact and link operation.",
     "relevant_paths": [
       "apps/api/src/engram/models/project.py",
@@ -12,6 +13,7 @@
   },
   {
     "id": "ENG-002",
+    "origin": "curated",
     "change": "Import a GitHub repository at an immutable commit SHA without writing upstream.",
     "relevant_paths": [
       "apps/api/src/engram/services/github_source_service.py",
@@ -22,6 +24,7 @@
   },
   {
     "id": "ENG-003",
+    "origin": "curated",
     "change": "Reject an invalid LLM impact response atomically.",
     "relevant_paths": [
       "apps/api/src/engram/llm/base.py",
@@ -32,6 +35,7 @@
   },
   {
     "id": "ENG-004",
+    "origin": "curated",
     "change": "Enforce a hard token budget after typed graph expansion.",
     "relevant_paths": [
       "apps/api/src/engram/services/context_service.py",
@@ -41,6 +45,7 @@
   },
   {
     "id": "ENG-005",
+    "origin": "curated",
     "change": "Turn document JSON items into independently versioned knowledge elements.",
     "relevant_paths": [
       "apps/api/src/engram/models/item.py",
@@ -51,6 +56,7 @@
   },
   {
     "id": "ENG-006",
+    "origin": "curated",
     "change": "Prevent inferred links from affecting retrieval before human confirmation.",
     "relevant_paths": [
       "apps/api/src/engram/models/item.py",
@@ -61,6 +67,7 @@
   },
   {
     "id": "ENG-007",
+    "origin": "curated",
     "change": "Review impact candidates without updating active knowledge versions.",
     "relevant_paths": [
       "apps/api/src/engram/api/analyses.py",
@@ -71,6 +78,7 @@
   },
   {
     "id": "ENG-008",
+    "origin": "curated",
     "change": "Link an imported commit to exact before and after item versions.",
     "relevant_paths": [
       "apps/api/src/engram/models/analysis.py",
@@ -81,6 +89,7 @@
   },
   {
     "id": "ENG-009",
+    "origin": "curated",
     "change": "Run CI against PostgreSQL with pgvector and deterministic providers.",
     "relevant_paths": [
       ".github/workflows/ci.yml",
@@ -91,12 +100,177 @@
   },
   {
     "id": "ENG-010",
+    "origin": "curated",
     "change": "Make Projects, Sources, Changes, Impact analyses and Context packages the primary navigation.",
     "relevant_paths": [
       "apps/web/src/components/app-shell/Sidebar.tsx",
       "apps/web/src/components/app-shell/Topbar.tsx",
       "apps/web/src/app/page.tsx",
       "apps/web/src/app/change-request/page.tsx"
+    ]
+  },
+  {
+    "id": "ENG-011",
+    "origin": "commit 356ea84",
+    "change": "Publish the first measured comparison of the retrieval variants, including how to reproduce the run.",
+    "relevant_paths": [
+      "research/README.md"
+    ]
+  },
+  {
+    "id": "ENG-012",
+    "origin": "commit 18e3162",
+    "change": "Generate the typed API client before the frontend job builds the web application.",
+    "relevant_paths": [
+      ".github/workflows/ci.yml"
+    ]
+  },
+  {
+    "id": "ENG-013",
+    "origin": "commit b92e0e6",
+    "change": "Raise the required Node.js runtime version so the pinned package manager release can run.",
+    "relevant_paths": [
+      ".github/workflows/ci.yml",
+      "README.md",
+      "package.json"
+    ]
+  },
+  {
+    "id": "ENG-014",
+    "origin": "commit 492a8c3",
+    "change": "Add a labelled retrieval benchmark with evaluation and context-export scripts, and align the project documents with the measured product boundary.",
+    "relevant_paths": [
+      ".github/workflows/ci.yml",
+      "Claude.md",
+      "FROZEN_IDEAS.md",
+      "README.md",
+      "ROADMAP.md",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md",
+      "research/benchmark_cases.json",
+      "scripts/engram_context.py",
+      "scripts/evaluate_retrieval.py",
+      "scripts/run_retrieval_experiment.py"
+    ]
+  },
+  {
+    "id": "ENG-015",
+    "origin": "commit 1171913",
+    "change": "Record the corrected product direction, its rejected alternatives and the staged delivery plan as a decision document.",
+    "relevant_paths": [
+      "ENGRAM_TRUE_PATH_PLAN.md"
+    ]
+  },
+  {
+    "id": "ENG-016",
+    "origin": "commit d92dc06",
+    "change": "Complete the deterministic rule set that reports structural inconsistencies between related knowledge.",
+    "relevant_paths": [
+      "ROADMAP.md",
+      "apps/api/src/engram/services/consistency_service.py",
+      "apps/api/tests/test_consistency.py"
+    ]
+  },
+  {
+    "id": "ENG-017",
+    "origin": "commit e74a091",
+    "change": "Stop the read-only rich-text view from losing an update when its content is replaced during render.",
+    "relevant_paths": [
+      "apps/web/src/components/editor/RichTextEditor.tsx"
+    ]
+  },
+  {
+    "id": "ENG-018",
+    "origin": "commit 537e38e",
+    "change": "Add a reproducible demonstration dataset and an end-to-end scenario test over it.",
+    "relevant_paths": [
+      "README.md",
+      "apps/api/tests/test_e2e_scenario.py",
+      "scripts/seed_demo.py"
+    ]
+  },
+  {
+    "id": "ENG-019",
+    "origin": "commit 2bb8e96",
+    "change": "Report inconsistencies between related knowledge through an API endpoint and a dedicated screen.",
+    "relevant_paths": [
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/main.py",
+      "apps/api/src/engram/schemas/consistency.py",
+      "apps/api/src/engram/services/consistency_service.py",
+      "apps/api/tests/test_consistency.py",
+      "apps/web/src/app/consistency/page.tsx",
+      "apps/web/src/components/app-shell/Sidebar.tsx",
+      "apps/web/src/lib/queries.ts",
+      "apps/web/src/lib/types.ts"
+    ]
+  },
+  {
+    "id": "ENG-020",
+    "origin": "commit be7c1f1",
+    "change": "Simplify how an opened document presents its outgoing and incoming relationships.",
+    "relevant_paths": [
+      "apps/web/src/app/artifacts/[id]/page.tsx"
+    ]
+  },
+  {
+    "id": "ENG-021",
+    "origin": "commit 1b556c1",
+    "change": "Accept a proposed change in natural language and return the knowledge it may affect through a model adapter.",
+    "relevant_paths": [
+      "apps/api/src/engram/api/workflows.py",
+      "apps/api/src/engram/llm/__init__.py",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/llm/mock.py",
+      "apps/api/src/engram/orchestration/engine.py",
+      "apps/api/src/engram/schemas/workflow.py",
+      "apps/api/tests/test_change_request.py",
+      "apps/web/src/app/change-request/page.tsx",
+      "apps/web/src/components/app-shell/Sidebar.tsx",
+      "apps/web/src/lib/queries.ts",
+      "apps/web/src/lib/types.ts"
+    ]
+  },
+  {
+    "id": "ENG-022",
+    "origin": "commit a43bb60",
+    "change": "Store vector representations of knowledge and retrieve the closest matches for a query.",
+    "relevant_paths": [
+      "apps/api/pyproject.toml",
+      "apps/api/src/engram/api/search.py",
+      "apps/api/src/engram/config.py",
+      "apps/api/src/engram/embeddings/__init__.py",
+      "apps/api/src/engram/embeddings/base.py",
+      "apps/api/src/engram/embeddings/factory.py",
+      "apps/api/src/engram/embeddings/local.py",
+      "apps/api/src/engram/embeddings/mock.py",
+      "apps/api/src/engram/main.py",
+      "apps/api/src/engram/schemas/search.py",
+      "apps/api/src/engram/services/artifact_service.py",
+      "apps/api/src/engram/services/context_service.py",
+      "apps/api/tests/test_search.py"
+    ]
+  },
+  {
+    "id": "ENG-023",
+    "origin": "commit da7000e",
+    "change": "Give the web application a persistent navigation shell with manual authoring screens.",
+    "relevant_paths": [
+      "apps/api/src/engram/api/links.py",
+      "apps/web/src/app/artifacts/[id]/page.tsx",
+      "apps/web/src/app/artifacts/new/page.tsx",
+      "apps/web/src/app/artifacts/page.tsx",
+      "apps/web/src/app/formalize/page.tsx",
+      "apps/web/src/app/graph/page.tsx",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/app/page.tsx",
+      "apps/web/src/components/AppShell.tsx",
+      "apps/web/src/components/app-shell/Sidebar.tsx",
+      "apps/web/src/components/app-shell/Topbar.tsx",
+      "apps/web/src/components/ui.tsx",
+      "apps/web/src/lib/format.ts",
+      "apps/web/src/lib/queries.ts",
+      "apps/web/src/lib/types.ts"
     ]
   }
 ]

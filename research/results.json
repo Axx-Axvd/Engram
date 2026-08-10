@@ -2,6 +2,7 @@
   {
     "case_id": "ENG-001",
     "variant": "full",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
@@ -22,13 +23,42 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4391.89,
+    "elapsed_ms": 28649.41,
     "snapshot_digest": "8f3478c56094d51308ed45bb184cb04defc5200a664dbe0c7fbf91111aee121f",
-    "analysis_id": "af566522-576d-4e93-b876-11cf2664f28f"
+    "analysis_id": "8b2c081e-89cf-4f0c-825d-c919b9d265a7"
+  },
+  {
+    "case_id": "ENG-001",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 18160.32,
+    "snapshot_digest": "8f3478c56094d51308ed45bb184cb04defc5200a664dbe0c7fbf91111aee121f",
+    "analysis_id": "71bfdff9-0ba6-476c-b88c-41346af2ad83"
   },
   {
     "case_id": "ENG-001",
     "variant": "vector",
+    "repeat": 0,
     "retrieved_paths": [
       "ENGRAM_TRUE_PATH_PLAN.md",
       "ENGRAM_project_spec_for_Claude_Codex_ru.md",
@@ -39,13 +69,32 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5944,
-    "elapsed_ms": 1473.0,
+    "elapsed_ms": 10059.46,
     "snapshot_digest": "5366c7b4912bd376491fd8d9e2b672371869e4f31d85a08e02a1fb292291952d",
-    "analysis_id": "530dbadb-4106-4aba-9ba2-92bfc8ed107b"
+    "analysis_id": "f95a0007-32b4-4e6c-8465-388a326e139a"
+  },
+  {
+    "case_id": "ENG-001",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/repositories/link_repo.py",
+      "apps/api/src/engram/services/consistency_service.py",
+      "apps/api/src/engram/services/link_service.py",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5944,
+    "elapsed_ms": 4771.97,
+    "snapshot_digest": "5366c7b4912bd376491fd8d9e2b672371869e4f31d85a08e02a1fb292291952d",
+    "analysis_id": "e945d369-7871-4e5f-8352-9ca002254937"
   },
   {
     "case_id": "ENG-001",
     "variant": "graph",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
@@ -56,13 +105,32 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5997,
-    "elapsed_ms": 5525.17,
+    "elapsed_ms": 22495.81,
     "snapshot_digest": "9e634415c1291faccee704871dbd3377a909d3973d76afc0d3b61592fa61e96a",
-    "analysis_id": "84537a20-2882-4fc3-8fe3-d598754bfa94"
+    "analysis_id": "46b77292-0dd8-4133-90ae-8a139cd9cfac"
+  },
+  {
+    "case_id": "ENG-001",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ROADMAP.md",
+      "apps/api/tests/test_true_path.py",
+      "apps/web/src/app/consistency/page.tsx",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 17024.86,
+    "snapshot_digest": "9e634415c1291faccee704871dbd3377a909d3973d76afc0d3b61592fa61e96a",
+    "analysis_id": "a5d1f8f0-c26b-4f2c-b2c8-96dec7f06f8b"
   },
   {
     "case_id": "ENG-001",
     "variant": "combined",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "ENGRAM_project_spec_for_Claude_Codex_ru.md",
@@ -74,13 +142,33 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 5540.73,
+    "elapsed_ms": 18450.08,
     "snapshot_digest": "9e6ced66f147edd6a27eb33600455f7513e5d832f4504e29583737fd8676902d",
-    "analysis_id": "917f4c61-4ee4-4d81-a2a7-60ad1af5e240"
+    "analysis_id": "f719a9ac-fb74-48b2-83cb-120eae715c09"
+  },
+  {
+    "case_id": "ENG-001",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/models/__init__.py",
+      "apps/api/src/engram/services/consistency_service.py",
+      "apps/api/src/engram/services/link_service.py",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 20232.76,
+    "snapshot_digest": "9e6ced66f147edd6a27eb33600455f7513e5d832f4504e29583737fd8676902d",
+    "analysis_id": "355e79fb-42b2-4483-9e91-c51d86899b1c"
   },
   {
     "case_id": "ENG-002",
     "variant": "full",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
@@ -101,13 +189,42 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4230.14,
+    "elapsed_ms": 18671.41,
     "snapshot_digest": "fe0a94efe8afad19d26697ae08b6352bf5d291a5614cbec3cc923e67cead68ac",
-    "analysis_id": "1cc79bd6-1da9-4c49-905a-9c66571c4267"
+    "analysis_id": "b57b13a8-85e0-44ed-8144-55a0cc9b070b"
+  },
+  {
+    "case_id": "ENG-002",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 19021.35,
+    "snapshot_digest": "fe0a94efe8afad19d26697ae08b6352bf5d291a5614cbec3cc923e67cead68ac",
+    "analysis_id": "9c1865a9-686c-4ba3-8c50-abc16d22c246"
   },
   {
     "case_id": "ENG-002",
     "variant": "vector",
+    "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
       "ENGRAM_TRUE_PATH_PLAN.md",
@@ -122,13 +239,36 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5972,
-    "elapsed_ms": 1552.05,
+    "elapsed_ms": 5679.07,
     "snapshot_digest": "dff61b5bb4bf5580cea9ac69b3a8846862127ce44c02dbc6ad8ce9e42e278236",
-    "analysis_id": "301389a4-2ff0-46b9-a1f3-f13b226a0fa7"
+    "analysis_id": "34fbb13f-e35d-451a-be7e-140e545d9f24"
+  },
+  {
+    "case_id": "ENG-002",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/api/sources.py",
+      "apps/api/src/engram/repositories/__init__.py",
+      "apps/api/src/engram/repositories/source_repo.py",
+      "apps/api/src/engram/schemas/source.py",
+      "apps/api/src/engram/services/provenance_service.py",
+      "apps/api/tests/test_github_source.py",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5972,
+    "elapsed_ms": 6987.08,
+    "snapshot_digest": "dff61b5bb4bf5580cea9ac69b3a8846862127ce44c02dbc6ad8ce9e42e278236",
+    "analysis_id": "2ad4a445-5af1-49d3-a5d7-bb9b2cd1f78b"
   },
   {
     "case_id": "ENG-002",
     "variant": "graph",
+    "repeat": 0,
     "retrieved_paths": [
       "DESIGN.md",
       "README.md",
@@ -138,13 +278,31 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5996,
-    "elapsed_ms": 4657.14,
+    "elapsed_ms": 14088.13,
     "snapshot_digest": "e3415958127cdeb4a1cc8abc6fe24c332e1a6a403cf900c42dc7bda1f9053270",
-    "analysis_id": "938d0a32-a684-4b25-9476-83e61f186196"
+    "analysis_id": "d1c2c30a-0d80-40e1-b7a6-382fa02e9879"
+  },
+  {
+    "case_id": "ENG-002",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "DESIGN.md",
+      "README.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/sources.py",
+      "apps/api/src/engram/services/github_source_service.py",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5996,
+    "elapsed_ms": 17061.46,
+    "snapshot_digest": "e3415958127cdeb4a1cc8abc6fe24c332e1a6a403cf900c42dc7bda1f9053270",
+    "analysis_id": "00264f2c-23ea-4eed-9876-bbb93026830e"
   },
   {
     "case_id": "ENG-002",
     "variant": "combined",
+    "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
       "README.md",
@@ -153,13 +311,30 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5999,
-    "elapsed_ms": 3588.23,
+    "elapsed_ms": 25976.59,
     "snapshot_digest": "1fa778aa9fcc8f77baf57df848980b1b9053845a7f2c0d8a13e5006f1572af2a",
-    "analysis_id": "e8aaf305-b49b-4f42-a807-620675232065"
+    "analysis_id": "4dd2e59c-bb47-47d6-b9d5-3588e0389a87"
+  },
+  {
+    "case_id": "ENG-002",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/services/github_source_service.py",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 32257.18,
+    "snapshot_digest": "1fa778aa9fcc8f77baf57df848980b1b9053845a7f2c0d8a13e5006f1572af2a",
+    "analysis_id": "f788cad2-17b7-401b-b740-21ceb55cae88"
   },
   {
     "case_id": "ENG-003",
     "variant": "full",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
@@ -180,13 +355,42 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 1890.2,
+    "elapsed_ms": 21584.44,
     "snapshot_digest": "0526e999831af5b8e722c6d7138b82ee854ef11ae79f99c59b664a4e754dfe75",
-    "analysis_id": "acea861b-ec08-4fa2-a220-c40f80a48c45"
+    "analysis_id": "6ac6756f-d771-4345-a907-28bad9c308ab"
+  },
+  {
+    "case_id": "ENG-003",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 20257.19,
+    "snapshot_digest": "0526e999831af5b8e722c6d7138b82ee854ef11ae79f99c59b664a4e754dfe75",
+    "analysis_id": "005aab3c-52e4-488f-b36b-ecbb6c08ff5a"
   },
   {
     "case_id": "ENG-003",
     "variant": "vector",
+    "repeat": 0,
     "retrieved_paths": [
       "ENGRAM_TRUE_PATH_PLAN.md",
       "ENGRAM_project_spec_for_Claude_Codex_ru.md",
@@ -202,13 +406,37 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5897,
-    "elapsed_ms": 933.48,
+    "elapsed_ms": 4073.35,
     "snapshot_digest": "1b233da4fb1f951d208802fcec4a2dccb59014c49d54e120cc341014b67fb446",
-    "analysis_id": "0a85fd12-5174-4f1e-a09b-f1ddc39be447"
+    "analysis_id": "5e66ebfe-36fa-4809-9392-25a61e3f3fa2"
+  },
+  {
+    "case_id": "ENG-003",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/errors.py",
+      "apps/api/src/engram/llm/__init__.py",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/llm/mock.py",
+      "apps/api/tests/test_llm_claude_code.py",
+      "apps/web/src/app/change-request/page.tsx",
+      "package.json",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5897,
+    "elapsed_ms": 6559.08,
+    "snapshot_digest": "1b233da4fb1f951d208802fcec4a2dccb59014c49d54e120cc341014b67fb446",
+    "analysis_id": "077f021a-ed78-4f31-b1eb-01865ebc2973"
   },
   {
     "case_id": "ENG-003",
     "variant": "graph",
+    "repeat": 0,
     "retrieved_paths": [
       "DESIGN.md",
       "ROADMAP.old.md",
@@ -220,13 +448,33 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 6000,
-    "elapsed_ms": 5165.4,
+    "elapsed_ms": 31392.82,
     "snapshot_digest": "5dbaac119e8d9ccfef4288e7515d0c2aadaefa5e2bc5d3970078c9ed9ed71a15",
-    "analysis_id": "0928f002-c549-499a-840e-fd8b2ab31e34"
+    "analysis_id": "8514c677-c720-4e16-b63c-30894108c260"
+  },
+  {
+    "case_id": "ENG-003",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "DESIGN.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/llm/factory.py",
+      "apps/api/tests/test_llm_claude_code.py",
+      "apps/web/src/app/impact-analyses/page.tsx",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 22140.69,
+    "snapshot_digest": "5dbaac119e8d9ccfef4288e7515d0c2aadaefa5e2bc5d3970078c9ed9ed71a15",
+    "analysis_id": "e2c5670e-11bf-4b2a-8872-a01051ff3924"
   },
   {
     "case_id": "ENG-003",
     "variant": "combined",
+    "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
       "ENGRAM_TRUE_PATH_PLAN.md",
@@ -238,13 +486,33 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5996,
-    "elapsed_ms": 6024.79,
+    "elapsed_ms": 16264.72,
     "snapshot_digest": "084801774249faa6ca300650deb184fb0fbd9a5f2f1837094d7f35ea15aa9e16",
-    "analysis_id": "4cfbddc7-a694-4133-b9f8-2b30cd1c95ea"
+    "analysis_id": "04c35aa3-3fd7-4fff-b948-daebdd0a3d55"
+  },
+  {
+    "case_id": "ENG-003",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/enums.py",
+      "apps/api/src/engram/llm/base.py",
+      "apps/web/src/app/impact-analyses/page.tsx",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5996,
+    "elapsed_ms": 8526.06,
+    "snapshot_digest": "084801774249faa6ca300650deb184fb0fbd9a5f2f1837094d7f35ea15aa9e16",
+    "analysis_id": "8aad3499-db8d-41f6-9b2a-2cbe7d1e129d"
   },
   {
     "case_id": "ENG-004",
     "variant": "full",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
@@ -265,13 +533,42 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4814.92,
+    "elapsed_ms": 4216.86,
     "snapshot_digest": "4117a39c62853231f9e4b19b06d4cc7250c8554934599a1bd2d9d377f9bdbfff",
-    "analysis_id": "d6422d69-1172-4b8a-87fd-36373f4727c8"
+    "analysis_id": "b18a8c1e-7df8-464f-a85b-b0d577bbba7f"
+  },
+  {
+    "case_id": "ENG-004",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 4872.74,
+    "snapshot_digest": "4117a39c62853231f9e4b19b06d4cc7250c8554934599a1bd2d9d377f9bdbfff",
+    "analysis_id": "075b951c-4d65-4a78-bb87-2b621895be5f"
   },
   {
     "case_id": "ENG-004",
     "variant": "vector",
+    "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
       "DESIGN.md",
@@ -287,13 +584,37 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5987,
-    "elapsed_ms": 1692.94,
+    "elapsed_ms": 2828.77,
     "snapshot_digest": "b91d4531141fbeace52898bc2eaa62bd13458edf56184749af41949fd0e1e60b",
-    "analysis_id": "df1a67fb-fddf-49a4-aa79-fd85253afd88"
+    "analysis_id": "f865a9d8-412d-4e23-bef7-d9dbb23a530b"
+  },
+  {
+    "case_id": "ENG-004",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/schemas/search.py",
+      "apps/web/src/app/consistency/page.tsx",
+      "apps/web/src/app/formalize/page.tsx",
+      "apps/web/src/app/graph/page.tsx",
+      "apps/web/src/components/ArtifactGraph.tsx",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5987,
+    "elapsed_ms": 4413.17,
+    "snapshot_digest": "b91d4531141fbeace52898bc2eaa62bd13458edf56184749af41949fd0e1e60b",
+    "analysis_id": "2f7fb181-c808-439f-b3c4-273219a7af59"
   },
   {
     "case_id": "ENG-004",
     "variant": "graph",
+    "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
       "ENGRAM_TRUE_PATH_PLAN.md",
@@ -306,13 +627,34 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5998,
-    "elapsed_ms": 5622.37,
+    "elapsed_ms": 8096.64,
     "snapshot_digest": "0e930f17f96b77341d8943019487f0863cee97908d75de5eccda0a65a5c4b97c",
-    "analysis_id": "6c923072-8cfe-4820-80ef-d0abffd0c876"
+    "analysis_id": "5d2fa597-699e-4d1e-8e1c-0d608737d9ed"
+  },
+  {
+    "case_id": "ENG-004",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/consistency.py",
+      "apps/web/src/app/impact-analyses/page.tsx",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 6387.89,
+    "snapshot_digest": "0e930f17f96b77341d8943019487f0863cee97908d75de5eccda0a65a5c4b97c",
+    "analysis_id": "c34f9a9a-b08b-4201-a749-5b094b2f0f5d"
   },
   {
     "case_id": "ENG-004",
     "variant": "combined",
+    "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
       "DESIGN.md",
@@ -324,13 +666,33 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 6000,
-    "elapsed_ms": 5695.78,
+    "elapsed_ms": 6065.48,
     "snapshot_digest": "5a630281a48f76be560d80ffacee74cee6f7f0b89eb4b4b288b38a302e257094",
-    "analysis_id": "84056040-ae57-41fd-9e7d-7e8bbea9a26f"
+    "analysis_id": "c98903d1-2a15-4773-b123-a519a3b5ca12"
+  },
+  {
+    "case_id": "ENG-004",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "DESIGN.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/services/consistency_service.py",
+      "research/benchmark_cases.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 5320.49,
+    "snapshot_digest": "5a630281a48f76be560d80ffacee74cee6f7f0b89eb4b4b288b38a302e257094",
+    "analysis_id": "85701aa7-6965-4a44-ad9a-8b52bc46f9b5"
   },
   {
     "case_id": "ENG-005",
     "variant": "full",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
@@ -351,13 +713,42 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4346.28,
+    "elapsed_ms": 5342.25,
     "snapshot_digest": "f96f9671f45444176b5d6194e2839f55ebccfc7f9f35a1fbe2058dc7d025daf2",
-    "analysis_id": "b178c023-134b-4633-9710-cf5d2d257bd9"
+    "analysis_id": "8c5e67e8-fa25-4841-a848-bc95aec2b6bf"
+  },
+  {
+    "case_id": "ENG-005",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 5922.71,
+    "snapshot_digest": "f96f9671f45444176b5d6194e2839f55ebccfc7f9f35a1fbe2058dc7d025daf2",
+    "analysis_id": "9e230092-7037-4d2b-9196-9e4611c6a181"
   },
   {
     "case_id": "ENG-005",
     "variant": "vector",
+    "repeat": 0,
     "retrieved_paths": [
       "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
@@ -369,13 +760,33 @@
       "package.json"
     ],
     "token_estimate": 5937,
-    "elapsed_ms": 1500.65,
+    "elapsed_ms": 2999.12,
     "snapshot_digest": "64a60b5c779db7cd19d11cbdb9c083c081a31ba0bc9a969edc29bf89a60a6ebf",
-    "analysis_id": "ae43bafb-cbd5-43b2-9bb6-2b03397d3937"
+    "analysis_id": "de4ea11d-8b77-46f5-b45f-a116105fd7ab"
+  },
+  {
+    "case_id": "ENG-005",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/services/item_service.py",
+      "apps/web/README.md",
+      "apps/web/src/lib/editor/content.ts",
+      "package.json"
+    ],
+    "token_estimate": 5937,
+    "elapsed_ms": 3349.11,
+    "snapshot_digest": "64a60b5c779db7cd19d11cbdb9c083c081a31ba0bc9a969edc29bf89a60a6ebf",
+    "analysis_id": "1aba4d61-eb2e-48db-a2fc-a1a0848337f3"
   },
   {
     "case_id": "ENG-005",
     "variant": "graph",
+    "repeat": 0,
     "retrieved_paths": [
       "ENGRAM_TRUE_PATH_PLAN.md",
       "README.md",
@@ -387,13 +798,33 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5995,
-    "elapsed_ms": 5640.13,
+    "elapsed_ms": 8892.7,
     "snapshot_digest": "e8f174c9ce3087ba14b5212e16c3810c7a3c100dea7a13fa105b20f2cf7651a3",
-    "analysis_id": "7a563be4-eaad-475d-a31b-2ab1ed8ceec4"
+    "analysis_id": "4a689b3f-33f5-46e1-b398-14faeaaf6534"
+  },
+  {
+    "case_id": "ENG-005",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/config.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5995,
+    "elapsed_ms": 4997.02,
+    "snapshot_digest": "e8f174c9ce3087ba14b5212e16c3810c7a3c100dea7a13fa105b20f2cf7651a3",
+    "analysis_id": "bd6b0228-6afa-4099-9bab-0f4c9bfd29ae"
   },
   {
     "case_id": "ENG-005",
     "variant": "combined",
+    "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
       "ENGRAM_project_spec_for_Claude_Codex_ru.md",
@@ -409,13 +840,37 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 6000,
-    "elapsed_ms": 5558.47,
+    "elapsed_ms": 6961.01,
     "snapshot_digest": "38b2d4e6f85cf1b933d1cdb087ecffb29550c4d919972dbc4b04ce39f7954120",
-    "analysis_id": "87f23ec6-fe96-4626-93d1-1cad5f1b7553"
+    "analysis_id": "1794ad13-44e3-4f12-809d-06573156fba4"
+  },
+  {
+    "case_id": "ENG-005",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/models/item.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "apps/api/tests/test_llm_claude_code.py",
+      "apps/api/tests/test_workflows.py",
+      "ci: generate OpenAPI types in the frontend job before build",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 19433.21,
+    "snapshot_digest": "38b2d4e6f85cf1b933d1cdb087ecffb29550c4d919972dbc4b04ce39f7954120",
+    "analysis_id": "d5f5ae33-459a-447d-bca5-8a05d3b6fdb0"
   },
   {
     "case_id": "ENG-006",
     "variant": "full",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
@@ -436,13 +891,42 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4321.51,
+    "elapsed_ms": 18563.47,
     "snapshot_digest": "45303dd2bb27befc4e67cdce88cfe5c5009f823757c2462d9c1b3f58d9b50b45",
-    "analysis_id": "852223b8-724e-417d-b617-3f40bca9cac0"
+    "analysis_id": "f7ebedc0-6098-4589-8734-948ad5e63c8b"
+  },
+  {
+    "case_id": "ENG-006",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 15615.64,
+    "snapshot_digest": "45303dd2bb27befc4e67cdce88cfe5c5009f823757c2462d9c1b3f58d9b50b45",
+    "analysis_id": "4385f070-34eb-4d1d-a6c0-72746f950344"
   },
   {
     "case_id": "ENG-006",
     "variant": "vector",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "DESIGN.md",
@@ -463,13 +947,42 @@
       "scripts/run_retrieval_experiment.py"
     ],
     "token_estimate": 5955,
-    "elapsed_ms": 1689.99,
+    "elapsed_ms": 5852.52,
     "snapshot_digest": "7d4dbcb2cefd9021f75b89f0c1b1c2a63aa783b3f496e4fadc82ffe8f6def0bb",
-    "analysis_id": "b7abeef7-6697-479d-866a-c48ab1a0c755"
+    "analysis_id": "21baebe1-201c-4d3a-ab04-d2e06c5f825f"
+  },
+  {
+    "case_id": "ENG-006",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/api/search.py",
+      "apps/api/src/engram/embeddings/mock.py",
+      "apps/api/src/engram/repositories/link_repo.py",
+      "apps/api/src/engram/schemas/search.py",
+      "apps/api/src/engram/services/link_service.py",
+      "apps/api/tests/test_links.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md",
+      "scripts/evaluate_retrieval.py",
+      "scripts/run_retrieval_experiment.py"
+    ],
+    "token_estimate": 5955,
+    "elapsed_ms": 6267.82,
+    "snapshot_digest": "7d4dbcb2cefd9021f75b89f0c1b1c2a63aa783b3f496e4fadc82ffe8f6def0bb",
+    "analysis_id": "33caaf70-f3fe-40f4-83a6-b329d1b3c844"
   },
   {
     "case_id": "ENG-006",
     "variant": "graph",
+    "repeat": 0,
     "retrieved_paths": [
       "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "apps/api/src/engram/api/__init__.py",
@@ -479,13 +992,31 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5995,
-    "elapsed_ms": 4817.36,
+    "elapsed_ms": 13398.69,
     "snapshot_digest": "2b577491821d356fb8a07521fe40cb5733e668738b753022bd7236ce3855d409",
-    "analysis_id": "5eaff91f-30b6-4846-ab4e-9a865477f965"
+    "analysis_id": "e9b1f142-fe34-47af-9ed3-baece9a0f4e5"
+  },
+  {
+    "case_id": "ENG-006",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/analyses.py",
+      "apps/api/src/engram/repositories/analysis_repo.py",
+      "apps/api/tests/test_true_path.py",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5995,
+    "elapsed_ms": 7920.42,
+    "snapshot_digest": "2b577491821d356fb8a07521fe40cb5733e668738b753022bd7236ce3855d409",
+    "analysis_id": "337e1831-5b47-46cb-8b6c-8827dc1b7305"
   },
   {
     "case_id": "ENG-006",
     "variant": "combined",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
@@ -496,13 +1027,32 @@
       "scripts/evaluate_retrieval.py"
     ],
     "token_estimate": 6000,
-    "elapsed_ms": 4730.7,
+    "elapsed_ms": 9645.55,
     "snapshot_digest": "d4d10eaff8bfa91eaf5fe49b348bd4bb79864a55a0632c5a44ae78c71dfe961d",
-    "analysis_id": "069c7ce1-bbd5-4369-a049-8923671b5837"
+    "analysis_id": "1fa22734-8300-4738-a7c1-fecf25e3e625"
+  },
+  {
+    "case_id": "ENG-006",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/api/tests/test_links.py",
+      "apps/api/tests/test_true_path.py",
+      "research/benchmark_cases.json",
+      "scripts/evaluate_retrieval.py"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 7657.65,
+    "snapshot_digest": "d4d10eaff8bfa91eaf5fe49b348bd4bb79864a55a0632c5a44ae78c71dfe961d",
+    "analysis_id": "fa74ea24-6af3-4f9e-8cb6-668a6639b4df"
   },
   {
     "case_id": "ENG-007",
     "variant": "full",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
@@ -523,13 +1073,42 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4404.69,
+    "elapsed_ms": 13685.24,
     "snapshot_digest": "22cb75de72bcce43e38a8237c13e9c50c6f2f976460468e476e218bfe56121ec",
-    "analysis_id": "1e62f555-0322-40ef-a813-516849647b0b"
+    "analysis_id": "1936e19c-5d24-46d4-b668-f8735c2bc3bc"
+  },
+  {
+    "case_id": "ENG-007",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 12200.35,
+    "snapshot_digest": "22cb75de72bcce43e38a8237c13e9c50c6f2f976460468e476e218bfe56121ec",
+    "analysis_id": "c4fb8498-3d68-4524-b469-b099cffff8be"
   },
   {
     "case_id": "ENG-007",
     "variant": "vector",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "ENGRAM_TRUE_PATH_PLAN.md",
@@ -546,13 +1125,38 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5984,
-    "elapsed_ms": 1696.34,
+    "elapsed_ms": 3621.17,
     "snapshot_digest": "af4e781cf3b00a4b89c2b84be2cae2a5eb3a45906e3a28639277e39c819070d9",
-    "analysis_id": "45cf38b8-c8d3-416a-9a3c-c5071fd26bac"
+    "analysis_id": "ee8e5b32-914a-4a60-99e7-acf66a896e60"
+  },
+  {
+    "case_id": "ENG-007",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "FROZEN_IDEAS.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/enums.py",
+      "apps/api/src/engram/schemas/analysis.py",
+      "apps/api/tests/test_change_request.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "apps/web/src/app/change-request/page.tsx",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5984,
+    "elapsed_ms": 4105.32,
+    "snapshot_digest": "af4e781cf3b00a4b89c2b84be2cae2a5eb3a45906e3a28639277e39c819070d9",
+    "analysis_id": "1bfb7211-99d2-4bbd-a565-d6dc64185e77"
   },
   {
     "case_id": "ENG-007",
     "variant": "graph",
+    "repeat": 0,
     "retrieved_paths": [
       "ROADMAP.md",
       "apps/api/src/engram/api/consistency.py",
@@ -563,13 +1167,32 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5998,
-    "elapsed_ms": 5526.79,
+    "elapsed_ms": 12536.68,
     "snapshot_digest": "e8973a915dbb489e2321098f09ff7679441b789f15d6d79a2eff610654cad52e",
-    "analysis_id": "73f3a36f-f5c3-40ac-846e-e006db84a6b9"
+    "analysis_id": "591738cf-7ff2-4b23-afee-78fb043cee81"
+  },
+  {
+    "case_id": "ENG-007",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ROADMAP.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/consistency.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "apps/web/src/app/impact-analyses/page.tsx",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 8414.71,
+    "snapshot_digest": "e8973a915dbb489e2321098f09ff7679441b789f15d6d79a2eff610654cad52e",
+    "analysis_id": "72665058-4e81-4ec9-9857-9b9d34e26f3d"
   },
   {
     "case_id": "ENG-007",
     "variant": "combined",
+    "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
       "DESIGN.md",
@@ -585,13 +1208,37 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5997,
-    "elapsed_ms": 5596.12,
+    "elapsed_ms": 11002.45,
     "snapshot_digest": "adc414ae61cec896697b1e75dc951e8ac3cadf456c31708ae2d2b204e101ddbd",
-    "analysis_id": "ee9687ad-5005-4d1a-b4e0-6a4c5a4d1538"
+    "analysis_id": "df98ed5c-9921-4a25-9dc7-ed5a2b1b76eb"
+  },
+  {
+    "case_id": "ENG-007",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "DESIGN.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/repositories/link_repo.py",
+      "apps/api/src/engram/schemas/consistency.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "apps/web/src/app/impact-analyses/page.tsx",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 8569.43,
+    "snapshot_digest": "adc414ae61cec896697b1e75dc951e8ac3cadf456c31708ae2d2b204e101ddbd",
+    "analysis_id": "18216e73-482f-46fe-b1fc-9119de68a9ac"
   },
   {
     "case_id": "ENG-008",
     "variant": "full",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
@@ -612,13 +1259,42 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4329.52,
+    "elapsed_ms": 9746.95,
     "snapshot_digest": "1106bfbf40691b32de2aea19f7bcb9360a3c9aec65755132435477fad7ee7396",
-    "analysis_id": "65d455a9-839e-428e-acc4-83f2ec464db8"
+    "analysis_id": "19b03141-173e-4ae7-9c96-c49341716932"
+  },
+  {
+    "case_id": "ENG-008",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 15884.07,
+    "snapshot_digest": "1106bfbf40691b32de2aea19f7bcb9360a3c9aec65755132435477fad7ee7396",
+    "analysis_id": "b5877927-fc85-45b9-a7ab-5117adb8f189"
   },
   {
     "case_id": "ENG-008",
     "variant": "vector",
+    "repeat": 0,
     "retrieved_paths": [
       "ENGRAM_TRUE_PATH_PLAN.md",
       "ROADMAP.md",
@@ -628,13 +1304,31 @@
       "apps/api/src/engram/services/item_service.py"
     ],
     "token_estimate": 5967,
-    "elapsed_ms": 1480.5,
+    "elapsed_ms": 7198.99,
     "snapshot_digest": "e377ecfada13c27408cc73ba94efcad4aae210a371681ce2d83850d486b11ee6",
-    "analysis_id": "c9930401-d6fd-4839-8c5b-6db5e22ebd97"
+    "analysis_id": "dabb027b-d2cb-484d-91e6-1bd383dd763f"
+  },
+  {
+    "case_id": "ENG-008",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/repositories/item_repo.py",
+      "apps/api/src/engram/repositories/link_repo.py",
+      "apps/api/src/engram/services/item_service.py"
+    ],
+    "token_estimate": 5967,
+    "elapsed_ms": 4984.73,
+    "snapshot_digest": "e377ecfada13c27408cc73ba94efcad4aae210a371681ce2d83850d486b11ee6",
+    "analysis_id": "dd413760-abe5-4657-b97d-d6c8126fa0f9"
   },
   {
     "case_id": "ENG-008",
     "variant": "graph",
+    "repeat": 0,
     "retrieved_paths": [
       "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "apps/api/src/engram/config.py",
@@ -643,13 +1337,30 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5998,
-    "elapsed_ms": 5572.16,
+    "elapsed_ms": 10160.57,
     "snapshot_digest": "7b28079411305972e9c8d612a2ca95cd61793f6cccb7d5cc03f7a67922d436ce",
-    "analysis_id": "41537baa-f2ba-4a72-98dc-31de59913575"
+    "analysis_id": "51da6bb5-2762-436f-9b79-cad96b36db60"
+  },
+  {
+    "case_id": "ENG-008",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/api/src/engram/config.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/web/src/app/changes/page.tsx",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 6264.86,
+    "snapshot_digest": "7b28079411305972e9c8d612a2ca95cd61793f6cccb7d5cc03f7a67922d436ce",
+    "analysis_id": "2c0c96a9-639b-484a-a1fa-b7e76b9888a8"
   },
   {
     "case_id": "ENG-008",
     "variant": "combined",
+    "repeat": 0,
     "retrieved_paths": [
       "ENGRAM_TRUE_PATH_PLAN.md",
       "apps/api/src/engram/services/item_service.py",
@@ -658,13 +1369,30 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5995,
-    "elapsed_ms": 5451.71,
+    "elapsed_ms": 8120.84,
     "snapshot_digest": "634e8a42a38e449f22bbf5954ff609adc1be97b0373426c87ca63a174b449695",
-    "analysis_id": "e2b51122-e6fc-4f33-8287-ddeb7b6611ed"
+    "analysis_id": "e577f121-918c-45f3-be13-820026c826d1"
+  },
+  {
+    "case_id": "ENG-008",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "apps/api/src/engram/services/item_service.py",
+      "apps/web/src/app/changes/page.tsx",
+      "ci: generate OpenAPI types in the frontend job before build",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5995,
+    "elapsed_ms": 8553.81,
+    "snapshot_digest": "634e8a42a38e449f22bbf5954ff609adc1be97b0373426c87ca63a174b449695",
+    "analysis_id": "ecd0ada5-f07b-4503-a4c8-82734235b968"
   },
   {
     "case_id": "ENG-009",
     "variant": "full",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
@@ -685,13 +1413,42 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4314.9,
+    "elapsed_ms": 6164.95,
     "snapshot_digest": "6a7dd3306c86b733a67f128bba96ee12c36cd978e81cd1dc292961f02f407f25",
-    "analysis_id": "9ca818ae-9423-4ce8-8bb9-b3fe4ee151da"
+    "analysis_id": "3d317338-100f-4563-8573-149e22129e71"
+  },
+  {
+    "case_id": "ENG-009",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 6452.99,
+    "snapshot_digest": "6a7dd3306c86b733a67f128bba96ee12c36cd978e81cd1dc292961f02f407f25",
+    "analysis_id": "df157502-5187-470d-b456-2c533d1eec5c"
   },
   {
     "case_id": "ENG-009",
     "variant": "vector",
+    "repeat": 0,
     "retrieved_paths": [
       ".github/workflows/ci.yml",
       "Claude.md",
@@ -708,13 +1465,38 @@
       "infra/initdb/01-extensions.sql"
     ],
     "token_estimate": 5680,
-    "elapsed_ms": 1716.71,
+    "elapsed_ms": 2569.53,
     "snapshot_digest": "bf1ab552f51e6cd7e96d30b1366fb2464433bbbef44f1501444c6ff0ee9ebccf",
-    "analysis_id": "ca49d211-bc59-4513-9587-9172b145b6ce"
+    "analysis_id": "e8a7fdcb-071a-4216-bff3-3074bef78fcd"
+  },
+  {
+    "case_id": "ENG-009",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".github/workflows/ci.yml",
+      "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.old.md",
+      "apps/api/README.md",
+      "apps/api/pyproject.toml",
+      "apps/api/src/engram/config.py",
+      "apps/api/src/engram/db/base.py",
+      "apps/api/tests/conftest.py",
+      "infra/docker-compose.yml",
+      "infra/initdb/01-extensions.sql"
+    ],
+    "token_estimate": 5680,
+    "elapsed_ms": 4140.01,
+    "snapshot_digest": "bf1ab552f51e6cd7e96d30b1366fb2464433bbbef44f1501444c6ff0ee9ebccf",
+    "analysis_id": "ccd19f68-088b-48c4-bb81-906b9fd606aa"
   },
   {
     "case_id": "ENG-009",
     "variant": "graph",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       ".github/workflows/ci.yml",
@@ -732,13 +1514,39 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 6000,
-    "elapsed_ms": 5576.76,
+    "elapsed_ms": 7357.4,
     "snapshot_digest": "519deeba1125d36b28fc27cf8732e3700577a91b923fe07ede73aaa9be3df733",
-    "analysis_id": "b3a83e39-223e-43c3-9534-c328f675ce1b"
+    "analysis_id": "5d7f974b-3dd1-4352-a41f-fc19dff058a2"
+  },
+  {
+    "case_id": "ENG-009",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      ".github/workflows/ci.yml",
+      "Claude.md",
+      "DESIGN.md",
+      "README.md",
+      "apps/api/README.md",
+      "apps/api/src/engram/config.py",
+      "apps/api/src/engram/db/base.py",
+      "apps/api/src/engram/enums.py",
+      "apps/api/src/engram/llm/factory.py",
+      "apps/api/src/engram/main.py",
+      "apps/api/src/engram/models/artifact.py",
+      "research/README.md",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 5762.87,
+    "snapshot_digest": "519deeba1125d36b28fc27cf8732e3700577a91b923fe07ede73aaa9be3df733",
+    "analysis_id": "76b69b0f-ddcf-4ce3-a45b-8adbf0898776"
   },
   {
     "case_id": "ENG-009",
     "variant": "combined",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       ".github/workflows/ci.yml",
@@ -755,13 +1563,38 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5995,
-    "elapsed_ms": 5712.08,
+    "elapsed_ms": 5070.05,
     "snapshot_digest": "919e7fb82750ee415bfe0bac20a3505407064def6448770e6e548084393a354d",
-    "analysis_id": "c5f315a6-a1e0-4c56-90be-7ec4c2d8decb"
+    "analysis_id": "b589ca72-6237-4450-bfa5-b5758afb185f"
+  },
+  {
+    "case_id": "ENG-009",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      ".github/workflows/ci.yml",
+      "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "README.md",
+      "apps/api/README.md",
+      "apps/api/pyproject.toml",
+      "apps/api/src/engram/config.py",
+      "apps/api/src/engram/llm/mock.py",
+      "apps/api/tests/conftest.py",
+      "infra/docker-compose.yml",
+      "infra/initdb/01-extensions.sql",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5995,
+    "elapsed_ms": 6155.56,
+    "snapshot_digest": "919e7fb82750ee415bfe0bac20a3505407064def6448770e6e548084393a354d",
+    "analysis_id": "8e3b2903-5f55-41c6-a612-28c949f50e1b"
   },
   {
     "case_id": "ENG-010",
     "variant": "full",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
@@ -782,13 +1615,42 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4309.24,
+    "elapsed_ms": 5596.1,
     "snapshot_digest": "c4f61cb99a830be91e6e886397169e9e38e415c2bd9ee54f562522933932bbd5",
-    "analysis_id": "3736397c-f917-43c1-8acd-508557de4dc0"
+    "analysis_id": "7b1bae94-d259-4843-9330-b359988f8aaf"
+  },
+  {
+    "case_id": "ENG-010",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 4436.22,
+    "snapshot_digest": "c4f61cb99a830be91e6e886397169e9e38e415c2bd9ee54f562522933932bbd5",
+    "analysis_id": "60881137-1eda-4e2f-90e3-106b8fbb907f"
   },
   {
     "case_id": "ENG-010",
     "variant": "vector",
+    "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "DESIGN.md",
@@ -806,13 +1668,39 @@
       "docs/adr/ADR-001-product-boundary.md"
     ],
     "token_estimate": 5996,
-    "elapsed_ms": 1658.52,
+    "elapsed_ms": 2615.4,
     "snapshot_digest": "4bf8316c24c990b29e9c1d9461e5e1e515ba5a7ad577c1048e1893caea924c30",
-    "analysis_id": "d682d404-254e-4317-8e0a-5ba7642aa98b"
+    "analysis_id": "22d22936-712c-491f-94d4-1bbcd4a6fa6f"
+  },
+  {
+    "case_id": "ENG-010",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "README.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/api/analyses.py",
+      "apps/api/src/engram/models/__init__.py",
+      "apps/api/src/engram/repositories/analysis_repo.py",
+      "apps/api/src/engram/services/project_service.py",
+      "apps/web/src/app/change-request/page.tsx",
+      "apps/web/src/app/page.tsx",
+      "apps/web/src/components/app-shell/Sidebar.tsx",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 5996,
+    "elapsed_ms": 5416.24,
+    "snapshot_digest": "4bf8316c24c990b29e9c1d9461e5e1e515ba5a7ad577c1048e1893caea924c30",
+    "analysis_id": "07e53886-303c-4d5b-894a-c356ea67543d"
   },
   {
     "case_id": "ENG-010",
     "variant": "graph",
+    "repeat": 0,
     "retrieved_paths": [
       "ENGRAM_TRUE_PATH_PLAN.md",
       "ROADMAP.md",
@@ -826,13 +1714,35 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 6000,
-    "elapsed_ms": 5354.06,
+    "elapsed_ms": 8879.79,
     "snapshot_digest": "4be39cb2d80bb23296ebd7b150b3ec81d522a78e975195f68f2965442d118be1",
-    "analysis_id": "3388af2c-5d5a-435d-841f-c8643e7aa65c"
+    "analysis_id": "4d12bd4e-7d60-4541-87e8-b14f99bcf7c2"
+  },
+  {
+    "case_id": "ENG-010",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/main.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/context-packages/page.tsx",
+      "apps/web/src/app/page.tsx",
+      "apps/web/src/components/app-shell/Sidebar.tsx",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 13034.41,
+    "snapshot_digest": "4be39cb2d80bb23296ebd7b150b3ec81d522a78e975195f68f2965442d118be1",
+    "analysis_id": "864c7946-e980-48c3-a3e5-3086b58780f2"
   },
   {
     "case_id": "ENG-010",
     "variant": "combined",
+    "repeat": 0,
     "retrieved_paths": [
       "ENGRAM_TRUE_PATH_PLAN.md",
       "ROADMAP.md",
@@ -846,8 +1756,2353 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 6000,
-    "elapsed_ms": 4923.87,
+    "elapsed_ms": 6656.59,
     "snapshot_digest": "3728091143b60c91a0f7a94456fa5c51aa3185be206bd584fcab63214f2e269d",
-    "analysis_id": "97252d58-2414-48e5-b4d2-2d7625f66e0f"
+    "analysis_id": "3e994ca4-9382-43fb-bf6b-2fefc9462da4"
+  },
+  {
+    "case_id": "ENG-010",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/main.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/context-packages/page.tsx",
+      "apps/web/src/app/page.tsx",
+      "apps/web/src/components/app-shell/Sidebar.tsx",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 8254.46,
+    "snapshot_digest": "3728091143b60c91a0f7a94456fa5c51aa3185be206bd584fcab63214f2e269d",
+    "analysis_id": "80c9ad38-ac74-4e4c-a25e-206c94ec84bf"
+  },
+  {
+    "case_id": "ENG-011",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 6345.51,
+    "snapshot_digest": "65f04f796321613164c41d243f1b6daff8471fbed919b0c4b35c33e892d336be",
+    "analysis_id": "0e8dbd95-3aa1-4c2a-b360-f0b4f492a307"
+  },
+  {
+    "case_id": "ENG-011",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 8268.63,
+    "snapshot_digest": "65f04f796321613164c41d243f1b6daff8471fbed919b0c4b35c33e892d336be",
+    "analysis_id": "9cf62fa1-5bd6-4254-ab12-c493ef0f0e4c"
+  },
+  {
+    "case_id": "ENG-011",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/embeddings/__init__.py",
+      "apps/api/tests/test_change_request.py",
+      "apps/api/tests/test_search.py",
+      "apps/web/README.md",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md",
+      "research/benchmark_cases.json",
+      "scripts/evaluate_retrieval.py",
+      "scripts/run_retrieval_experiment.py"
+    ],
+    "token_estimate": 5768,
+    "elapsed_ms": 11389.21,
+    "snapshot_digest": "06fde53345be0ac5ff46fd2c4a8a723d84c5bddd1f0b08f41404f504978784c0",
+    "analysis_id": "38e61a1c-fdca-4872-817d-0f3e2a01ecce"
+  },
+  {
+    "case_id": "ENG-011",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/embeddings/__init__.py",
+      "apps/api/tests/test_change_request.py",
+      "apps/api/tests/test_search.py",
+      "apps/web/README.md",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md",
+      "research/benchmark_cases.json",
+      "scripts/evaluate_retrieval.py",
+      "scripts/run_retrieval_experiment.py"
+    ],
+    "token_estimate": 5768,
+    "elapsed_ms": 9553.29,
+    "snapshot_digest": "06fde53345be0ac5ff46fd2c4a8a723d84c5bddd1f0b08f41404f504978784c0",
+    "analysis_id": "4afa97ff-9d87-4103-9591-a23f1655b2c8"
+  },
+  {
+    "case_id": "ENG-011",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "ci: generate OpenAPI types in the frontend job before build",
+      "research/README.md",
+      "scripts/engram_context.py",
+      "scripts/run_retrieval_experiment.py",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 5996,
+    "elapsed_ms": 10607.1,
+    "snapshot_digest": "ab2c01ae4573973ae3b918a053828c8ccf6afb7fe74864840b7292117ce40fe1",
+    "analysis_id": "9b3cd13a-c40c-4fc4-84f6-2ba0737cd37c"
+  },
+  {
+    "case_id": "ENG-011",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "ci: generate OpenAPI types in the frontend job before build",
+      "research/README.md",
+      "scripts/engram_context.py",
+      "scripts/run_retrieval_experiment.py",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 5996,
+    "elapsed_ms": 15272.01,
+    "snapshot_digest": "ab2c01ae4573973ae3b918a053828c8ccf6afb7fe74864840b7292117ce40fe1",
+    "analysis_id": "e870e7c4-c7bd-4794-878c-6de63323600b"
+  },
+  {
+    "case_id": "ENG-011",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "research/README.md",
+      "research/benchmark_cases.json",
+      "scripts/run_retrieval_experiment.py",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 6858.58,
+    "snapshot_digest": "59b88784d46b8e10cb114ec335c5cf9ed027d6cc4c921b22dbad28eb05c108a4",
+    "analysis_id": "fa0875bf-fc8f-4819-9a0b-36b12b2cd056"
+  },
+  {
+    "case_id": "ENG-011",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "research/README.md",
+      "research/benchmark_cases.json",
+      "scripts/run_retrieval_experiment.py",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 6856.79,
+    "snapshot_digest": "59b88784d46b8e10cb114ec335c5cf9ed027d6cc4c921b22dbad28eb05c108a4",
+    "analysis_id": "802f9661-e363-4b7f-865a-a9adc05a9f3c"
+  },
+  {
+    "case_id": "ENG-012",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 5907.54,
+    "snapshot_digest": "d4efb5a3e34e266b81147ac39aa6576ad87319bc82a1768ae806ecb979e5e372",
+    "analysis_id": "e8ac024d-58bf-445f-9643-1a3f28d8fdf7"
+  },
+  {
+    "case_id": "ENG-012",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 5427.57,
+    "snapshot_digest": "d4efb5a3e34e266b81147ac39aa6576ad87319bc82a1768ae806ecb979e5e372",
+    "analysis_id": "8de6eb60-a353-47ad-9e7d-1c7638b491e3"
+  },
+  {
+    "case_id": "ENG-012",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "apps/api/tests/test_artifacts.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "apps/web/src/app/artifacts/new/page.tsx",
+      "apps/web/src/app/page.tsx",
+      "apps/web/src/app/providers.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/src/lib/project-context.tsx",
+      "ci: generate OpenAPI types in the frontend job before build"
+    ],
+    "token_estimate": 5932,
+    "elapsed_ms": 2928.62,
+    "snapshot_digest": "a990eb23d0389d04686bc5d4c41987107b9d606a2130db3fa6ffc6a2141af9ae",
+    "analysis_id": "da1814e4-d7a9-4ef8-b462-13fd3abf9d91"
+  },
+  {
+    "case_id": "ENG-012",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "apps/api/tests/test_artifacts.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "apps/web/src/app/artifacts/new/page.tsx",
+      "apps/web/src/app/page.tsx",
+      "apps/web/src/app/providers.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/src/lib/project-context.tsx",
+      "ci: generate OpenAPI types in the frontend job before build"
+    ],
+    "token_estimate": 5932,
+    "elapsed_ms": 12676.85,
+    "snapshot_digest": "a990eb23d0389d04686bc5d4c41987107b9d606a2130db3fa6ffc6a2141af9ae",
+    "analysis_id": "831df7f0-13d5-4314-a70c-ee15f4843264"
+  },
+  {
+    "case_id": "ENG-012",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/tsconfig.json",
+      "ci: generate OpenAPI types in the frontend job before build",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5996,
+    "elapsed_ms": 14128.29,
+    "snapshot_digest": "e78d7c9fe8e697995bfa9ce443450df34de2e6a6aee0430eb68a9fb3f5122f7b",
+    "analysis_id": "6da67beb-aaa5-4d4e-8116-c330acd84e19"
+  },
+  {
+    "case_id": "ENG-012",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/tsconfig.json",
+      "ci: generate OpenAPI types in the frontend job before build",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5996,
+    "elapsed_ms": 11175.78,
+    "snapshot_digest": "e78d7c9fe8e697995bfa9ce443450df34de2e6a6aee0430eb68a9fb3f5122f7b",
+    "analysis_id": "d5a03d60-bbde-42a4-8a57-ca401d066c83"
+  },
+  {
+    "case_id": "ENG-012",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/tsconfig.json",
+      "ci: generate OpenAPI types in the frontend job before build",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 10332.81,
+    "snapshot_digest": "dd0b31faa93edf0e529d87c0275c3ed74c992ed089cf41ca03b9cc19b6cd3bdf",
+    "analysis_id": "0d9e05fa-2eee-411d-b46e-59ea9ad9cf61"
+  },
+  {
+    "case_id": "ENG-012",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/tsconfig.json",
+      "ci: generate OpenAPI types in the frontend job before build",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 8628.48,
+    "snapshot_digest": "dd0b31faa93edf0e529d87c0275c3ed74c992ed089cf41ca03b9cc19b6cd3bdf",
+    "analysis_id": "1e6a67ea-628d-46d7-be91-85efbbf45d12"
+  },
+  {
+    "case_id": "ENG-013",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 6032.39,
+    "snapshot_digest": "ffc694105f2819a573130d2fa33ffb19096a36180100cc2a2e414e73f8cf81a2",
+    "analysis_id": "9d218675-f44b-42c4-82ca-ceb791fcbff3"
+  },
+  {
+    "case_id": "ENG-013",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 11084.21,
+    "snapshot_digest": "ffc694105f2819a573130d2fa33ffb19096a36180100cc2a2e414e73f8cf81a2",
+    "analysis_id": "91833c7f-eba8-4c75-b442-552380c096c9"
+  },
+  {
+    "case_id": "ENG-013",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "README.md",
+      "ROADMAP.old.md",
+      "apps/api/pyproject.toml",
+      "apps/api/tests/test_artifacts.py",
+      "apps/api/tests/test_change_request.py",
+      "apps/api/tests/test_consistency.py",
+      "apps/web/README.md",
+      "apps/web/package.json",
+      "apps/web/src/app/providers.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "package.json",
+      "pnpm-workspace.yaml",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 5883,
+    "elapsed_ms": 6746.62,
+    "snapshot_digest": "c5ebf15a6e4f2214e3bd87f2bbb175ff26011cf5cf8dbe6749d8ae7f58bb37d7",
+    "analysis_id": "9dae1b85-2b1a-44d3-b84a-92a46d01d494"
+  },
+  {
+    "case_id": "ENG-013",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "README.md",
+      "ROADMAP.old.md",
+      "apps/api/pyproject.toml",
+      "apps/api/tests/test_artifacts.py",
+      "apps/api/tests/test_change_request.py",
+      "apps/api/tests/test_consistency.py",
+      "apps/web/README.md",
+      "apps/web/package.json",
+      "apps/web/src/app/providers.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "package.json",
+      "pnpm-workspace.yaml",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 5883,
+    "elapsed_ms": 7664.21,
+    "snapshot_digest": "c5ebf15a6e4f2214e3bd87f2bbb175ff26011cf5cf8dbe6749d8ae7f58bb37d7",
+    "analysis_id": "88aa8ad2-f710-4e5c-aff9-1ad372338088"
+  },
+  {
+    "case_id": "ENG-013",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      "DESIGN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/repositories/link_repo.py",
+      "apps/api/src/engram/schemas/consistency.py",
+      "apps/api/src/engram/schemas/workflow.py",
+      "scripts/engram_context.py",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 8117.52,
+    "snapshot_digest": "c22fa5f4f23a5471a824a100d5a21b992029e44df2ff2354ba3f6da459b86666",
+    "analysis_id": "6e0c520e-f3da-4488-995c-3f58e0810a61"
+  },
+  {
+    "case_id": "ENG-013",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "DESIGN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/repositories/link_repo.py",
+      "apps/api/src/engram/schemas/consistency.py",
+      "apps/api/src/engram/schemas/workflow.py",
+      "scripts/engram_context.py",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 7603.44,
+    "snapshot_digest": "c22fa5f4f23a5471a824a100d5a21b992029e44df2ff2354ba3f6da459b86666",
+    "analysis_id": "680f50b4-fc97-4537-b221-af3836c97b81"
+  },
+  {
+    "case_id": "ENG-013",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/db/base.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "scripts/engram_context.py",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 5615.64,
+    "snapshot_digest": "928f232e69b753cbf4ea77694d01af2b440fe0592e9920a6d258a2ffc9a4a84a",
+    "analysis_id": "b65b1b27-a04b-45c2-adbd-6ecf6d7a1901"
+  },
+  {
+    "case_id": "ENG-013",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/db/base.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "scripts/engram_context.py",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 7584.39,
+    "snapshot_digest": "928f232e69b753cbf4ea77694d01af2b440fe0592e9920a6d258a2ffc9a4a84a",
+    "analysis_id": "e4278278-2a58-4b19-b198-154536d66889"
+  },
+  {
+    "case_id": "ENG-014",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 6417.02,
+    "snapshot_digest": "7478cf8125d5b65b36886cd29a97b7e969d8bb26ff7346022a2e7644310a3732",
+    "analysis_id": "08913b6a-8476-4bf1-8dfa-87661764135e"
+  },
+  {
+    "case_id": "ENG-014",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 7634.07,
+    "snapshot_digest": "7478cf8125d5b65b36886cd29a97b7e969d8bb26ff7346022a2e7644310a3732",
+    "analysis_id": "f402917c-bc8a-42ab-974e-8536256b610f"
+  },
+  {
+    "case_id": "ENG-014",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/models/project.py",
+      "apps/api/src/engram/schemas/analysis.py",
+      "apps/api/src/engram/schemas/search.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md",
+      "research/benchmark_cases.json",
+      "scripts/evaluate_retrieval.py",
+      "scripts/run_retrieval_experiment.py"
+    ],
+    "token_estimate": 5973,
+    "elapsed_ms": 7590.79,
+    "snapshot_digest": "165373a039e75be682a2835f7160abbb6aea6dbfd204b996a54830815d5adb73",
+    "analysis_id": "273d9c0b-a7e9-4ab7-bbc3-079b11c1a582"
+  },
+  {
+    "case_id": "ENG-014",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/models/project.py",
+      "apps/api/src/engram/schemas/analysis.py",
+      "apps/api/src/engram/schemas/search.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md",
+      "research/benchmark_cases.json",
+      "scripts/evaluate_retrieval.py",
+      "scripts/run_retrieval_experiment.py"
+    ],
+    "token_estimate": 5973,
+    "elapsed_ms": 5575.12,
+    "snapshot_digest": "165373a039e75be682a2835f7160abbb6aea6dbfd204b996a54830815d5adb73",
+    "analysis_id": "6966cd3f-7473-4493-a3bc-2aa22726cf4d"
+  },
+  {
+    "case_id": "ENG-014",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/schemas/workflow.py",
+      "scripts/run_retrieval_experiment.py",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 5995,
+    "elapsed_ms": 8887.3,
+    "snapshot_digest": "3b279b66369fb37eb851cd3ec33a37bc751cd420f9ea4357d18af2c546805c52",
+    "analysis_id": "f1a5a000-5657-47ff-9f18-578648e9a9bf"
+  },
+  {
+    "case_id": "ENG-014",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/schemas/workflow.py",
+      "scripts/run_retrieval_experiment.py",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 5995,
+    "elapsed_ms": 13942.37,
+    "snapshot_digest": "3b279b66369fb37eb851cd3ec33a37bc751cd420f9ea4357d18af2c546805c52",
+    "analysis_id": "499a490c-0d24-45e0-a6d1-2092f2d7690d"
+  },
+  {
+    "case_id": "ENG-014",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md",
+      "research/benchmark_cases.json",
+      "scripts/evaluate_retrieval.py",
+      "scripts/run_retrieval_experiment.py",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 13571.67,
+    "snapshot_digest": "a1c450d399bb83d3aba3c5127cd9b9091b0067c5f5614ea1986d0725d133b376",
+    "analysis_id": "2829cb3d-afb7-4547-9851-c9250f7b5712"
+  },
+  {
+    "case_id": "ENG-014",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md",
+      "research/benchmark_cases.json",
+      "scripts/evaluate_retrieval.py",
+      "scripts/run_retrieval_experiment.py",
+      "scripts/seed_demo.py"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 6782.34,
+    "snapshot_digest": "a1c450d399bb83d3aba3c5127cd9b9091b0067c5f5614ea1986d0725d133b376",
+    "analysis_id": "e1053f58-3ae2-485a-a640-2fc39834a925"
+  },
+  {
+    "case_id": "ENG-015",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 13429.22,
+    "snapshot_digest": "63875f4862bbbc85cf2d805efb6096b198eb49c788eec9ec17b5c200c2912d45",
+    "analysis_id": "c17bd068-d6a4-40be-9443-121db673e636"
+  },
+  {
+    "case_id": "ENG-015",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 12537.77,
+    "snapshot_digest": "63875f4862bbbc85cf2d805efb6096b198eb49c788eec9ec17b5c200c2912d45",
+    "analysis_id": "c7eccae9-dd0b-4ae4-988b-e4a5cd026978"
+  },
+  {
+    "case_id": "ENG-015",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "FROZEN_IDEAS.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 4232,
+    "elapsed_ms": 4079.0,
+    "snapshot_digest": "76014119bb0ed6bcf871229a4bd1f9ed251fbee74f032fc5313b66caa42b7ac6",
+    "analysis_id": "3840735c-21f7-4ad1-9841-00929b3dabc8"
+  },
+  {
+    "case_id": "ENG-015",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "FROZEN_IDEAS.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 4232,
+    "elapsed_ms": 3593.19,
+    "snapshot_digest": "76014119bb0ed6bcf871229a4bd1f9ed251fbee74f032fc5313b66caa42b7ac6",
+    "analysis_id": "11cf594f-94d3-49e2-8fe2-709de8b00a50"
+  },
+  {
+    "case_id": "ENG-015",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/llm/base.py",
+      "apps/web/src/app/impact-analyses/page.tsx",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 8950.65,
+    "snapshot_digest": "58aba48df030b1233f29b7250624db308abd706f0fab90fda5da2ec0bbc54aa5",
+    "analysis_id": "7c138182-3814-4120-b4b9-d53c3c9ef465"
+  },
+  {
+    "case_id": "ENG-015",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/llm/base.py",
+      "apps/web/src/app/impact-analyses/page.tsx",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 8340.06,
+    "snapshot_digest": "58aba48df030b1233f29b7250624db308abd706f0fab90fda5da2ec0bbc54aa5",
+    "analysis_id": "33f8a63f-a7bc-4148-aba6-87bbdd55337f"
+  },
+  {
+    "case_id": "ENG-015",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/services/consistency_service.py",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 6942.41,
+    "snapshot_digest": "862ab4a0c033952dabc8cc26aa4a5f7abd46e3510837461bbf39fed9d5851464",
+    "analysis_id": "faefa6ad-beff-4a69-9aae-5c90df181284"
+  },
+  {
+    "case_id": "ENG-015",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/services/consistency_service.py",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 7348.61,
+    "snapshot_digest": "862ab4a0c033952dabc8cc26aa4a5f7abd46e3510837461bbf39fed9d5851464",
+    "analysis_id": "3351dc8a-d265-4b5d-9389-9cab5eb07ded"
+  },
+  {
+    "case_id": "ENG-016",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 6269.2,
+    "snapshot_digest": "76bfe36a0902afbd6720274c6c3f8d1e62611e7f938de6fca813582165549006",
+    "analysis_id": "90959430-0a4a-4d3f-8174-2eb466ff5808"
+  },
+  {
+    "case_id": "ENG-016",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 5037.68,
+    "snapshot_digest": "76bfe36a0902afbd6720274c6c3f8d1e62611e7f938de6fca813582165549006",
+    "analysis_id": "7e65648a-a05e-40d3-9207-4c545c784c6b"
+  },
+  {
+    "case_id": "ENG-016",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/schemas/consistency.py",
+      "apps/api/src/engram/services/consistency_service.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5980,
+    "elapsed_ms": 4322.03,
+    "snapshot_digest": "15c2d09978495d746b675e5961c05eea2302ac912179f78eda86c74c100985eb",
+    "analysis_id": "35f40c2c-5e10-44e7-85e7-6145a6016214"
+  },
+  {
+    "case_id": "ENG-016",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/schemas/consistency.py",
+      "apps/api/src/engram/services/consistency_service.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5980,
+    "elapsed_ms": 5529.43,
+    "snapshot_digest": "15c2d09978495d746b675e5961c05eea2302ac912179f78eda86c74c100985eb",
+    "analysis_id": "695b07be-b548-4b0c-9bec-4975c952f6be"
+  },
+  {
+    "case_id": "ENG-016",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/enums.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/repositories/link_repo.py",
+      "apps/api/src/engram/schemas/consistency.py",
+      "research/README.md"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 7241.66,
+    "snapshot_digest": "3e67280846f4a3c9fce30e42ed05be0416befb8d798ef9dcc28c4b0939414336",
+    "analysis_id": "8e2eb3ff-8896-4491-bfdc-5ef9f0495f46"
+  },
+  {
+    "case_id": "ENG-016",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/enums.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/repositories/link_repo.py",
+      "apps/api/src/engram/schemas/consistency.py",
+      "research/README.md"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 7088.66,
+    "snapshot_digest": "3e67280846f4a3c9fce30e42ed05be0416befb8d798ef9dcc28c4b0939414336",
+    "analysis_id": "463cea23-77a2-4c21-a445-eaae5672035f"
+  },
+  {
+    "case_id": "ENG-016",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/llm/mock.py",
+      "apps/api/src/engram/services/consistency_service.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md"
+    ],
+    "token_estimate": 5996,
+    "elapsed_ms": 5797.32,
+    "snapshot_digest": "fa8a94f496a965428b1f602dccdf2ac3071d4ea27c38fc8fb4b7095883027262",
+    "analysis_id": "179217e0-aa42-4a7b-bc37-ca8465388ab0"
+  },
+  {
+    "case_id": "ENG-016",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/llm/mock.py",
+      "apps/api/src/engram/services/consistency_service.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md"
+    ],
+    "token_estimate": 5996,
+    "elapsed_ms": 6955.52,
+    "snapshot_digest": "fa8a94f496a965428b1f602dccdf2ac3071d4ea27c38fc8fb4b7095883027262",
+    "analysis_id": "0c8385c7-7f66-44d9-a372-1fdb0fd28410"
+  },
+  {
+    "case_id": "ENG-017",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 4658.39,
+    "snapshot_digest": "9a49c71cb6bcdb84a2d5f79f3cfa87e568321df1a0cdfdf010e167e6eb414295",
+    "analysis_id": "4c93ba29-b331-4f5c-bc38-018a88302de5"
+  },
+  {
+    "case_id": "ENG-017",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 6552.02,
+    "snapshot_digest": "9a49c71cb6bcdb84a2d5f79f3cfa87e568321df1a0cdfdf010e167e6eb414295",
+    "analysis_id": "70efef79-11e2-4132-a5e4-f6cd50ee82aa"
+  },
+  {
+    "case_id": "ENG-017",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.old.md",
+      "apps/web/README.md",
+      "apps/web/src/app/artifacts/new/page.tsx",
+      "apps/web/src/app/change-request/page.tsx",
+      "apps/web/src/app/changes/page.tsx",
+      "apps/web/src/app/graph/page.tsx",
+      "apps/web/src/components/editor/RichTextEditor.tsx"
+    ],
+    "token_estimate": 5872,
+    "elapsed_ms": 3621.26,
+    "snapshot_digest": "e7619357e6bde1a02abfde30c2cb6f1608c8dce3fae71039bca9c49e99c23743",
+    "analysis_id": "3647a22a-cebd-48b5-a165-cf2e9a64e33c"
+  },
+  {
+    "case_id": "ENG-017",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.old.md",
+      "apps/web/README.md",
+      "apps/web/src/app/artifacts/new/page.tsx",
+      "apps/web/src/app/change-request/page.tsx",
+      "apps/web/src/app/changes/page.tsx",
+      "apps/web/src/app/graph/page.tsx",
+      "apps/web/src/components/editor/RichTextEditor.tsx"
+    ],
+    "token_estimate": 5872,
+    "elapsed_ms": 2405.4,
+    "snapshot_digest": "e7619357e6bde1a02abfde30c2cb6f1608c8dce3fae71039bca9c49e99c23743",
+    "analysis_id": "f475b220-0cd2-4445-aae3-7207969e77c1"
+  },
+  {
+    "case_id": "ENG-017",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "apps/api/src/engram/orchestration/engine.py",
+      "apps/web/src/components/editor/RichTextEditor.tsx",
+      "apps/web/src/components/editor/extensions/Details.tsx"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 5769.19,
+    "snapshot_digest": "af532ad9551a81ca93306a9c80a1a9ad25aa1a51f42ecc171342bcd9f2690725",
+    "analysis_id": "2a5ebbae-3782-4ce8-9c28-5993983dccb4"
+  },
+  {
+    "case_id": "ENG-017",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "apps/api/src/engram/orchestration/engine.py",
+      "apps/web/src/components/editor/RichTextEditor.tsx",
+      "apps/web/src/components/editor/extensions/Details.tsx"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 6998.68,
+    "snapshot_digest": "af532ad9551a81ca93306a9c80a1a9ad25aa1a51f42ecc171342bcd9f2690725",
+    "analysis_id": "557398f2-1435-43c5-ba3f-ed1f9ffa02e8"
+  },
+  {
+    "case_id": "ENG-017",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "apps/api/src/engram/orchestration/engine.py",
+      "apps/web/src/components/editor/RichTextEditor.tsx",
+      "apps/web/src/components/editor/extensions/Details.tsx"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 10834.36,
+    "snapshot_digest": "37ba7bdd327e06d9e0f35b4f746bb20234fa57f50b523df7055fc3bc2bdca67f",
+    "analysis_id": "e46ed0bb-e46e-4a1d-8ce8-a173d897c1a6"
+  },
+  {
+    "case_id": "ENG-017",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "apps/api/src/engram/orchestration/engine.py",
+      "apps/web/src/components/editor/RichTextEditor.tsx",
+      "apps/web/src/components/editor/extensions/Details.tsx"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 7922.53,
+    "snapshot_digest": "37ba7bdd327e06d9e0f35b4f746bb20234fa57f50b523df7055fc3bc2bdca67f",
+    "analysis_id": "94d8928f-afce-4c9c-8c27-051daa14954d"
+  },
+  {
+    "case_id": "ENG-018",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 6320.77,
+    "snapshot_digest": "1a6cf87b402dc0ca28108ca2c1a59166d23cffbae12f810feb533ec19ae49518",
+    "analysis_id": "e775e7aa-d39c-46a7-891b-6b75c000733c"
+  },
+  {
+    "case_id": "ENG-018",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 6770.66,
+    "snapshot_digest": "1a6cf87b402dc0ca28108ca2c1a59166d23cffbae12f810feb533ec19ae49518",
+    "analysis_id": "b5581d3d-b4d0-4458-aaa2-5903fc05ab6f"
+  },
+  {
+    "case_id": "ENG-018",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "FROZEN_IDEAS.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/tests/test_artifacts.py",
+      "apps/api/tests/test_change_request.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "apps/api/tests/test_links.py",
+      "apps/api/tests/test_search.py",
+      "apps/api/tests/test_workflows.py",
+      "research/README.md"
+    ],
+    "token_estimate": 5893,
+    "elapsed_ms": 3733.71,
+    "snapshot_digest": "8ce92020faf7cce2fb5d5e6937ba4e4e5739ec7563dc61bc9eba02ab971488a0",
+    "analysis_id": "4f57b5ea-435b-4877-84dd-f0710e19e938"
+  },
+  {
+    "case_id": "ENG-018",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "FROZEN_IDEAS.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/tests/test_artifacts.py",
+      "apps/api/tests/test_change_request.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "apps/api/tests/test_links.py",
+      "apps/api/tests/test_search.py",
+      "apps/api/tests/test_workflows.py",
+      "research/README.md"
+    ],
+    "token_estimate": 5893,
+    "elapsed_ms": 4896.48,
+    "snapshot_digest": "8ce92020faf7cce2fb5d5e6937ba4e4e5739ec7563dc61bc9eba02ab971488a0",
+    "analysis_id": "a5ee8b5f-605c-4318-a581-f487be79d2d1"
+  },
+  {
+    "case_id": "ENG-018",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/enums.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/repositories/link_repo.py",
+      "apps/api/tests/test_e2e_scenario.py"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 11688.96,
+    "snapshot_digest": "cbb8b5fe151a844f7c37dfde8c5556ce09dc3fcd1af99000f7449e8c3a783071",
+    "analysis_id": "a41bebbf-9c96-4a38-b078-99d9307e7fe0"
+  },
+  {
+    "case_id": "ENG-018",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/enums.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/repositories/link_repo.py",
+      "apps/api/tests/test_e2e_scenario.py"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 5879.49,
+    "snapshot_digest": "cbb8b5fe151a844f7c37dfde8c5556ce09dc3fcd1af99000f7449e8c3a783071",
+    "analysis_id": "42dc4547-b891-4a8a-b659-b398c453c22d"
+  },
+  {
+    "case_id": "ENG-018",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 7777.57,
+    "snapshot_digest": "873ec4b7d5e7bbba2d4e2d53f1e3229773443237307a22324d6ed28476a512cd",
+    "analysis_id": "556bd8b7-3772-4ee6-b878-619118371d7c"
+  },
+  {
+    "case_id": "ENG-018",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 9585.63,
+    "snapshot_digest": "873ec4b7d5e7bbba2d4e2d53f1e3229773443237307a22324d6ed28476a512cd",
+    "analysis_id": "44dd4d3a-f1cc-45bb-9d99-183233ffcaca"
+  },
+  {
+    "case_id": "ENG-019",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 7370.01,
+    "snapshot_digest": "abc2a90c9216cf5ffe63ad82149e9f32cb36281f259e4b0e1a31e27830ddebbd",
+    "analysis_id": "cc2bc5e8-8004-4892-a85b-7d2d13ca4f1e"
+  },
+  {
+    "case_id": "ENG-019",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 5401.12,
+    "snapshot_digest": "abc2a90c9216cf5ffe63ad82149e9f32cb36281f259e4b0e1a31e27830ddebbd",
+    "analysis_id": "dc40cc5b-a409-4048-80d8-073544848492"
+  },
+  {
+    "case_id": "ENG-019",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/errors.py",
+      "apps/api/src/engram/schemas/consistency.py",
+      "apps/api/tests/test_change_request.py",
+      "apps/api/tests/test_consistency.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "apps/api/tests/test_workflows.py",
+      "apps/web/src/app/consistency/page.tsx",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5949,
+    "elapsed_ms": 1989.16,
+    "snapshot_digest": "e4f2747ff70f6c9a2544a92781bb4a4a4224f0855b3a333eb49fb763f39ae983",
+    "analysis_id": "d28b2687-aa72-427f-867a-1ed081fc1107"
+  },
+  {
+    "case_id": "ENG-019",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/errors.py",
+      "apps/api/src/engram/schemas/consistency.py",
+      "apps/api/tests/test_change_request.py",
+      "apps/api/tests/test_consistency.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "apps/api/tests/test_workflows.py",
+      "apps/web/src/app/consistency/page.tsx",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5949,
+    "elapsed_ms": 4432.82,
+    "snapshot_digest": "e4f2747ff70f6c9a2544a92781bb4a4a4224f0855b3a333eb49fb763f39ae983",
+    "analysis_id": "bb8e9400-2f13-481c-a1ed-1fbb3d6760ce"
+  },
+  {
+    "case_id": "ENG-019",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/errors.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/api/src/engram/schemas/source.py",
+      "apps/api/src/engram/services/analysis_service.py",
+      "apps/api/src/engram/services/project_service.py",
+      "apps/api/tests/test_e2e_scenario.py"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 7681.5,
+    "snapshot_digest": "653c0faa432028ea0ffa66a382c3e07f73457030878892e65f2f582b06899e06",
+    "analysis_id": "8b59b9d9-5b4c-47b2-872b-9062803e3c92"
+  },
+  {
+    "case_id": "ENG-019",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/errors.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/api/src/engram/schemas/source.py",
+      "apps/api/src/engram/services/analysis_service.py",
+      "apps/api/src/engram/services/project_service.py",
+      "apps/api/tests/test_e2e_scenario.py"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 5687.15,
+    "snapshot_digest": "653c0faa432028ea0ffa66a382c3e07f73457030878892e65f2f582b06899e06",
+    "analysis_id": "51e00e1c-d5c2-4d16-989c-a6411ef77570"
+  },
+  {
+    "case_id": "ENG-019",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      "Claude.md",
+      "DESIGN.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/services/consistency_service.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 5760.58,
+    "snapshot_digest": "9bee70a8d594c246c4b24e3712c9a5268851358f2c869b6f50fb093a455b5c6e",
+    "analysis_id": "c431123a-674b-4790-98c6-6011943c4b95"
+  },
+  {
+    "case_id": "ENG-019",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "DESIGN.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/services/consistency_service.py",
+      "apps/api/tests/test_e2e_scenario.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/benchmark_cases.json"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 5381.08,
+    "snapshot_digest": "9bee70a8d594c246c4b24e3712c9a5268851358f2c869b6f50fb093a455b5c6e",
+    "analysis_id": "47e1f22f-f611-4058-93f9-697bd3451cd4"
+  },
+  {
+    "case_id": "ENG-020",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 5010.87,
+    "snapshot_digest": "ba664c7a32c286543a5de20e275c977b58f150d6b70a24f63ba18674cbeff2dc",
+    "analysis_id": "f681075f-5d37-4307-9d85-a5f3bec47f68"
+  },
+  {
+    "case_id": "ENG-020",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 4579.28,
+    "snapshot_digest": "ba664c7a32c286543a5de20e275c977b58f150d6b70a24f63ba18674cbeff2dc",
+    "analysis_id": "5ba50940-346d-4dd7-b8ba-45ad568964b4"
+  },
+  {
+    "case_id": "ENG-020",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/tests/test_workflows.py",
+      "apps/web/src/app/changes/page.tsx",
+      "apps/web/src/app/formalize/page.tsx",
+      "apps/web/src/components/app-shell/Sidebar.tsx",
+      "apps/web/src/lib/editor/content.ts",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 5962,
+    "elapsed_ms": 4349.09,
+    "snapshot_digest": "f30953388bad026354470b7adf72ba414bbcddfc262a386295dffc61a3416d1f",
+    "analysis_id": "7c5d8d53-c865-43e4-9900-55401aa7c9f5"
+  },
+  {
+    "case_id": "ENG-020",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/tests/test_workflows.py",
+      "apps/web/src/app/changes/page.tsx",
+      "apps/web/src/app/formalize/page.tsx",
+      "apps/web/src/components/app-shell/Sidebar.tsx",
+      "apps/web/src/lib/editor/content.ts",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 5962,
+    "elapsed_ms": 6159.4,
+    "snapshot_digest": "f30953388bad026354470b7adf72ba414bbcddfc262a386295dffc61a3416d1f",
+    "analysis_id": "dce18ac6-e034-43aa-aa10-e77e1c2bc9b8"
+  },
+  {
+    "case_id": "ENG-020",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/project_scope.py",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/models/changelog.py",
+      "apps/api/src/engram/repositories/artifact_repo.py",
+      "apps/api/tests/test_github_source.py"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 7220.77,
+    "snapshot_digest": "df0dd6ecff9430ac9650c5f8b8418428233004d2701eaf34fd7a3b3b96bc1263",
+    "analysis_id": "2337588f-4719-4ed8-9b09-e313147e0afe"
+  },
+  {
+    "case_id": "ENG-020",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/project_scope.py",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/models/changelog.py",
+      "apps/api/src/engram/repositories/artifact_repo.py",
+      "apps/api/tests/test_github_source.py"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 5305.79,
+    "snapshot_digest": "df0dd6ecff9430ac9650c5f8b8418428233004d2701eaf34fd7a3b3b96bc1263",
+    "analysis_id": "b721c16e-2f0f-46a4-afe6-b3d5fbc29410"
+  },
+  {
+    "case_id": "ENG-020",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/orchestration/engine.py",
+      "apps/api/src/engram/repositories/artifact_repo.py",
+      "apps/api/tests/test_github_source.py",
+      "apps/web/src/lib/ui/usePresence.ts",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 5456.63,
+    "snapshot_digest": "214f851827a8ad2f113b83a447f4821cae9ea0af20c8eb5a24a44f5d24425430",
+    "analysis_id": "b5d2de17-99a6-4f24-a75c-3de3ce47cce8"
+  },
+  {
+    "case_id": "ENG-020",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/orchestration/engine.py",
+      "apps/api/src/engram/repositories/artifact_repo.py",
+      "apps/api/tests/test_github_source.py",
+      "apps/web/src/lib/ui/usePresence.ts",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 5998,
+    "elapsed_ms": 6207.42,
+    "snapshot_digest": "214f851827a8ad2f113b83a447f4821cae9ea0af20c8eb5a24a44f5d24425430",
+    "analysis_id": "303dc3d9-0cfe-4c33-a059-0cec210c06f0"
+  },
+  {
+    "case_id": "ENG-021",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 4873.31,
+    "snapshot_digest": "9b1b9c873682900e74fb09b9ec1d6040aec229ce2899f12bb710ee85fbfc9a7a",
+    "analysis_id": "e7ff088f-b5b6-4900-a427-48beda94a708"
+  },
+  {
+    "case_id": "ENG-021",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 4535.64,
+    "snapshot_digest": "9b1b9c873682900e74fb09b9ec1d6040aec229ce2899f12bb710ee85fbfc9a7a",
+    "analysis_id": "73f67de2-dbee-4210-9a4e-a121dc01a55b"
+  },
+  {
+    "case_id": "ENG-021",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/llm/__init__.py",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/llm/mock.py",
+      "apps/api/src/engram/models/__init__.py",
+      "apps/api/src/engram/models/changelog.py",
+      "apps/api/src/engram/schemas/workflow.py",
+      "apps/api/tests/test_change_request.py",
+      "apps/web/README.md",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 5895,
+    "elapsed_ms": 1846.27,
+    "snapshot_digest": "3016887195e74e3ac27d258b9e0e951086548b31567d1dc9a5d12fd39c313210",
+    "analysis_id": "8e7f2906-26ea-4235-a100-e64c9c9e727c"
+  },
+  {
+    "case_id": "ENG-021",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/llm/__init__.py",
+      "apps/api/src/engram/llm/base.py",
+      "apps/api/src/engram/llm/mock.py",
+      "apps/api/src/engram/models/__init__.py",
+      "apps/api/src/engram/models/changelog.py",
+      "apps/api/src/engram/schemas/workflow.py",
+      "apps/api/tests/test_change_request.py",
+      "apps/web/README.md",
+      "docs/adr/ADR-001-product-boundary.md"
+    ],
+    "token_estimate": 5895,
+    "elapsed_ms": 2984.53,
+    "snapshot_digest": "3016887195e74e3ac27d258b9e0e951086548b31567d1dc9a5d12fd39c313210",
+    "analysis_id": "c23a8cf2-9fbe-4061-ae47-925ed0a50a21"
+  },
+  {
+    "case_id": "ENG-021",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/api/src/engram/config.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/llm/mock.py"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 5176.78,
+    "snapshot_digest": "2de7d7919803073a4564a87977adc9aa3e2ee2e92a483133f8810ad1f0e67270",
+    "analysis_id": "0a895188-85e8-47e3-aa16-cfba17a9f924"
+  },
+  {
+    "case_id": "ENG-021",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/api/src/engram/config.py",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/llm/mock.py"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 5602.83,
+    "snapshot_digest": "2de7d7919803073a4564a87977adc9aa3e2ee2e92a483133f8810ad1f0e67270",
+    "analysis_id": "cef17162-ae33-4bc9-ba91-d16a7ebd811b"
+  },
+  {
+    "case_id": "ENG-021",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/llm/mock.py",
+      "ci: generate OpenAPI types in the frontend job before build"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 5525.84,
+    "snapshot_digest": "3f2e56f3853cce6022ae0a5cb292fe3cdf43ac171b867053266e66d46af5f786",
+    "analysis_id": "9c1801e5-44a0-4d36-8fb3-9c2ff28ee357"
+  },
+  {
+    "case_id": "ENG-021",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/llm/mock.py",
+      "ci: generate OpenAPI types in the frontend job before build"
+    ],
+    "token_estimate": 5997,
+    "elapsed_ms": 10475.53,
+    "snapshot_digest": "3f2e56f3853cce6022ae0a5cb292fe3cdf43ac171b867053266e66d46af5f786",
+    "analysis_id": "a144da3e-00a0-48c2-8692-a6f099604ddd"
+  },
+  {
+    "case_id": "ENG-022",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 7248.66,
+    "snapshot_digest": "ee54c708910a4b3be7671e74f65a9067da995cee0370300bbbd1f02da6ca6ca9",
+    "analysis_id": "e549e1a2-3132-47c4-967e-c0b9f270585b"
+  },
+  {
+    "case_id": "ENG-022",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 4395.43,
+    "snapshot_digest": "ee54c708910a4b3be7671e74f65a9067da995cee0370300bbbd1f02da6ca6ca9",
+    "analysis_id": "57f598e1-4c5d-4906-b195-4066b36244f3"
+  },
+  {
+    "case_id": "ENG-022",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/embeddings/__init__.py",
+      "apps/api/src/engram/embeddings/mock.py",
+      "apps/api/src/engram/repositories/item_repo.py",
+      "apps/api/src/engram/schemas/search.py",
+      "apps/api/src/engram/services/context_service.py",
+      "apps/api/tests/test_search.py",
+      "scripts/evaluate_retrieval.py"
+    ],
+    "token_estimate": 5993,
+    "elapsed_ms": 1951.55,
+    "snapshot_digest": "cb292616324206ae422393e234e6eb25d19faa8afa887dce89e2192f5f218d56",
+    "analysis_id": "4aa30261-f7c2-4925-8431-fad14924f884"
+  },
+  {
+    "case_id": "ENG-022",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/embeddings/__init__.py",
+      "apps/api/src/engram/embeddings/mock.py",
+      "apps/api/src/engram/repositories/item_repo.py",
+      "apps/api/src/engram/schemas/search.py",
+      "apps/api/src/engram/services/context_service.py",
+      "apps/api/tests/test_search.py",
+      "scripts/evaluate_retrieval.py"
+    ],
+    "token_estimate": 5993,
+    "elapsed_ms": 4010.32,
+    "snapshot_digest": "cb292616324206ae422393e234e6eb25d19faa8afa887dce89e2192f5f218d56",
+    "analysis_id": "bf58dce8-e926-4f56-babe-105a76a5cda3"
+  },
+  {
+    "case_id": "ENG-022",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/tests/test_true_path.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 11879.39,
+    "snapshot_digest": "fb7087c16223ee0bfbd3f8d0cc6cf3e5bf135c54de95aca1efa1113937bb4efa",
+    "analysis_id": "5bce4c96-ff91-4eb6-80af-a8e0056da34c"
+  },
+  {
+    "case_id": "ENG-022",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/tests/test_true_path.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 8109.21,
+    "snapshot_digest": "fb7087c16223ee0bfbd3f8d0cc6cf3e5bf135c54de95aca1efa1113937bb4efa",
+    "analysis_id": "609b0e73-1834-4c5e-a983-050176a5d89f"
+  },
+  {
+    "case_id": "ENG-022",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/schemas/search.py",
+      "apps/api/src/engram/services/context_service.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 7256.6,
+    "snapshot_digest": "bc9066c5eace7d64e0f33bf18bbb82c6c931e1ea1b3f772003da66e1fe413d40",
+    "analysis_id": "c9fa594d-8c48-477a-a140-068649e50ae5"
+  },
+  {
+    "case_id": "ENG-022",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/schemas/search.py",
+      "apps/api/src/engram/services/context_service.py",
+      "docs/adr/ADR-001-product-boundary.md",
+      "research/README.md"
+    ],
+    "token_estimate": 5999,
+    "elapsed_ms": 7959.79,
+    "snapshot_digest": "bc9066c5eace7d64e0f33bf18bbb82c6c931e1ea1b3f772003da66e1fe413d40",
+    "analysis_id": "78074af6-549c-46e7-a205-63f7e7ca0836"
+  },
+  {
+    "case_id": "ENG-023",
+    "variant": "full",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 9663.55,
+    "snapshot_digest": "34298802292fc2dae6bcfcd4c367cf52f75f353766c4fe52482f68dd9b48af36",
+    "analysis_id": "7f2ec5ae-bd39-4dbe-b086-51bb61c3ddbb"
+  },
+  {
+    "case_id": "ENG-023",
+    "variant": "full",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/api/src/engram/schemas/__init__.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/src/lib/api/client.ts",
+      "apps/web/tsconfig.json",
+      "scripts/engram_context.py"
+    ],
+    "token_estimate": 5994,
+    "elapsed_ms": 6779.45,
+    "snapshot_digest": "34298802292fc2dae6bcfcd4c367cf52f75f353766c4fe52482f68dd9b48af36",
+    "analysis_id": "b0b49194-8ad3-4a62-98af-ad94410b2d60"
+  },
+  {
+    "case_id": "ENG-023",
+    "variant": "vector",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/web/README.md",
+      "apps/web/src/app/artifacts/new/page.tsx",
+      "apps/web/src/app/artifacts/page.tsx",
+      "apps/web/src/app/consistency/page.tsx",
+      "apps/web/src/app/providers.tsx",
+      "apps/web/src/components/app-shell/Sidebar.tsx"
+    ],
+    "token_estimate": 5977,
+    "elapsed_ms": 2001.07,
+    "snapshot_digest": "9c688180090bffe0b625186cb30307abdaac10c365f3738d95a1aecaeec8d6e3",
+    "analysis_id": "cb024ab5-6103-4883-8598-c8570c04afa6"
+  },
+  {
+    "case_id": "ENG-023",
+    "variant": "vector",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/web/README.md",
+      "apps/web/src/app/artifacts/new/page.tsx",
+      "apps/web/src/app/artifacts/page.tsx",
+      "apps/web/src/app/consistency/page.tsx",
+      "apps/web/src/app/providers.tsx",
+      "apps/web/src/components/app-shell/Sidebar.tsx"
+    ],
+    "token_estimate": 5977,
+    "elapsed_ms": 3137.21,
+    "snapshot_digest": "9c688180090bffe0b625186cb30307abdaac10c365f3738d95a1aecaeec8d6e3",
+    "analysis_id": "41e35ecb-a7b3-4c14-b275-8704a81d87de"
+  },
+  {
+    "case_id": "ENG-023",
+    "variant": "graph",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/config.py",
+      "apps/api/src/engram/enums.py",
+      "apps/api/src/engram/main.py",
+      "apps/web/README.md",
+      "apps/web/src/app/changes/page.tsx",
+      "apps/web/src/app/formalize/page.tsx",
+      "scripts/engram_context.py",
+      "scripts/run_retrieval_experiment.py"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 6605.09,
+    "snapshot_digest": "72f0a46babdb6e9e8d467b4ae8aac013a0528c50e8a095e860997570b3823873",
+    "analysis_id": "61484e50-5a84-44ae-b341-cd0d0bef624d"
+  },
+  {
+    "case_id": "ENG-023",
+    "variant": "graph",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/config.py",
+      "apps/api/src/engram/enums.py",
+      "apps/api/src/engram/main.py",
+      "apps/web/README.md",
+      "apps/web/src/app/changes/page.tsx",
+      "apps/web/src/app/formalize/page.tsx",
+      "scripts/engram_context.py",
+      "scripts/run_retrieval_experiment.py"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 5374.91,
+    "snapshot_digest": "72f0a46babdb6e9e8d467b4ae8aac013a0528c50e8a095e860997570b3823873",
+    "analysis_id": "bda4bcef-d000-46b5-9a18-5bc22dd8b823"
+  },
+  {
+    "case_id": "ENG-023",
+    "variant": "combined",
+    "repeat": 0,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/web/README.md",
+      "apps/web/src/app/artifacts/page.tsx",
+      "apps/web/src/app/changes/page.tsx",
+      "apps/web/src/app/formalize/page.tsx",
+      "apps/web/src/app/sources/page.tsx",
+      "apps/web/src/components/overlay/Modal.tsx",
+      "ci: generate OpenAPI types in the frontend job before build"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 7580.33,
+    "snapshot_digest": "d991958ab241e9dd995632cf13100146e17c1b6a5539a18b6138ac60f88b4514",
+    "analysis_id": "8586ece7-dcbf-4edc-8cf9-29699b8b990c"
+  },
+  {
+    "case_id": "ENG-023",
+    "variant": "combined",
+    "repeat": 1,
+    "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/web/README.md",
+      "apps/web/src/app/artifacts/page.tsx",
+      "apps/web/src/app/changes/page.tsx",
+      "apps/web/src/app/formalize/page.tsx",
+      "apps/web/src/app/sources/page.tsx",
+      "apps/web/src/components/overlay/Modal.tsx",
+      "ci: generate OpenAPI types in the frontend job before build"
+    ],
+    "token_estimate": 6000,
+    "elapsed_ms": 5559.34,
+    "snapshot_digest": "d991958ab241e9dd995632cf13100146e17c1b6a5539a18b6138ac60f88b4514",
+    "analysis_id": "8ad0fa26-fa44-4b00-a4fc-e2a2741ea704"
   }
 ]

@@ -332,3 +332,88 @@ def test_malformed_model_classification_is_rejected_atomically(
     )
     assert response.status_code == 422
     assert client.get(f"/api/projects/{project['id']}/impact-analyses").json() == []
+
+
+def test_editing_one_item_leaves_siblings_and_container_untouched(client: TestClient) -> None:
+    project = _project(client, "Targeted impact")
+    response = client.post(
+        f"/api/projects/{project['id']}/artifacts",
+        json={
+            "type": "requirement",
+            "title": "Checkout requirements",
+            "content": "Checkout requirements",
+            "items": [
+                {"key": "R1", "title": "Guests pay by card", "text": "Guests pay by card"},
+                {"key": "R2", "title": "Guests pay by invoice", "text": "Guests pay by invoice"},
+            ],
+        },
+    )
+    assert response.status_code == 201, response.text
+    artifact = response.json()
+    listed = client.get(f"/api/projects/{project['id']}/items").json()
+    items = {value["key"]: value for value in listed}
+    assert set(items) == {"R1", "R2"}
+    artifact_versions = client.get(f"/api/artifacts/{artifact['id']}/versions").json()
+    sibling_version_id = items["R2"]["current_version_id"]
+
+    update = client.patch(
+        f"/api/projects/{project['id']}/items/{items['R1']['id']}",
+        json={"text": "Guests pay by card or wallet", "updated_by": "reviewer"},
+    )
+    assert update.status_code == 200, update.text
+
+    edited = client.get(f"/api/projects/{project['id']}/items/{items['R1']['id']}/versions").json()
+    sibling = client.get(f"/api/projects/{project['id']}/items/{items['R2']['id']}/versions").json()
+    assert len(edited) == 2
+    assert len(sibling) == 1
+    sibling_now = client.get(f"/api/projects/{project['id']}/items/{items['R2']['id']}").json()
+    assert sibling_now["current_version_id"] == sibling_version_id
+    # The container document is not rewritten because one of its items changed.
+    assert client.get(f"/api/artifacts/{artifact['id']}/versions").json() == artifact_versions
+
+
+def test_every_context_package_item_states_why_it_was_included(client: TestClient) -> None:
+    project = _project(client, "Explainability")
+    _requirement(client, project["id"], "Guests can receive email invitations")
+
+    created = client.post(
+        f"/api/projects/{project['id']}/impact-analyses",
+        json={"query": "Allow external guests to receive email invitations"},
+    )
+    assert created.status_code == 201, created.text
+    analysis = created.json()
+    for candidate in analysis["candidates"]:
+        review = client.patch(
+            f"/api/projects/{project['id']}/impact-analyses/{analysis['id']}"
+            f"/candidates/{candidate['id']}",
+            json={"decision": "approved", "reviewed_by": "reviewer"},
+        )
+        assert review.status_code == 200
+
+    package = client.post(
+        f"/api/projects/{project['id']}/impact-analyses/{analysis['id']}/context-packages",
+        json={"token_budget": 4000},
+    )
+    assert package.status_code == 201, package.text
+    entries = package.json()["items"]
+    assert entries
+    assert [entry["rank"] for entry in entries] == list(range(1, len(entries) + 1))
+    for entry in entries:
+        reason = entry["reason"]
+        assert reason["impact_type"]
+        assert reason["rationale"]
+        assert reason["evidence"]
+        selection = reason["selection"]
+        if selection["stage"] == "graph_expansion":
+            assert selection["link_id"] and selection["link_type"]
+            assert entry["graph_path"]
+        else:
+            assert selection["stage"] == "retrieval"
+            assert selection["retrieval_mode"]
+            assert (
+                selection["matched_terms"]
+                or selection["vector_score"] > 0
+                or selection["explicit_key"]
+            )
+        assert entry["token_estimate"] >= 1
+        assert entry["source_locator"]["content_hash"]

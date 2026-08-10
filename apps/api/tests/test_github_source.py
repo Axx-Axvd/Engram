@@ -170,3 +170,58 @@ def test_github_sync_imports_fixed_revision_and_changeset(
     assert any(value["change_kind"] == "deleted" for value in latest_change_set["items"])
     consistency = client.get(f"/api/projects/{project['id']}/consistency")
     assert consistency.status_code == 200
+
+
+def test_change_set_records_exact_versions_and_never_adopts_a_foreign_analysis(
+    client: TestClient, monkeypatch
+) -> None:
+    project = client.post("/api/projects", json={"name": "Causal ChangeSet"}).json()
+    source = client.post(
+        f"/api/projects/{project['id']}/sources/github",
+        json={"repository": "acme/repo", "ref": "main"},
+    ).json()
+    monkeypatch.setattr(github_source_service, "GitHubClient", lambda: FakeGitHubClient())
+
+    first = client.post(
+        f"/api/projects/{project['id']}/sources/{source['id']}/sync",
+        json={"ref": "main", "created_by": "test"},
+    )
+    assert first.status_code == 200, first.text
+
+    items = client.get(f"/api/projects/{project['id']}/items").json()
+    by_path = {value["title"].split(" · ", 1)[0]: value for value in items}
+    change_set = client.get(
+        f"/api/projects/{project['id']}/change-sets/{first.json()['change_set_id']}"
+    ).json()
+    recorded = {value["item_id"]: value for value in change_set["items"]}
+
+    # The changed code file and the test covering it belong to the same causal ChangeSet.
+    assert by_path["src/invitations.py"]["id"] in recorded
+    assert by_path["tests/test_invitations.py"]["id"] in recorded
+    for item in items:
+        entry = recorded.get(item["id"])
+        assert entry is not None, item["title"]
+        # A first import creates the element, so it has no predecessor and points at
+        # exactly the version that is active now.
+        assert entry["before_version_id"] is None
+        assert entry["after_version_id"] == item["current_version_id"]
+        assert entry["change_kind"] == "added"
+
+    # An analysis opened after that import was not caused by it.
+    analysis = client.post(
+        f"/api/projects/{project['id']}/impact-analyses",
+        json={"query": "Change how external guests receive invitations"},
+    )
+    assert analysis.status_code == 201, analysis.text
+    unrelated = client.post(
+        f"/api/projects/{project['id']}/sources/{source['id']}/sync",
+        json={"ref": "next", "created_by": "test"},
+    )
+    assert unrelated.status_code == 200, unrelated.text
+    change_sets = client.get(f"/api/projects/{project['id']}/change-sets").json()
+    assert len(change_sets) == 2
+    assert all(value["analysis_id"] is None for value in change_sets)
+    still_open = client.get(
+        f"/api/projects/{project['id']}/impact-analyses/{analysis.json()['id']}"
+    ).json()
+    assert still_open["status"] != "applied"

@@ -45,7 +45,15 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=Path("research/results.json"))
     parser.add_argument("--budget", type=int, default=100_000)
     parser.add_argument("--max-candidates", type=int, default=100)
+    parser.add_argument(
+        "--repeats",
+        type=int,
+        default=1,
+        help="Runs per case and variant; >1 makes the reproducibility check meaningful",
+    )
     args = parser.parse_args()
+    if args.repeats < 1:
+        raise SystemExit("--repeats must be at least 1")
 
     gold = json.loads(args.gold.read_text(encoding="utf-8"))
     base = args.api.rstrip("/")
@@ -55,54 +63,56 @@ def main() -> int:
 
     for case in gold:
         for variant in VARIANTS:
-            started = time.perf_counter()
-            analysis = _request(
-                f"{base}/api/projects/{args.project}/impact-analyses",
-                body={
-                    "query": case["change"],
-                    "source_revision_id": None,
-                    "context_budget": args.budget,
-                    "max_candidates": args.max_candidates,
-                    "retrieval_mode": variant,
-                    "created_by": "retrieval-experiment",
-                },
-            )
-            elapsed_ms = (time.perf_counter() - started) * 1000
-            candidates = analysis.get("candidates", [])
-            retrieved_paths = sorted(
-                {
-                    _locator_path(item_by_id[candidate["item_id"]]["title"])
+            for repeat in range(args.repeats):
+                started = time.perf_counter()
+                analysis = _request(
+                    f"{base}/api/projects/{args.project}/impact-analyses",
+                    body={
+                        "query": case["change"],
+                        "source_revision_id": None,
+                        "context_budget": args.budget,
+                        "max_candidates": args.max_candidates,
+                        "retrieval_mode": variant,
+                        "created_by": "retrieval-experiment",
+                    },
+                )
+                elapsed_ms = (time.perf_counter() - started) * 1000
+                candidates = analysis.get("candidates", [])
+                retrieved_paths = sorted(
+                    {
+                        _locator_path(item_by_id[candidate["item_id"]]["title"])
+                        for candidate in candidates
+                        if candidate["item_id"] in item_by_id
+                    }
+                )
+                token_estimate = sum(
+                    int(candidate.get("selection_reason", {}).get("token_estimate", 0))
                     for candidate in candidates
-                    if candidate["item_id"] in item_by_id
-                }
-            )
-            token_estimate = sum(
-                int(candidate.get("selection_reason", {}).get("token_estimate", 0))
-                for candidate in candidates
-            )
-            snapshot = [
-                {
-                    "item_id": candidate["item_id"],
-                    "item_version_id": candidate["item_version_id"],
-                    "selection_reason": candidate.get("selection_reason", {}),
-                }
-                for candidate in candidates
-            ]
-            snapshot.sort(key=lambda value: value["item_id"])
-            digest = hashlib.sha256(
-                json.dumps(snapshot, sort_keys=True, separators=(",", ":")).encode()
-            ).hexdigest()
-            results.append(
-                {
-                    "case_id": case["id"],
-                    "variant": variant,
-                    "retrieved_paths": retrieved_paths,
-                    "token_estimate": token_estimate,
-                    "elapsed_ms": round(elapsed_ms, 2),
-                    "snapshot_digest": digest,
-                    "analysis_id": analysis["id"],
-                }
-            )
+                )
+                snapshot = [
+                    {
+                        "item_id": candidate["item_id"],
+                        "item_version_id": candidate["item_version_id"],
+                        "selection_reason": candidate.get("selection_reason", {}),
+                    }
+                    for candidate in candidates
+                ]
+                snapshot.sort(key=lambda value: value["item_id"])
+                digest = hashlib.sha256(
+                    json.dumps(snapshot, sort_keys=True, separators=(",", ":")).encode()
+                ).hexdigest()
+                results.append(
+                    {
+                        "case_id": case["id"],
+                        "variant": variant,
+                        "repeat": repeat,
+                        "retrieved_paths": retrieved_paths,
+                        "token_estimate": token_estimate,
+                        "elapsed_ms": round(elapsed_ms, 2),
+                        "snapshot_digest": digest,
+                        "analysis_id": analysis["id"],
+                    }
+                )
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
