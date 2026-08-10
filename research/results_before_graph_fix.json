@@ -23,9 +23,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 6509.15,
+    "elapsed_ms": 28649.41,
     "snapshot_digest": "8f3478c56094d51308ed45bb184cb04defc5200a664dbe0c7fbf91111aee121f",
-    "analysis_id": "9e6a7b23-6737-4ee7-9358-66a728692474"
+    "analysis_id": "8b2c081e-89cf-4f0c-825d-c919b9d265a7"
   },
   {
     "case_id": "ENG-001",
@@ -51,9 +51,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4178.75,
+    "elapsed_ms": 18160.32,
     "snapshot_digest": "8f3478c56094d51308ed45bb184cb04defc5200a664dbe0c7fbf91111aee121f",
-    "analysis_id": "b15bfb54-7e38-4be0-bfe6-1c1596090a35"
+    "analysis_id": "71bfdff9-0ba6-476c-b88c-41346af2ad83"
   },
   {
     "case_id": "ENG-001",
@@ -69,9 +69,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5944,
-    "elapsed_ms": 1193.22,
+    "elapsed_ms": 10059.46,
     "snapshot_digest": "5366c7b4912bd376491fd8d9e2b672371869e4f31d85a08e02a1fb292291952d",
-    "analysis_id": "3178bac3-885c-4276-a083-678ef0c9cbce"
+    "analysis_id": "f95a0007-32b4-4e6c-8465-388a326e139a"
   },
   {
     "case_id": "ENG-001",
@@ -87,9 +87,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5944,
-    "elapsed_ms": 1116.47,
+    "elapsed_ms": 4771.97,
     "snapshot_digest": "5366c7b4912bd376491fd8d9e2b672371869e4f31d85a08e02a1fb292291952d",
-    "analysis_id": "4bfeade6-61e4-4a9b-974a-eb217be24903"
+    "analysis_id": "e945d369-7871-4e5f-8352-9ca002254937"
   },
   {
     "case_id": "ENG-001",
@@ -97,18 +97,17 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "ROADMAP.md",
-      "apps/api/src/engram/orchestration/__init__.py",
-      "apps/api/src/engram/orchestration/engine.py",
-      "apps/api/src/engram/services/link_service.py",
+      "apps/api/tests/test_true_path.py",
       "apps/web/src/app/consistency/page.tsx",
-      "apps/web/src/app/formalize/page.tsx",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5991,
-    "elapsed_ms": 1705.01,
-    "snapshot_digest": "a22b52fb67e296297c354f07c4c620d1b6fd4bcb921422a9479f948d12cc73f4",
-    "analysis_id": "4290957e-33bb-4c4d-9f5f-5f031fb01993"
+    "token_estimate": 5997,
+    "elapsed_ms": 22495.81,
+    "snapshot_digest": "9e634415c1291faccee704871dbd3377a909d3973d76afc0d3b61592fa61e96a",
+    "analysis_id": "46b77292-0dd8-4133-90ae-8a139cd9cfac"
   },
   {
     "case_id": "ENG-001",
@@ -116,18 +115,17 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "ROADMAP.md",
-      "apps/api/src/engram/orchestration/__init__.py",
-      "apps/api/src/engram/orchestration/engine.py",
-      "apps/api/src/engram/services/link_service.py",
+      "apps/api/tests/test_true_path.py",
       "apps/web/src/app/consistency/page.tsx",
-      "apps/web/src/app/formalize/page.tsx",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5991,
-    "elapsed_ms": 1587.83,
-    "snapshot_digest": "a22b52fb67e296297c354f07c4c620d1b6fd4bcb921422a9479f948d12cc73f4",
-    "analysis_id": "b2b9b452-421e-45ca-b328-07c3c2cad275"
+    "token_estimate": 5997,
+    "elapsed_ms": 17024.86,
+    "snapshot_digest": "9e634415c1291faccee704871dbd3377a909d3973d76afc0d3b61592fa61e96a",
+    "analysis_id": "a5d1f8f0-c26b-4f2c-b2c8-96dec7f06f8b"
   },
   {
     "case_id": "ENG-001",
@@ -135,6 +133,7 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
       "apps/api/src/engram/api/consistency.py",
       "apps/api/src/engram/models/__init__.py",
@@ -142,10 +141,10 @@
       "apps/api/src/engram/services/link_service.py",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5966,
-    "elapsed_ms": 1844.35,
-    "snapshot_digest": "24583204ae39321df1bdb8b3f20d9eaf9aa5ee74701d6e91a65ff3f21187db16",
-    "analysis_id": "b8699a2e-eb04-4f06-a279-b0e3ccfb0dbb"
+    "token_estimate": 5994,
+    "elapsed_ms": 18450.08,
+    "snapshot_digest": "9e6ced66f147edd6a27eb33600455f7513e5d832f4504e29583737fd8676902d",
+    "analysis_id": "f719a9ac-fb74-48b2-83cb-120eae715c09"
   },
   {
     "case_id": "ENG-001",
@@ -153,6 +152,7 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
       "apps/api/src/engram/api/consistency.py",
       "apps/api/src/engram/models/__init__.py",
@@ -160,10 +160,10 @@
       "apps/api/src/engram/services/link_service.py",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5966,
-    "elapsed_ms": 1705.33,
-    "snapshot_digest": "24583204ae39321df1bdb8b3f20d9eaf9aa5ee74701d6e91a65ff3f21187db16",
-    "analysis_id": "544b566d-6946-4d85-9ddb-25ae5e2bfc3d"
+    "token_estimate": 5994,
+    "elapsed_ms": 20232.76,
+    "snapshot_digest": "9e6ced66f147edd6a27eb33600455f7513e5d832f4504e29583737fd8676902d",
+    "analysis_id": "355e79fb-42b2-4483-9e91-c51d86899b1c"
   },
   {
     "case_id": "ENG-002",
@@ -189,9 +189,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3995.84,
+    "elapsed_ms": 18671.41,
     "snapshot_digest": "fe0a94efe8afad19d26697ae08b6352bf5d291a5614cbec3cc923e67cead68ac",
-    "analysis_id": "172e3a90-e77f-421d-a87e-b0192969eae3"
+    "analysis_id": "b57b13a8-85e0-44ed-8144-55a0cc9b070b"
   },
   {
     "case_id": "ENG-002",
@@ -217,9 +217,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 5294.72,
+    "elapsed_ms": 19021.35,
     "snapshot_digest": "fe0a94efe8afad19d26697ae08b6352bf5d291a5614cbec3cc923e67cead68ac",
-    "analysis_id": "ea61c4be-22b5-47d4-a9a9-7e0a98c73838"
+    "analysis_id": "9c1865a9-686c-4ba3-8c50-abc16d22c246"
   },
   {
     "case_id": "ENG-002",
@@ -239,9 +239,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5972,
-    "elapsed_ms": 1272.5,
+    "elapsed_ms": 5679.07,
     "snapshot_digest": "dff61b5bb4bf5580cea9ac69b3a8846862127ce44c02dbc6ad8ce9e42e278236",
-    "analysis_id": "4f2ba46e-b1a9-4ac7-b53c-8a91de8b4fa0"
+    "analysis_id": "34fbb13f-e35d-451a-be7e-140e545d9f24"
   },
   {
     "case_id": "ENG-002",
@@ -261,39 +261,43 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5972,
-    "elapsed_ms": 1305.8,
+    "elapsed_ms": 6987.08,
     "snapshot_digest": "dff61b5bb4bf5580cea9ac69b3a8846862127ce44c02dbc6ad8ce9e42e278236",
-    "analysis_id": "6e06fb64-fbcc-45dd-927d-827e81363db3"
+    "analysis_id": "2ad4a445-5af1-49d3-a5d7-bb9b2cd1f78b"
   },
   {
     "case_id": "ENG-002",
     "variant": "graph",
     "repeat": 0,
     "retrieved_paths": [
+      "DESIGN.md",
       "README.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/api/sources.py",
       "apps/api/src/engram/services/github_source_service.py",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5974,
-    "elapsed_ms": 1726.77,
-    "snapshot_digest": "de5b6058cce66315697c4297c2584a1e14a0bcb29e8bb745859222073f11b703",
-    "analysis_id": "e68e94a7-ea4b-42e2-aedc-089a64e2a587"
+    "token_estimate": 5996,
+    "elapsed_ms": 14088.13,
+    "snapshot_digest": "e3415958127cdeb4a1cc8abc6fe24c332e1a6a403cf900c42dc7bda1f9053270",
+    "analysis_id": "d1c2c30a-0d80-40e1-b7a6-382fa02e9879"
   },
   {
     "case_id": "ENG-002",
     "variant": "graph",
     "repeat": 1,
     "retrieved_paths": [
+      "DESIGN.md",
       "README.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/api/sources.py",
       "apps/api/src/engram/services/github_source_service.py",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5974,
-    "elapsed_ms": 1681.27,
-    "snapshot_digest": "de5b6058cce66315697c4297c2584a1e14a0bcb29e8bb745859222073f11b703",
-    "analysis_id": "ba0a8b0f-42a8-44c1-9c02-1f8c04cffa20"
+    "token_estimate": 5996,
+    "elapsed_ms": 17061.46,
+    "snapshot_digest": "e3415958127cdeb4a1cc8abc6fe24c332e1a6a403cf900c42dc7bda1f9053270",
+    "analysis_id": "00264f2c-23ea-4eed-9876-bbb93026830e"
   },
   {
     "case_id": "ENG-002",
@@ -307,9 +311,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5999,
-    "elapsed_ms": 1786.26,
+    "elapsed_ms": 25976.59,
     "snapshot_digest": "1fa778aa9fcc8f77baf57df848980b1b9053845a7f2c0d8a13e5006f1572af2a",
-    "analysis_id": "7b289f69-904c-4fee-9761-89af867235cb"
+    "analysis_id": "4dd2e59c-bb47-47d6-b9d5-3588e0389a87"
   },
   {
     "case_id": "ENG-002",
@@ -323,9 +327,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5999,
-    "elapsed_ms": 1722.96,
+    "elapsed_ms": 32257.18,
     "snapshot_digest": "1fa778aa9fcc8f77baf57df848980b1b9053845a7f2c0d8a13e5006f1572af2a",
-    "analysis_id": "3c56de71-47f5-49da-8f46-c7a5e4930826"
+    "analysis_id": "f788cad2-17b7-401b-b740-21ceb55cae88"
   },
   {
     "case_id": "ENG-003",
@@ -351,9 +355,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4080.0,
+    "elapsed_ms": 21584.44,
     "snapshot_digest": "0526e999831af5b8e722c6d7138b82ee854ef11ae79f99c59b664a4e754dfe75",
-    "analysis_id": "84cb6f7f-175b-475e-8755-d3eeb58bc22b"
+    "analysis_id": "6ac6756f-d771-4345-a907-28bad9c308ab"
   },
   {
     "case_id": "ENG-003",
@@ -379,9 +383,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3646.82,
+    "elapsed_ms": 20257.19,
     "snapshot_digest": "0526e999831af5b8e722c6d7138b82ee854ef11ae79f99c59b664a4e754dfe75",
-    "analysis_id": "31e79f53-fd1b-49da-af49-aeadc2625d4e"
+    "analysis_id": "005aab3c-52e4-488f-b36b-ecbb6c08ff5a"
   },
   {
     "case_id": "ENG-003",
@@ -402,9 +406,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5897,
-    "elapsed_ms": 1422.86,
+    "elapsed_ms": 4073.35,
     "snapshot_digest": "1b233da4fb1f951d208802fcec4a2dccb59014c49d54e120cc341014b67fb446",
-    "analysis_id": "50cfc242-a8ec-46fc-80a9-5e46dd14738b"
+    "analysis_id": "5e66ebfe-36fa-4809-9392-25a61e3f3fa2"
   },
   {
     "case_id": "ENG-003",
@@ -425,47 +429,47 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5897,
-    "elapsed_ms": 1362.73,
+    "elapsed_ms": 6559.08,
     "snapshot_digest": "1b233da4fb1f951d208802fcec4a2dccb59014c49d54e120cc341014b67fb446",
-    "analysis_id": "025b6017-2f56-4d36-abec-bbe0b72fc0dd"
+    "analysis_id": "077f021a-ed78-4f31-b1eb-01865ebc2973"
   },
   {
     "case_id": "ENG-003",
     "variant": "graph",
     "repeat": 0,
     "retrieved_paths": [
-      "Claude.md",
-      "ROADMAP.md",
-      "apps/api/src/engram/errors.py",
-      "apps/api/src/engram/llm/__init__.py",
+      "DESIGN.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/llm/base.py",
-      "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/llm/factory.py",
+      "apps/api/tests/test_llm_claude_code.py",
+      "apps/web/src/app/impact-analyses/page.tsx",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5985,
-    "elapsed_ms": 1774.82,
-    "snapshot_digest": "06d257feab99680825948aec7759e333e08b3d6e62334ac3e94c9df53bbbd255",
-    "analysis_id": "a7a39002-b9c2-41a4-9d3d-cdf3f7440dd9"
+    "token_estimate": 6000,
+    "elapsed_ms": 31392.82,
+    "snapshot_digest": "5dbaac119e8d9ccfef4288e7515d0c2aadaefa5e2bc5d3970078c9ed9ed71a15",
+    "analysis_id": "8514c677-c720-4e16-b63c-30894108c260"
   },
   {
     "case_id": "ENG-003",
     "variant": "graph",
     "repeat": 1,
     "retrieved_paths": [
-      "Claude.md",
-      "ROADMAP.md",
-      "apps/api/src/engram/errors.py",
-      "apps/api/src/engram/llm/__init__.py",
+      "DESIGN.md",
+      "ROADMAP.old.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/llm/base.py",
-      "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/llm/factory.py",
+      "apps/api/tests/test_llm_claude_code.py",
+      "apps/web/src/app/impact-analyses/page.tsx",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5985,
-    "elapsed_ms": 1803.53,
-    "snapshot_digest": "06d257feab99680825948aec7759e333e08b3d6e62334ac3e94c9df53bbbd255",
-    "analysis_id": "fa3353b0-c435-46b4-9c32-74b91951f741"
+    "token_estimate": 6000,
+    "elapsed_ms": 22140.69,
+    "snapshot_digest": "5dbaac119e8d9ccfef4288e7515d0c2aadaefa5e2bc5d3970078c9ed9ed71a15",
+    "analysis_id": "e2c5670e-11bf-4b2a-8872-a01051ff3924"
   },
   {
     "case_id": "ENG-003",
@@ -473,17 +477,18 @@
     "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
-      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "ROADMAP.old.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/enums.py",
       "apps/api/src/engram/llm/base.py",
       "apps/web/src/app/impact-analyses/page.tsx",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5995,
-    "elapsed_ms": 1632.7,
-    "snapshot_digest": "a5dbcf305aa39386028173f8f4b2e8fa4c9e268957d5001ee153a7b119d25a13",
-    "analysis_id": "14443322-b50d-4cf1-8270-a0d562979891"
+    "token_estimate": 5996,
+    "elapsed_ms": 16264.72,
+    "snapshot_digest": "084801774249faa6ca300650deb184fb0fbd9a5f2f1837094d7f35ea15aa9e16",
+    "analysis_id": "04c35aa3-3fd7-4fff-b948-daebdd0a3d55"
   },
   {
     "case_id": "ENG-003",
@@ -491,17 +496,18 @@
     "repeat": 1,
     "retrieved_paths": [
       "Claude.md",
-      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "ROADMAP.old.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/enums.py",
       "apps/api/src/engram/llm/base.py",
       "apps/web/src/app/impact-analyses/page.tsx",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5995,
-    "elapsed_ms": 1985.65,
-    "snapshot_digest": "a5dbcf305aa39386028173f8f4b2e8fa4c9e268957d5001ee153a7b119d25a13",
-    "analysis_id": "3d100d75-bc80-47a2-89f1-b25186a7003a"
+    "token_estimate": 5996,
+    "elapsed_ms": 8526.06,
+    "snapshot_digest": "084801774249faa6ca300650deb184fb0fbd9a5f2f1837094d7f35ea15aa9e16",
+    "analysis_id": "8aad3499-db8d-41f6-9b2a-2cbe7d1e129d"
   },
   {
     "case_id": "ENG-004",
@@ -527,9 +533,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3929.72,
+    "elapsed_ms": 4216.86,
     "snapshot_digest": "4117a39c62853231f9e4b19b06d4cc7250c8554934599a1bd2d9d377f9bdbfff",
-    "analysis_id": "bd7c0c89-b491-490c-8447-1a15a9791fa2"
+    "analysis_id": "b18a8c1e-7df8-464f-a85b-b0d577bbba7f"
   },
   {
     "case_id": "ENG-004",
@@ -555,9 +561,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4664.5,
+    "elapsed_ms": 4872.74,
     "snapshot_digest": "4117a39c62853231f9e4b19b06d4cc7250c8554934599a1bd2d9d377f9bdbfff",
-    "analysis_id": "d4ab4786-4ca7-4cbe-9558-6717ae708386"
+    "analysis_id": "075b951c-4d65-4a78-bb87-2b621895be5f"
   },
   {
     "case_id": "ENG-004",
@@ -578,9 +584,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5987,
-    "elapsed_ms": 1474.22,
+    "elapsed_ms": 2828.77,
     "snapshot_digest": "b91d4531141fbeace52898bc2eaa62bd13458edf56184749af41949fd0e1e60b",
-    "analysis_id": "aa4d48d5-604d-4ff1-a47f-0edad9d08f10"
+    "analysis_id": "f865a9d8-412d-4e23-bef7-d9dbb23a530b"
   },
   {
     "case_id": "ENG-004",
@@ -601,9 +607,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5987,
-    "elapsed_ms": 1456.57,
+    "elapsed_ms": 4413.17,
     "snapshot_digest": "b91d4531141fbeace52898bc2eaa62bd13458edf56184749af41949fd0e1e60b",
-    "analysis_id": "34043e75-7708-4cc7-b531-9590ef3c0084"
+    "analysis_id": "2f7fb181-c808-439f-b3c4-273219a7af59"
   },
   {
     "case_id": "ENG-004",
@@ -611,6 +617,7 @@
     "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "README.md",
       "ROADMAP.md",
       "apps/api/src/engram/api/consistency.py",
@@ -619,10 +626,10 @@
       "apps/web/src/app/impact-analyses/page.tsx",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5959,
-    "elapsed_ms": 2609.92,
-    "snapshot_digest": "2abb6aaee79674a24e5f9ada621b251dc90b1f3617a524ae638c85920d5d9e18",
-    "analysis_id": "4013d1bf-895b-4922-b5ba-ae45ae685764"
+    "token_estimate": 5998,
+    "elapsed_ms": 8096.64,
+    "snapshot_digest": "0e930f17f96b77341d8943019487f0863cee97908d75de5eccda0a65a5c4b97c",
+    "analysis_id": "5d2fa597-699e-4d1e-8e1c-0d608737d9ed"
   },
   {
     "case_id": "ENG-004",
@@ -630,6 +637,7 @@
     "repeat": 1,
     "retrieved_paths": [
       "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "README.md",
       "ROADMAP.md",
       "apps/api/src/engram/api/consistency.py",
@@ -638,10 +646,10 @@
       "apps/web/src/app/impact-analyses/page.tsx",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5959,
-    "elapsed_ms": 2061.74,
-    "snapshot_digest": "2abb6aaee79674a24e5f9ada621b251dc90b1f3617a524ae638c85920d5d9e18",
-    "analysis_id": "54719abd-2588-459b-807b-cba79bdd955c"
+    "token_estimate": 5998,
+    "elapsed_ms": 6387.89,
+    "snapshot_digest": "0e930f17f96b77341d8943019487f0863cee97908d75de5eccda0a65a5c4b97c",
+    "analysis_id": "c34f9a9a-b08b-4201-a749-5b094b2f0f5d"
   },
   {
     "case_id": "ENG-004",
@@ -649,16 +657,18 @@
     "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
+      "DESIGN.md",
       "README.md",
       "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/services/consistency_service.py",
       "research/benchmark_cases.json",
       "scripts/engram_context.py"
     ],
-    "token_estimate": 5980,
-    "elapsed_ms": 2014.2,
-    "snapshot_digest": "80800f1aa735a2329bfb2ad3801c9337f9d45614165b3533d19891c01852ce24",
-    "analysis_id": "82859aa1-399e-4cd1-aeee-287003260b30"
+    "token_estimate": 6000,
+    "elapsed_ms": 6065.48,
+    "snapshot_digest": "5a630281a48f76be560d80ffacee74cee6f7f0b89eb4b4b288b38a302e257094",
+    "analysis_id": "c98903d1-2a15-4773-b123-a519a3b5ca12"
   },
   {
     "case_id": "ENG-004",
@@ -666,16 +676,18 @@
     "repeat": 1,
     "retrieved_paths": [
       "Claude.md",
+      "DESIGN.md",
       "README.md",
       "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/services/consistency_service.py",
       "research/benchmark_cases.json",
       "scripts/engram_context.py"
     ],
-    "token_estimate": 5980,
-    "elapsed_ms": 1801.49,
-    "snapshot_digest": "80800f1aa735a2329bfb2ad3801c9337f9d45614165b3533d19891c01852ce24",
-    "analysis_id": "bd947f6e-c5ff-4b8b-a47d-951d54a04dff"
+    "token_estimate": 6000,
+    "elapsed_ms": 5320.49,
+    "snapshot_digest": "5a630281a48f76be560d80ffacee74cee6f7f0b89eb4b4b288b38a302e257094",
+    "analysis_id": "85701aa7-6965-4a44-ad9a-8b52bc46f9b5"
   },
   {
     "case_id": "ENG-005",
@@ -701,9 +713,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3571.68,
+    "elapsed_ms": 5342.25,
     "snapshot_digest": "f96f9671f45444176b5d6194e2839f55ebccfc7f9f35a1fbe2058dc7d025daf2",
-    "analysis_id": "d004c2f7-5f12-45b8-b0c8-dfd05e745018"
+    "analysis_id": "8c5e67e8-fa25-4841-a848-bc95aec2b6bf"
   },
   {
     "case_id": "ENG-005",
@@ -729,9 +741,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3663.49,
+    "elapsed_ms": 5922.71,
     "snapshot_digest": "f96f9671f45444176b5d6194e2839f55ebccfc7f9f35a1fbe2058dc7d025daf2",
-    "analysis_id": "067ce6e4-f3fa-4190-91c2-07237c39da66"
+    "analysis_id": "9e230092-7037-4d2b-9196-9e4611c6a181"
   },
   {
     "case_id": "ENG-005",
@@ -748,9 +760,9 @@
       "package.json"
     ],
     "token_estimate": 5937,
-    "elapsed_ms": 1132.11,
+    "elapsed_ms": 2999.12,
     "snapshot_digest": "64a60b5c779db7cd19d11cbdb9c083c081a31ba0bc9a969edc29bf89a60a6ebf",
-    "analysis_id": "1daf9c2c-583f-408c-bc5e-902871b646aa"
+    "analysis_id": "de4ea11d-8b77-46f5-b45f-a116105fd7ab"
   },
   {
     "case_id": "ENG-005",
@@ -767,45 +779,47 @@
       "package.json"
     ],
     "token_estimate": 5937,
-    "elapsed_ms": 1183.37,
+    "elapsed_ms": 3349.11,
     "snapshot_digest": "64a60b5c779db7cd19d11cbdb9c083c081a31ba0bc9a969edc29bf89a60a6ebf",
-    "analysis_id": "82b01583-9257-46be-9cb8-96d76fea7a67"
+    "analysis_id": "1aba4d61-eb2e-48db-a2fc-a1a0848337f3"
   },
   {
     "case_id": "ENG-005",
     "variant": "graph",
     "repeat": 0,
     "retrieved_paths": [
-      "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "README.md",
       "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/config.py",
-      "apps/api/src/engram/embeddings/__init__.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/tests/test_e2e_scenario.py",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5980,
-    "elapsed_ms": 1585.04,
-    "snapshot_digest": "c54c59e9c70ce04048dd8158d15ff6ff04a52ac797a14ce70de3494977f738e7",
-    "analysis_id": "82cf5f9c-5cda-4019-a63d-bf0e905800c9"
+    "token_estimate": 5995,
+    "elapsed_ms": 8892.7,
+    "snapshot_digest": "e8f174c9ce3087ba14b5212e16c3810c7a3c100dea7a13fa105b20f2cf7651a3",
+    "analysis_id": "4a689b3f-33f5-46e1-b398-14faeaaf6534"
   },
   {
     "case_id": "ENG-005",
     "variant": "graph",
     "repeat": 1,
     "retrieved_paths": [
-      "Claude.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "README.md",
       "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/config.py",
-      "apps/api/src/engram/embeddings/__init__.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/tests/test_e2e_scenario.py",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5980,
-    "elapsed_ms": 1717.58,
-    "snapshot_digest": "c54c59e9c70ce04048dd8158d15ff6ff04a52ac797a14ce70de3494977f738e7",
-    "analysis_id": "cc07ef3c-f52f-4cc5-9d22-ab5d37e3495e"
+    "token_estimate": 5995,
+    "elapsed_ms": 4997.02,
+    "snapshot_digest": "e8f174c9ce3087ba14b5212e16c3810c7a3c100dea7a13fa105b20f2cf7651a3",
+    "analysis_id": "bd6b0228-6afa-4099-9bab-0f4c9bfd29ae"
   },
   {
     "case_id": "ENG-005",
@@ -813,21 +827,22 @@
     "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "README.md",
       "ROADMAP.md",
       "ROADMAP.old.md",
       "apps/api/src/engram/llm/base.py",
-      "apps/api/src/engram/llm/factory.py",
       "apps/api/src/engram/models/item.py",
       "apps/api/tests/test_e2e_scenario.py",
       "apps/api/tests/test_llm_claude_code.py",
       "apps/api/tests/test_workflows.py",
+      "ci: generate OpenAPI types in the frontend job before build",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5972,
-    "elapsed_ms": 1691.9,
-    "snapshot_digest": "ee299547a218fe9e7c22551371279f5e69ad7d6965e91680d4700bda1cbf8874",
-    "analysis_id": "2e00303f-412d-4cc4-9f3e-a98f4c0acf38"
+    "token_estimate": 6000,
+    "elapsed_ms": 6961.01,
+    "snapshot_digest": "38b2d4e6f85cf1b933d1cdb087ecffb29550c4d919972dbc4b04ce39f7954120",
+    "analysis_id": "1794ad13-44e3-4f12-809d-06573156fba4"
   },
   {
     "case_id": "ENG-005",
@@ -835,21 +850,22 @@
     "repeat": 1,
     "retrieved_paths": [
       "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "README.md",
       "ROADMAP.md",
       "ROADMAP.old.md",
       "apps/api/src/engram/llm/base.py",
-      "apps/api/src/engram/llm/factory.py",
       "apps/api/src/engram/models/item.py",
       "apps/api/tests/test_e2e_scenario.py",
       "apps/api/tests/test_llm_claude_code.py",
       "apps/api/tests/test_workflows.py",
+      "ci: generate OpenAPI types in the frontend job before build",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5972,
-    "elapsed_ms": 1710.33,
-    "snapshot_digest": "ee299547a218fe9e7c22551371279f5e69ad7d6965e91680d4700bda1cbf8874",
-    "analysis_id": "543bde53-155e-4896-ab0a-615845ba776e"
+    "token_estimate": 6000,
+    "elapsed_ms": 19433.21,
+    "snapshot_digest": "38b2d4e6f85cf1b933d1cdb087ecffb29550c4d919972dbc4b04ce39f7954120",
+    "analysis_id": "d5f5ae33-459a-447d-bca5-8a05d3b6fdb0"
   },
   {
     "case_id": "ENG-006",
@@ -875,9 +891,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3765.03,
+    "elapsed_ms": 18563.47,
     "snapshot_digest": "45303dd2bb27befc4e67cdce88cfe5c5009f823757c2462d9c1b3f58d9b50b45",
-    "analysis_id": "36ae1419-e469-4ca8-8a61-c9187a74ffab"
+    "analysis_id": "f7ebedc0-6098-4589-8734-948ad5e63c8b"
   },
   {
     "case_id": "ENG-006",
@@ -903,9 +919,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3704.99,
+    "elapsed_ms": 15615.64,
     "snapshot_digest": "45303dd2bb27befc4e67cdce88cfe5c5009f823757c2462d9c1b3f58d9b50b45",
-    "analysis_id": "30f7b4e8-b7e8-4a6a-8bfe-efff83983304"
+    "analysis_id": "4385f070-34eb-4d1d-a6c0-72746f950344"
   },
   {
     "case_id": "ENG-006",
@@ -931,9 +947,9 @@
       "scripts/run_retrieval_experiment.py"
     ],
     "token_estimate": 5955,
-    "elapsed_ms": 1205.38,
+    "elapsed_ms": 5852.52,
     "snapshot_digest": "7d4dbcb2cefd9021f75b89f0c1b1c2a63aa783b3f496e4fadc82ffe8f6def0bb",
-    "analysis_id": "fe0540f9-64c1-4b13-82d3-da0e6e2d138d"
+    "analysis_id": "21baebe1-201c-4d3a-ab04-d2e06c5f825f"
   },
   {
     "case_id": "ENG-006",
@@ -959,41 +975,43 @@
       "scripts/run_retrieval_experiment.py"
     ],
     "token_estimate": 5955,
-    "elapsed_ms": 1276.67,
+    "elapsed_ms": 6267.82,
     "snapshot_digest": "7d4dbcb2cefd9021f75b89f0c1b1c2a63aa783b3f496e4fadc82ffe8f6def0bb",
-    "analysis_id": "09853a41-56da-4688-88f2-89c9f9d13bac"
+    "analysis_id": "33caaf70-f3fe-40f4-83a6-b329d1b3c844"
   },
   {
     "case_id": "ENG-006",
     "variant": "graph",
     "repeat": 0,
     "retrieved_paths": [
-      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/api/analyses.py",
-      "apps/api/src/engram/repositories/source_repo.py",
+      "apps/api/src/engram/repositories/analysis_repo.py",
       "apps/api/tests/test_true_path.py",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5997,
-    "elapsed_ms": 1502.09,
-    "snapshot_digest": "e3410cb26794bce5c26526689786d1c49e00412734aaf839229c9b85707f16d5",
-    "analysis_id": "5729e768-e438-47a0-9b67-0a5d67a263d1"
+    "token_estimate": 5995,
+    "elapsed_ms": 13398.69,
+    "snapshot_digest": "2b577491821d356fb8a07521fe40cb5733e668738b753022bd7236ce3855d409",
+    "analysis_id": "e9b1f142-fe34-47af-9ed3-baece9a0f4e5"
   },
   {
     "case_id": "ENG-006",
     "variant": "graph",
     "repeat": 1,
     "retrieved_paths": [
-      "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/api/analyses.py",
-      "apps/api/src/engram/repositories/source_repo.py",
+      "apps/api/src/engram/repositories/analysis_repo.py",
       "apps/api/tests/test_true_path.py",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5997,
-    "elapsed_ms": 1676.59,
-    "snapshot_digest": "e3410cb26794bce5c26526689786d1c49e00412734aaf839229c9b85707f16d5",
-    "analysis_id": "79ce88a3-74f0-4051-bd0d-a61b9ae8c7ba"
+    "token_estimate": 5995,
+    "elapsed_ms": 7920.42,
+    "snapshot_digest": "2b577491821d356fb8a07521fe40cb5733e668738b753022bd7236ce3855d409",
+    "analysis_id": "337e1831-5b47-46cb-8b6c-8827dc1b7305"
   },
   {
     "case_id": "ENG-006",
@@ -1002,16 +1020,16 @@
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
-      "apps/api/src/engram/embeddings/__init__.py",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "apps/api/tests/test_links.py",
       "apps/api/tests/test_true_path.py",
       "research/benchmark_cases.json",
       "scripts/evaluate_retrieval.py"
     ],
-    "token_estimate": 5975,
-    "elapsed_ms": 1750.45,
-    "snapshot_digest": "af5856a1dd27f974fecc9593b1791cd93dd05100df296548c85baf1b2f9220b7",
-    "analysis_id": "df2685cc-e820-4b6f-8679-8956b3e6f6c6"
+    "token_estimate": 6000,
+    "elapsed_ms": 9645.55,
+    "snapshot_digest": "d4d10eaff8bfa91eaf5fe49b348bd4bb79864a55a0632c5a44ae78c71dfe961d",
+    "analysis_id": "1fa22734-8300-4738-a7c1-fecf25e3e625"
   },
   {
     "case_id": "ENG-006",
@@ -1020,16 +1038,16 @@
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
-      "apps/api/src/engram/embeddings/__init__.py",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "apps/api/tests/test_links.py",
       "apps/api/tests/test_true_path.py",
       "research/benchmark_cases.json",
       "scripts/evaluate_retrieval.py"
     ],
-    "token_estimate": 5975,
-    "elapsed_ms": 1793.56,
-    "snapshot_digest": "af5856a1dd27f974fecc9593b1791cd93dd05100df296548c85baf1b2f9220b7",
-    "analysis_id": "766bb0f1-4447-4861-b2bd-6bd454c67de2"
+    "token_estimate": 6000,
+    "elapsed_ms": 7657.65,
+    "snapshot_digest": "d4d10eaff8bfa91eaf5fe49b348bd4bb79864a55a0632c5a44ae78c71dfe961d",
+    "analysis_id": "fa74ea24-6af3-4f9e-8cb6-668a6639b4df"
   },
   {
     "case_id": "ENG-007",
@@ -1055,9 +1073,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3671.33,
+    "elapsed_ms": 13685.24,
     "snapshot_digest": "22cb75de72bcce43e38a8237c13e9c50c6f2f976460468e476e218bfe56121ec",
-    "analysis_id": "df511129-31bf-4987-b637-f1e32aa8a5a4"
+    "analysis_id": "1936e19c-5d24-46d4-b668-f8735c2bc3bc"
   },
   {
     "case_id": "ENG-007",
@@ -1083,9 +1101,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3799.87,
+    "elapsed_ms": 12200.35,
     "snapshot_digest": "22cb75de72bcce43e38a8237c13e9c50c6f2f976460468e476e218bfe56121ec",
-    "analysis_id": "6a944158-f35f-43db-9d9a-5c6be7a990eb"
+    "analysis_id": "c4fb8498-3d68-4524-b469-b099cffff8be"
   },
   {
     "case_id": "ENG-007",
@@ -1107,9 +1125,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5984,
-    "elapsed_ms": 1342.9,
+    "elapsed_ms": 3621.17,
     "snapshot_digest": "af4e781cf3b00a4b89c2b84be2cae2a5eb3a45906e3a28639277e39c819070d9",
-    "analysis_id": "628876ec-0260-4c29-8428-0a94eb8f5591"
+    "analysis_id": "ee8e5b32-914a-4a60-99e7-acf66a896e60"
   },
   {
     "case_id": "ENG-007",
@@ -1131,9 +1149,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5984,
-    "elapsed_ms": 1331.36,
+    "elapsed_ms": 4105.32,
     "snapshot_digest": "af4e781cf3b00a4b89c2b84be2cae2a5eb3a45906e3a28639277e39c819070d9",
-    "analysis_id": "69616ea5-2c0a-4dca-96ea-7959658d72a5"
+    "analysis_id": "1bfb7211-99d2-4bbd-a565-d6dc64185e77"
   },
   {
     "case_id": "ENG-007",
@@ -1149,9 +1167,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5998,
-    "elapsed_ms": 1678.7,
+    "elapsed_ms": 12536.68,
     "snapshot_digest": "e8973a915dbb489e2321098f09ff7679441b789f15d6d79a2eff610654cad52e",
-    "analysis_id": "95bc92a5-181c-42f9-9781-cedfc3d92eef"
+    "analysis_id": "591738cf-7ff2-4b23-afee-78fb043cee81"
   },
   {
     "case_id": "ENG-007",
@@ -1167,9 +1185,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5998,
-    "elapsed_ms": 1615.99,
+    "elapsed_ms": 8414.71,
     "snapshot_digest": "e8973a915dbb489e2321098f09ff7679441b789f15d6d79a2eff610654cad52e",
-    "analysis_id": "44a2ef73-3dd7-4aef-9e8f-db07a914fa85"
+    "analysis_id": "72665058-4e81-4ec9-9857-9b9d34e26f3d"
   },
   {
     "case_id": "ENG-007",
@@ -1177,8 +1195,10 @@
     "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
+      "DESIGN.md",
       "README.md",
       "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/api/consistency.py",
       "apps/api/src/engram/repositories/link_repo.py",
       "apps/api/src/engram/schemas/consistency.py",
@@ -1187,10 +1207,10 @@
       "docs/adr/ADR-001-product-boundary.md",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5975,
-    "elapsed_ms": 1672.47,
-    "snapshot_digest": "43b4896e3b1551209365bfd9c1bdfd1ac304d79b4d7aa9489ae0929c43a47035",
-    "analysis_id": "b5e23815-7ba8-45e6-ad8c-35760bbcdbf8"
+    "token_estimate": 5997,
+    "elapsed_ms": 11002.45,
+    "snapshot_digest": "adc414ae61cec896697b1e75dc951e8ac3cadf456c31708ae2d2b204e101ddbd",
+    "analysis_id": "df98ed5c-9921-4a25-9dc7-ed5a2b1b76eb"
   },
   {
     "case_id": "ENG-007",
@@ -1198,8 +1218,10 @@
     "repeat": 1,
     "retrieved_paths": [
       "Claude.md",
+      "DESIGN.md",
       "README.md",
       "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/api/consistency.py",
       "apps/api/src/engram/repositories/link_repo.py",
       "apps/api/src/engram/schemas/consistency.py",
@@ -1208,10 +1230,10 @@
       "docs/adr/ADR-001-product-boundary.md",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5975,
-    "elapsed_ms": 1687.88,
-    "snapshot_digest": "43b4896e3b1551209365bfd9c1bdfd1ac304d79b4d7aa9489ae0929c43a47035",
-    "analysis_id": "23d5b59d-3467-43f8-bf1e-ffd5de6acb9e"
+    "token_estimate": 5997,
+    "elapsed_ms": 8569.43,
+    "snapshot_digest": "adc414ae61cec896697b1e75dc951e8ac3cadf456c31708ae2d2b204e101ddbd",
+    "analysis_id": "18216e73-482f-46fe-b1fc-9119de68a9ac"
   },
   {
     "case_id": "ENG-008",
@@ -1237,9 +1259,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 5391.47,
+    "elapsed_ms": 9746.95,
     "snapshot_digest": "1106bfbf40691b32de2aea19f7bcb9360a3c9aec65755132435477fad7ee7396",
-    "analysis_id": "77c8552f-8f0c-4dd9-816f-cbc0fd6be243"
+    "analysis_id": "19b03141-173e-4ae7-9c96-c49341716932"
   },
   {
     "case_id": "ENG-008",
@@ -1265,9 +1287,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3980.25,
+    "elapsed_ms": 15884.07,
     "snapshot_digest": "1106bfbf40691b32de2aea19f7bcb9360a3c9aec65755132435477fad7ee7396",
-    "analysis_id": "d65491cb-d349-4718-8a2b-899f84c98b4d"
+    "analysis_id": "b5877927-fc85-45b9-a7ab-5117adb8f189"
   },
   {
     "case_id": "ENG-008",
@@ -1282,9 +1304,9 @@
       "apps/api/src/engram/services/item_service.py"
     ],
     "token_estimate": 5967,
-    "elapsed_ms": 1383.39,
+    "elapsed_ms": 7198.99,
     "snapshot_digest": "e377ecfada13c27408cc73ba94efcad4aae210a371681ce2d83850d486b11ee6",
-    "analysis_id": "ec438e3a-c3c8-4c64-81b7-a51a6d3818b2"
+    "analysis_id": "dabb027b-d2cb-484d-91e6-1bd383dd763f"
   },
   {
     "case_id": "ENG-008",
@@ -1299,69 +1321,73 @@
       "apps/api/src/engram/services/item_service.py"
     ],
     "token_estimate": 5967,
-    "elapsed_ms": 1253.27,
+    "elapsed_ms": 4984.73,
     "snapshot_digest": "e377ecfada13c27408cc73ba94efcad4aae210a371681ce2d83850d486b11ee6",
-    "analysis_id": "5609285c-dbdf-41be-b38c-dd84f9ec811e"
+    "analysis_id": "dd413760-abe5-4657-b97d-d6c8126fa0f9"
   },
   {
     "case_id": "ENG-008",
     "variant": "graph",
     "repeat": 0,
     "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "apps/api/src/engram/config.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/web/src/app/changes/page.tsx",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5922,
-    "elapsed_ms": 1743.16,
-    "snapshot_digest": "6137a004148267db76abfad6afc8c61b8c65dbc61d758d1c6634a47a909393ab",
-    "analysis_id": "9ca08d64-cc88-4290-b39a-adc0ab0ed049"
+    "token_estimate": 5998,
+    "elapsed_ms": 10160.57,
+    "snapshot_digest": "7b28079411305972e9c8d612a2ca95cd61793f6cccb7d5cc03f7a67922d436ce",
+    "analysis_id": "51da6bb5-2762-436f-9b79-cad96b36db60"
   },
   {
     "case_id": "ENG-008",
     "variant": "graph",
     "repeat": 1,
     "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "apps/api/src/engram/config.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/web/src/app/changes/page.tsx",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5922,
-    "elapsed_ms": 1814.95,
-    "snapshot_digest": "6137a004148267db76abfad6afc8c61b8c65dbc61d758d1c6634a47a909393ab",
-    "analysis_id": "e01f0dcb-36d3-442b-bb22-9490656b24c9"
+    "token_estimate": 5998,
+    "elapsed_ms": 6264.86,
+    "snapshot_digest": "7b28079411305972e9c8d612a2ca95cd61793f6cccb7d5cc03f7a67922d436ce",
+    "analysis_id": "2c0c96a9-639b-484a-a1fa-b7e76b9888a8"
   },
   {
     "case_id": "ENG-008",
     "variant": "combined",
     "repeat": 0,
     "retrieved_paths": [
-      "ROADMAP.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "apps/api/src/engram/services/item_service.py",
       "apps/web/src/app/changes/page.tsx",
+      "ci: generate OpenAPI types in the frontend job before build",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5940,
-    "elapsed_ms": 1932.19,
-    "snapshot_digest": "14429528994c647689de44b204400a75178e6d27f39a141e3e8d27a1c8f89271",
-    "analysis_id": "1fca4378-f0fc-4036-a030-eb8e360bb6d2"
+    "token_estimate": 5995,
+    "elapsed_ms": 8120.84,
+    "snapshot_digest": "634e8a42a38e449f22bbf5954ff609adc1be97b0373426c87ca63a174b449695",
+    "analysis_id": "e577f121-918c-45f3-be13-820026c826d1"
   },
   {
     "case_id": "ENG-008",
     "variant": "combined",
     "repeat": 1,
     "retrieved_paths": [
-      "ROADMAP.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "apps/api/src/engram/services/item_service.py",
       "apps/web/src/app/changes/page.tsx",
+      "ci: generate OpenAPI types in the frontend job before build",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5940,
-    "elapsed_ms": 1766.82,
-    "snapshot_digest": "14429528994c647689de44b204400a75178e6d27f39a141e3e8d27a1c8f89271",
-    "analysis_id": "2685526e-ce60-4d41-a185-9a59c08b9b04"
+    "token_estimate": 5995,
+    "elapsed_ms": 8553.81,
+    "snapshot_digest": "634e8a42a38e449f22bbf5954ff609adc1be97b0373426c87ca63a174b449695",
+    "analysis_id": "ecd0ada5-f07b-4503-a4c8-82734235b968"
   },
   {
     "case_id": "ENG-009",
@@ -1387,9 +1413,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3823.39,
+    "elapsed_ms": 6164.95,
     "snapshot_digest": "6a7dd3306c86b733a67f128bba96ee12c36cd978e81cd1dc292961f02f407f25",
-    "analysis_id": "43292af3-a7e9-495e-94fd-61c984a4bf3c"
+    "analysis_id": "3d317338-100f-4563-8573-149e22129e71"
   },
   {
     "case_id": "ENG-009",
@@ -1415,9 +1441,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3821.38,
+    "elapsed_ms": 6452.99,
     "snapshot_digest": "6a7dd3306c86b733a67f128bba96ee12c36cd978e81cd1dc292961f02f407f25",
-    "analysis_id": "dbb2bf31-e3fe-4811-9b96-cd0a79a1c0ac"
+    "analysis_id": "df157502-5187-470d-b456-2c533d1eec5c"
   },
   {
     "case_id": "ENG-009",
@@ -1439,9 +1465,9 @@
       "infra/initdb/01-extensions.sql"
     ],
     "token_estimate": 5680,
-    "elapsed_ms": 1400.46,
+    "elapsed_ms": 2569.53,
     "snapshot_digest": "bf1ab552f51e6cd7e96d30b1366fb2464433bbbef44f1501444c6ff0ee9ebccf",
-    "analysis_id": "7958da92-6e26-4e36-901a-08c2cb3d28b9"
+    "analysis_id": "e8a7fdcb-071a-4216-bff3-3074bef78fcd"
   },
   {
     "case_id": "ENG-009",
@@ -1463,93 +1489,107 @@
       "infra/initdb/01-extensions.sql"
     ],
     "token_estimate": 5680,
-    "elapsed_ms": 1336.62,
+    "elapsed_ms": 4140.01,
     "snapshot_digest": "bf1ab552f51e6cd7e96d30b1366fb2464433bbbef44f1501444c6ff0ee9ebccf",
-    "analysis_id": "a02e7d9c-22d4-413d-940f-a4e8d62472d6"
+    "analysis_id": "ccd19f68-088b-48c4-bb81-906b9fd606aa"
   },
   {
     "case_id": "ENG-009",
     "variant": "graph",
     "repeat": 0,
     "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
       ".github/workflows/ci.yml",
       "Claude.md",
+      "DESIGN.md",
+      "README.md",
+      "apps/api/README.md",
       "apps/api/src/engram/config.py",
-      "apps/api/src/engram/errors.py",
-      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/db/base.py",
+      "apps/api/src/engram/enums.py",
+      "apps/api/src/engram/llm/factory.py",
+      "apps/api/src/engram/main.py",
+      "apps/api/src/engram/models/artifact.py",
+      "research/README.md",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5981,
-    "elapsed_ms": 1827.42,
-    "snapshot_digest": "c8c8af9b967d775ec2660d101f96136f6fe6e763ce0fb39e1e5618f1c9bfc374",
-    "analysis_id": "abc51338-e7e3-477f-96de-26c814a5fccb"
+    "token_estimate": 6000,
+    "elapsed_ms": 7357.4,
+    "snapshot_digest": "519deeba1125d36b28fc27cf8732e3700577a91b923fe07ede73aaa9be3df733",
+    "analysis_id": "5d7f974b-3dd1-4352-a41f-fc19dff058a2"
   },
   {
     "case_id": "ENG-009",
     "variant": "graph",
     "repeat": 1,
     "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
       ".github/workflows/ci.yml",
       "Claude.md",
+      "DESIGN.md",
+      "README.md",
+      "apps/api/README.md",
       "apps/api/src/engram/config.py",
-      "apps/api/src/engram/errors.py",
-      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/db/base.py",
+      "apps/api/src/engram/enums.py",
+      "apps/api/src/engram/llm/factory.py",
+      "apps/api/src/engram/main.py",
+      "apps/api/src/engram/models/artifact.py",
+      "research/README.md",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5981,
-    "elapsed_ms": 1715.44,
-    "snapshot_digest": "c8c8af9b967d775ec2660d101f96136f6fe6e763ce0fb39e1e5618f1c9bfc374",
-    "analysis_id": "7aa3f86c-cc3d-4308-b55e-d27ee1e8c17a"
+    "token_estimate": 6000,
+    "elapsed_ms": 5762.87,
+    "snapshot_digest": "519deeba1125d36b28fc27cf8732e3700577a91b923fe07ede73aaa9be3df733",
+    "analysis_id": "76b69b0f-ddcf-4ce3-a45b-8adbf0898776"
   },
   {
     "case_id": "ENG-009",
     "variant": "combined",
     "repeat": 0,
     "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
       ".github/workflows/ci.yml",
       "Claude.md",
       "ENGRAM_TRUE_PATH_PLAN.md",
       "README.md",
       "apps/api/README.md",
       "apps/api/pyproject.toml",
-      "apps/api/src/engram/__init__.py",
       "apps/api/src/engram/config.py",
-      "apps/api/src/engram/db/base.py",
       "apps/api/src/engram/llm/mock.py",
       "apps/api/tests/conftest.py",
       "infra/docker-compose.yml",
       "infra/initdb/01-extensions.sql",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5970,
-    "elapsed_ms": 1740.4,
-    "snapshot_digest": "0216baa2f7e5dcd29d04faf31762d5c202b2439205a3976bd38506d6e1c82913",
-    "analysis_id": "43eaedf4-9199-457b-93fa-e86b5942a815"
+    "token_estimate": 5995,
+    "elapsed_ms": 5070.05,
+    "snapshot_digest": "919e7fb82750ee415bfe0bac20a3505407064def6448770e6e548084393a354d",
+    "analysis_id": "b589ca72-6237-4450-bfa5-b5758afb185f"
   },
   {
     "case_id": "ENG-009",
     "variant": "combined",
     "repeat": 1,
     "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
       ".github/workflows/ci.yml",
       "Claude.md",
       "ENGRAM_TRUE_PATH_PLAN.md",
       "README.md",
       "apps/api/README.md",
       "apps/api/pyproject.toml",
-      "apps/api/src/engram/__init__.py",
       "apps/api/src/engram/config.py",
-      "apps/api/src/engram/db/base.py",
       "apps/api/src/engram/llm/mock.py",
       "apps/api/tests/conftest.py",
       "infra/docker-compose.yml",
       "infra/initdb/01-extensions.sql",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5970,
-    "elapsed_ms": 2120.71,
-    "snapshot_digest": "0216baa2f7e5dcd29d04faf31762d5c202b2439205a3976bd38506d6e1c82913",
-    "analysis_id": "b9ade074-cddd-4abc-bf28-d84f36ab7195"
+    "token_estimate": 5995,
+    "elapsed_ms": 6155.56,
+    "snapshot_digest": "919e7fb82750ee415bfe0bac20a3505407064def6448770e6e548084393a354d",
+    "analysis_id": "8e3b2903-5f55-41c6-a612-28c949f50e1b"
   },
   {
     "case_id": "ENG-010",
@@ -1575,9 +1615,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3601.89,
+    "elapsed_ms": 5596.1,
     "snapshot_digest": "c4f61cb99a830be91e6e886397169e9e38e415c2bd9ee54f562522933932bbd5",
-    "analysis_id": "c39e7b69-bd83-46fc-a1dc-df1e6043836e"
+    "analysis_id": "7b1bae94-d259-4843-9330-b359988f8aaf"
   },
   {
     "case_id": "ENG-010",
@@ -1603,9 +1643,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3735.12,
+    "elapsed_ms": 4436.22,
     "snapshot_digest": "c4f61cb99a830be91e6e886397169e9e38e415c2bd9ee54f562522933932bbd5",
-    "analysis_id": "5d770491-7d2b-48a9-9370-2d88cd5f6b63"
+    "analysis_id": "60881137-1eda-4e2f-90e3-106b8fbb907f"
   },
   {
     "case_id": "ENG-010",
@@ -1628,9 +1668,9 @@
       "docs/adr/ADR-001-product-boundary.md"
     ],
     "token_estimate": 5996,
-    "elapsed_ms": 1254.52,
+    "elapsed_ms": 2615.4,
     "snapshot_digest": "4bf8316c24c990b29e9c1d9461e5e1e515ba5a7ad577c1048e1893caea924c30",
-    "analysis_id": "e0264302-c581-4903-af8d-ebc7e29a75c6"
+    "analysis_id": "22d22936-712c-491f-94d4-1bbcd4a6fa6f"
   },
   {
     "case_id": "ENG-010",
@@ -1653,9 +1693,9 @@
       "docs/adr/ADR-001-product-boundary.md"
     ],
     "token_estimate": 5996,
-    "elapsed_ms": 1252.83,
+    "elapsed_ms": 5416.24,
     "snapshot_digest": "4bf8316c24c990b29e9c1d9461e5e1e515ba5a7ad577c1048e1893caea924c30",
-    "analysis_id": "8f6270ce-0eb5-45fb-aec4-936bdea92578"
+    "analysis_id": "07e53886-303c-4d5b-894a-c356ea67543d"
   },
   {
     "case_id": "ENG-010",
@@ -1664,17 +1704,19 @@
     "retrieved_paths": [
       "ENGRAM_TRUE_PATH_PLAN.md",
       "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/main.py",
+      "apps/api/src/engram/schemas/__init__.py",
       "apps/web/src/app/context-packages/page.tsx",
       "apps/web/src/app/page.tsx",
       "apps/web/src/components/app-shell/Sidebar.tsx",
       "docs/adr/ADR-001-product-boundary.md",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5973,
-    "elapsed_ms": 1634.78,
-    "snapshot_digest": "f16ed636e29c22cc2f756a7537e7e52d525a3a70fc4ff33ec38ce543d9c0a48f",
-    "analysis_id": "99d77e59-18b9-4428-a947-c0fc5b3834dc"
+    "token_estimate": 6000,
+    "elapsed_ms": 8879.79,
+    "snapshot_digest": "4be39cb2d80bb23296ebd7b150b3ec81d522a78e975195f68f2965442d118be1",
+    "analysis_id": "4d12bd4e-7d60-4541-87e8-b14f99bcf7c2"
   },
   {
     "case_id": "ENG-010",
@@ -1683,17 +1725,19 @@
     "retrieved_paths": [
       "ENGRAM_TRUE_PATH_PLAN.md",
       "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/main.py",
+      "apps/api/src/engram/schemas/__init__.py",
       "apps/web/src/app/context-packages/page.tsx",
       "apps/web/src/app/page.tsx",
       "apps/web/src/components/app-shell/Sidebar.tsx",
       "docs/adr/ADR-001-product-boundary.md",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5973,
-    "elapsed_ms": 1695.57,
-    "snapshot_digest": "f16ed636e29c22cc2f756a7537e7e52d525a3a70fc4ff33ec38ce543d9c0a48f",
-    "analysis_id": "07e2afa0-6d8a-4392-8963-bfc9af976442"
+    "token_estimate": 6000,
+    "elapsed_ms": 13034.41,
+    "snapshot_digest": "4be39cb2d80bb23296ebd7b150b3ec81d522a78e975195f68f2965442d118be1",
+    "analysis_id": "864c7946-e980-48c3-a3e5-3086b58780f2"
   },
   {
     "case_id": "ENG-010",
@@ -1702,17 +1746,19 @@
     "retrieved_paths": [
       "ENGRAM_TRUE_PATH_PLAN.md",
       "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/main.py",
+      "apps/api/src/engram/schemas/__init__.py",
       "apps/web/src/app/context-packages/page.tsx",
       "apps/web/src/app/page.tsx",
       "apps/web/src/components/app-shell/Sidebar.tsx",
       "docs/adr/ADR-001-product-boundary.md",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5973,
-    "elapsed_ms": 1757.37,
-    "snapshot_digest": "4bebebb0251168383fb240fda063d888330a481574d0cbf7ed377d1e7e0d35f4",
-    "analysis_id": "bf307e70-f15d-426d-8b5d-e9f79d6ff7b5"
+    "token_estimate": 6000,
+    "elapsed_ms": 6656.59,
+    "snapshot_digest": "3728091143b60c91a0f7a94456fa5c51aa3185be206bd584fcab63214f2e269d",
+    "analysis_id": "3e994ca4-9382-43fb-bf6b-2fefc9462da4"
   },
   {
     "case_id": "ENG-010",
@@ -1721,17 +1767,19 @@
     "retrieved_paths": [
       "ENGRAM_TRUE_PATH_PLAN.md",
       "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/main.py",
+      "apps/api/src/engram/schemas/__init__.py",
       "apps/web/src/app/context-packages/page.tsx",
       "apps/web/src/app/page.tsx",
       "apps/web/src/components/app-shell/Sidebar.tsx",
       "docs/adr/ADR-001-product-boundary.md",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5973,
-    "elapsed_ms": 1884.07,
-    "snapshot_digest": "4bebebb0251168383fb240fda063d888330a481574d0cbf7ed377d1e7e0d35f4",
-    "analysis_id": "a8a61318-60f4-4b3d-8b35-de4295a905a8"
+    "token_estimate": 6000,
+    "elapsed_ms": 8254.46,
+    "snapshot_digest": "3728091143b60c91a0f7a94456fa5c51aa3185be206bd584fcab63214f2e269d",
+    "analysis_id": "80c9ad38-ac74-4e4c-a25e-206c94ec84bf"
   },
   {
     "case_id": "ENG-011",
@@ -1757,9 +1805,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3861.36,
+    "elapsed_ms": 6345.51,
     "snapshot_digest": "65f04f796321613164c41d243f1b6daff8471fbed919b0c4b35c33e892d336be",
-    "analysis_id": "dfeef088-d7a4-44f5-949b-5965c4efdf5c"
+    "analysis_id": "0e8dbd95-3aa1-4c2a-b360-f0b4f492a307"
   },
   {
     "case_id": "ENG-011",
@@ -1785,9 +1833,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3880.51,
+    "elapsed_ms": 8268.63,
     "snapshot_digest": "65f04f796321613164c41d243f1b6daff8471fbed919b0c4b35c33e892d336be",
-    "analysis_id": "7e380fe5-7a5f-48d7-8e03-3e515d628008"
+    "analysis_id": "9cf62fa1-5bd6-4254-ab12-c493ef0f0e4c"
   },
   {
     "case_id": "ENG-011",
@@ -1808,9 +1856,9 @@
       "scripts/run_retrieval_experiment.py"
     ],
     "token_estimate": 5768,
-    "elapsed_ms": 1400.83,
+    "elapsed_ms": 11389.21,
     "snapshot_digest": "06fde53345be0ac5ff46fd2c4a8a723d84c5bddd1f0b08f41404f504978784c0",
-    "analysis_id": "12e6a42b-6de5-4987-9913-e940bcc745c4"
+    "analysis_id": "38e61a1c-fdca-4872-817d-0f3e2a01ecce"
   },
   {
     "case_id": "ENG-011",
@@ -1831,9 +1879,9 @@
       "scripts/run_retrieval_experiment.py"
     ],
     "token_estimate": 5768,
-    "elapsed_ms": 1362.8,
+    "elapsed_ms": 9553.29,
     "snapshot_digest": "06fde53345be0ac5ff46fd2c4a8a723d84c5bddd1f0b08f41404f504978784c0",
-    "analysis_id": "6ebd99d4-e1e0-4af9-81c9-120d24dbd46a"
+    "analysis_id": "4afa97ff-9d87-4103-9591-a23f1655b2c8"
   },
   {
     "case_id": "ENG-011",
@@ -1841,15 +1889,20 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
-      "apps/api/src/engram/embeddings/__init__.py",
-      "apps/web/src/components/editor/extensions/Details.tsx",
-      "research/README.md"
+      "apps/api/src/engram/api/__init__.py",
+      "ci: generate OpenAPI types in the frontend job before build",
+      "research/README.md",
+      "scripts/engram_context.py",
+      "scripts/run_retrieval_experiment.py",
+      "scripts/seed_demo.py"
     ],
-    "token_estimate": 5984,
-    "elapsed_ms": 1729.78,
-    "snapshot_digest": "ccf189cb06f4eb1b3012079d1251e301fb1d1ad4454a1aa9cbbcac16861ae8c6",
-    "analysis_id": "c37cf17b-8eeb-4dba-9662-3dc4da86160c"
+    "token_estimate": 5996,
+    "elapsed_ms": 10607.1,
+    "snapshot_digest": "ab2c01ae4573973ae3b918a053828c8ccf6afb7fe74864840b7292117ce40fe1",
+    "analysis_id": "9b3cd13a-c40c-4fc4-84f6-2ba0737cd37c"
   },
   {
     "case_id": "ENG-011",
@@ -1857,15 +1910,20 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
-      "apps/api/src/engram/embeddings/__init__.py",
-      "apps/web/src/components/editor/extensions/Details.tsx",
-      "research/README.md"
+      "apps/api/src/engram/api/__init__.py",
+      "ci: generate OpenAPI types in the frontend job before build",
+      "research/README.md",
+      "scripts/engram_context.py",
+      "scripts/run_retrieval_experiment.py",
+      "scripts/seed_demo.py"
     ],
-    "token_estimate": 5984,
-    "elapsed_ms": 2633.47,
-    "snapshot_digest": "ccf189cb06f4eb1b3012079d1251e301fb1d1ad4454a1aa9cbbcac16861ae8c6",
-    "analysis_id": "32ba4876-f9a0-4320-8be3-9fc34281aa7b"
+    "token_estimate": 5996,
+    "elapsed_ms": 15272.01,
+    "snapshot_digest": "ab2c01ae4573973ae3b918a053828c8ccf6afb7fe74864840b7292117ce40fe1",
+    "analysis_id": "e870e7c4-c7bd-4794-878c-6de63323600b"
   },
   {
     "case_id": "ENG-011",
@@ -1873,17 +1931,19 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
-      "apps/api/src/engram/embeddings/__init__.py",
+      "apps/api/src/engram/api/__init__.py",
       "research/README.md",
       "research/benchmark_cases.json",
       "scripts/run_retrieval_experiment.py",
       "scripts/seed_demo.py"
     ],
-    "token_estimate": 5979,
-    "elapsed_ms": 2289.59,
-    "snapshot_digest": "7dcfba662ea81977cdd3d2edcc67d319a930872bfaeb3864449fe68d71ec5da7",
-    "analysis_id": "b619acba-22d0-49b3-a261-8e71d0b999e6"
+    "token_estimate": 5998,
+    "elapsed_ms": 6858.58,
+    "snapshot_digest": "59b88784d46b8e10cb114ec335c5cf9ed027d6cc4c921b22dbad28eb05c108a4",
+    "analysis_id": "fa0875bf-fc8f-4819-9a0b-36b12b2cd056"
   },
   {
     "case_id": "ENG-011",
@@ -1891,17 +1951,19 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
-      "apps/api/src/engram/embeddings/__init__.py",
+      "apps/api/src/engram/api/__init__.py",
       "research/README.md",
       "research/benchmark_cases.json",
       "scripts/run_retrieval_experiment.py",
       "scripts/seed_demo.py"
     ],
-    "token_estimate": 5979,
-    "elapsed_ms": 1606.56,
-    "snapshot_digest": "7dcfba662ea81977cdd3d2edcc67d319a930872bfaeb3864449fe68d71ec5da7",
-    "analysis_id": "8d1916e5-1f4c-4891-a2d6-cd4573482f31"
+    "token_estimate": 5998,
+    "elapsed_ms": 6856.79,
+    "snapshot_digest": "59b88784d46b8e10cb114ec335c5cf9ed027d6cc4c921b22dbad28eb05c108a4",
+    "analysis_id": "802f9661-e363-4b7f-865a-a9adc05a9f3c"
   },
   {
     "case_id": "ENG-012",
@@ -1927,9 +1989,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4996.78,
+    "elapsed_ms": 5907.54,
     "snapshot_digest": "d4efb5a3e34e266b81147ac39aa6576ad87319bc82a1768ae806ecb979e5e372",
-    "analysis_id": "2eb52643-4171-4e92-b380-a81a2d5a8628"
+    "analysis_id": "e8ac024d-58bf-445f-9643-1a3f28d8fdf7"
   },
   {
     "case_id": "ENG-012",
@@ -1955,9 +2017,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3877.78,
+    "elapsed_ms": 5427.57,
     "snapshot_digest": "d4efb5a3e34e266b81147ac39aa6576ad87319bc82a1768ae806ecb979e5e372",
-    "analysis_id": "88e600aa-050e-40a7-8813-8b4d203e2c76"
+    "analysis_id": "8de6eb60-a353-47ad-9e7d-1c7638b491e3"
   },
   {
     "case_id": "ENG-012",
@@ -1975,9 +2037,9 @@
       "ci: generate OpenAPI types in the frontend job before build"
     ],
     "token_estimate": 5932,
-    "elapsed_ms": 1158.96,
+    "elapsed_ms": 2928.62,
     "snapshot_digest": "a990eb23d0389d04686bc5d4c41987107b9d606a2130db3fa6ffc6a2141af9ae",
-    "analysis_id": "6fe6fcf5-ce40-48b8-a4fb-15625bfad28f"
+    "analysis_id": "da1814e4-d7a9-4ef8-b462-13fd3abf9d91"
   },
   {
     "case_id": "ENG-012",
@@ -1995,9 +2057,9 @@
       "ci: generate OpenAPI types in the frontend job before build"
     ],
     "token_estimate": 5932,
-    "elapsed_ms": 1194.23,
+    "elapsed_ms": 12676.85,
     "snapshot_digest": "a990eb23d0389d04686bc5d4c41987107b9d606a2130db3fa6ffc6a2141af9ae",
-    "analysis_id": "d0bcef1d-7409-41c4-8869-01e5d0565d96"
+    "analysis_id": "831df7f0-13d5-4314-a70c-ee15f4843264"
   },
   {
     "case_id": "ENG-012",
@@ -2005,18 +2067,24 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
-      ".github/workflows/ci.yml",
-      "apps/web/src/app/formalize/page.tsx",
-      "apps/web/src/components/editor/extensions/Details.tsx",
-      "apps/web/src/components/overlay/SidePanel.tsx",
-      "apps/web/src/lib/api/client.ts",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/tsconfig.json",
       "ci: generate OpenAPI types in the frontend job before build",
-      "research/benchmark_cases.json"
+      "scripts/engram_context.py"
     ],
-    "token_estimate": 5960,
-    "elapsed_ms": 1740.66,
-    "snapshot_digest": "273ebc15a975da6dc02e9a60e783e436e1e4e09f6124b87e73e07f92ab99ea99",
-    "analysis_id": "c7ece1b1-2ddf-4cb1-84e1-361661b02cc9"
+    "token_estimate": 5996,
+    "elapsed_ms": 14128.29,
+    "snapshot_digest": "e78d7c9fe8e697995bfa9ce443450df34de2e6a6aee0430eb68a9fb3f5122f7b",
+    "analysis_id": "6da67beb-aaa5-4d4e-8116-c330acd84e19"
   },
   {
     "case_id": "ENG-012",
@@ -2024,18 +2092,24 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
-      ".github/workflows/ci.yml",
-      "apps/web/src/app/formalize/page.tsx",
-      "apps/web/src/components/editor/extensions/Details.tsx",
-      "apps/web/src/components/overlay/SidePanel.tsx",
-      "apps/web/src/lib/api/client.ts",
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/tsconfig.json",
       "ci: generate OpenAPI types in the frontend job before build",
-      "research/benchmark_cases.json"
+      "scripts/engram_context.py"
     ],
-    "token_estimate": 5960,
-    "elapsed_ms": 1945.18,
-    "snapshot_digest": "273ebc15a975da6dc02e9a60e783e436e1e4e09f6124b87e73e07f92ab99ea99",
-    "analysis_id": "409f3262-94c2-4241-906b-ca0c5b4c7ab9"
+    "token_estimate": 5996,
+    "elapsed_ms": 11175.78,
+    "snapshot_digest": "e78d7c9fe8e697995bfa9ce443450df34de2e6a6aee0430eb68a9fb3f5122f7b",
+    "analysis_id": "d5a03d60-bbde-42a4-8a57-ca401d066c83"
   },
   {
     "case_id": "ENG-012",
@@ -2043,17 +2117,26 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
-      ".github/workflows/ci.yml",
-      "apps/api/src/engram/embeddings/__init__.py",
-      "apps/web/src/app/sources/page.tsx",
-      "apps/web/src/components/editor/extensions/Details.tsx",
-      "apps/web/src/lib/api/client.ts",
-      "ci: generate OpenAPI types in the frontend job before build"
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/tsconfig.json",
+      "ci: generate OpenAPI types in the frontend job before build",
+      "scripts/engram_context.py"
     ],
-    "token_estimate": 5984,
-    "elapsed_ms": 1781.91,
-    "snapshot_digest": "812ef44e9c50a5314b4a52e61b23ec04b7e098ae6d8e8ed6f9a1e493c7200ece",
-    "analysis_id": "cd98ecd9-4a8b-4137-90a4-7e2fff4a15e8"
+    "token_estimate": 5999,
+    "elapsed_ms": 10332.81,
+    "snapshot_digest": "dd0b31faa93edf0e529d87c0275c3ed74c992ed089cf41ca03b9cc19b6cd3bdf",
+    "analysis_id": "0d9e05fa-2eee-411d-b46e-59ea9ad9cf61"
   },
   {
     "case_id": "ENG-012",
@@ -2061,17 +2144,26 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
-      ".github/workflows/ci.yml",
-      "apps/api/src/engram/embeddings/__init__.py",
-      "apps/web/src/app/sources/page.tsx",
-      "apps/web/src/components/editor/extensions/Details.tsx",
-      "apps/web/src/lib/api/client.ts",
-      "ci: generate OpenAPI types in the frontend job before build"
+      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+      "README.md",
+      "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/links.py",
+      "apps/api/src/engram/models/artifact.py",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/components/overlay/SidePanel.tsx",
+      "apps/web/tsconfig.json",
+      "ci: generate OpenAPI types in the frontend job before build",
+      "scripts/engram_context.py"
     ],
-    "token_estimate": 5984,
-    "elapsed_ms": 1870.86,
-    "snapshot_digest": "812ef44e9c50a5314b4a52e61b23ec04b7e098ae6d8e8ed6f9a1e493c7200ece",
-    "analysis_id": "6c978d10-4052-45b8-b657-5d8f4c12f51d"
+    "token_estimate": 5999,
+    "elapsed_ms": 8628.48,
+    "snapshot_digest": "dd0b31faa93edf0e529d87c0275c3ed74c992ed089cf41ca03b9cc19b6cd3bdf",
+    "analysis_id": "1e6a67ea-628d-46d7-be91-85efbbf45d12"
   },
   {
     "case_id": "ENG-013",
@@ -2097,9 +2189,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4107.36,
+    "elapsed_ms": 6032.39,
     "snapshot_digest": "ffc694105f2819a573130d2fa33ffb19096a36180100cc2a2e414e73f8cf81a2",
-    "analysis_id": "f49ef70b-1efe-4467-af42-da8e7489f92b"
+    "analysis_id": "9d218675-f44b-42c4-82ca-ceb791fcbff3"
   },
   {
     "case_id": "ENG-013",
@@ -2125,9 +2217,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3767.41,
+    "elapsed_ms": 11084.21,
     "snapshot_digest": "ffc694105f2819a573130d2fa33ffb19096a36180100cc2a2e414e73f8cf81a2",
-    "analysis_id": "c9f23d8e-ac0a-4004-84fa-c3e3d9591b31"
+    "analysis_id": "91833c7f-eba8-4c75-b442-552380c096c9"
   },
   {
     "case_id": "ENG-013",
@@ -2152,9 +2244,9 @@
       "scripts/seed_demo.py"
     ],
     "token_estimate": 5883,
-    "elapsed_ms": 1353.64,
+    "elapsed_ms": 6746.62,
     "snapshot_digest": "c5ebf15a6e4f2214e3bd87f2bbb175ff26011cf5cf8dbe6749d8ae7f58bb37d7",
-    "analysis_id": "0d4c0653-e145-4be7-a3a1-6849e16ed31e"
+    "analysis_id": "9dae1b85-2b1a-44d3-b84a-92a46d01d494"
   },
   {
     "case_id": "ENG-013",
@@ -2179,17 +2271,18 @@
       "scripts/seed_demo.py"
     ],
     "token_estimate": 5883,
-    "elapsed_ms": 1331.05,
+    "elapsed_ms": 7664.21,
     "snapshot_digest": "c5ebf15a6e4f2214e3bd87f2bbb175ff26011cf5cf8dbe6749d8ae7f58bb37d7",
-    "analysis_id": "084dd3ac-96e9-47c2-91ff-d2e7622903cf"
+    "analysis_id": "88aa8ad2-f710-4e5c-aff9-1ad372338088"
   },
   {
     "case_id": "ENG-013",
     "variant": "graph",
     "repeat": 0,
     "retrieved_paths": [
+      "DESIGN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "apps/api/src/engram/api/consistency.py",
-      "apps/api/src/engram/embeddings/__init__.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/repositories/link_repo.py",
       "apps/api/src/engram/schemas/consistency.py",
@@ -2197,18 +2290,19 @@
       "scripts/engram_context.py",
       "scripts/seed_demo.py"
     ],
-    "token_estimate": 5995,
-    "elapsed_ms": 1727.81,
-    "snapshot_digest": "41c6f5c764455487e3252646de6bd5ceb3c1ae71da3a38dc56d57f99c2fafbb6",
-    "analysis_id": "b4bcad85-2960-4119-bde8-b0dbb9540257"
+    "token_estimate": 5999,
+    "elapsed_ms": 8117.52,
+    "snapshot_digest": "c22fa5f4f23a5471a824a100d5a21b992029e44df2ff2354ba3f6da459b86666",
+    "analysis_id": "6e0c520e-f3da-4488-995c-3f58e0810a61"
   },
   {
     "case_id": "ENG-013",
     "variant": "graph",
     "repeat": 1,
     "retrieved_paths": [
+      "DESIGN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "apps/api/src/engram/api/consistency.py",
-      "apps/api/src/engram/embeddings/__init__.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/repositories/link_repo.py",
       "apps/api/src/engram/schemas/consistency.py",
@@ -2216,10 +2310,10 @@
       "scripts/engram_context.py",
       "scripts/seed_demo.py"
     ],
-    "token_estimate": 5995,
-    "elapsed_ms": 1867.35,
-    "snapshot_digest": "41c6f5c764455487e3252646de6bd5ceb3c1ae71da3a38dc56d57f99c2fafbb6",
-    "analysis_id": "b0d1e5d0-0a7f-4b11-8104-a915a113c701"
+    "token_estimate": 5999,
+    "elapsed_ms": 7603.44,
+    "snapshot_digest": "c22fa5f4f23a5471a824a100d5a21b992029e44df2ff2354ba3f6da459b86666",
+    "analysis_id": "680f50b4-fc97-4537-b221-af3836c97b81"
   },
   {
     "case_id": "ENG-013",
@@ -2235,9 +2329,9 @@
       "scripts/seed_demo.py"
     ],
     "token_estimate": 6000,
-    "elapsed_ms": 1797.65,
+    "elapsed_ms": 5615.64,
     "snapshot_digest": "928f232e69b753cbf4ea77694d01af2b440fe0592e9920a6d258a2ffc9a4a84a",
-    "analysis_id": "abeec03a-685a-4a46-8634-b06bf9a78065"
+    "analysis_id": "b65b1b27-a04b-45c2-adbd-6ecf6d7a1901"
   },
   {
     "case_id": "ENG-013",
@@ -2253,9 +2347,9 @@
       "scripts/seed_demo.py"
     ],
     "token_estimate": 6000,
-    "elapsed_ms": 1893.01,
+    "elapsed_ms": 7584.39,
     "snapshot_digest": "928f232e69b753cbf4ea77694d01af2b440fe0592e9920a6d258a2ffc9a4a84a",
-    "analysis_id": "7b0e007b-495e-40d0-aa74-044b6190c726"
+    "analysis_id": "e4278278-2a58-4b19-b198-154536d66889"
   },
   {
     "case_id": "ENG-014",
@@ -2281,9 +2375,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3834.51,
+    "elapsed_ms": 6417.02,
     "snapshot_digest": "7478cf8125d5b65b36886cd29a97b7e969d8bb26ff7346022a2e7644310a3732",
-    "analysis_id": "026ef4ff-557e-4f59-a429-e51a81695964"
+    "analysis_id": "08913b6a-8476-4bf1-8dfa-87661764135e"
   },
   {
     "case_id": "ENG-014",
@@ -2309,9 +2403,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3831.87,
+    "elapsed_ms": 7634.07,
     "snapshot_digest": "7478cf8125d5b65b36886cd29a97b7e969d8bb26ff7346022a2e7644310a3732",
-    "analysis_id": "a78392a1-7c6f-4844-b470-8c3c79486b17"
+    "analysis_id": "f402917c-bc8a-42ab-974e-8536256b610f"
   },
   {
     "case_id": "ENG-014",
@@ -2333,9 +2427,9 @@
       "scripts/run_retrieval_experiment.py"
     ],
     "token_estimate": 5973,
-    "elapsed_ms": 1323.13,
+    "elapsed_ms": 7590.79,
     "snapshot_digest": "165373a039e75be682a2835f7160abbb6aea6dbfd204b996a54830815d5adb73",
-    "analysis_id": "146564c6-a00f-461e-ac88-c0413be5dc13"
+    "analysis_id": "273d9c0b-a7e9-4ab7-bbc3-079b11c1a582"
   },
   {
     "case_id": "ENG-014",
@@ -2357,9 +2451,9 @@
       "scripts/run_retrieval_experiment.py"
     ],
     "token_estimate": 5973,
-    "elapsed_ms": 1260.34,
+    "elapsed_ms": 5575.12,
     "snapshot_digest": "165373a039e75be682a2835f7160abbb6aea6dbfd204b996a54830815d5adb73",
-    "analysis_id": "ec6235ef-4dbc-4217-811b-b63bd823f733"
+    "analysis_id": "6966cd3f-7473-4493-a3bc-2aa22726cf4d"
   },
   {
     "case_id": "ENG-014",
@@ -2367,16 +2461,17 @@
     "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/schemas/workflow.py",
       "scripts/run_retrieval_experiment.py",
       "scripts/seed_demo.py"
     ],
-    "token_estimate": 5967,
-    "elapsed_ms": 1726.97,
-    "snapshot_digest": "da792d9a5c59ba36f66659642a732c53392560c6aab700a0d672723a00e41cc7",
-    "analysis_id": "91bac739-d1cc-4753-b6f1-c2b2cec1d510"
+    "token_estimate": 5995,
+    "elapsed_ms": 8887.3,
+    "snapshot_digest": "3b279b66369fb37eb851cd3ec33a37bc751cd420f9ea4357d18af2c546805c52",
+    "analysis_id": "f1a5a000-5657-47ff-9f18-578648e9a9bf"
   },
   {
     "case_id": "ENG-014",
@@ -2384,16 +2479,17 @@
     "repeat": 1,
     "retrieved_paths": [
       "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/schemas/workflow.py",
       "scripts/run_retrieval_experiment.py",
       "scripts/seed_demo.py"
     ],
-    "token_estimate": 5967,
-    "elapsed_ms": 1622.79,
-    "snapshot_digest": "da792d9a5c59ba36f66659642a732c53392560c6aab700a0d672723a00e41cc7",
-    "analysis_id": "e7e92d15-fad0-4d86-83c2-945a6a685166"
+    "token_estimate": 5995,
+    "elapsed_ms": 13942.37,
+    "snapshot_digest": "3b279b66369fb37eb851cd3ec33a37bc751cd420f9ea4357d18af2c546805c52",
+    "analysis_id": "499a490c-0d24-45e0-a6d1-2092f2d7690d"
   },
   {
     "case_id": "ENG-014",
@@ -2404,6 +2500,7 @@
       "Claude.md",
       "README.md",
       "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/tests/test_e2e_scenario.py",
       "docs/adr/ADR-001-product-boundary.md",
       "research/README.md",
@@ -2412,10 +2509,10 @@
       "scripts/run_retrieval_experiment.py",
       "scripts/seed_demo.py"
     ],
-    "token_estimate": 5984,
-    "elapsed_ms": 1837.85,
-    "snapshot_digest": "5b0f9a849e4968e0b1ec3afe5cff33f4daed4f2804d56f7e1ce4e16222b49e39",
-    "analysis_id": "49290aab-b11b-4020-953f-8d54930de93e"
+    "token_estimate": 5997,
+    "elapsed_ms": 13571.67,
+    "snapshot_digest": "a1c450d399bb83d3aba3c5127cd9b9091b0067c5f5614ea1986d0725d133b376",
+    "analysis_id": "2829cb3d-afb7-4547-9851-c9250f7b5712"
   },
   {
     "case_id": "ENG-014",
@@ -2426,6 +2523,7 @@
       "Claude.md",
       "README.md",
       "ROADMAP.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/tests/test_e2e_scenario.py",
       "docs/adr/ADR-001-product-boundary.md",
       "research/README.md",
@@ -2434,10 +2532,10 @@
       "scripts/run_retrieval_experiment.py",
       "scripts/seed_demo.py"
     ],
-    "token_estimate": 5984,
-    "elapsed_ms": 1865.65,
-    "snapshot_digest": "5b0f9a849e4968e0b1ec3afe5cff33f4daed4f2804d56f7e1ce4e16222b49e39",
-    "analysis_id": "b0884126-a66f-46bf-9d77-a1fceb36c77b"
+    "token_estimate": 5997,
+    "elapsed_ms": 6782.34,
+    "snapshot_digest": "a1c450d399bb83d3aba3c5127cd9b9091b0067c5f5614ea1986d0725d133b376",
+    "analysis_id": "e1053f58-3ae2-485a-a640-2fc39834a925"
   },
   {
     "case_id": "ENG-015",
@@ -2463,9 +2561,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3760.09,
+    "elapsed_ms": 13429.22,
     "snapshot_digest": "63875f4862bbbc85cf2d805efb6096b198eb49c788eec9ec17b5c200c2912d45",
-    "analysis_id": "d5b2ce85-ff98-4d7a-9565-e954e9ec93f0"
+    "analysis_id": "c17bd068-d6a4-40be-9443-121db673e636"
   },
   {
     "case_id": "ENG-015",
@@ -2491,9 +2589,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 8555.49,
+    "elapsed_ms": 12537.77,
     "snapshot_digest": "63875f4862bbbc85cf2d805efb6096b198eb49c788eec9ec17b5c200c2912d45",
-    "analysis_id": "790a2efb-c002-42c7-a4e4-01553383345a"
+    "analysis_id": "c7eccae9-dd0b-4ae4-988b-e4a5cd026978"
   },
   {
     "case_id": "ENG-015",
@@ -2508,9 +2606,9 @@
       "docs/adr/ADR-001-product-boundary.md"
     ],
     "token_estimate": 4232,
-    "elapsed_ms": 1645.12,
+    "elapsed_ms": 4079.0,
     "snapshot_digest": "76014119bb0ed6bcf871229a4bd1f9ed251fbee74f032fc5313b66caa42b7ac6",
-    "analysis_id": "960739d2-8479-4805-a9ff-b6253b3b47b8"
+    "analysis_id": "3840735c-21f7-4ad1-9841-00929b3dabc8"
   },
   {
     "case_id": "ENG-015",
@@ -2525,9 +2623,9 @@
       "docs/adr/ADR-001-product-boundary.md"
     ],
     "token_estimate": 4232,
-    "elapsed_ms": 1447.64,
+    "elapsed_ms": 3593.19,
     "snapshot_digest": "76014119bb0ed6bcf871229a4bd1f9ed251fbee74f032fc5313b66caa42b7ac6",
-    "analysis_id": "bd841f55-96ae-4f31-8d66-019e54bdf2e5"
+    "analysis_id": "11cf594f-94d3-49e2-8fe2-709de8b00a50"
   },
   {
     "case_id": "ENG-015",
@@ -2535,15 +2633,16 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "ROADMAP.md",
       "apps/api/src/engram/api/consistency.py",
-      "apps/api/src/engram/errors.py",
-      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/llm/base.py",
+      "apps/web/src/app/impact-analyses/page.tsx",
       "docs/adr/ADR-001-product-boundary.md"
     ],
-    "token_estimate": 5937,
-    "elapsed_ms": 1839.93,
-    "snapshot_digest": "c07b2f08dde06273dc0fe36606402c5a15dd2d28491743b451c687b2c42a3d25",
-    "analysis_id": "4f1bec90-dcf1-42b9-8eec-67622ec300d7"
+    "token_estimate": 5998,
+    "elapsed_ms": 8950.65,
+    "snapshot_digest": "58aba48df030b1233f29b7250624db308abd706f0fab90fda5da2ec0bbc54aa5",
+    "analysis_id": "7c138182-3814-4120-b4b9-d53c3c9ef465"
   },
   {
     "case_id": "ENG-015",
@@ -2551,15 +2650,16 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "ROADMAP.md",
       "apps/api/src/engram/api/consistency.py",
-      "apps/api/src/engram/errors.py",
-      "apps/api/src/engram/llm/claude_code.py",
+      "apps/api/src/engram/llm/base.py",
+      "apps/web/src/app/impact-analyses/page.tsx",
       "docs/adr/ADR-001-product-boundary.md"
     ],
-    "token_estimate": 5937,
-    "elapsed_ms": 1665.73,
-    "snapshot_digest": "c07b2f08dde06273dc0fe36606402c5a15dd2d28491743b451c687b2c42a3d25",
-    "analysis_id": "1c02aece-6126-4d2b-8a01-b9c5d090c77a"
+    "token_estimate": 5998,
+    "elapsed_ms": 8340.06,
+    "snapshot_digest": "58aba48df030b1233f29b7250624db308abd706f0fab90fda5da2ec0bbc54aa5",
+    "analysis_id": "33f8a63f-a7bc-4148-aba6-87bbdd55337f"
   },
   {
     "case_id": "ENG-015",
@@ -2567,16 +2667,17 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "README.md",
       "ROADMAP.md",
       "apps/api/src/engram/llm/base.py",
       "apps/api/src/engram/services/consistency_service.py",
       "docs/adr/ADR-001-product-boundary.md"
     ],
-    "token_estimate": 5960,
-    "elapsed_ms": 1648.09,
-    "snapshot_digest": "bc02487af147d4179a4f92bef4ce7df24a85ee78ece27aec1ffaf49153adbbd2",
-    "analysis_id": "ec05d2fa-3686-4c58-9c3f-fca3c3a6220a"
+    "token_estimate": 5999,
+    "elapsed_ms": 6942.41,
+    "snapshot_digest": "862ab4a0c033952dabc8cc26aa4a5f7abd46e3510837461bbf39fed9d5851464",
+    "analysis_id": "faefa6ad-beff-4a69-9aae-5c90df181284"
   },
   {
     "case_id": "ENG-015",
@@ -2584,16 +2685,17 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "README.md",
       "ROADMAP.md",
       "apps/api/src/engram/llm/base.py",
       "apps/api/src/engram/services/consistency_service.py",
       "docs/adr/ADR-001-product-boundary.md"
     ],
-    "token_estimate": 5960,
-    "elapsed_ms": 1783.21,
-    "snapshot_digest": "bc02487af147d4179a4f92bef4ce7df24a85ee78ece27aec1ffaf49153adbbd2",
-    "analysis_id": "42a2b639-1ccc-4a31-8508-9d2fe1267643"
+    "token_estimate": 5999,
+    "elapsed_ms": 7348.61,
+    "snapshot_digest": "862ab4a0c033952dabc8cc26aa4a5f7abd46e3510837461bbf39fed9d5851464",
+    "analysis_id": "3351dc8a-d265-4b5d-9389-9cab5eb07ded"
   },
   {
     "case_id": "ENG-016",
@@ -2619,9 +2721,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3606.91,
+    "elapsed_ms": 6269.2,
     "snapshot_digest": "76bfe36a0902afbd6720274c6c3f8d1e62611e7f938de6fca813582165549006",
-    "analysis_id": "f6351ed9-3a9b-4a1b-8840-64b18d2269d7"
+    "analysis_id": "90959430-0a4a-4d3f-8174-2eb466ff5808"
   },
   {
     "case_id": "ENG-016",
@@ -2647,9 +2749,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3636.65,
+    "elapsed_ms": 5037.68,
     "snapshot_digest": "76bfe36a0902afbd6720274c6c3f8d1e62611e7f938de6fca813582165549006",
-    "analysis_id": "5f23a14b-869f-4ea1-9aba-ccafd28fc6af"
+    "analysis_id": "7e65648a-a05e-40d3-9207-4c545c784c6b"
   },
   {
     "case_id": "ENG-016",
@@ -2666,9 +2768,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5980,
-    "elapsed_ms": 1219.47,
+    "elapsed_ms": 4322.03,
     "snapshot_digest": "15c2d09978495d746b675e5961c05eea2302ac912179f78eda86c74c100985eb",
-    "analysis_id": "638bad1b-aa82-4ec2-87cc-6ccab45f963b"
+    "analysis_id": "35f40c2c-5e10-44e7-85e7-6145a6016214"
   },
   {
     "case_id": "ENG-016",
@@ -2685,9 +2787,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5980,
-    "elapsed_ms": 1245.48,
+    "elapsed_ms": 5529.43,
     "snapshot_digest": "15c2d09978495d746b675e5961c05eea2302ac912179f78eda86c74c100985eb",
-    "analysis_id": "2a8b0285-9aae-4d75-bbf0-136c8022ec85"
+    "analysis_id": "695b07be-b548-4b0c-9bec-4975c952f6be"
   },
   {
     "case_id": "ENG-016",
@@ -2695,18 +2797,18 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
-      "README.md",
-      "apps/api/src/engram/__init__.py",
+      "DESIGN.md",
       "apps/api/src/engram/api/consistency.py",
       "apps/api/src/engram/enums.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/repositories/link_repo.py",
-      "apps/api/src/engram/schemas/consistency.py"
+      "apps/api/src/engram/schemas/consistency.py",
+      "research/README.md"
     ],
-    "token_estimate": 5991,
-    "elapsed_ms": 1681.25,
-    "snapshot_digest": "19da1b1e31cbd8797938e9dbf3321cd8233fbfb4339d5a22af722bde29e2ed10",
-    "analysis_id": "35db1945-f20e-4402-b3e9-426558b4745b"
+    "token_estimate": 6000,
+    "elapsed_ms": 7241.66,
+    "snapshot_digest": "3e67280846f4a3c9fce30e42ed05be0416befb8d798ef9dcc28c4b0939414336",
+    "analysis_id": "8e2eb3ff-8896-4491-bfdc-5ef9f0495f46"
   },
   {
     "case_id": "ENG-016",
@@ -2714,18 +2816,18 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
-      "README.md",
-      "apps/api/src/engram/__init__.py",
+      "DESIGN.md",
       "apps/api/src/engram/api/consistency.py",
       "apps/api/src/engram/enums.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/repositories/link_repo.py",
-      "apps/api/src/engram/schemas/consistency.py"
+      "apps/api/src/engram/schemas/consistency.py",
+      "research/README.md"
     ],
-    "token_estimate": 5991,
-    "elapsed_ms": 1919.31,
-    "snapshot_digest": "19da1b1e31cbd8797938e9dbf3321cd8233fbfb4339d5a22af722bde29e2ed10",
-    "analysis_id": "744576cd-3bb5-498b-ab75-6ea7540b4e88"
+    "token_estimate": 6000,
+    "elapsed_ms": 7088.66,
+    "snapshot_digest": "3e67280846f4a3c9fce30e42ed05be0416befb8d798ef9dcc28c4b0939414336",
+    "analysis_id": "463cea23-77a2-4c21-a445-eaae5672035f"
   },
   {
     "case_id": "ENG-016",
@@ -2741,9 +2843,9 @@
       "research/README.md"
     ],
     "token_estimate": 5996,
-    "elapsed_ms": 1792.71,
+    "elapsed_ms": 5797.32,
     "snapshot_digest": "fa8a94f496a965428b1f602dccdf2ac3071d4ea27c38fc8fb4b7095883027262",
-    "analysis_id": "ffa5a308-cb26-4027-88a6-391b31f45bf7"
+    "analysis_id": "179217e0-aa42-4a7b-bc37-ca8465388ab0"
   },
   {
     "case_id": "ENG-016",
@@ -2759,9 +2861,9 @@
       "research/README.md"
     ],
     "token_estimate": 5996,
-    "elapsed_ms": 1718.24,
+    "elapsed_ms": 6955.52,
     "snapshot_digest": "fa8a94f496a965428b1f602dccdf2ac3071d4ea27c38fc8fb4b7095883027262",
-    "analysis_id": "dcf12368-9b22-4bc8-8b89-9973462aef6d"
+    "analysis_id": "0c8385c7-7f66-44d9-a372-1fdb0fd28410"
   },
   {
     "case_id": "ENG-017",
@@ -2787,9 +2889,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3726.44,
+    "elapsed_ms": 4658.39,
     "snapshot_digest": "9a49c71cb6bcdb84a2d5f79f3cfa87e568321df1a0cdfdf010e167e6eb414295",
-    "analysis_id": "6cfe7438-df55-43da-b25b-301748e1fcbd"
+    "analysis_id": "4c93ba29-b331-4f5c-bc38-018a88302de5"
   },
   {
     "case_id": "ENG-017",
@@ -2815,9 +2917,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3611.87,
+    "elapsed_ms": 6552.02,
     "snapshot_digest": "9a49c71cb6bcdb84a2d5f79f3cfa87e568321df1a0cdfdf010e167e6eb414295",
-    "analysis_id": "3c00970a-d1a2-43d2-939a-a80abd2de7be"
+    "analysis_id": "70efef79-11e2-4132-a5e4-f6cd50ee82aa"
   },
   {
     "case_id": "ENG-017",
@@ -2835,9 +2937,9 @@
       "apps/web/src/components/editor/RichTextEditor.tsx"
     ],
     "token_estimate": 5872,
-    "elapsed_ms": 1278.3,
+    "elapsed_ms": 3621.26,
     "snapshot_digest": "e7619357e6bde1a02abfde30c2cb6f1608c8dce3fae71039bca9c49e99c23743",
-    "analysis_id": "5bd0398e-b317-440d-91cf-a2bc3e63fe65"
+    "analysis_id": "3647a22a-cebd-48b5-a165-cf2e9a64e33c"
   },
   {
     "case_id": "ENG-017",
@@ -2855,9 +2957,9 @@
       "apps/web/src/components/editor/RichTextEditor.tsx"
     ],
     "token_estimate": 5872,
-    "elapsed_ms": 1215.52,
+    "elapsed_ms": 2405.4,
     "snapshot_digest": "e7619357e6bde1a02abfde30c2cb6f1608c8dce3fae71039bca9c49e99c23743",
-    "analysis_id": "5c2f9c20-6997-4abe-a1a3-92f3ede0d085"
+    "analysis_id": "f475b220-0cd2-4445-aae3-7207969e77c1"
   },
   {
     "case_id": "ENG-017",
@@ -2865,14 +2967,15 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
       "apps/api/src/engram/orchestration/engine.py",
       "apps/web/src/components/editor/RichTextEditor.tsx",
       "apps/web/src/components/editor/extensions/Details.tsx"
     ],
-    "token_estimate": 5989,
-    "elapsed_ms": 1478.69,
-    "snapshot_digest": "3ad9f2f71fb89c42c6739ce21871faa8cbd148de7767936ff51f59954e00e063",
-    "analysis_id": "3d01a5ab-d9ec-4eb2-b65a-674205fe8f1a"
+    "token_estimate": 5998,
+    "elapsed_ms": 5769.19,
+    "snapshot_digest": "af532ad9551a81ca93306a9c80a1a9ad25aa1a51f42ecc171342bcd9f2690725",
+    "analysis_id": "2a5ebbae-3782-4ce8-9c28-5993983dccb4"
   },
   {
     "case_id": "ENG-017",
@@ -2880,14 +2983,15 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
       "apps/api/src/engram/orchestration/engine.py",
       "apps/web/src/components/editor/RichTextEditor.tsx",
       "apps/web/src/components/editor/extensions/Details.tsx"
     ],
-    "token_estimate": 5989,
-    "elapsed_ms": 1628.16,
-    "snapshot_digest": "3ad9f2f71fb89c42c6739ce21871faa8cbd148de7767936ff51f59954e00e063",
-    "analysis_id": "15be57ac-a5d4-412c-8d76-6d1169bf0856"
+    "token_estimate": 5998,
+    "elapsed_ms": 6998.68,
+    "snapshot_digest": "af532ad9551a81ca93306a9c80a1a9ad25aa1a51f42ecc171342bcd9f2690725",
+    "analysis_id": "557398f2-1435-43c5-ba3f-ed1f9ffa02e8"
   },
   {
     "case_id": "ENG-017",
@@ -2895,14 +2999,15 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
       "apps/api/src/engram/orchestration/engine.py",
       "apps/web/src/components/editor/RichTextEditor.tsx",
       "apps/web/src/components/editor/extensions/Details.tsx"
     ],
-    "token_estimate": 5989,
-    "elapsed_ms": 1681.25,
-    "snapshot_digest": "48880280c6394a14b13108c68315809b626b0c467c3d897549c64ec3bc74e1ed",
-    "analysis_id": "061289ab-9d02-4954-a637-683fd7647aaf"
+    "token_estimate": 5998,
+    "elapsed_ms": 10834.36,
+    "snapshot_digest": "37ba7bdd327e06d9e0f35b4f746bb20234fa57f50b523df7055fc3bc2bdca67f",
+    "analysis_id": "e46ed0bb-e46e-4a1d-8ce8-a173d897c1a6"
   },
   {
     "case_id": "ENG-017",
@@ -2910,14 +3015,15 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
       "apps/api/src/engram/orchestration/engine.py",
       "apps/web/src/components/editor/RichTextEditor.tsx",
       "apps/web/src/components/editor/extensions/Details.tsx"
     ],
-    "token_estimate": 5989,
-    "elapsed_ms": 1848.86,
-    "snapshot_digest": "48880280c6394a14b13108c68315809b626b0c467c3d897549c64ec3bc74e1ed",
-    "analysis_id": "5d749880-9e2a-4438-8085-1efe4f477e8e"
+    "token_estimate": 5998,
+    "elapsed_ms": 7922.53,
+    "snapshot_digest": "37ba7bdd327e06d9e0f35b4f746bb20234fa57f50b523df7055fc3bc2bdca67f",
+    "analysis_id": "94d8928f-afce-4c9c-8c27-051daa14954d"
   },
   {
     "case_id": "ENG-018",
@@ -2943,9 +3049,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3634.87,
+    "elapsed_ms": 6320.77,
     "snapshot_digest": "1a6cf87b402dc0ca28108ca2c1a59166d23cffbae12f810feb533ec19ae49518",
-    "analysis_id": "2b969bd4-4ee5-45e6-9836-1acffde9985f"
+    "analysis_id": "e775e7aa-d39c-46a7-891b-6b75c000733c"
   },
   {
     "case_id": "ENG-018",
@@ -2971,9 +3077,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3680.33,
+    "elapsed_ms": 6770.66,
     "snapshot_digest": "1a6cf87b402dc0ca28108ca2c1a59166d23cffbae12f810feb533ec19ae49518",
-    "analysis_id": "0ee6521a-7e52-4308-a6b0-3c3c3e4c62a0"
+    "analysis_id": "b5581d3d-b4d0-4458-aaa2-5903fc05ab6f"
   },
   {
     "case_id": "ENG-018",
@@ -2995,9 +3101,9 @@
       "research/README.md"
     ],
     "token_estimate": 5893,
-    "elapsed_ms": 1194.01,
+    "elapsed_ms": 3733.71,
     "snapshot_digest": "8ce92020faf7cce2fb5d5e6937ba4e4e5739ec7563dc61bc9eba02ab971488a0",
-    "analysis_id": "ed14645c-d1ea-4354-8b64-37c7e96434b4"
+    "analysis_id": "4f57b5ea-435b-4877-84dd-f0710e19e938"
   },
   {
     "case_id": "ENG-018",
@@ -3019,49 +3125,49 @@
       "research/README.md"
     ],
     "token_estimate": 5893,
-    "elapsed_ms": 1277.31,
+    "elapsed_ms": 4896.48,
     "snapshot_digest": "8ce92020faf7cce2fb5d5e6937ba4e4e5739ec7563dc61bc9eba02ab971488a0",
-    "analysis_id": "b420c554-c368-4cbf-8d70-8b0377d0b5d3"
+    "analysis_id": "a5ee8b5f-605c-4318-a581-f487be79d2d1"
   },
   {
     "case_id": "ENG-018",
     "variant": "graph",
     "repeat": 0,
     "retrieved_paths": [
-      ".claude/agents/frontend-architect.md",
       "Claude.md",
-      "ROADMAP.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/api/consistency.py",
-      "apps/api/src/engram/config.py",
+      "apps/api/src/engram/enums.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/repositories/link_repo.py",
-      "apps/api/src/engram/schemas/consistency.py",
       "apps/api/tests/test_e2e_scenario.py"
     ],
-    "token_estimate": 5957,
-    "elapsed_ms": 1651.94,
-    "snapshot_digest": "dab8a463367cdbb9a68a5931651adfca255b2185325b73e4e0d001f80a206314",
-    "analysis_id": "b841cbe7-abca-422a-b810-fe931d3f5208"
+    "token_estimate": 5999,
+    "elapsed_ms": 11688.96,
+    "snapshot_digest": "cbb8b5fe151a844f7c37dfde8c5556ce09dc3fcd1af99000f7449e8c3a783071",
+    "analysis_id": "a41bebbf-9c96-4a38-b078-99d9307e7fe0"
   },
   {
     "case_id": "ENG-018",
     "variant": "graph",
     "repeat": 1,
     "retrieved_paths": [
-      ".claude/agents/frontend-architect.md",
       "Claude.md",
-      "ROADMAP.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/api/consistency.py",
-      "apps/api/src/engram/config.py",
+      "apps/api/src/engram/enums.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/repositories/link_repo.py",
-      "apps/api/src/engram/schemas/consistency.py",
       "apps/api/tests/test_e2e_scenario.py"
     ],
-    "token_estimate": 5957,
-    "elapsed_ms": 1761.34,
-    "snapshot_digest": "dab8a463367cdbb9a68a5931651adfca255b2185325b73e4e0d001f80a206314",
-    "analysis_id": "a6d4c4c3-8073-438c-9308-c6b37696cc4f"
+    "token_estimate": 5999,
+    "elapsed_ms": 5879.49,
+    "snapshot_digest": "cbb8b5fe151a844f7c37dfde8c5556ce09dc3fcd1af99000f7449e8c3a783071",
+    "analysis_id": "42dc4547-b891-4a8a-b659-b398c453c22d"
   },
   {
     "case_id": "ENG-018",
@@ -3069,17 +3175,17 @@
     "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
-      "apps/api/src/engram/embeddings/__init__.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/tests/test_e2e_scenario.py",
       "docs/adr/ADR-001-product-boundary.md",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 6000,
-    "elapsed_ms": 1766.13,
-    "snapshot_digest": "aa84b95dee48979a9af23a7ddc2851447016b3642563dc5ee4d9cfdd62da5cad",
-    "analysis_id": "2b38afd3-6979-4a94-a18b-e082d85e62ae"
+    "token_estimate": 5997,
+    "elapsed_ms": 7777.57,
+    "snapshot_digest": "873ec4b7d5e7bbba2d4e2d53f1e3229773443237307a22324d6ed28476a512cd",
+    "analysis_id": "556bd8b7-3772-4ee6-b878-619118371d7c"
   },
   {
     "case_id": "ENG-018",
@@ -3087,17 +3193,17 @@
     "repeat": 1,
     "retrieved_paths": [
       "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
-      "apps/api/src/engram/embeddings/__init__.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/tests/test_e2e_scenario.py",
       "docs/adr/ADR-001-product-boundary.md",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 6000,
-    "elapsed_ms": 2492.53,
-    "snapshot_digest": "aa84b95dee48979a9af23a7ddc2851447016b3642563dc5ee4d9cfdd62da5cad",
-    "analysis_id": "7ee51307-1abf-4373-b752-273a56c7d388"
+    "token_estimate": 5997,
+    "elapsed_ms": 9585.63,
+    "snapshot_digest": "873ec4b7d5e7bbba2d4e2d53f1e3229773443237307a22324d6ed28476a512cd",
+    "analysis_id": "44dd4d3a-f1cc-45bb-9d99-183233ffcaca"
   },
   {
     "case_id": "ENG-019",
@@ -3123,9 +3229,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4895.58,
+    "elapsed_ms": 7370.01,
     "snapshot_digest": "abc2a90c9216cf5ffe63ad82149e9f32cb36281f259e4b0e1a31e27830ddebbd",
-    "analysis_id": "e475f350-bcee-48d6-b085-0ecbab22f427"
+    "analysis_id": "cc2bc5e8-8004-4892-a85b-7d2d13ca4f1e"
   },
   {
     "case_id": "ENG-019",
@@ -3151,9 +3257,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 4313.77,
+    "elapsed_ms": 5401.12,
     "snapshot_digest": "abc2a90c9216cf5ffe63ad82149e9f32cb36281f259e4b0e1a31e27830ddebbd",
-    "analysis_id": "2016f41d-1d27-4290-9f45-3980f05976a8"
+    "analysis_id": "dc40cc5b-a409-4048-80d8-073544848492"
   },
   {
     "case_id": "ENG-019",
@@ -3172,9 +3278,9 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5949,
-    "elapsed_ms": 1272.55,
+    "elapsed_ms": 1989.16,
     "snapshot_digest": "e4f2747ff70f6c9a2544a92781bb4a4a4224f0855b3a333eb49fb763f39ae983",
-    "analysis_id": "27b4955d-ecb2-4c54-b52c-7d58e2ff8f24"
+    "analysis_id": "d28b2687-aa72-427f-867a-1ed081fc1107"
   },
   {
     "case_id": "ENG-019",
@@ -3193,47 +3299,49 @@
       "research/benchmark_cases.json"
     ],
     "token_estimate": 5949,
-    "elapsed_ms": 1447.79,
+    "elapsed_ms": 4432.82,
     "snapshot_digest": "e4f2747ff70f6c9a2544a92781bb4a4a4224f0855b3a333eb49fb763f39ae983",
-    "analysis_id": "3afb5d3a-980c-43f6-a833-02d80debfd6d"
+    "analysis_id": "bb8e9400-2f13-481c-a1ed-1fbb3d6760ce"
   },
   {
     "case_id": "ENG-019",
     "variant": "graph",
     "repeat": 0,
     "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
-      "apps/api/src/engram/__init__.py",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/errors.py",
-      "apps/api/src/engram/llm/claude_code.py",
-      "apps/api/src/engram/repositories/project_repo.py",
-      "apps/api/src/engram/schemas/item.py",
+      "apps/api/src/engram/schemas/__init__.py",
       "apps/api/src/engram/schemas/source.py",
+      "apps/api/src/engram/services/analysis_service.py",
+      "apps/api/src/engram/services/project_service.py",
       "apps/api/tests/test_e2e_scenario.py"
     ],
-    "token_estimate": 5995,
-    "elapsed_ms": 1609.98,
-    "snapshot_digest": "980e7aa030e2cb14d5d7567d6c5acf70e6427725d50e914552edb6d88ee8ade5",
-    "analysis_id": "dccab09f-9caf-447b-867f-5c23ed600897"
+    "token_estimate": 6000,
+    "elapsed_ms": 7681.5,
+    "snapshot_digest": "653c0faa432028ea0ffa66a382c3e07f73457030878892e65f2f582b06899e06",
+    "analysis_id": "8b59b9d9-5b4c-47b2-872b-9062803e3c92"
   },
   {
     "case_id": "ENG-019",
     "variant": "graph",
     "repeat": 1,
     "retrieved_paths": [
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "ROADMAP.md",
-      "apps/api/src/engram/__init__.py",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/errors.py",
-      "apps/api/src/engram/llm/claude_code.py",
-      "apps/api/src/engram/repositories/project_repo.py",
-      "apps/api/src/engram/schemas/item.py",
+      "apps/api/src/engram/schemas/__init__.py",
       "apps/api/src/engram/schemas/source.py",
+      "apps/api/src/engram/services/analysis_service.py",
+      "apps/api/src/engram/services/project_service.py",
       "apps/api/tests/test_e2e_scenario.py"
     ],
-    "token_estimate": 5995,
-    "elapsed_ms": 1695.12,
-    "snapshot_digest": "980e7aa030e2cb14d5d7567d6c5acf70e6427725d50e914552edb6d88ee8ade5",
-    "analysis_id": "9ef24f03-8389-4be9-a9a7-701b05596841"
+    "token_estimate": 6000,
+    "elapsed_ms": 5687.15,
+    "snapshot_digest": "653c0faa432028ea0ffa66a382c3e07f73457030878892e65f2f582b06899e06",
+    "analysis_id": "51e00e1c-d5c2-4d16-989c-a6411ef77570"
   },
   {
     "case_id": "ENG-019",
@@ -3241,6 +3349,7 @@
     "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
+      "DESIGN.md",
       "README.md",
       "ROADMAP.md",
       "apps/api/src/engram/api/consistency.py",
@@ -3249,10 +3358,10 @@
       "docs/adr/ADR-001-product-boundary.md",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5988,
-    "elapsed_ms": 1743.69,
-    "snapshot_digest": "14c943f63c8e01029bce298f0ac1098e2275ad3ab06d56e10afcc04412aa5817",
-    "analysis_id": "39cfe81d-7871-48df-b3c3-f0930c55201b"
+    "token_estimate": 5997,
+    "elapsed_ms": 5760.58,
+    "snapshot_digest": "9bee70a8d594c246c4b24e3712c9a5268851358f2c869b6f50fb093a455b5c6e",
+    "analysis_id": "c431123a-674b-4790-98c6-6011943c4b95"
   },
   {
     "case_id": "ENG-019",
@@ -3260,6 +3369,7 @@
     "repeat": 1,
     "retrieved_paths": [
       "Claude.md",
+      "DESIGN.md",
       "README.md",
       "ROADMAP.md",
       "apps/api/src/engram/api/consistency.py",
@@ -3268,10 +3378,10 @@
       "docs/adr/ADR-001-product-boundary.md",
       "research/benchmark_cases.json"
     ],
-    "token_estimate": 5988,
-    "elapsed_ms": 1607.34,
-    "snapshot_digest": "14c943f63c8e01029bce298f0ac1098e2275ad3ab06d56e10afcc04412aa5817",
-    "analysis_id": "f2844a0b-6b59-4bc7-b2ef-f03374d90eed"
+    "token_estimate": 5997,
+    "elapsed_ms": 5381.08,
+    "snapshot_digest": "9bee70a8d594c246c4b24e3712c9a5268851358f2c869b6f50fb093a455b5c6e",
+    "analysis_id": "47e1f22f-f611-4058-93f9-697bd3451cd4"
   },
   {
     "case_id": "ENG-020",
@@ -3297,9 +3407,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3633.02,
+    "elapsed_ms": 5010.87,
     "snapshot_digest": "ba664c7a32c286543a5de20e275c977b58f150d6b70a24f63ba18674cbeff2dc",
-    "analysis_id": "d17627b6-bd4b-46fe-8750-f1c8872482aa"
+    "analysis_id": "f681075f-5d37-4307-9d85-a5f3bec47f68"
   },
   {
     "case_id": "ENG-020",
@@ -3325,9 +3435,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3597.98,
+    "elapsed_ms": 4579.28,
     "snapshot_digest": "ba664c7a32c286543a5de20e275c977b58f150d6b70a24f63ba18674cbeff2dc",
-    "analysis_id": "8d590ca0-2e7a-4b10-8ebb-3b494318af18"
+    "analysis_id": "5ba50940-346d-4dd7-b8ba-45ad568964b4"
   },
   {
     "case_id": "ENG-020",
@@ -3349,9 +3459,9 @@
       "docs/adr/ADR-001-product-boundary.md"
     ],
     "token_estimate": 5962,
-    "elapsed_ms": 1345.85,
+    "elapsed_ms": 4349.09,
     "snapshot_digest": "f30953388bad026354470b7adf72ba414bbcddfc262a386295dffc61a3416d1f",
-    "analysis_id": "9e385b9b-7335-4053-8402-66decf0d976d"
+    "analysis_id": "7c5d8d53-c865-43e4-9900-55401aa7c9f5"
   },
   {
     "case_id": "ENG-020",
@@ -3373,9 +3483,9 @@
       "docs/adr/ADR-001-product-boundary.md"
     ],
     "token_estimate": 5962,
-    "elapsed_ms": 1408.83,
+    "elapsed_ms": 6159.4,
     "snapshot_digest": "f30953388bad026354470b7adf72ba414bbcddfc262a386295dffc61a3416d1f",
-    "analysis_id": "e75fc2b7-63e6-43e8-a5e1-3faad5ebf52a"
+    "analysis_id": "dce18ac6-e034-43aa-aa10-e77e1c2bc9b8"
   },
   {
     "case_id": "ENG-020",
@@ -3383,18 +3493,18 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
-      "ROADMAP.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/project_scope.py",
       "apps/api/src/engram/llm/base.py",
       "apps/api/src/engram/models/changelog.py",
-      "apps/api/src/engram/orchestration/engine.py",
       "apps/api/src/engram/repositories/artifact_repo.py",
       "apps/api/tests/test_github_source.py"
     ],
-    "token_estimate": 5994,
-    "elapsed_ms": 1859.33,
-    "snapshot_digest": "995f5f5b39ae191c09418376b57ea4fab57b529c79fcac5c4f7cf89350dcd71c",
-    "analysis_id": "9faebeeb-1948-4054-8c22-d471033c76a0"
+    "token_estimate": 5997,
+    "elapsed_ms": 7220.77,
+    "snapshot_digest": "df0dd6ecff9430ac9650c5f8b8418428233004d2701eaf34fd7a3b3b96bc1263",
+    "analysis_id": "2337588f-4719-4ed8-9b09-e313147e0afe"
   },
   {
     "case_id": "ENG-020",
@@ -3402,18 +3512,18 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
-      "ROADMAP.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "apps/api/src/engram/api/consistency.py",
+      "apps/api/src/engram/api/project_scope.py",
       "apps/api/src/engram/llm/base.py",
       "apps/api/src/engram/models/changelog.py",
-      "apps/api/src/engram/orchestration/engine.py",
       "apps/api/src/engram/repositories/artifact_repo.py",
       "apps/api/tests/test_github_source.py"
     ],
-    "token_estimate": 5994,
-    "elapsed_ms": 1816.79,
-    "snapshot_digest": "995f5f5b39ae191c09418376b57ea4fab57b529c79fcac5c4f7cf89350dcd71c",
-    "analysis_id": "12c3f5f7-b274-45e6-9e7b-12db1f23621d"
+    "token_estimate": 5997,
+    "elapsed_ms": 5305.79,
+    "snapshot_digest": "df0dd6ecff9430ac9650c5f8b8418428233004d2701eaf34fd7a3b3b96bc1263",
+    "analysis_id": "b721c16e-2f0f-46a4-afe6-b3d5fbc29410"
   },
   {
     "case_id": "ENG-020",
@@ -3421,6 +3531,7 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
       "apps/api/src/engram/llm/base.py",
       "apps/api/src/engram/orchestration/engine.py",
       "apps/api/src/engram/repositories/artifact_repo.py",
@@ -3428,10 +3539,10 @@
       "apps/web/src/lib/ui/usePresence.ts",
       "docs/adr/ADR-001-product-boundary.md"
     ],
-    "token_estimate": 5989,
-    "elapsed_ms": 2053.86,
-    "snapshot_digest": "c82c850c5696206acceea69c68e00e7901e3ddcff0054fa01568f219ed561123",
-    "analysis_id": "8932d47c-9be2-4956-8001-eb17c070f3e6"
+    "token_estimate": 5998,
+    "elapsed_ms": 5456.63,
+    "snapshot_digest": "214f851827a8ad2f113b83a447f4821cae9ea0af20c8eb5a24a44f5d24425430",
+    "analysis_id": "b5d2de17-99a6-4f24-a75c-3de3ce47cce8"
   },
   {
     "case_id": "ENG-020",
@@ -3439,6 +3550,7 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
       "apps/api/src/engram/llm/base.py",
       "apps/api/src/engram/orchestration/engine.py",
       "apps/api/src/engram/repositories/artifact_repo.py",
@@ -3446,10 +3558,10 @@
       "apps/web/src/lib/ui/usePresence.ts",
       "docs/adr/ADR-001-product-boundary.md"
     ],
-    "token_estimate": 5989,
-    "elapsed_ms": 1721.26,
-    "snapshot_digest": "c82c850c5696206acceea69c68e00e7901e3ddcff0054fa01568f219ed561123",
-    "analysis_id": "17baafd3-5ec1-4bd9-b146-07a05cb43039"
+    "token_estimate": 5998,
+    "elapsed_ms": 6207.42,
+    "snapshot_digest": "214f851827a8ad2f113b83a447f4821cae9ea0af20c8eb5a24a44f5d24425430",
+    "analysis_id": "303dc3d9-0cfe-4c33-a059-0cec210c06f0"
   },
   {
     "case_id": "ENG-021",
@@ -3475,9 +3587,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3712.99,
+    "elapsed_ms": 4873.31,
     "snapshot_digest": "9b1b9c873682900e74fb09b9ec1d6040aec229ce2899f12bb710ee85fbfc9a7a",
-    "analysis_id": "b1f5ac91-b00a-40d3-ad94-a3b0a0eead11"
+    "analysis_id": "e7ff088f-b5b6-4900-a427-48beda94a708"
   },
   {
     "case_id": "ENG-021",
@@ -3503,9 +3615,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3852.06,
+    "elapsed_ms": 4535.64,
     "snapshot_digest": "9b1b9c873682900e74fb09b9ec1d6040aec229ce2899f12bb710ee85fbfc9a7a",
-    "analysis_id": "449ac6f2-8143-470a-9073-47d8de7050f2"
+    "analysis_id": "73f67de2-dbee-4210-9a4e-a121dc01a55b"
   },
   {
     "case_id": "ENG-021",
@@ -3529,9 +3641,9 @@
       "docs/adr/ADR-001-product-boundary.md"
     ],
     "token_estimate": 5895,
-    "elapsed_ms": 1161.45,
+    "elapsed_ms": 1846.27,
     "snapshot_digest": "3016887195e74e3ac27d258b9e0e951086548b31567d1dc9a5d12fd39c313210",
-    "analysis_id": "4a375a23-b85e-455b-b823-bf18f62abf68"
+    "analysis_id": "8e7f2906-26ea-4235-a100-e64c9c9e727c"
   },
   {
     "case_id": "ENG-021",
@@ -3555,9 +3667,9 @@
       "docs/adr/ADR-001-product-boundary.md"
     ],
     "token_estimate": 5895,
-    "elapsed_ms": 1284.5,
+    "elapsed_ms": 2984.53,
     "snapshot_digest": "3016887195e74e3ac27d258b9e0e951086548b31567d1dc9a5d12fd39c313210",
-    "analysis_id": "0e4a914e-34aa-41f9-adde-d4c5eb71a16d"
+    "analysis_id": "c23a8cf2-9fbe-4061-ae47-925ed0a50a21"
   },
   {
     "case_id": "ENG-021",
@@ -3565,15 +3677,15 @@
     "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
-      "apps/api/src/engram/__init__.py",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "apps/api/src/engram/config.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/llm/mock.py"
     ],
-    "token_estimate": 5999,
-    "elapsed_ms": 1701.81,
-    "snapshot_digest": "9fbed1add695c07889ff1b6590146ec58ebe756fe78336f072718d3ab0a6dc08",
-    "analysis_id": "6416393b-896b-44d1-a1b2-36e5963883ac"
+    "token_estimate": 5997,
+    "elapsed_ms": 5176.78,
+    "snapshot_digest": "2de7d7919803073a4564a87977adc9aa3e2ee2e92a483133f8810ad1f0e67270",
+    "analysis_id": "0a895188-85e8-47e3-aa16-cfba17a9f924"
   },
   {
     "case_id": "ENG-021",
@@ -3581,15 +3693,15 @@
     "repeat": 1,
     "retrieved_paths": [
       "Claude.md",
-      "apps/api/src/engram/__init__.py",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "apps/api/src/engram/config.py",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/llm/mock.py"
     ],
-    "token_estimate": 5999,
-    "elapsed_ms": 1871.5,
-    "snapshot_digest": "9fbed1add695c07889ff1b6590146ec58ebe756fe78336f072718d3ab0a6dc08",
-    "analysis_id": "dafe1de7-473b-4d5d-8a96-c53110de7f9c"
+    "token_estimate": 5997,
+    "elapsed_ms": 5602.83,
+    "snapshot_digest": "2de7d7919803073a4564a87977adc9aa3e2ee2e92a483133f8810ad1f0e67270",
+    "analysis_id": "cef17162-ae33-4bc9-ba91-d16a7ebd811b"
   },
   {
     "case_id": "ENG-021",
@@ -3597,15 +3709,16 @@
     "repeat": 0,
     "retrieved_paths": [
       "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "README.md",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/llm/mock.py",
-      "docs/adr/ADR-001-product-boundary.md"
+      "ci: generate OpenAPI types in the frontend job before build"
     ],
-    "token_estimate": 5996,
-    "elapsed_ms": 1847.91,
-    "snapshot_digest": "cf26f98e98b421dcb96a13730c35a063c974e46d55f4d38cd7ce0beeb0d0651c",
-    "analysis_id": "dd10dcb3-1560-4e18-b594-307a66cbeadd"
+    "token_estimate": 5997,
+    "elapsed_ms": 5525.84,
+    "snapshot_digest": "3f2e56f3853cce6022ae0a5cb292fe3cdf43ac171b867053266e66d46af5f786",
+    "analysis_id": "9c1801e5-44a0-4d36-8fb3-9c2ff28ee357"
   },
   {
     "case_id": "ENG-021",
@@ -3613,15 +3726,16 @@
     "repeat": 1,
     "retrieved_paths": [
       "Claude.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "README.md",
       "apps/api/src/engram/llm/claude_code.py",
       "apps/api/src/engram/llm/mock.py",
-      "docs/adr/ADR-001-product-boundary.md"
+      "ci: generate OpenAPI types in the frontend job before build"
     ],
-    "token_estimate": 5996,
-    "elapsed_ms": 1705.5,
-    "snapshot_digest": "cf26f98e98b421dcb96a13730c35a063c974e46d55f4d38cd7ce0beeb0d0651c",
-    "analysis_id": "b03c2f28-82cd-49b9-99b8-48d4197b5839"
+    "token_estimate": 5997,
+    "elapsed_ms": 10475.53,
+    "snapshot_digest": "3f2e56f3853cce6022ae0a5cb292fe3cdf43ac171b867053266e66d46af5f786",
+    "analysis_id": "a144da3e-00a0-48c2-8692-a6f099604ddd"
   },
   {
     "case_id": "ENG-022",
@@ -3647,9 +3761,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3781.22,
+    "elapsed_ms": 7248.66,
     "snapshot_digest": "ee54c708910a4b3be7671e74f65a9067da995cee0370300bbbd1f02da6ca6ca9",
-    "analysis_id": "fb00e418-9223-4912-93ea-59730fd8ab35"
+    "analysis_id": "e549e1a2-3132-47c4-967e-c0b9f270585b"
   },
   {
     "case_id": "ENG-022",
@@ -3675,9 +3789,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3734.74,
+    "elapsed_ms": 4395.43,
     "snapshot_digest": "ee54c708910a4b3be7671e74f65a9067da995cee0370300bbbd1f02da6ca6ca9",
-    "analysis_id": "9a92de49-ea6c-4de5-a1b1-11b8eb328cf1"
+    "analysis_id": "57f598e1-4c5d-4906-b195-4066b36244f3"
   },
   {
     "case_id": "ENG-022",
@@ -3696,9 +3810,9 @@
       "scripts/evaluate_retrieval.py"
     ],
     "token_estimate": 5993,
-    "elapsed_ms": 1275.75,
+    "elapsed_ms": 1951.55,
     "snapshot_digest": "cb292616324206ae422393e234e6eb25d19faa8afa887dce89e2192f5f218d56",
-    "analysis_id": "b1105375-b7be-45d0-9f4b-1967ba558946"
+    "analysis_id": "4aa30261-f7c2-4925-8431-fad14924f884"
   },
   {
     "case_id": "ENG-022",
@@ -3717,9 +3831,9 @@
       "scripts/evaluate_retrieval.py"
     ],
     "token_estimate": 5993,
-    "elapsed_ms": 1189.09,
+    "elapsed_ms": 4010.32,
     "snapshot_digest": "cb292616324206ae422393e234e6eb25d19faa8afa887dce89e2192f5f218d56",
-    "analysis_id": "172ed481-052e-4e16-ad70-18c66a9cbd7f"
+    "analysis_id": "bf58dce8-e926-4f56-babe-105a76a5cda3"
   },
   {
     "case_id": "ENG-022",
@@ -3727,19 +3841,18 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
-      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "README.md",
-      "apps/api/src/engram/api/consistency.py",
-      "apps/api/src/engram/config.py",
-      "apps/api/src/engram/embeddings/__init__.py",
-      "apps/web/src/app/context-packages/page.tsx",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/tests/test_true_path.py",
       "docs/adr/ADR-001-product-boundary.md",
       "research/README.md"
     ],
-    "token_estimate": 5987,
-    "elapsed_ms": 2573.29,
-    "snapshot_digest": "29806325a8fa30f595defb46bf9f0a2c1e3657e743a51121b03b628de94f75ec",
-    "analysis_id": "c77462e2-2eec-4944-849e-18c14f0f6edb"
+    "token_estimate": 5999,
+    "elapsed_ms": 11879.39,
+    "snapshot_digest": "fb7087c16223ee0bfbd3f8d0cc6cf3e5bf135c54de95aca1efa1113937bb4efa",
+    "analysis_id": "5bce4c96-ff91-4eb6-80af-a8e0056da34c"
   },
   {
     "case_id": "ENG-022",
@@ -3747,19 +3860,18 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
-      "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "README.md",
-      "apps/api/src/engram/api/consistency.py",
-      "apps/api/src/engram/config.py",
-      "apps/api/src/engram/embeddings/__init__.py",
-      "apps/web/src/app/context-packages/page.tsx",
+      "apps/api/src/engram/api/__init__.py",
+      "apps/api/tests/test_true_path.py",
       "docs/adr/ADR-001-product-boundary.md",
       "research/README.md"
     ],
-    "token_estimate": 5987,
-    "elapsed_ms": 2361.66,
-    "snapshot_digest": "29806325a8fa30f595defb46bf9f0a2c1e3657e743a51121b03b628de94f75ec",
-    "analysis_id": "be4e7fb6-6ac7-4772-b337-2bd052610f62"
+    "token_estimate": 5999,
+    "elapsed_ms": 8109.21,
+    "snapshot_digest": "fb7087c16223ee0bfbd3f8d0cc6cf3e5bf135c54de95aca1efa1113937bb4efa",
+    "analysis_id": "609b0e73-1834-4c5e-a983-050176a5d89f"
   },
   {
     "case_id": "ENG-022",
@@ -3768,17 +3880,20 @@
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "README.md",
-      "apps/api/src/engram/errors.py",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/schemas/search.py",
       "apps/api/src/engram/services/context_service.py",
       "docs/adr/ADR-001-product-boundary.md",
       "research/README.md"
     ],
-    "token_estimate": 5991,
-    "elapsed_ms": 1790.39,
-    "snapshot_digest": "c81b1c49e90fdeb8e63db8a97b8af8d7675c8ec63641e737e116dc10a2ca6988",
-    "analysis_id": "8ff5394c-0645-45f6-ba3a-bfe630cee7e2"
+    "token_estimate": 5999,
+    "elapsed_ms": 7256.6,
+    "snapshot_digest": "bc9066c5eace7d64e0f33bf18bbb82c6c931e1ea1b3f772003da66e1fe413d40",
+    "analysis_id": "c9fa594d-8c48-477a-a140-068649e50ae5"
   },
   {
     "case_id": "ENG-022",
@@ -3787,17 +3902,20 @@
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
       "Claude.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
+      "ENGRAM_project_spec_for_Claude_Codex_ru.md",
       "README.md",
-      "apps/api/src/engram/errors.py",
+      "apps/api/src/engram/api/__init__.py",
       "apps/api/src/engram/schemas/search.py",
       "apps/api/src/engram/services/context_service.py",
       "docs/adr/ADR-001-product-boundary.md",
       "research/README.md"
     ],
-    "token_estimate": 5991,
-    "elapsed_ms": 2071.56,
-    "snapshot_digest": "c81b1c49e90fdeb8e63db8a97b8af8d7675c8ec63641e737e116dc10a2ca6988",
-    "analysis_id": "2a9e43e8-d134-4d0e-879e-10bed5da04ec"
+    "token_estimate": 5999,
+    "elapsed_ms": 7959.79,
+    "snapshot_digest": "bc9066c5eace7d64e0f33bf18bbb82c6c931e1ea1b3f772003da66e1fe413d40",
+    "analysis_id": "78074af6-549c-46e7-a205-63f7e7ca0836"
   },
   {
     "case_id": "ENG-023",
@@ -3823,9 +3941,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3970.11,
+    "elapsed_ms": 9663.55,
     "snapshot_digest": "34298802292fc2dae6bcfcd4c367cf52f75f353766c4fe52482f68dd9b48af36",
-    "analysis_id": "fdf3259d-c084-40fc-b6a1-b9dbbf69230b"
+    "analysis_id": "7f2ec5ae-bd39-4dbe-b086-51bb61c3ddbb"
   },
   {
     "case_id": "ENG-023",
@@ -3851,9 +3969,9 @@
       "scripts/engram_context.py"
     ],
     "token_estimate": 5994,
-    "elapsed_ms": 3700.03,
+    "elapsed_ms": 6779.45,
     "snapshot_digest": "34298802292fc2dae6bcfcd4c367cf52f75f353766c4fe52482f68dd9b48af36",
-    "analysis_id": "0debb9e0-e85a-40c5-ae3b-10b0139cc783"
+    "analysis_id": "b0b49194-8ad3-4a62-98af-ad94410b2d60"
   },
   {
     "case_id": "ENG-023",
@@ -3871,9 +3989,9 @@
       "apps/web/src/components/app-shell/Sidebar.tsx"
     ],
     "token_estimate": 5977,
-    "elapsed_ms": 1134.56,
+    "elapsed_ms": 2001.07,
     "snapshot_digest": "9c688180090bffe0b625186cb30307abdaac10c365f3738d95a1aecaeec8d6e3",
-    "analysis_id": "a35f37e5-bba9-4493-b8f1-aacdeaa9e2b4"
+    "analysis_id": "cb024ab5-6103-4883-8598-c8570c04afa6"
   },
   {
     "case_id": "ENG-023",
@@ -3891,51 +4009,55 @@
       "apps/web/src/components/app-shell/Sidebar.tsx"
     ],
     "token_estimate": 5977,
-    "elapsed_ms": 1163.68,
+    "elapsed_ms": 3137.21,
     "snapshot_digest": "9c688180090bffe0b625186cb30307abdaac10c365f3738d95a1aecaeec8d6e3",
-    "analysis_id": "afca3453-6cc5-4b2c-bda1-2983a1cf3dfb"
+    "analysis_id": "41e35ecb-a7b3-4c14-b275-8704a81d87de"
   },
   {
     "case_id": "ENG-023",
     "variant": "graph",
     "repeat": 0,
     "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
       "README.md",
       "ROADMAP.md",
-      "apps/api/src/engram/__init__.py",
       "apps/api/src/engram/config.py",
+      "apps/api/src/engram/enums.py",
       "apps/api/src/engram/main.py",
       "apps/web/README.md",
       "apps/web/src/app/changes/page.tsx",
-      "apps/web/src/app/context-packages/page.tsx",
       "apps/web/src/app/formalize/page.tsx",
-      "scripts/engram_context.py"
+      "scripts/engram_context.py",
+      "scripts/run_retrieval_experiment.py"
     ],
-    "token_estimate": 5946,
-    "elapsed_ms": 1781.44,
-    "snapshot_digest": "d1d7b3933a0885d3c3540915b193789935109a52815d1f3502c37d966e525657",
-    "analysis_id": "c850a65e-4238-4d45-b4f6-9ea9ce43bd28"
+    "token_estimate": 6000,
+    "elapsed_ms": 6605.09,
+    "snapshot_digest": "72f0a46babdb6e9e8d467b4ae8aac013a0528c50e8a095e860997570b3823873",
+    "analysis_id": "61484e50-5a84-44ae-b341-cd0d0bef624d"
   },
   {
     "case_id": "ENG-023",
     "variant": "graph",
     "repeat": 1,
     "retrieved_paths": [
+      ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
       "README.md",
       "ROADMAP.md",
-      "apps/api/src/engram/__init__.py",
       "apps/api/src/engram/config.py",
+      "apps/api/src/engram/enums.py",
       "apps/api/src/engram/main.py",
       "apps/web/README.md",
       "apps/web/src/app/changes/page.tsx",
-      "apps/web/src/app/context-packages/page.tsx",
       "apps/web/src/app/formalize/page.tsx",
-      "scripts/engram_context.py"
+      "scripts/engram_context.py",
+      "scripts/run_retrieval_experiment.py"
     ],
-    "token_estimate": 5946,
-    "elapsed_ms": 1834.79,
-    "snapshot_digest": "d1d7b3933a0885d3c3540915b193789935109a52815d1f3502c37d966e525657",
-    "analysis_id": "4186cd98-cfd2-48c4-aeb9-43034b7f32d5"
+    "token_estimate": 6000,
+    "elapsed_ms": 5374.91,
+    "snapshot_digest": "72f0a46babdb6e9e8d467b4ae8aac013a0528c50e8a095e860997570b3823873",
+    "analysis_id": "bda4bcef-d000-46b5-9a18-5bc22dd8b823"
   },
   {
     "case_id": "ENG-023",
@@ -3943,20 +4065,22 @@
     "repeat": 0,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "README.md",
       "ROADMAP.md",
-      "apps/api/src/engram/db/base.py",
       "apps/web/README.md",
       "apps/web/src/app/artifacts/page.tsx",
       "apps/web/src/app/changes/page.tsx",
       "apps/web/src/app/formalize/page.tsx",
       "apps/web/src/app/sources/page.tsx",
-      "apps/web/src/components/overlay/Modal.tsx"
+      "apps/web/src/components/overlay/Modal.tsx",
+      "ci: generate OpenAPI types in the frontend job before build"
     ],
-    "token_estimate": 5986,
-    "elapsed_ms": 1927.91,
-    "snapshot_digest": "6d3f874559cf4e51aa753889be789e4092027afd64873788a6e5c8c7764391ca",
-    "analysis_id": "e6f55786-cb24-411c-bba2-6de3add2dd1f"
+    "token_estimate": 6000,
+    "elapsed_ms": 7580.33,
+    "snapshot_digest": "d991958ab241e9dd995632cf13100146e17c1b6a5539a18b6138ac60f88b4514",
+    "analysis_id": "8586ece7-dcbf-4edc-8cf9-29699b8b990c"
   },
   {
     "case_id": "ENG-023",
@@ -3964,19 +4088,21 @@
     "repeat": 1,
     "retrieved_paths": [
       ".claude/agents/frontend-architect.md",
+      "DESIGN.md",
+      "ENGRAM_TRUE_PATH_PLAN.md",
       "README.md",
       "ROADMAP.md",
-      "apps/api/src/engram/db/base.py",
       "apps/web/README.md",
       "apps/web/src/app/artifacts/page.tsx",
       "apps/web/src/app/changes/page.tsx",
       "apps/web/src/app/formalize/page.tsx",
       "apps/web/src/app/sources/page.tsx",
-      "apps/web/src/components/overlay/Modal.tsx"
+      "apps/web/src/components/overlay/Modal.tsx",
+      "ci: generate OpenAPI types in the frontend job before build"
     ],
-    "token_estimate": 5986,
-    "elapsed_ms": 1824.54,
-    "snapshot_digest": "6d3f874559cf4e51aa753889be789e4092027afd64873788a6e5c8c7764391ca",
-    "analysis_id": "9b27f043-29e6-4a33-ba60-2e3479563dcb"
+    "token_estimate": 6000,
+    "elapsed_ms": 5559.34,
+    "snapshot_digest": "d991958ab241e9dd995632cf13100146e17c1b6a5539a18b6138ac60f88b4514",
+    "analysis_id": "8ad0fa26-fa44-4b00-a4fc-e2a2741ea704"
   }
 ]

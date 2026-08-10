@@ -7,9 +7,13 @@ change-impact and context-delivery layer over external sources of truth, not a d
 
 The repository contains a **functional prototype of the corrected product loop**. Project
 isolation, precise provenance, item-level versioning, safe review, bounded Context Packages,
-read-only GitHub import, ChangeSets, CI and the interface cutover are implemented. It is not yet a
-validated MVP: the prepared ten-change gold set still needs four-variant measurements on a real
-imported repository, followed by expansion to 20–30 changes.
+read-only GitHub import, ChangeSets, CI and the interface cutover are implemented, and retrieval
+has now been measured on a real imported repository against three baselines.
+
+It is not yet a validated MVP, and the reason is now empirical rather than unmeasured: on the
+23-case gold set the typed graph does **not** improve retrieval over plain semantic search — it
+raises precision and cuts false warnings but loses recall. Until that changes, the core claim
+stands unproven. See [`research/RESULTS.md`](research/RESULTS.md).
 
 ## Delivery sequence
 
@@ -78,14 +82,19 @@ that repository.
 
 ### 6. Research validation
 
-**Status: ten cases and the metric evaluator are prepared; comparative runs are pending.**
+**Status: measured on 23 labelled changes; the typed graph does not yet improve retrieval.**
 
-- Start with 10 labelled changes and grow to 20–30.
-- Compare full context, vector-only, graph-only and Engram hybrid retrieval.
-- Measure recall, precision/F1, false positives, context tokens, runtime and reproducibility.
+- 23 labelled changes, 10 curated and 13 derived from real commits, each run twice.
+- Full context, vector-only, graph-only and hybrid retrieval compared at an equal token budget.
+- Recall, precision/F1, false warnings, context tokens, runtime and reproducibility measured; see
+  [`research/RESULTS.md`](research/RESULTS.md).
 
-**Done when:** the project has measured evidence that the typed graph improves context selection at
-comparable recall.
+**Result so far:** vector-only has the best F1 (0.233) and recall (0.381); the hybrid has the best
+precision (0.185) and a third fewer false warnings, at lower recall. Bounded selection beats full
+context by a wide margin. Reproducibility is exact (0/23 non-reproducible).
+
+**Done when:** the typed graph measurably improves context selection at comparable recall — not yet
+the case. Widening link extraction beyond Python imports and sub-file chunking are the open leads.
 
 ### 7. Interface cutover
 

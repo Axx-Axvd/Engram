@@ -12,7 +12,7 @@ from sqlalchemy import or_, select
 from sqlalchemy.orm import Session
 
 from engram.embeddings import get_embedding_provider
-from engram.enums import ArtifactStatus, LinkState, LinkType
+from engram.enums import ArtifactStatus, ItemType, LinkState, LinkType
 from engram.models import (
     Artifact,
     ArtifactItemRecord,
@@ -25,6 +25,11 @@ from engram.schemas.search import ContextBundle, ContextQuery
 from engram.services import project_service
 
 _TERM = re.compile(r"[\w.-]+", re.UNICODE)
+# A `changes` link from a commit or pull request is provenance ("this revision touched this
+# element"), not a forward dependency: one imported commit points at every file it touched, so
+# expanding through it reaches the whole repository in two hops and floods the budget. Expansion
+# therefore skips those, while `changes` from a change request stays — that one is intent.
+_PROVENANCE_SOURCES = {ItemType.commit.value, ItemType.pull_request.value}
 _GRAPH_WEIGHT: dict[LinkType, float] = {
     LinkType.changes: 0.95,
     LinkType.implements: 0.9,
@@ -183,6 +188,7 @@ def select_context_elements(
     query_terms = _terms(query)
     query_vector = get_embedding_provider().embed_one(query)
     all_items = item_repo.list_items(session, project_id)
+    type_by_id = {item.id: item.type for item in all_items}
     if retrieval_mode not in {"full", "vector", "graph", "combined"}:
         raise ValueError(f"Unknown retrieval mode: {retrieval_mode}")
 
@@ -235,6 +241,11 @@ def select_context_elements(
         next_frontier: set[uuid.UUID] = set()
         for link in item_repo.links_touching(session, project_id, frontier):
             if link.state != LinkState.confirmed.value:
+                continue
+            if (
+                link.type == LinkType.changes
+                and type_by_id.get(link.source_item_id) in _PROVENANCE_SOURCES
+            ):
                 continue
             endpoints = (link.source_item_id, link.target_item_id)
             for origin_id in frontier & set(endpoints):
