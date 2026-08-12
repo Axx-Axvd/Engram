@@ -6,8 +6,22 @@ explains which items a proposed change may affect, requires human review, and em
 reproducible Context Package. External systems remain sources of truth; Engram does not apply
 model suggestions or write back to GitHub.
 
-The authoritative direction is `ENGRAM_TRUE_PATH_PLAN.md`. Read it together with `README.md`,
-`ROADMAP.md`, `FROZEN_IDEAS.md`, and `docs/adr/ADR-001-product-boundary.md` before expanding scope.
+The authoritative direction is `ENGRAM_TRUE_PATH_PLAN.md` **together with**
+`ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md`, which records that the typed-graph retrieval hypothesis was
+measured and disproved, and where the work goes instead. Read both with `README.md`, `ROADMAP.md`,
+`FROZEN_IDEAS.md` and `docs/adr/` before expanding scope.
+
+## Out of attention
+
+These areas still build, still pass CI and stay available for demonstrations, but no current work
+touches them. Do not read, refactor or extend them unless a task names them explicitly — they are
+the largest source of wasted reading in this repository:
+
+- `apps/web/` — the whole frontend. The consumer of the current direction is an agent over MCP.
+- `engram/orchestration/`, `services/artifact_service.py`, `services/consistency_service.py`,
+  `services/link_service.py` — the document-era compatibility surface.
+- Retrieval weight and edge-type tuning in `services/context_service.py`. Five configurations were
+  measured; the ceiling is the fixed budget, not the edges. Fix defects, do not tune.
 
 ## Monorepo layout
 
@@ -65,4 +79,6 @@ pnpm --filter @engram/web exec next build
 - Regenerate the frontend OpenAPI types after backend contract changes; generated files are ignored.
 - Keep rich-text editing and the generic graph as diagnostic compatibility surfaces.
 - Auth/roles, collaboration, additional integrations, auto-repair, Neo4j, LangGraph and visual
-  polish are frozen until the retrieval experiment validates the core loop.
+  polish are frozen until one claim about Engram's value is measured and holds.
+- State no conclusion stronger than the numbers support. Register the criterion before the run:
+  a 0.012 F1 gap on ten cases was published as a win and reversed at twenty-three.
