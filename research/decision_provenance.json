@@ -1,6 +1,7 @@
 {
   "frozen_at": "2026-08-12",
   "frozen_before": "any transcript was opened for this measurement",
+  "pass_1_completed": "2026-08-12, repository only, before any transcript was opened",
   "population_sources": [
     "docs/adr/ADR-001-product-boundary.md",
     "docs/adr/ADR-002-project-memory-from-agent-sessions.md",
@@ -11,152 +12,700 @@
     "FROZEN_IDEAS.md",
     "commit subjects"
   ],
+  "pass_1_sources_searched": [
+    "apps/api/src/engram/**/*.py including comments and docstrings",
+    "apps/api/tests/**/*.py",
+    "ENGRAM_project_spec_for_Claude_Codex_ru.md",
+    "ENGRAM_TRUE_PATH_PLAN.md",
+    "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md",
+    "docs/adr/*.md",
+    "README.md, ROADMAP.md, ROADMAP.old.md, CLAUDE.md, FROZEN_IDEAS.md, DESIGN.md",
+    "research/*.md",
+    "Assets.local/WORK_PLAN_2026-08-09.md (in the working tree, gitignored; counted as doc)",
+    "git log --format=%B over all 31 commits"
+  ],
   "axis_values": ["code", "adr", "doc", "commit", "transcript", "nowhere"],
+  "notes": [
+    "A prior design being replaced is not counted as a rejected alternative. Only an option weighed for the new design and turned down counts.",
+    "Assets.local/ is gitignored but present in the working tree; it is counted as 'doc', which is the conservative reading and works against the claim.",
+    "ENGRAM_единый_план.md lives outside the repository and is a derived summary of the addendum and the plan; it introduces no rationale of its own and is not counted."
+  ],
   "decisions": [
     {
       "id": "D-01",
       "statement": "PostgreSQL with pgvector is the only persistence and retrieval store; no separate graph database and no orchestration framework are introduced.",
-      "population_source": ["ADR-001", "true-path-plan#6", "CLAUDE.md#architecture"]
+      "population_source": ["ADR-001", "true-path-plan#6", "CLAUDE.md#architecture"],
+      "dates": ["2026-05-26", "2026-08-01"],
+      "transcript_available": true,
+      "conclusion_in": ["adr", "doc"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["doc", "commit"],
+      "evidence": {
+        "conclusion_in": {
+          "adr": "docs/adr/ADR-001-product-boundary.md:20-21",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:196; CLAUDE.md architecture bullet"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:196 'Отдельная графовая база не требуется: текущий объём и ближайшие запросы нормально выражаются в реляционной модели и рекурсивных запросах'; :318 'Явная процедурная машина состояний будет проще, прозрачнее'"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:196 (Neo4j), :318 (LangGraph), :465-466; ENGRAM_project_spec_for_Claude_Codex_ru.md:466-473 (Neo4j as a later option)",
+          "commit": "1721b30 'LangGraph deferred to the change-request milestone where branching pays off'"
+        }
+      }
     },
     {
       "id": "D-02",
       "statement": "Project is a hard isolation boundary: every project-owned query must carry project_id.",
-      "population_source": ["true-path-plan#5-P0", "true-path-plan#8.1", "CLAUDE.md#architecture"]
+      "population_source": ["true-path-plan#5-P0", "true-path-plan#8.1", "CLAUDE.md#architecture"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "adr", "doc", "commit"],
+      "rationale_in": ["doc", "adr"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/api/project_scope.py; apps/api/src/engram/models/project.py",
+          "adr": "docs/adr/ADR-001-product-boundary.md:25",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:339",
+          "commit": "68beac3"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:114 'не просто будущая функция для нескольких пользователей, а нарушение корректности уже при создании двух демонстрационных проектов'; :437",
+          "adr": "docs/adr/ADR-001-product-boundary.md:25 'correctness requirements, not future multi-user features'"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:116 'Рабочее пространство пользователей, роли и права пока не нужны; нужна только строгая предметная граница данных'"
+        }
+      }
     },
     {
       "id": "D-03",
       "statement": "External systems remain sources of truth: Engram never writes back to them and never applies model suggestions automatically.",
-      "population_source": ["ADR-001", "true-path-plan#5-P0", "true-path-plan#9", "CLAUDE.md"]
+      "population_source": ["ADR-001", "true-path-plan#5-P0", "true-path-plan#9", "CLAUDE.md"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["adr", "doc", "code"],
+      "rationale_in": ["doc", "adr"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "adr": "docs/adr/ADR-001-product-boundary.md:14-17",
+          "doc": "CLAUDE.md:5-7; ENGRAM_TRUE_PATH_PLAN.md:140",
+          "code": "apps/api/src/engram/mcp/operations.py:22-25"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:132 'Это делает красивым демонстрационный сценарий, но противоречит безопасной модели анализа изменений'",
+          "adr": "docs/adr/ADR-001-product-boundary.md:8-10"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:427-429 'Автоматическое применение ответа модели' named and removed"
+        }
+      }
     },
     {
       "id": "D-04",
       "statement": "Source revisions and locators are immutable provenance; new knowledge must resolve to a fixed revision and an exact locator.",
-      "population_source": ["true-path-plan#8.2", "CLAUDE.md#architecture"]
+      "population_source": ["true-path-plan#8.2", "CLAUDE.md#architecture"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "doc", "commit"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["nowhere"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/models/source.py:15-83",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:341-348; CLAUDE.md architecture bullet",
+          "commit": "68beac3"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:350 'Без этих сущностей нельзя отличить воспроизводимый анализ от ответа модели «по памяти»'"
+        },
+        "alternatives_in": {}
+      },
+      "searched": {
+        "alternatives_in": ["provenance", "происхождение", "редакция источника", "source_ref", "SourceRevision", "immutable"]
+      }
     },
     {
       "id": "D-05",
       "statement": "The versioned item, not the document, is the canonical analysis unit; artifact JSON items are a compatibility representation only.",
-      "population_source": ["ADR-001", "true-path-plan#7.3", "CLAUDE.md#architecture"]
+      "population_source": ["ADR-001", "true-path-plan#7.3", "CLAUDE.md#architecture"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["adr", "doc", "code"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "adr": "docs/adr/ADR-001-product-boundary.md:19-20",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:245-262",
+          "code": "apps/api/src/engram/models/item.py:28-66"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:126 'наиболее ценная структура Engram используется в проверках согласованности, но не в главном интеллектуальном сценарии'"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:431-433 'Полные документы как единственную единицу контекста' named and removed"
+        }
+      }
     },
     {
       "id": "D-06",
       "statement": "Versioning is per item: editing one item neither versions the whole document nor touches neighbouring items.",
-      "population_source": ["true-path-plan#7.3", "true-path-plan#6"]
+      "population_source": ["true-path-plan#7.3", "true-path-plan#6"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "doc"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/models/item.py:69-90; apps/api/src/engram/services/item_service.py:59-88",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:200, :262; README.md:119"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:97 'Нельзя независимо версионировать пункт, связывать его с изменением и доказывать его происхождение'"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:97 keeps document-level versioning with items in JSONB as the named prior option, rejected in the same table"
+        }
+      }
     },
     {
       "id": "D-07",
       "statement": "Only confirmed item links may expand retrieval; inferred links are created in the proposed state.",
-      "population_source": ["true-path-plan#7.4", "CLAUDE.md#architecture"]
+      "population_source": ["true-path-plan#7.4", "CLAUDE.md#architecture"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "doc"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/services/item_service.py:288-289 'An inferred link must be reviewed before it can be confirmed'",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:264-276; CLAUDE.md architecture bullet"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:158-160 'Нельзя отличить ручную связь от догадки модели'"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:479 'AI-подсказки связей: вернуться к ним только после добавления происхождения, уверенности, доказательств и подтверждения человеком'"
+        }
+      }
     },
     {
       "id": "D-08",
       "statement": "Links are semantically constrained by a type matrix rather than being interchangeable.",
-      "population_source": ["true-path-plan#5-P1", "true-path-plan#7.4", "true-path-plan#9"]
+      "population_source": ["true-path-plan#5-P1", "true-path-plan#7.4", "true-path-plan#9"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "doc"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/services/item_service.py:28-45, :261-274",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:166, :439-441"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:164 'тест может tests другой тест или запрос на изменение может implements описание проекта'"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:166 'Связь related_to не следует использовать как удобную замену отсутствующей семантике'"
+        }
+      }
     },
     {
       "id": "D-09",
       "statement": "Impact analysis is non-mutating: a run changes no active version.",
-      "population_source": ["true-path-plan#7.7", "ADR-001", "CLAUDE.md#architecture"]
+      "population_source": ["true-path-plan#7.7", "ADR-001", "CLAUDE.md#architecture"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "adr", "doc", "commit"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/services/analysis_service.py:99-200",
+          "adr": "docs/adr/ADR-001-product-boundary.md:16-17",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:134-140",
+          "commit": "68beac3"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:132 'В режиме заглушки обновляются все найденные кандидаты'"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:427-429"
+        }
+      }
     },
     {
       "id": "D-10",
       "statement": "Invalid structured model output is rejected whole, in one transaction; a partially valid answer is not salvaged.",
-      "population_source": ["true-path-plan#7.6", "CLAUDE.md#architecture", "ADR-002"]
+      "population_source": ["true-path-plan#7.6", "CLAUDE.md#architecture", "ADR-002"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "doc", "adr"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/services/analysis_service.py:121-148; apps/api/src/engram/llm/claude_code.py:186-240",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:306; CLAUDE.md architecture bullet",
+          "adr": "docs/adr/ADR-002-project-memory-from-agent-sessions.md:65-66"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:306 'Частично корректный ответ не должен незаметно превращаться в успешный анализ'"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:306 names accepting a partially correct answer and rejects it"
+        }
+      }
     },
     {
       "id": "D-11",
       "statement": "Human review is mandatory: a context package is assembled only from confirmed candidates.",
-      "population_source": ["true-path-plan#11", "ADR-001", "CLAUDE.md"]
+      "population_source": ["true-path-plan#11", "ADR-001", "CLAUDE.md"],
+      "dates": ["2026-08-01", "2026-08-09", "2026-08-10"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "adr", "doc", "commit"],
+      "rationale_in": ["code", "doc", "commit"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/services/analysis_service.py; apps/api/src/engram/mcp/operations.py:22-25",
+          "adr": "docs/adr/ADR-001-product-boundary.md:16-17",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:134-140; CLAUDE.md",
+          "commit": "0c1a2eb"
+        },
+        "rationale_in": {
+          "code": "apps/api/src/engram/mcp/operations.py:7-8 'Approving an impact candidate is the human decision the whole loop is built around'",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:140 'По умолчанию Engram не должен переписывать документы или код'",
+          "commit": "0c1a2eb"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:427-429"
+        }
+      }
     },
     {
       "id": "D-12",
       "statement": "The context budget is enforced after graph expansion, not before it.",
-      "population_source": ["true-path-plan#7.5", "CLAUDE.md#architecture"]
+      "population_source": ["true-path-plan#7.5", "CLAUDE.md#architecture"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "doc"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/services/context_service.py:223, :338",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:288; CLAUDE.md architecture bullet"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:120 'Ограничение limit действует только на начальные документы, но не на итоговый пакет после обхода графа'"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:120 names the pre-expansion limit and rejects it"
+        }
+      }
     },
     {
       "id": "D-13",
       "statement": "Every element of a context package carries a machine-checkable reason for inclusion, its graph path, version and source locator.",
-      "population_source": ["true-path-plan#7.5", "true-path-plan#8.6"]
+      "population_source": ["true-path-plan#7.5", "true-path-plan#8.6"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "doc"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["nowhere"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/services/context_service.py:220-223 selection_reason",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:289-292"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:98 'Контекст может быстро разрастаться и не объясняет релевантность каждого элемента'"
+        },
+        "alternatives_in": {}
+      },
+      "searched": {
+        "alternatives_in": ["объясн", "explain", "selection_reason", "graph_path", "reason"]
+      }
     },
     {
       "id": "D-14",
       "statement": "GitHub is the first and only source adapter during MVP validation, and it is read-only.",
-      "population_source": ["ADR-001", "true-path-plan#8.5", "CLAUDE.md#architecture"]
+      "population_source": ["ADR-001", "true-path-plan#8.5", "CLAUDE.md#architecture"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["adr", "doc", "code"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "adr": "docs/adr/ADR-001-product-boundary.md:27",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:378-389",
+          "code": "apps/api/src/engram/services/github_source_service.py"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:389 'Один качественный сквозной источник полезнее пяти неполных'"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:389 'Не следует одновременно подключать Jira, Confluence, Linear и Notion'"
+        }
+      }
     },
     {
       "id": "D-15",
       "statement": "The backend is layered api to services to repositories to models.",
-      "population_source": ["true-path-plan#6", "CLAUDE.md#architecture"]
+      "population_source": ["true-path-plan#6", "CLAUDE.md#architecture"],
+      "dates": ["2026-05-26", "2026-08-01"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "doc"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/api, services, repositories, models",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:188; CLAUDE.md architecture bullet"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:188 'достаточно простое, понятно проверяется и не требует преждевременной оркестрационной платформы'"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:188 names a premature orchestration platform and rejects it; :318 rejects LangGraph for the same split"
+        }
+      }
     },
     {
       "id": "D-16",
       "statement": "Deterministic mock LLM and embedding providers are the default in tests and CI regardless of a developer's local .env.",
-      "population_source": ["true-path-plan#6", "CLAUDE.md#rules"]
+      "population_source": ["true-path-plan#6", "CLAUDE.md#rules"],
+      "dates": ["2026-05-26", "2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "doc"],
+      "rationale_in": ["code", "doc"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/tests/conftest.py:15-16",
+          "doc": "CLAUDE.md:78; ENGRAM_TRUE_PATH_PLAN.md:192"
+        },
+        "rationale_in": {
+          "code": "apps/api/tests/conftest.py:14 'Tests are deterministic regardless of a developer's local .env'",
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:192 'Провайдер Claude через локальную подписку полезен для исследовательских запусков, но не должен определять архитектуру продукта'"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:478 'провайдер Claude Code: использовать для испытаний, но не строить вокруг локального CLI продуктовый контракт'"
+        }
+      }
     },
     {
       "id": "D-17",
       "statement": "Candidate review is deliberately not exposed to the agent over the MCP channel.",
-      "population_source": ["CLAUDE.md#architecture", "ADR-002", "commit 0c1a2eb"]
+      "population_source": ["CLAUDE.md#architecture", "ADR-002", "commit 0c1a2eb"],
+      "dates": ["2026-08-10"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "doc", "commit"],
+      "rationale_in": ["code", "commit"],
+      "alternatives_in": ["code", "commit"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/mcp/operations.py:7-8; apps/api/src/engram/mcp/server.py:49-113",
+          "doc": "CLAUDE.md architecture bullet",
+          "commit": "0c1a2eb"
+        },
+        "rationale_in": {
+          "code": "apps/api/src/engram/mcp/operations.py:7-8",
+          "commit": "0c1a2eb 'approving impact is the human decision the whole loop is built around, so get_context fails while review is pending'"
+        },
+        "alternatives_in": {
+          "code": "apps/api/src/engram/mcp/operations.py:7 'Deliberately absent: reviewing candidates'",
+          "commit": "0c1a2eb 'Reviewing a candidate is deliberately not exposed'"
+        }
+      }
     },
     {
       "id": "D-18",
       "statement": "MCP delivery is split into protocol-independent operations and a stdio adapter behind an optional extra.",
-      "population_source": ["CLAUDE.md#architecture", "commit 0c1a2eb"]
+      "population_source": ["CLAUDE.md#architecture", "commit 0c1a2eb"],
+      "dates": ["2026-08-10"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "doc", "commit"],
+      "rationale_in": ["code", "commit"],
+      "alternatives_in": ["nowhere"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "apps/api/src/engram/mcp/operations.py:1-9; apps/api/src/engram/mcp/server.py",
+          "doc": "CLAUDE.md architecture bullet",
+          "commit": "0c1a2eb"
+        },
+        "rationale_in": {
+          "code": "apps/api/src/engram/mcp/operations.py:3-5 'so the agent-facing channel cannot drift from the product rules'",
+          "commit": "0c1a2eb 'a thin stdio adapter behind a new optional mcp extra, keeping CI and the default install unchanged'"
+        },
+        "alternatives_in": {}
+      },
+      "searched": {
+        "alternatives_in": ["mcp extra", "stdio", "protocol-independent", "optional dependency", "operations.py"]
+      }
     },
     {
       "id": "D-19",
       "statement": "Every model change ships with an Alembic migration tested on both existing data and clean installs.",
-      "population_source": ["CLAUDE.md#rules"]
+      "population_source": ["CLAUDE.md#rules"],
+      "dates": ["2026-05-26", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["doc", "code"],
+      "rationale_in": ["nowhere"],
+      "alternatives_in": ["nowhere"],
+      "evidence": {
+        "conclusion_in": {
+          "doc": "CLAUDE.md:77",
+          "code": "apps/api/alembic/versions/"
+        },
+        "rationale_in": {},
+        "alternatives_in": {}
+      },
+      "searched": {
+        "rationale_in": ["migration", "alembic", "миграц", "existing-data", "clean install", "upgrade head"],
+        "alternatives_in": ["migration", "alembic", "create_all", "миграц"]
+      }
     },
     {
       "id": "D-20",
       "statement": "GitHub tokens remain server-side and are never persisted in source configuration.",
-      "population_source": ["CLAUDE.md#rules"]
+      "population_source": ["CLAUDE.md#rules"],
+      "dates": ["2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["doc", "code"],
+      "rationale_in": ["nowhere"],
+      "alternatives_in": ["nowhere"],
+      "evidence": {
+        "conclusion_in": {
+          "doc": "CLAUDE.md:75",
+          "code": "apps/api/src/engram/config.py:34-36; apps/api/src/engram/services/github_source_service.py:61-62, :123"
+        },
+        "rationale_in": {},
+        "alternatives_in": {}
+      },
+      "searched": {
+        "rationale_in": ["token", "secret", "credential", "persist", "server-side", "токен"],
+        "alternatives_in": ["token", "secret", "credential", "configuration"]
+      }
     },
     {
       "id": "D-21",
       "statement": "Auth and roles, collaboration, further integrations, auto-repair, Neo4j, LangGraph and visual polish are frozen until one claim about Engram's value is measured and holds.",
-      "population_source": ["CLAUDE.md#rules", "FROZEN_IDEAS.md", "ROADMAP.md"]
+      "population_source": ["CLAUDE.md#rules", "FROZEN_IDEAS.md", "ROADMAP.md"],
+      "dates": ["2026-08-01", "2026-08-09", "2026-08-12"],
+      "transcript_available": true,
+      "conclusion_in": ["doc", "adr"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["nowhere"],
+      "evidence": {
+        "conclusion_in": {
+          "doc": "CLAUDE.md:81-83; FROZEN_IDEAS.md; ENGRAM_TRUE_PATH_PLAN.md:453-471",
+          "adr": "docs/adr/ADR-001-product-boundary.md:26, :29"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:455 'по ним не следует принимать новые задачи до прохождения критериев нового исследовательского ядра'; ENGRAM_TRUE_PATH_PLAN.md:228"
+        },
+        "alternatives_in": {}
+      },
+      "searched": {
+        "alternatives_in": ["freeze", "заморозить", "frozen", "until", "deferred"]
+      }
     },
     {
       "id": "D-22",
       "statement": "Rich-text editing and the generic graph are kept only as diagnostic compatibility surfaces.",
-      "population_source": ["ADR-001", "true-path-plan#9", "CLAUDE.md#rules"]
+      "population_source": ["ADR-001", "true-path-plan#9", "CLAUDE.md#rules"],
+      "dates": ["2026-08-01", "2026-08-09"],
+      "transcript_available": true,
+      "conclusion_in": ["adr", "doc", "commit"],
+      "rationale_in": ["doc"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "adr": "docs/adr/ADR-001-product-boundary.md:19, :26",
+          "doc": "CLAUDE.md:80; ENGRAM_TRUE_PATH_PLAN.md:477",
+          "commit": "fb35e1c"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:152 'двусторонняя синхронизация неизбежно породит вопросы о конфликте и приоритете. Главная задача Engram не требует собственного богатого редактора'; :176"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN.md:447-449 'Обязательную синхронизацию rich-text и items' named and removed"
+        }
+      }
     },
     {
       "id": "D-23",
       "statement": "Tuning retrieval weights and edge types is frozen; the ceiling is set by budget mechanics, not by the edges.",
-      "population_source": ["ADR-002", "addendum#26", "FROZEN_IDEAS.md", "CLAUDE.md"]
+      "population_source": ["ADR-002", "addendum#26", "FROZEN_IDEAS.md", "CLAUDE.md"],
+      "dates": ["2026-08-10", "2026-08-12"],
+      "transcript_available": true,
+      "conclusion_in": ["adr", "doc"],
+      "rationale_in": ["adr", "doc", "commit"],
+      "alternatives_in": ["doc", "commit"],
+      "evidence": {
+        "conclusion_in": {
+          "adr": "docs/adr/ADR-002-project-memory-from-agent-sessions.md:59-61",
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 26; FROZEN_IDEAS.md; CLAUDE.md"
+        },
+        "rationale_in": {
+          "adr": "docs/adr/ADR-002:21-25 'expansion competes with retrieval for the same slots'",
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 20.2; research/RESULTS.md",
+          "commit": "b184ce3"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 20.1 and the five-configuration table in 20.2",
+          "commit": "b184ce3 co-change edges; e5ca3c5 provenance star; 53dedc1 direction and damping"
+        }
+      }
     },
     {
       "id": "D-24",
       "statement": "The primary source of value becomes rationale captured from agent sessions, and impact analysis stops being what Engram calls itself.",
-      "population_source": ["ADR-002", "addendum#21", "addendum#26"]
+      "population_source": ["ADR-002", "addendum#21", "addendum#26"],
+      "dates": ["2026-08-12"],
+      "transcript_available": true,
+      "conclusion_in": ["adr", "doc"],
+      "rationale_in": ["adr", "doc", "commit"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "adr": "docs/adr/ADR-002:34, :56-58",
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 21; ROADMAP.md"
+        },
+        "rationale_in": {
+          "adr": "docs/adr/ADR-002:27-30",
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 21.1 'Замысел — единственное, чего в коде нет физически'",
+          "commit": "99f86f6"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 21.1 weighs selection, currency and consequences and turns each down in favour of rationale"
+        }
+      }
     },
     {
       "id": "D-25",
       "statement": "Rationale is served by direct link lookup rather than through the scoring and expansion pipeline.",
-      "population_source": ["ADR-002", "addendum#23.1"]
+      "population_source": ["ADR-002", "addendum#23.1"],
+      "dates": ["2026-08-12"],
+      "transcript_available": true,
+      "conclusion_in": ["adr", "doc"],
+      "rationale_in": ["adr", "doc"],
+      "alternatives_in": ["adr"],
+      "evidence": {
+        "conclusion_in": {
+          "adr": "docs/adr/ADR-002:45-47",
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 23.1 item 3"
+        },
+        "rationale_in": {
+          "adr": "docs/adr/ADR-002:45-47 'here the graph does not compete with search, it supplies an answer search cannot give'",
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 23.1 item 3"
+        },
+        "alternatives_in": {
+          "adr": "docs/adr/ADR-002:45-46 names the scoring and expansion pipeline and rejects it for this query"
+        }
+      }
     },
     {
       "id": "D-26",
       "statement": "Raw session messages are never persisted; only the extracted decision text and a locator a human can verify against the transcript.",
-      "population_source": ["ADR-002", "addendum#23.2"]
+      "population_source": ["ADR-002", "addendum#23.2"],
+      "dates": ["2026-08-12"],
+      "transcript_available": true,
+      "conclusion_in": ["adr", "doc"],
+      "rationale_in": ["adr", "doc"],
+      "alternatives_in": ["doc"],
+      "evidence": {
+        "conclusion_in": {
+          "adr": "docs/adr/ADR-002:42-43",
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 23.2"
+        },
+        "rationale_in": {
+          "adr": "docs/adr/ADR-002:67-69 'a session can contain tokens a developer pasted. Storing only extracted text is a design constraint, not a preference'",
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 23.2"
+        },
+        "alternatives_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 23.2 names relying on redaction alone and rejects it as a single line of defence"
+        }
+      }
     },
     {
       "id": "D-27",
       "statement": "A session must be segmented before extraction, and a segment with wide fan-out produces proposed rather than confirmed links.",
-      "population_source": ["ADR-002", "addendum#23.1"]
+      "population_source": ["ADR-002", "addendum#23.1"],
+      "dates": ["2026-08-12"],
+      "transcript_available": true,
+      "conclusion_in": ["adr", "doc"],
+      "rationale_in": ["adr", "doc"],
+      "alternatives_in": ["adr"],
+      "evidence": {
+        "conclusion_in": {
+          "adr": "docs/adr/ADR-002:62-64",
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 23.1 items 1 and 2"
+        },
+        "rationale_in": {
+          "adr": "docs/adr/ADR-002:62-64 'An unsegmented session would recreate the provenance star this measurement already exposed once'",
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 23.1 item 1"
+        },
+        "alternatives_in": {
+          "adr": "docs/adr/ADR-002:63-64 names the unsegmented session and rejects it"
+        }
+      }
     },
     {
       "id": "D-28",
       "statement": "A falsification criterion is registered before each measurement, and no project statement may be stronger than the numbers support.",
-      "population_source": ["CLAUDE.md#rules", "addendum#22", "addendum#25.3"]
+      "population_source": ["CLAUDE.md#rules", "addendum#22", "addendum#25.3"],
+      "dates": ["2026-08-10", "2026-08-12"],
+      "transcript_available": true,
+      "conclusion_in": ["doc"],
+      "rationale_in": ["doc", "commit"],
+      "alternatives_in": ["nowhere"],
+      "evidence": {
+        "conclusion_in": {
+          "doc": "CLAUDE.md:82-83; ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 22"
+        },
+        "rationale_in": {
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 22 'Первый вывод эксперимента продержался ровно до расширения выборки с 10 кейсов до 23 и был снят'",
+          "commit": "882ece4 'The ten-case result that put the hybrid first does not survive a larger gold set'"
+        },
+        "alternatives_in": {}
+      },
+      "searched": {
+        "alternatives_in": ["pre-register", "предрегистр", "критерий опровержения", "kill criterion", "registered"]
+      }
     },
     {
       "id": "D-29",
       "statement": "Repeated runs are mandatory in any measurement, and absolute counters are taken from the first run so repeats do not double them.",
-      "population_source": ["addendum#25.3", "research/RESULTS.md"]
+      "population_source": ["addendum#25.3", "research/RESULTS.md"],
+      "dates": ["2026-08-10"],
+      "transcript_available": true,
+      "conclusion_in": ["code", "doc"],
+      "rationale_in": ["code", "doc", "commit"],
+      "alternatives_in": ["commit"],
+      "evidence": {
+        "conclusion_in": {
+          "code": "scripts/evaluate_retrieval.py:41-44; scripts/run_retrieval_experiment.py --repeats",
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 25.3; research/RESULTS.md"
+        },
+        "rationale_in": {
+          "code": "scripts/evaluate_retrieval.py:41-43 'Repeated runs of the same case exist to test reproducibility; scoring them again would only multiply the absolute counts'",
+          "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 25.3",
+          "commit": "882ece4 'The previous 0/10 was vacuous'"
+        },
+        "alternatives_in": {
+          "commit": "882ece4 names the single-run reproducibility check it replaces and calls it vacuous"
+        }
+      }
     }
   ]
 }
