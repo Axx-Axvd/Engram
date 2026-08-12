@@ -197,3 +197,11 @@ retrieval baseline.
   observed package). It cannot inflate recall, since it is never a gold path, but excluding
   `research/` from the corpus would make the setup cleaner.
 - Single repository (dogfood). An external repository would strengthen external validity.
+
+## The project's second measured negative
+
+The direction this result opened — capturing rationale from agent sessions, since retrieval turned
+out not to be the bottleneck — was itself gated on a premise check and did not pass it. Of 29
+decisions of this project, one has its rationale recorded only in a session transcript: 3.4% against
+a 30% threshold registered before the labelling started. Method, numbers and citations:
+[`DECISION_PROVENANCE.md`](DECISION_PROVENANCE.md).

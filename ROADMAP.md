@@ -19,9 +19,12 @@ including co-change edges mined from git history — leave recall at 0.283–0.2
 any graph. The bottleneck is the fixed budget, not the edge type. See
 [`research/RESULTS.md`](research/RESULTS.md) and [`docs/adr/ADR-002`](docs/adr/ADR-002-project-memory-from-agent-sessions.md).
 
-Effort therefore moves to the part of the original value list that was never measured: preserving
-rationale between sessions, and context cost. Stages 8–10 below are gated on a cheap premise check
-whose kill criterion is registered in advance.
+**The follow-up claim is disproved too.** Effort moved to the part of the original value list that had
+never been measured — rationale preserved between sessions — behind a cheap premise check whose kill
+criterion was registered in advance. The check came back at 3.4% against a 30% threshold: in this
+repository, rationale is recorded outside the session transcript almost without exception. Stage 8
+below records it; stages 9 and 10a are dropped. See
+[`research/DECISION_PROVENANCE.md`](research/DECISION_PROVENANCE.md).
 
 ## Delivery sequence
 
@@ -122,44 +125,36 @@ of the edges. Further weight and edge-type tuning for retrieval metrics is froze
 
 ### 8. Premise check for project memory (gate)
 
-**Status: next. No product code is written at this stage.**
+**Status: done. The claim is refuted and the direction is closed.**
 
-- Label ~20 real decisions of this project on three independent axes: where the conclusion is
-  recorded, where the rationale is, where the rejected alternatives are — one of code, ADR, doc,
-  commit, transcript, nowhere.
-- Report the share whose rationale or alternatives exist **only** in a session transcript.
+29 decisions were drawn from the specification sources and frozen before any transcript was opened,
+then labelled on three axes — where the conclusion, the rationale and the rejected alternatives are
+recorded — with a citation on every value.
 
-**Kill criterion, registered before measuring:** below 30%, the niche is already covered by commits
-and documentation. The direction is closed, the result is recorded in `research/RESULTS.md` as a
-second measured negative, and only stage 10b remains.
+**Result: 1 of 29, or 3.4%, against the 30% threshold registered in advance.** Pass 1 searched the
+repository alone and was committed before the transcripts were read; it already capped the possible
+share at 24.1%, because only seven decisions had any gap for a transcript to fill. 86% of decisions
+have their rationale in a repository document, and the single hit sits in a Codex rollout the planned
+importer was scoped not to read.
+
+The cause is the bias declared in advance: `ENGRAM_TRUE_PATH_PLAN.md` §5 argues a justification for
+nearly every architectural choice, and commit bodies here carry paragraphs of reasoning. The claim is
+measured on **this** repository and stated no wider than that. See
+[`research/DECISION_PROVENANCE.md`](research/DECISION_PROVENANCE.md).
 
 ### 9. Agent sessions as a source
 
-**Status: blocked on stage 8.**
-
-- Ingest a session as `SourceKind.agent_session`: revision is the session id, a locator is a range of
-  messages, an extracted decision is a versioned `decision` item.
-- Segment a session before extracting, and degrade a wide-fan-out segment to `proposed` links — an
-  unsegmented session would recreate the provenance star stage 6 exposed.
-- Link `code_component --implements--> decision` for files edited in the same segment.
-- Never persist raw messages: only extracted decision text plus the locator that lets a human verify
-  it. No schema migration is required for any of this.
-- Serve rationale by direct link lookup, and expose it as a `why` tool on the MCP channel.
-
-**Done when:** an external agent asks which decisions govern a set of files and receives them with
-their session and message range, not "similar files".
+**Status: dropped, by the stage-8 kill criterion.** Session ingestion, the `why` tool and the
+`agent_session` source are not built.
 
 ### 10. Measuring the new claim
 
-**Status: blocked on stage 9.**
+- **a. Decision adherence.** **Dropped with stage 9** — there is no rationale store to measure.
+- **b. Context cost — the only measurable claim left.** An engineering property, not a research
+  claim: tokens and steps to the same outcome, with and without a prepared package, over the existing
+  23 cases through the MCP channel. Every part it needs already exists.
 
-- **a. Decision adherence (the thesis claim).** ~15 tasks built from real decisions whose violation is
-  detectable *mechanically*, with no model acting as judge. Each task is solved twice — with the
-  agent's own search and with rationale available — and the violation rate is compared.
-- **b. Context cost (an engineering property, not a research claim).** Tokens and steps to the same
-  outcome, with and without a prepared package, over the existing 23 cases.
-
-**Done when:** 10a gives an unambiguous answer, and no statement in `README.md`, `ROADMAP.md` or
+**Done when:** 10b gives a number, and no statement in `README.md`, `ROADMAP.md` or
 `research/RESULTS.md` is stronger than the numbers support.
 
 ## MVP definition
@@ -169,8 +164,10 @@ at item level without mutating the source of truth, a human reviews every eviden
 an external agent receives a bounded reproducible package over CLI or MCP, the actual commit is
 recorded as a ChangeSet, and retrieval quality has been measured against baselines.
 
-What is missing is not a mechanism but a demonstrated advantage. The measurement came back at parity,
-so Engram is a working system without a proven reason to exist yet. It becomes an MVP when one claim
-is measured and holds — currently stage 10a, decision adherence — and not before.
+What is missing is not a mechanism but a demonstrated advantage. Two claims have now been measured and
+neither held: the typed graph does not improve retrieval, and this project's rationale is not confined
+to its sessions. Engram is a working, well-evidenced system whose reason to exist is still unproven.
+It becomes an MVP when one claim is measured and holds — the only one left standing is stage 10b —
+and not before.
 
 Deferred ideas are recorded in [`FROZEN_IDEAS.md`](FROZEN_IDEAS.md), without delivery dates.

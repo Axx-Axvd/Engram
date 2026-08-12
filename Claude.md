@@ -7,9 +7,14 @@ reproducible Context Package. External systems remain sources of truth; Engram d
 model suggestions or write back to GitHub.
 
 The authoritative direction is `ENGRAM_TRUE_PATH_PLAN.md` **together with**
-`ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md`, which records that the typed-graph retrieval hypothesis was
-measured and disproved, and where the work goes instead. Read both with `README.md`, `ROADMAP.md`,
+`ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md`, which records two measured negative results: the typed graph
+does not improve retrieval (§20), and this project's rationale is not confined to its agent sessions
+(§29, 3.4% against a 30% threshold registered in advance). Read both with `README.md`, `ROADMAP.md`,
 `FROZEN_IDEAS.md` and `docs/adr/` before expanding scope.
+
+**One measurable claim is left standing:** context cost — whether a prepared package brings an agent
+to the same outcome in fewer tokens and steps than its own exploration (`ROADMAP.md` stage 10b). It
+is an engineering property with no claim to novelty. Everything it needs is already built.
 
 ## Out of attention
 
@@ -22,6 +27,8 @@ the largest source of wasted reading in this repository:
   `services/link_service.py` — the document-era compatibility surface.
 - Retrieval weight and edge-type tuning in `services/context_service.py`. Five configurations were
   measured; the ceiling is the fixed budget, not the edges. Fix defects, do not tune.
+- Agent-session ingestion, an `agent_session` source kind, a `why` MCP tool. Measured and closed —
+  do not propose them again without new numbers (`research/DECISION_PROVENANCE.md`).
 
 ## Monorepo layout
 

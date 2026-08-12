@@ -1,6 +1,7 @@
 # ADR-002: Project memory is captured from agent sessions
 
-- Status: accepted
+- Status: **reversed by its own kill criterion, 2026-08-12**. The decision below was taken with a
+  registered falsification threshold; the threshold fired. See [Outcome](#outcome).
 - Date: 2026-08-10
 - Amends: [ADR-001](ADR-001-product-boundary.md) (not superseded)
 
@@ -68,3 +69,40 @@ transcript, the direction is closed and the result recorded.
   contain tokens a developer pasted. Storing only extracted text is a design constraint, not a
   preference.
 - ADR-001 remains in force for product boundary, non-mutation, human review and provenance.
+
+## Outcome
+
+**2026-08-12. The premise check refuted the claim and the direction is closed.**
+
+Of 29 decisions drawn from the specification sources and frozen before any transcript was opened,
+**one** has its rationale recorded only in a session transcript: 3.4% against the 30% threshold
+registered above. The result is not borderline — pass 1, which searched the repository alone and was
+committed before the transcripts were read, already capped the possible share at 24.1%, because only
+seven decisions had any gap for a transcript to fill.
+
+The single hit is D-19, the rule that every model change ships with a migration tested on both
+existing data and clean installs: the rule is in `CLAUDE.md`, the reason exists only in a Codex
+rollout of 1 August. It sits in a transcript format the importer this ADR proposed was scoped not to
+read.
+
+The cause is the bias declared in advance: `ENGRAM_TRUE_PATH_PLAN.md` §5 argues a justification for
+nearly every architectural choice, and this project's commit bodies carry paragraphs of reasoning.
+86% of decisions have their rationale in a repository document. The niche this ADR claimed is, in
+this project, already occupied.
+
+Method, numbers and every citation:
+[`research/DECISION_PROVENANCE.md`](../../research/DECISION_PROVENANCE.md).
+
+Consequences of the reversal:
+
+- Session ingestion, the `why` tool and the decision-adherence measurement are not built. Stages 9
+  and 10a of `ROADMAP.md` are dropped.
+- Everything ADR-002 recorded about the **retrieval** measurement stands: the typed graph does not
+  improve context selection, that claim is removed from the project's documents, and further edge
+  tuning stays frozen. That part was measured and is unaffected.
+- What remains measurable is the auxiliary engineering claim of §25.2 of the addendum — token and
+  step cost of a prepared package against an agent's own exploration.
+- ADR-001 continues to hold in full.
+
+The claim was stated, a threshold was registered before the measurement, the measurement was made,
+and it came back negative. That is the process working, not failing.

@@ -9,10 +9,17 @@ and [`docs/adr/ADR-002`](docs/adr/ADR-002-project-memory-from-agent-sessions.md)
   0.381 with no graph at all. The limit is the fixed budget, where expansion competes with retrieval.
   This becomes worthwhile again only if the budget mechanics change — a reserved quota for expansion,
   or admitting a neighbour only when it also has semantic support;
+- **ingesting agent sessions as a source of rationale.** Closed by measurement rather than deferred:
+  of 29 decisions of this project, frozen before any transcript was opened, exactly one has its
+  rationale recorded only in a session — 3.4% against a 30% threshold registered in advance, and that
+  one sits in a transcript format the importer was scoped not to read. 86% have their rationale in a
+  repository document. Reopening this needs a project whose rationale demonstrably does not reach its
+  documents, measured the same way first, not assumed. See
+  [`research/DECISION_PROVENANCE.md`](research/DECISION_PROVENANCE.md);
 - **staleness tracking for documentation as a product value.** Code is always current with respect to
   itself, so this only bites on derived knowledge, where it is worth little to an agent. The
-  direction that does matter — "the decision changed, and here is the code implementing the old
-  one" — belongs to the addendum's claim, not to a separate effort;
+  direction that would have mattered — "the decision changed, and here is the code implementing the
+  old one" — depended on the rationale store above and closes with it;
 - further rich-text editor features and bidirectional content/items synchronisation;
 - comments, notifications, real-time collaboration, users, roles and permissions;
 - visual redesign, advanced graph layout and animation;

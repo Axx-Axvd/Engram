@@ -2,6 +2,11 @@
   "frozen_at": "2026-08-12",
   "frozen_before": "any transcript was opened for this measurement",
   "pass_1_completed": "2026-08-12, repository only, before any transcript was opened",
+  "pass_2_completed": "2026-08-12, transcripts opened only after pass 1 was committed as 017e8b0",
+  "pass_2_scope": [
+    "Exhaustive for the seven decisions whose rationale or alternatives pass 1 found nowhere in the repository: D-04, D-13, D-18, D-19, D-20, D-21, D-28. Only those can change the reported share.",
+    "Opportunistic for the remaining twenty-two: where a transcript hit surfaced during those searches it was recorded, but the corpus was not swept for them. This cannot move any number, because the repository already holds their rationale, so they cannot be 'only in a transcript' whatever the transcripts say."
+  ],
   "population_sources": [
     "docs/adr/ADR-001-product-boundary.md",
     "docs/adr/ADR-002-project-memory-from-agent-sessions.md",
@@ -434,8 +439,9 @@
       "dates": ["2026-08-10"],
       "transcript_available": true,
       "conclusion_in": ["code", "doc", "commit"],
-      "rationale_in": ["code", "commit"],
+      "rationale_in": ["code", "commit", "transcript"],
       "alternatives_in": ["nowhere"],
+      "transcript_store": ["claude_code"],
       "evidence": {
         "conclusion_in": {
           "code": "apps/api/src/engram/mcp/operations.py:1-9; apps/api/src/engram/mcp/server.py",
@@ -444,7 +450,8 @@
         },
         "rationale_in": {
           "code": "apps/api/src/engram/mcp/operations.py:3-5 'so the agent-facing channel cannot drift from the product rules'",
-          "commit": "0c1a2eb 'a thin stdio adapter behind a new optional mcp extra, keeping CI and the default install unchanged'"
+          "commit": "0c1a2eb 'a thin stdio adapter behind a new optional mcp extra, keeping CI and the default install unchanged'",
+          "transcript": "claude_code 58da506d, message 520: 'Смысл разделения: операции полностью покрыты тестами без SDK, поэтому CI и обычная установка не потяжелели' — the same reason the commit already records"
         },
         "alternatives_in": {}
       },
@@ -459,20 +466,24 @@
       "dates": ["2026-05-26", "2026-08-09"],
       "transcript_available": true,
       "conclusion_in": ["doc", "code"],
-      "rationale_in": ["nowhere"],
+      "rationale_in": ["transcript"],
       "alternatives_in": ["nowhere"],
+      "transcript_store": ["codex"],
       "evidence": {
         "conclusion_in": {
           "doc": "CLAUDE.md:77",
           "code": "apps/api/alembic/versions/"
         },
-        "rationale_in": {},
+        "rationale_in": {
+          "transcript": "codex rollout-2026-08-01T12-07-38-019fbc94, message 213: 'полный жизненный цикл миграций на отдельной временной БД: чистая установка → downgrade до base → повторный upgrade. Это важно, потому что текущая миграция переносит legacy JSONB-данные в нормализованные элементы и добавляет обязательные project/provenance-поля'"
+        },
         "alternatives_in": {}
       },
       "searched": {
         "rationale_in": ["migration", "alembic", "миграц", "existing-data", "clean install", "upgrade head"],
         "alternatives_in": ["migration", "alembic", "create_all", "миграц"]
-      }
+      },
+      "note": "The only decision in the population whose rationale exists solely in a transcript. A stricter reading that counted ROADMAP.md:42 ('Migrate existing data into a default project without loss') as a stated reason rather than a delivery requirement would move this to 'doc' and make the count 0/29. The migration file itself carries no explanatory docstring."
     },
     {
       "id": "D-20",
@@ -667,15 +678,17 @@
       "dates": ["2026-08-10", "2026-08-12"],
       "transcript_available": true,
       "conclusion_in": ["doc"],
-      "rationale_in": ["doc", "commit"],
+      "rationale_in": ["doc", "commit", "transcript"],
       "alternatives_in": ["nowhere"],
+      "transcript_store": ["claude_code"],
       "evidence": {
         "conclusion_in": {
           "doc": "CLAUDE.md:82-83; ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 22"
         },
         "rationale_in": {
           "doc": "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md section 22 'Первый вывод эксперимента продержался ровно до расширения выборки с 10 кейсов до 23 и был снят'",
-          "commit": "882ece4 'The ten-case result that put the hybrid first does not survive a larger gold set'"
+          "commit": "882ece4 'The ten-case result that put the hybrid first does not survive a larger gold set'",
+          "transcript": "claude_code 58da506d, message 692: 'Порядок «сначала критерий, потом результат» — прямой урок сегодняшнего дня' — the same reason the addendum already records"
         },
         "alternatives_in": {}
       },

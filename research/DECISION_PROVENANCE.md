@@ -143,3 +143,113 @@ workflow and the web shell.
 ```bash
 python scripts/count_decision_provenance.py research/decision_provenance.json
 ```
+
+---
+
+# Result
+
+**The claim is refuted. The direction closes.**
+
+| | |
+|---|---|
+| Decisions in the frozen population | 29 |
+| Rationale or rejected alternatives **only** in a transcript, conditional | **1/29 = 3.4%** |
+| Same, unconditional | 1/29 = 3.4% |
+| Registered threshold | 30% |
+| Of those, readable by the planned Claude Code importer | **0/1 = 0%** |
+
+The measured share is an order of magnitude below the registered threshold. This is not a
+borderline result that better labelling could move.
+
+## Where the project's rationale actually lives
+
+| | `code` | `adr` | `doc` | `commit` | `transcript` | `nowhere` |
+|---|---|---|---|---|---|---|
+| conclusion | 69% | 52% | 100% | 24% | 0% | 0% |
+| rationale | 17% | 24% | 86% | 24% | 10% | 3% |
+| alternatives | 3% | 7% | 62% | 14% | 0% | 24% |
+
+Every decision's outcome is written down somewhere, and 86% have their reasoning in a repository
+document. The transcript adds essentially nothing the repository does not already hold.
+
+## The outcome was fixed before the transcripts were opened
+
+Pass 1 searched the repository alone and found only seven decisions with any gap: D-04, D-13, D-18,
+D-19, D-20, D-21 and D-28. Those seven were the entire set pass 2 could still move, so the share
+could not have exceeded 7/29 = 24.1% — already below the threshold — whatever the sessions
+contained. That ceiling is visible in commit `017e8b0`, which is the pass-1 commit, made before any
+transcript was read.
+
+Pass 2 then moved exactly one of the seven.
+
+## The single hit, and how fragile it is
+
+**D-19** — "every model change ships with an Alembic migration tested on both existing data and
+clean installs." `CLAUDE.md:77` states the rule. Nothing in the repository states the reason: the
+migration file `c41f0e9a2b11_true_path_domain_model.py` carries no explanatory docstring, and the
+rule is never argued. The reason appears once, in a Codex rollout of 1 August, message 213: the full
+lifecycle must be exercised on a temporary database *because that migration moves legacy JSONB data
+into normalised items and adds mandatory project and provenance columns*.
+
+It is also the weakest label in the set. A stricter reading that counted `ROADMAP.md:42` — "migrate
+existing data into a default project without loss" — as a stated reason rather than a delivery
+requirement would move D-19 to `doc` and make the result **0/29**. The gate fails either way, which
+is why the judgement is recorded here rather than argued.
+
+And the one surviving fragment is in a **Codex** rollout, which the stage-9 importer was scoped not
+to read. The mechanism the gate was protecting would not have captured the only thing the gate
+found.
+
+## What the two denominators did, and did not, do
+
+They coincided. Under the availability rule registered in advance — a transcript covering *any* date
+at which a decision was introduced or restated — all 29 decisions count as covered, because the
+1 August true-path plan and the 9 August implementation restated nearly every foundational decision,
+and both days are transcribed. The eleven untranscribed commits of 26–27 May therefore did not
+distort anything, and the caveat that motivated the two numbers turned out not to bite.
+
+Computed afterwards, and reported here only for transparency rather than as a registered criterion:
+by *first* appearance, four decisions originate on 26–27 May with no transcript, and the one hit
+(D-19, first seen 26 May) is among them. Under that stricter reading the conditional share would be
+1/25 = 4.0%. The conclusion does not change.
+
+## Why the repository holds so much
+
+The bias declared in advance is the explanation, and it was decisive:
+
+- `ENGRAM_TRUE_PATH_PLAN.md` §5 states a problem, a justification and a decision for nearly every
+  architectural choice — it is 726 lines of recorded deliberation.
+- Commit bodies carry paragraphs of reasoning. `e5ca3c5` and `53dedc1` explain a retrieval defect,
+  the fix, the measurement and an explicitly retracted speed claim, in the commit itself.
+- The project was audited twice, and both audits were written up as documents rather than left in
+  the sessions that produced them.
+
+That is a property of this project, not a refutation of the underlying intuition. What the numbers
+support is narrow and should be stated narrowly: **in this repository, on this population of 29
+decisions, rationale is recorded outside the transcript almost without exception.** Whether a
+project that does not write plan documents and paragraph-long commits would look different is not
+measured here and must not be claimed.
+
+## Conflicts of interest, stated
+
+The labels were produced by the same agent that wrote ADR-002, the addendum and this method, in the
+same week. Five of the 29 decisions (D-24 to D-27, D-23) were taken in the sessions being labelled.
+That is why every value carries a citation: the labels are checkable, and disagreement with any of
+them is possible without re-running anything. It cuts against the claim rather than for it, since
+those five decisions were documented immediately and so score as `doc`.
+
+## Consequence
+
+Per §27 of the addendum this is a registered outcome, not a surprise: the direction is recorded as
+the project's **second measured negative result** and closed. Stages 9 and 10a of `ROADMAP.md` —
+agent sessions as a source, and the decision-adherence measurement — are not built.
+
+What survives is §25.2, the auxiliary engineering claim: whether a prepared context package brings
+an agent to the same outcome in fewer tokens and steps than its own exploration. It is the only
+remaining measurable statement about Engram's value, it is stated as an engineering property with no
+claim to novelty, and the machinery it needs — the MCP channel, the 23-case gold set, the package
+CLI — already exists.
+
+The by-product is worth keeping: `decision_provenance.json` is a citation-backed map of where all 29
+of this project's decisions are recorded, which is useful independently of the claim it failed to
+support.
