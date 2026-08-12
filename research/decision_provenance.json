@@ -1,0 +1,162 @@
+{
+  "frozen_at": "2026-08-12",
+  "frozen_before": "any transcript was opened for this measurement",
+  "population_sources": [
+    "docs/adr/ADR-001-product-boundary.md",
+    "docs/adr/ADR-002-project-memory-from-agent-sessions.md",
+    "ENGRAM_TRUE_PATH_PLAN.md sections 6-10",
+    "ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md",
+    "CLAUDE.md (Architecture, Rules)",
+    "ROADMAP.md",
+    "FROZEN_IDEAS.md",
+    "commit subjects"
+  ],
+  "axis_values": ["code", "adr", "doc", "commit", "transcript", "nowhere"],
+  "decisions": [
+    {
+      "id": "D-01",
+      "statement": "PostgreSQL with pgvector is the only persistence and retrieval store; no separate graph database and no orchestration framework are introduced.",
+      "population_source": ["ADR-001", "true-path-plan#6", "CLAUDE.md#architecture"]
+    },
+    {
+      "id": "D-02",
+      "statement": "Project is a hard isolation boundary: every project-owned query must carry project_id.",
+      "population_source": ["true-path-plan#5-P0", "true-path-plan#8.1", "CLAUDE.md#architecture"]
+    },
+    {
+      "id": "D-03",
+      "statement": "External systems remain sources of truth: Engram never writes back to them and never applies model suggestions automatically.",
+      "population_source": ["ADR-001", "true-path-plan#5-P0", "true-path-plan#9", "CLAUDE.md"]
+    },
+    {
+      "id": "D-04",
+      "statement": "Source revisions and locators are immutable provenance; new knowledge must resolve to a fixed revision and an exact locator.",
+      "population_source": ["true-path-plan#8.2", "CLAUDE.md#architecture"]
+    },
+    {
+      "id": "D-05",
+      "statement": "The versioned item, not the document, is the canonical analysis unit; artifact JSON items are a compatibility representation only.",
+      "population_source": ["ADR-001", "true-path-plan#7.3", "CLAUDE.md#architecture"]
+    },
+    {
+      "id": "D-06",
+      "statement": "Versioning is per item: editing one item neither versions the whole document nor touches neighbouring items.",
+      "population_source": ["true-path-plan#7.3", "true-path-plan#6"]
+    },
+    {
+      "id": "D-07",
+      "statement": "Only confirmed item links may expand retrieval; inferred links are created in the proposed state.",
+      "population_source": ["true-path-plan#7.4", "CLAUDE.md#architecture"]
+    },
+    {
+      "id": "D-08",
+      "statement": "Links are semantically constrained by a type matrix rather than being interchangeable.",
+      "population_source": ["true-path-plan#5-P1", "true-path-plan#7.4", "true-path-plan#9"]
+    },
+    {
+      "id": "D-09",
+      "statement": "Impact analysis is non-mutating: a run changes no active version.",
+      "population_source": ["true-path-plan#7.7", "ADR-001", "CLAUDE.md#architecture"]
+    },
+    {
+      "id": "D-10",
+      "statement": "Invalid structured model output is rejected whole, in one transaction; a partially valid answer is not salvaged.",
+      "population_source": ["true-path-plan#7.6", "CLAUDE.md#architecture", "ADR-002"]
+    },
+    {
+      "id": "D-11",
+      "statement": "Human review is mandatory: a context package is assembled only from confirmed candidates.",
+      "population_source": ["true-path-plan#11", "ADR-001", "CLAUDE.md"]
+    },
+    {
+      "id": "D-12",
+      "statement": "The context budget is enforced after graph expansion, not before it.",
+      "population_source": ["true-path-plan#7.5", "CLAUDE.md#architecture"]
+    },
+    {
+      "id": "D-13",
+      "statement": "Every element of a context package carries a machine-checkable reason for inclusion, its graph path, version and source locator.",
+      "population_source": ["true-path-plan#7.5", "true-path-plan#8.6"]
+    },
+    {
+      "id": "D-14",
+      "statement": "GitHub is the first and only source adapter during MVP validation, and it is read-only.",
+      "population_source": ["ADR-001", "true-path-plan#8.5", "CLAUDE.md#architecture"]
+    },
+    {
+      "id": "D-15",
+      "statement": "The backend is layered api to services to repositories to models.",
+      "population_source": ["true-path-plan#6", "CLAUDE.md#architecture"]
+    },
+    {
+      "id": "D-16",
+      "statement": "Deterministic mock LLM and embedding providers are the default in tests and CI regardless of a developer's local .env.",
+      "population_source": ["true-path-plan#6", "CLAUDE.md#rules"]
+    },
+    {
+      "id": "D-17",
+      "statement": "Candidate review is deliberately not exposed to the agent over the MCP channel.",
+      "population_source": ["CLAUDE.md#architecture", "ADR-002", "commit 0c1a2eb"]
+    },
+    {
+      "id": "D-18",
+      "statement": "MCP delivery is split into protocol-independent operations and a stdio adapter behind an optional extra.",
+      "population_source": ["CLAUDE.md#architecture", "commit 0c1a2eb"]
+    },
+    {
+      "id": "D-19",
+      "statement": "Every model change ships with an Alembic migration tested on both existing data and clean installs.",
+      "population_source": ["CLAUDE.md#rules"]
+    },
+    {
+      "id": "D-20",
+      "statement": "GitHub tokens remain server-side and are never persisted in source configuration.",
+      "population_source": ["CLAUDE.md#rules"]
+    },
+    {
+      "id": "D-21",
+      "statement": "Auth and roles, collaboration, further integrations, auto-repair, Neo4j, LangGraph and visual polish are frozen until one claim about Engram's value is measured and holds.",
+      "population_source": ["CLAUDE.md#rules", "FROZEN_IDEAS.md", "ROADMAP.md"]
+    },
+    {
+      "id": "D-22",
+      "statement": "Rich-text editing and the generic graph are kept only as diagnostic compatibility surfaces.",
+      "population_source": ["ADR-001", "true-path-plan#9", "CLAUDE.md#rules"]
+    },
+    {
+      "id": "D-23",
+      "statement": "Tuning retrieval weights and edge types is frozen; the ceiling is set by budget mechanics, not by the edges.",
+      "population_source": ["ADR-002", "addendum#26", "FROZEN_IDEAS.md", "CLAUDE.md"]
+    },
+    {
+      "id": "D-24",
+      "statement": "The primary source of value becomes rationale captured from agent sessions, and impact analysis stops being what Engram calls itself.",
+      "population_source": ["ADR-002", "addendum#21", "addendum#26"]
+    },
+    {
+      "id": "D-25",
+      "statement": "Rationale is served by direct link lookup rather than through the scoring and expansion pipeline.",
+      "population_source": ["ADR-002", "addendum#23.1"]
+    },
+    {
+      "id": "D-26",
+      "statement": "Raw session messages are never persisted; only the extracted decision text and a locator a human can verify against the transcript.",
+      "population_source": ["ADR-002", "addendum#23.2"]
+    },
+    {
+      "id": "D-27",
+      "statement": "A session must be segmented before extraction, and a segment with wide fan-out produces proposed rather than confirmed links.",
+      "population_source": ["ADR-002", "addendum#23.1"]
+    },
+    {
+      "id": "D-28",
+      "statement": "A falsification criterion is registered before each measurement, and no project statement may be stronger than the numbers support.",
+      "population_source": ["CLAUDE.md#rules", "addendum#22", "addendum#25.3"]
+    },
+    {
+      "id": "D-29",
+      "statement": "Repeated runs are mandatory in any measurement, and absolute counters are taken from the first run so repeats do not double them.",
+      "population_source": ["addendum#25.3", "research/RESULTS.md"]
+    }
+  ]
+}
