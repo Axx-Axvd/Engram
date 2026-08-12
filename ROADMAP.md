@@ -107,8 +107,12 @@ has the best precision (0.194) and 36% fewer false warnings, vector-only the bes
 0.292). Two structural defects were found and fixed by measurement — the commit provenance star and
 undirected expansion — lifting the hybrid from F1 0.202 to 0.233 without moving the recall ceiling.
 Co-change edges mined from git history, the most direct test of "the edge type is wrong", did worse
-(0.212) under a setup biased in their favour. Bounded selection still beats full context by a wide
-margin (0.233 vs 0.048), and reproducibility is exact (0/23).
+(0.212) under a setup biased in their favour. Reproducibility is exact (0/23).
+
+An earlier line here claimed that bounded selection beats full context by a wide margin (0.233 vs
+0.048). **That claim is retracted.** The `full` variant scores every item 1.0, so its answer is
+query-independent — the same seventeen alphabetically-first files for all 23 cases. It is a sanity
+check, not a baseline, and the premise it was taken to confirm remains untested.
 
 **Conclusion:** across five graph configurations recall stays at 0.283–0.292 against 0.381 with no
 graph at all. The limit is the fixed budget, where expansion competes with retrieval, not the quality
@@ -147,14 +151,30 @@ measured on **this** repository and stated no wider than that. See
 **Status: dropped, by the stage-8 kill criterion.** Session ingestion, the `why` tool and the
 `agent_session` source are not built.
 
-### 10. Measuring the new claim
+### 10. The control that was never run
 
-- **a. Decision adherence.** **Dropped with stage 9** — there is no rationale store to measure.
-- **b. Context cost — the only measurable claim left.** An engineering property, not a research
-  claim: tokens and steps to the same outcome, with and without a prepared package, over the existing
-  23 cases through the MCP channel. Every part it needs already exists.
+**Status: next, and it tests the founding premise rather than a mechanism.**
 
-**Done when:** 10b gives a number, and no statement in `README.md`, `ROADMAP.md` or
+Stage 10a (decision adherence) is dropped with stage 9. What replaces it is the baseline the project
+never had. §2.2.1 of the specification says a large context window is not enough to serve as project
+memory; every measurement so far assumed that instead of testing it, because the `full` variant is
+query-independent and the runs used a deterministic mock rather than a real model.
+
+- Give a **real long-context model** the same 23 labelled changes twice: once with the whole corpus
+  (~205k tokens), once with a 6000-token Engram package. Compare the paths it names against the same
+  gold set, and compare input tokens.
+- This subsumes the old stage 10b: it measures quality and cost in one run.
+
+**Kill criterion, registered before measuring:** if the whole-corpus branch beats the package branch
+on F1 by more than 0.02, selection is unnecessary at this corpus size, §2.2.1 does not hold, and the
+project closes with three measured negatives. Parity at a fraction of the tokens means Engram is a
+way to spend less, not a way to know more — that is §6.1.5 and must be claimed as an engineering
+property only.
+
+Full statement, conditions and declared cost: §30 of
+[`ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md`](ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md).
+
+**Done when:** the comparison gives a number, and no statement in `README.md`, `ROADMAP.md` or
 `research/RESULTS.md` is stronger than the numbers support.
 
 ## MVP definition
@@ -164,10 +184,14 @@ at item level without mutating the source of truth, a human reviews every eviden
 an external agent receives a bounded reproducible package over CLI or MCP, the actual commit is
 recorded as a ChangeSet, and retrieval quality has been measured against baselines.
 
-What is missing is not a mechanism but a demonstrated advantage. Two claims have now been measured and
-neither held: the typed graph does not improve retrieval, and this project's rationale is not confined
-to its sessions. Engram is a working, well-evidenced system whose reason to exist is still unproven.
-It becomes an MVP when one claim is measured and holds — the only one left standing is stage 10b —
-and not before.
+What is missing is not a mechanism but a demonstrated advantage. Two claims have been measured and
+neither held — the typed graph does not improve retrieval, and this project's rationale is not
+confined to its sessions — and the one positive the project believed it had was retracted when its
+baseline turned out to be query-independent. Engram is a working, well-evidenced system with **no
+measured advantage of any kind**, and saying so plainly is the point of the rule against claiming
+more than the numbers support.
+
+It becomes an MVP when one claim is measured and holds. The next and most fundamental candidate is
+stage 10, which tests the premise the whole project rests on rather than any mechanism inside it.
 
 Deferred ideas are recorded in [`FROZEN_IDEAS.md`](FROZEN_IDEAS.md), without delivery dates.

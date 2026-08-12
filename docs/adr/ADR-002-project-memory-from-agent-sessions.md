@@ -25,6 +25,10 @@ entered the budget, not how many right ones were found. Under a fixed budget, ex
 retrieval for the same slots, and a neighbour that displaces a correct hit must itself be correct to
 break even. Details: [`research/RESULTS.md`](../../research/RESULTS.md).
 
+*Amended 2026-08-12: an earlier version of this section added that bounded selection still beat full
+context by a wide margin. That claim is retracted — the `full` variant is query-independent and
+returns the same seventeen files for every case, so it is a sanity check rather than a baseline.*
+
 Meanwhile the original specification lists six sources of value, of which only "better change
 analysis" was ever measured. Two remain untested: preserving knowledge **between steps and sessions**,
 and context/token economy. Its second stated sub-problem is that "old agreements get lost", and its

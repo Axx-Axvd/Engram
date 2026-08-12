@@ -42,6 +42,11 @@ larger set, and the current parity is a tie, not a win.
 
 `combined` and `vector` differ by 0.0001 in F1. That is a tie, not a ranking.
 
+**`full` is not a baseline.** It scores every item 1.0, so its answer does not depend on the query:
+all 23 cases get the same seventeen alphabetically-first files, at 5994 tokens every time. Read its
+row as a sanity check on the pipeline, never as evidence about full context — see "Reading the
+result", point 3.
+
 ## How the hybrid got here
 
 Two structural defects were found by measurement and fixed. Neither is weight tuning: both change
@@ -158,9 +163,22 @@ that is what should be measured.
 2. **What the graph reliably buys is quiet, precise output.** Best precision (0.194) and 36% fewer
    false warnings (137 vs 213) at equal budget. For a reviewer reading candidates by hand, that is
    worth something; it is not the same claim as better retrieval.
-3. **Bounded selection still beats full context by a wide margin.** `full` remains worst on every
-   metric (F1 0.048, 379 false warnings). Bounding and explaining the selection is the part that is
-   clearly established.
+3. **The `full` baseline is degenerate and its 0.048 proves nothing. Retracted, 2026-08-12.** This
+   line previously read "bounded selection still beats full context by a wide margin" and was
+   published as the one firmly established positive. It is not. In `full` mode every item is scored
+   `1.0` ([`context_service.py:239-240`](../apps/api/src/engram/services/context_service.py#L239-L240))
+   and every item seeds the selection, after which the same 6000-token budget truncates. The result
+   is **query-independent**: across 23 cases and both repeats the variant returns *one identical set
+   of 17 paths* — the alphabetically first files in the repository, starting at
+   `.claude/agents/frontend-architect.md`, `Claude.md`, `DESIGN.md`. Average tokens is 5994 in every
+   single row.
+
+   So 0.233 against 0.048 says only that ranked retrieval beats answering every question with the
+   same seventeen files. It is a sanity check on the code, not evidence that bounded selection is
+   valuable, and the founding premise — §2.2.1 of the specification, "even a large context window is
+   not enough as the only project memory" — has never been tested, because the baseline it names was
+   never run. The corpus is roughly 205k tokens; a long-context model reading all of it was never a
+   variant.
 4. **Reproducibility is measured, not assumed.** Every case ran twice per variant: 23/23 checked,
    0 non-reproducible, all four variants.
 
