@@ -153,7 +153,11 @@ measured on **this** repository and stated no wider than that. See
 
 ### 10. The control that was never run
 
-**Status: next, and it tests the founding premise rather than a mechanism.**
+**Status: attempted and halted after 3 calls of 92, 2026-08-13.** Two reasons, the second the more
+important. Subscription quota carries roughly one 176k-token call per window against the 46 needed.
+And the baseline turned out to be a straw man: nobody hands a model 176k tokens of raw repository.
+The baseline Engram has to beat is **an agent with file search** — Claude Code doing its ordinary
+job — and that has never appeared in any experiment here. Details in §30.3.2 of the addendum.
 
 Stage 10a (decision adherence) is dropped with stage 9. What replaces it is the baseline the project
 never had. §2.2.1 of the specification says a large context window is not enough to serve as project
