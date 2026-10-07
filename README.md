@@ -1,521 +1,534 @@
 # Engram
 
-**Короткая версия для тех, кто торопится.** Engram — работающая система, которая индексирует
-исходники проекта, хранит для каждого кусочка знания точную ссылку на первоисточник и собирает для
-ИИ-агента небольшой пакет контекста вместо того, чтобы вываливать на него весь репозиторий. Система
-построена, покрыта тестами и работает. Но у неё было три предположения о том, **зачем** она нужна, и
-все три были проверены измерением — и ни одно не подтвердилось. Этот файл честно рассказывает, как
-это вышло и что из этого следует.
+English | [Русский](README.ru.md)
 
-Если вы далеки от программирования — ничего страшного, дальше всё объясняется простыми словами.
+**The short version, if you're in a hurry.** Engram is a working system that indexes a project's
+source files, keeps an exact reference to the original source for every piece of knowledge, and
+assembles a small context package for an AI agent instead of dumping the entire repository on it.
+The system is built, tested, and operational. But it rested on three assumptions about **why** it
+was needed. All three were tested through measurement — and none was confirmed. This file gives
+an honest account of how that happened and what follows from it.
 
----
-
-## Оглавление
-
-1. [С чего всё началось: какая была проблема](#1-с-чего-всё-началось-какая-была-проблема)
-2. [Что было предложено в качестве решения](#2-что-было-предложено-в-качестве-решения)
-3. [Что реально построено](#3-что-реально-построено)
-4. [Как вообще проверяют такие вещи](#4-как-вообще-проверяют-такие-вещи)
-5. [Проверка первая: помогает ли карта связей?](#5-проверка-первая-помогает-ли-карта-связей)
-6. [Проверка вторая: живёт ли «замысел» только в диалогах с ИИ?](#6-проверка-вторая-живёт-ли-замысел-только-в-диалогах-с-ии)
-7. [Проверка третья: как нашёлся собственный обман](#7-проверка-третья-как-нашёлся-собственный-обман)
-8. [Проверка четвёртая: остановленная](#8-проверка-четвёртая-остановленная)
-9. [Выводы](#9-выводы)
-10. [Чему научил сам процесс](#10-чему-научил-сам-процесс)
-11. [Техническая часть](#11-техническая-часть)
+If programming isn't your field, that's fine — everything below is explained in plain language.
 
 ---
 
-## 1. С чего всё началось: какая была проблема
+## Contents
 
-Проект начался 26 мая 2026 года. Рабочее название звучало так: **«слой проектной памяти для долгих
-ИИ-проектов»**.
+1. [How it started: the problem](#1-how-it-started-the-problem)
+2. [The proposed solution](#2-the-proposed-solution)
+3. [What was actually built](#3-what-was-actually-built)
+4. [How you test something like this](#4-how-you-test-something-like-this)
+5. [First test: does the relationship map help?](#5-first-test-does-the-relationship-map-help)
+6. [Second test: does project intent exist only in AI conversations?](#6-second-test-does-project-intent-exist-only-in-ai-conversations)
+7. [Third test: uncovering our own self-deception](#7-third-test-uncovering-our-own-self-deception)
+8. [Fourth test: halted](#8-fourth-test-halted)
+9. [Conclusions](#9-conclusions)
+10. [What the process itself taught us](#10-what-the-process-itself-taught-us)
+11. [Technical details](#11-technical-details)
 
-Идея, из которой всё выросло, простая и на первый взгляд бесспорная. Представьте программный проект,
-который живёт год или два. За это время накапливается:
+---
 
-- исходное описание того, что вообще хотели сделать;
-- требования и их бесконечные уточнения;
-- архитектурные решения («базу берём такую-то, а вот такую не берём — и вот почему»);
-- задачи, тесты, исправления;
-- сам код, который всё это время меняется.
+## 1. How it started: the problem
 
-Пока проект вёл человек, всё это как-то держалось в голове и в переписке. Но теперь значительную
-часть работы делает ИИ-агент. И тут вылезают пять неприятностей — они были выписаны в исходной
-спецификации проекта:
+The project began on May 26, 2026. Its working title was **"a project memory layer for long-running
+AI projects."**
 
-| № | Подпроблема | Простыми словами |
+The idea behind it was simple and, at first glance, hard to dispute. Imagine a software project
+that runs for a year or two. Over that time, it accumulates:
+
+- the original description of what you wanted to build;
+- requirements and their endless refinements;
+- architectural decisions ("we'll use this database, not that one — and here's why");
+- tasks, tests, and fixes;
+- the code itself, which keeps changing throughout.
+
+When a human ran the project, all of this somehow lived in their head and in conversations. But now
+an AI agent does a substantial share of the work. That exposes five problems, listed in the
+project's original specification:
+
+| No. | Subproblem | In plain language |
 |---|---|---|
-| 1 | Ограничение контекста | Модели можно дать за раз только ограниченный объём текста. Весь проект туда не влезает |
-| 2 | Шум и забывание | Чем длиннее история, тем труднее модели опираться на важное. **Старые договорённости теряются** |
-| 3 | Расхождение артефактов | Требование поменяли, а задачи и тесты под него не обновили — и никто этого не заметил |
-| 4 | Плохой анализ изменений | Пришёл запрос на изменение — а что именно он затронет, непонятно |
-| 5 | Стоимость токенов | Если каждому агенту на каждом шаге давать полпроекта, это дорого и медленно |
+| 1 | Context limits | A model can receive only a limited amount of text at once. The whole project won't fit |
+| 2 | Noise and forgetting | The longer the history, the harder it is for the model to rely on what matters. **Earlier agreements get lost** |
+| 3 | Artifact drift | A requirement changes, but the corresponding tasks and tests aren't updated — and nobody notices |
+| 4 | Poor change-impact analysis | A change request arrives, but it's unclear what exactly it will affect |
+| 5 | Token costs | Giving every agent half the project at every step is expensive and slow |
 
-Из этих пяти проблема №2 ощущается острее всего именно при работе с ИИ. Вы час обсуждаете с
-моделью, почему нельзя делать вот так, приходите к решению — а на следующий день начинаете новую
-сессию, и всё это исчезло. Модель не помнит ни решения, ни того, какие варианты вы отвергли и
-почему.
+Of these five, problem No. 2 feels most acute when working with AI. You spend an hour discussing
+with a model why something must not be done a certain way, reach a decision — then start a new
+session the next day, and all of it is gone. The model remembers neither the decision nor which
+alternatives you rejected and why.
 
-Вывод, к которому пришла исходная спецификация: нужна система, которая не просто вызывает модели, а
-**управляет проектной памятью** — хранит знания в устойчивом виде и подбирает **минимально
-необходимый контекст** под конкретную задачу.
+The original specification's conclusion was that we need a system that doesn't just call models,
+but **manages project memory** — storing knowledge persistently and selecting the **minimum
+necessary context** for a specific task.
 
 ---
 
-## 2. Что было предложено в качестве решения
+## 2. The proposed solution
 
-Основная ставка проекта формулировалась так:
+The project's main bet was expressed as follows:
 
-> Если разложить знания проекта на **отдельные маленькие элементы**, соединить их **типизированными
-> связями** (вот это требование, вот код, который его реализует, вот тест, который его проверяет), и
-> при поиске контекста ходить не только «по смыслу», но и **по этим связям**, — получится подобрать
-> контекст точнее, чем обычным поиском.
+> If we break project knowledge into **small, separate items**, connect them with **typed
+> relationships** (here is a requirement, here is the code that implements it, here is the test
+> that checks it), and retrieve context not just **by meaning**, but also **through those
+> relationships**, we should be able to select context more accurately than ordinary search.
 
-Ключевое слово здесь — **граф связей**. Обычный поиск («найди мне куски текста, похожие на мой
-запрос») смысловых связей не знает. Он найдёт файл, где написаны похожие слова. А граф связей знает,
-что если меняется вот это требование, то надо посмотреть ещё и на тест, который его проверяет, —
-даже если в тесте нет ни одного общего слова с запросом.
+The key concept is the **relationship graph**. Ordinary search ("find text fragments similar to my
+query") doesn't know about these relationships. It finds a file containing similar words. A
+relationship graph knows that if this requirement changes, you also need to look at the test that
+checks it — even if the test has no words in common with the query.
 
-Схема того, как это работает:
+Here is how it works:
 
 ```text
-   зафиксированная версия исходника (конкретный коммит в GitHub)
+   a pinned source revision (a specific GitHub commit)
                     │
                     ▼
-   маленькие элементы знания + типизированные связи между ними
-   (требование, решение, код, тест — и рёбра «реализует», «проверяет», «зависит от»)
+   small knowledge items + typed relationships between them
+   (requirement, decision, code, test — with "implements", "tests", "depends on" edges)
                     │
                     ▼
-   запрос на изменение → анализ влияния → человек всё проверяет
+   change request → impact analysis → human review
                     │
                     ▼
-   ограниченный пакет контекста для ИИ-агента
+   a bounded context package for an AI agent
                     │
                     ▼
-   реальный коммит → фиксация связи «запрос → что изменилось» → проверка согласованности
+   actual commit → record "request → what changed" → consistency check
 ```
 
-Три принципа, которые заложены в конструкцию с самого начала:
+Three principles have been built into the design from the start:
 
-- **Провенанс.** У каждого кусочка знания записано, откуда он взят: какой источник, какая
-  зафиксированная версия, какие именно строки. Не «модель так сказала», а «вот файл, вот коммит, вот
-  строки 40–58».
-- **Ничего не переписываем.** Анализ только предлагает. Ни одна строчка не меняется без явного
-  подтверждения человеком. Внешние системы — GitHub, трекеры задач — остаются источником истины.
-- **Жёсткий бюджет.** Пакет контекста не может превысить заданный объём. И ограничение применяется
-  **после** того, как система прошлась по связям, а не до.
+- **Provenance.** Every piece of knowledge records where it came from: which source, which pinned
+  revision, and exactly which lines. Not "the model said so," but "here is the file, here is the
+  commit, here are lines 40–58."
+- **No automatic changes.** Analysis only makes suggestions. Not a single line changes without
+  explicit human confirmation. External systems — GitHub and issue trackers — remain the source
+  of truth.
+- **A hard budget.** A context package cannot exceed its specified size. The limit is applied
+  **after** the system traverses the relationships, not before.
 
 ---
 
-## 3. Что реально построено
+## 3. What was actually built
 
-Всё перечисленное — не планы, а работающий и покрытый тестами код.
+Everything listed here is working, tested code — not a plan.
 
-| Что | Состояние |
+| Component or capability | Status |
 |---|---|
-| Backend на FastAPI + PostgreSQL + pgvector | работает |
-| Строгая изоляция проектов (данные разных проектов не пересекаются нигде) | работает |
-| Неизменяемый провенанс: источник → версия → точное место | работает |
-| Поэлементное версионирование: правка одного пункта не трогает соседние | работает |
-| Типизированные связи с доказательствами и подтверждением человеком | работает |
-| Анализ влияния, который ничего не меняет | работает |
-| Атомарная проверка ответа модели: некорректный ответ отклоняется целиком | работает |
-| Воспроизводимые пакеты контекста с жёстким бюджетом | работает |
-| Импорт GitHub «только на чтение» на фиксированном коммите | работает |
-| MCP-канал: внешний ИИ-агент может сам запросить анализ и забрать пакет | работает |
-| Веб-интерфейс на Next.js | работает |
-| 58 тестов на настоящей базе, линтеры, CI на GitHub Actions | зелёное |
+| FastAPI + PostgreSQL + pgvector backend | working |
+| Strict project isolation (data from different projects never overlaps anywhere) | working |
+| Immutable provenance: source → revision → exact location | working |
+| Item-level versioning: editing one item leaves its neighbors untouched | working |
+| Typed relationships with evidence and human confirmation | working |
+| Impact analysis that changes nothing | working |
+| Atomic validation of model responses: an invalid response is rejected in full | working |
+| Reproducible context packages with a hard budget | working |
+| Read-only GitHub import at a fixed commit | working |
+| MCP channel: an external AI agent can request analysis and retrieve a package itself | working |
+| Next.js web interface | working |
+| 58 tests against a real database, linters, and GitHub Actions CI | passing |
 
-Проект состоит из 31 коммита, написанных за 7 активных дней работы.
-
----
-
-## 4. Как вообще проверяют такие вещи
-
-Прежде чем перейти к результатам, нужно объяснить, как измеряется «хорошо система подбирает контекст
-или плохо». Это займёт две минуты и дальше всё будет понятно.
-
-### Эталонный набор
-
-Берётся 23 реальных изменения в проекте. Для каждого **заранее вручную** записывается: какие файлы
-на самом деле пришлось тронуть. Это называется эталон, или «золотой набор». Десять изменений
-составлены вручную по ключевым способностям продукта, тринадцать — выведены из настоящих коммитов
-(взяли коммит, посмотрели, какие файлы он изменил — вот и правильный ответ).
-
-Затем системе дают текст изменения и смотрят, какие файлы назовёт она.
-
-### Три числа
-
-Допустим, изменение на самом деле затрагивает **5 файлов**. Система назвала **8 файлов**, из которых
-верными оказались **4**.
-
-**Точность** (precision) — какая доля того, что система назвала, оказалась правдой:
-
-```
-точность = верно названные / всего названные = 4 / 8 = 0.50
-```
-
-То есть половина ответа — мусор, который человеку придётся отсеивать руками.
-
-**Полнота** (recall) — какую долю того, что было нужно, система нашла:
-
-```
-полнота = верно названные / всего нужные = 4 / 5 = 0.80
-```
-
-То есть один нужный файл система пропустила.
-
-Эти два числа тянут в разные стороны. Можно назвать вообще все файлы проекта — полнота будет 100%,
-но точность близка к нулю, и пользы от такого ответа нет. Можно назвать один файл, в котором
-уверен, — точность 100%, а полнота ничтожная.
-
-**F1** — способ свести их в одно число так, чтобы нельзя было выехать на одном за счёт другого:
-
-```
-F1 = 2 × точность × полнота / (точность + полнота) = 2 × 0.5 × 0.8 / 1.3 ≈ 0.62
-```
-
-Это среднее гармоническое. Его особенность: если одно из двух чисел близко к нулю, F1 тоже
-проваливается, каким бы прекрасным ни было второе. Именно поэтому его берут как главную метрику.
-
-### Условия эксперимента
-
-- Корпус: сам репозиторий Engram, импортированный на зафиксированном коммите `18e3162` — 423
-  элемента знания на 147 файлах, у каждого записан провенанс.
-- Бюджет: 6000 токенов. Токен — примерно 4 символа, так что это около 24 000 символов, страниц
-  двенадцать обычного текста.
-- Каждый случай прогоняется дважды, чтобы убедиться, что результат воспроизводится.
-- Сравниваются четыре способа подбора контекста.
+The project consists of 31 commits written over 7 active days of work.
 
 ---
 
-## 5. Проверка первая: помогает ли карта связей?
+## 4. How you test something like this
 
-Это была центральная гипотеза проекта. Сравнили четыре способа набрать контекст при одинаковом
-бюджете:
+Before looking at the results, we need to explain how to measure whether a system selects context
+well or poorly. This takes two minutes, and the rest will then make sense.
 
-- **vector** — обычный смысловой поиск, без всякого графа;
-- **graph** — только по связям;
-- **combined** — гибрид: поиск плюс расширение по связям (это и есть «способ Engram»);
-- **full** — «дай побольше всего», контрольный вариант.
+### The reference dataset
 
-### Результат
+Take 23 actual changes to the project. For each one, record **manually and in advance** which files
+actually had to be touched. This is the reference, or "gold" dataset. Ten changes were constructed
+manually around the product's key capabilities; thirteen were derived from actual commits
+(take a commit, look at the files it changed — that is the correct answer).
 
-| способ | точность | полнота | F1 | ложных срабатываний |
+Then give the system the change description and see which files it names.
+
+### Three numbers
+
+Suppose a change actually affects **5 files**. The system names **8 files**, of which **4** are
+correct.
+
+**Precision** is the proportion of the system's selections that turned out to be correct:
+
+```
+precision = correctly selected / total selected = 4 / 8 = 0.50
+```
+
+In other words, half the answer is noise that a human will have to filter out manually.
+
+**Recall** is the proportion of the required files that the system found:
+
+```
+recall = correctly selected / total required = 4 / 5 = 0.80
+```
+
+In other words, the system missed one necessary file.
+
+These two numbers pull in different directions. You could name every file in the project — recall
+would be 100%, but precision would be close to zero, and the answer would be useless. You could name
+one file you're certain about — precision would be 100%, but recall would be tiny.
+
+**F1** combines them into one number so that you can't succeed at one by sacrificing the other:
+
+```
+F1 = 2 × precision × recall / (precision + recall) = 2 × 0.5 × 0.8 / 1.3 ≈ 0.62
+```
+
+This is the harmonic mean. Its defining property: if either number is close to zero, F1 collapses
+too, however good the other number is. That is why it serves as the primary metric.
+
+### Experimental conditions
+
+- Corpus: the Engram repository itself, imported at the pinned commit `18e3162` — 423 knowledge
+  items across 147 files, each with recorded provenance.
+- Budget: 6000 tokens. A token is roughly 4 characters, so this is about 24,000 characters, or
+  twelve pages of ordinary text.
+- Each case is run twice to check reproducibility.
+- Four context-selection methods are compared.
+
+---
+
+## 5. First test: does the relationship map help?
+
+This was the project's central hypothesis. We compared four ways of assembling context under the
+same budget:
+
+- **vector** — ordinary semantic search, with no graph;
+- **graph** — relationships only;
+- **combined** — a hybrid: search plus relationship expansion (the "Engram approach");
+- **full** — "give me more of everything," the control.
+
+### Results
+
+| method | precision | recall | F1 | false positives |
 |---|---|---|---|---|
 | **combined** (Engram) | **0.194** | 0.292 | **0.233** | 137 |
-| **vector** (обычный поиск) | 0.168 | **0.381** | **0.233** | 213 |
-| graph (только связи) | 0.143 | 0.186 | 0.162 | **126** |
-| full (контроль) | 0.031 | 0.106 | 0.048 | 379 |
+| **vector** (ordinary search) | 0.168 | **0.381** | **0.233** | 213 |
+| graph (relationships only) | 0.143 | 0.186 | 0.162 | **126** |
+| full (control) | 0.031 | 0.106 | 0.048 | 379 |
 
-**Гипотеза не подтвердилась.** Разрыв между гибридом и обычным поиском по F1 составил 0.0001. Это не
-победа, это ничья — при таком размере выборки такая разница вообще ничего не значит.
+**The hypothesis was not confirmed.** The F1 gap between the hybrid and ordinary search was 0.0001.
+That is not a win; it is a tie — with a sample this size, such a difference means nothing at all.
 
-Гибрид выигрывает точность и даёт на треть меньше ложных срабатываний — для человека, который потом
-глазами разбирает список кандидатов, это приятно. Но полноту он проигрывает заметно: 0.292 против
-0.381. То есть он находит **меньше** нужного.
+The hybrid has better precision and a third fewer false positives — a welcome improvement for
+someone who has to inspect the candidate list manually. But it loses substantially on recall:
+0.292 versus 0.381. In other words, it finds **less** of what is needed.
 
-### Что пытались сделать, чтобы спасти гипотезу
+### Attempts to rescue the hypothesis
 
-Прежде чем признать поражение, нашли и починили два настоящих дефекта.
+Before accepting defeat, we found and fixed two genuine defects.
 
-**Дефект первый — «звезда провенанса».** При импорте система создавала связь «этот коммит изменил
-этот файл» от коммита к каждому из 422 файлов. А у связей такого типа был наивысший вес при
-расширении. В результате из любой точки за два шага достигался весь репозиторий, и бюджет забивался
-случайными файлами. Починили: расширение больше не ходит через такие связи от коммитов.
+**First defect: the "provenance star."** During import, the system created a "this commit changed
+this file" relationship from the commit to each of 422 files. Relationships of this type had the
+highest expansion weight. As a result, the entire repository was reachable from any point in two
+steps, and random files filled the budget. The fix: expansion no longer traverses these
+relationships from commits.
 
-**Дефект второй — обход против направления влияния.** Связи указывают от зависимого элемента к тому,
-на который он опирается: «тест проверяет код», «код зависит от модуля». А обход был
-ненаправленным — то есть половина поиска уходила не туда, куда влияние распространяется, а
-наоборот: в общие модели, перечисления и обработчики ошибок, которые почти никогда не являются
-ответом. Починили: для зависимостных связей идём в обратную сторону.
+**Second defect: traversal against the direction of impact.** Relationships point from a dependent
+item to what it relies on: "test checks code," "code depends on module." But traversal was
+undirected — meaning half the search went not in the direction in which impact spreads, but the
+opposite way: toward shared models, enums, and error handlers that are almost never the answer.
+The fix: traverse dependency relationships in reverse.
 
-Обе починки дали прирост: F1 гибрида вырос **0.202 → 0.224 → 0.233**. Потолок не сдвинулся.
+Both fixes improved the hybrid's F1: **0.202 → 0.224 → 0.233**. The ceiling stayed put.
 
-**Проверили саму природу связей.** Возникло подозрение: может, импорт кода даёт неправильные связи?
-Он показывает, что «модуль A использует модуль B», а нам нужно «A и B меняются вместе». Построили
-граф заново — по совместному изменению файлов в истории git, с честными предосторожностями против
-подтасовки. Результат оказался **хуже**: 0.212 против 0.233.
+**We tested the nature of the relationships themselves.** A suspicion arose: perhaps code import
+produces the wrong relationships? It tells us "module A uses module B," when what we need is
+"A and B change together." We rebuilt the graph from files changed together in git history, with
+proper safeguards against biasing the result. It performed **worse**: 0.212 versus 0.233.
 
-### Почему так вышло
+### Why this happened
 
-| конфигурация графа | полнота |
+| graph configuration | recall |
 |---|---|
-| звезда провенанса | 0.283 |
-| звезда исключена | 0.283 |
-| направленный обход + приглушение | 0.292 |
-| граф по совместным изменениям | 0.283 |
-| то же с выровненным весом | 0.283 |
-| **вообще без графа** | **0.381** |
+| provenance star | 0.283 |
+| star excluded | 0.283 |
+| directed traversal + dampening | 0.292 |
+| co-change graph | 0.283 |
+| the same graph with equalized weights | 0.283 |
+| **no graph at all** | **0.381** |
 
-Пять конфигураций. Меняли тип рёбер, направление обхода, веса, обработку «хабов» — менялся **состав
-мусора в бюджете**, но не число найденных правильных ответов.
+Five configurations. We changed edge types, traversal direction, weights, and hub handling — the
+**mix of noise within the budget** changed, but the number of correct answers found did not.
 
-Причина оказалась не в качестве связей, а в механике, и её стоит объяснить отдельно, потому что она
-неочевидная и, кажется, довольно общая:
+The cause turned out to be the mechanics, not the quality of the relationships. It deserves a
+separate explanation because it is not obvious and seems fairly general:
 
-> **При фиксированном бюджете расширение по графу конкурирует с поиском за одни и те же места.**
-> Мест примерно тридцать. Каждый сосед, которого граф добавляет в пакет, кого-то оттуда вытесняет —
-> и вытесняет он находку обычного поиска. Чтобы выйти хотя бы в ноль, этот сосед обязан сам
-> оказаться правильным ответом. А он им почти никогда не является.
+> **Under a fixed budget, graph expansion competes with search for the same slots.**
+> There are roughly thirty slots. Every neighbor the graph adds to the package displaces someone
+> else — specifically, a result from ordinary search. To at least break even, that neighbor has to
+> be a correct answer itself. It almost never is.
 
-Разбивка подтверждает это от противного. На 15 случаях, где меняется Python-код и граф активен,
-впереди **обычный поиск** (0.220 против 0.185). А на 8 случаях, где правились документы, CI и
-фронтенд и связей почти нет, впереди гибрид (0.359 против 0.261) — и вытягивает его там не граф, а
-обычное совпадение слов.
+The breakdown supports this by showing the opposite pattern. In the 15 cases involving Python code
+changes, where the graph is active, **ordinary search** leads (0.220 versus 0.185). In the 8 cases
+involving documents, CI, and frontend changes, where there are almost no relationships, the hybrid
+leads (0.359 versus 0.261) — and it is ordinary word matching, not the graph, that carries it there.
 
-То есть граф помогает ровно там, где его нет.
+In other words, the graph helps precisely where it isn't present.
 
 ---
 
-## 6. Проверка вторая: живёт ли «замысел» только в диалогах с ИИ?
+## 6. Second test: does project intent exist only in AI conversations?
 
-После первого поражения проект развернулся к той подпроблеме, которую вообще ни разу не проверяли, —
-к номеру 2 из таблицы в начале: старые договорённости теряются.
+After the first defeat, the project turned to the subproblem that had never been tested at all:
+No. 2 in the opening table — earlier agreements get lost.
 
-### Утверждение
+### The claim
 
-> В рассуждениях из сессий ИИ-разработки содержатся решения, обоснования и отвергнутые альтернативы,
-> которых нет ни в коде, ни в документации, ни в текстах коммитов. Engram может их зафиксировать с
-> точным происхождением и отдавать агенту.
+> Reasoning from AI development sessions contains decisions, rationales, and rejected alternatives
+> that appear neither in code, nor in documentation, nor in commit messages. Engram can capture
+> them with precise provenance and provide them to an agent.
 
-Звучит правдоподобно: вы же час обсуждали с моделью, почему выбрали PostgreSQL, а не графовую базу,
-и в коде от этого разговора не осталось ничего, кроме самого факта выбора.
+It sounds plausible: you spent an hour discussing with the model why you chose PostgreSQL rather
+than a graph database, and nothing of that conversation survived in the code except the choice
+itself.
 
-### Критерий опровержения — объявлен ДО замера
+### The refutation criterion — declared BEFORE measurement
 
-Это важная деталь, и дальше станет понятно почему.
+This detail matters, and the reason will become clear below.
 
-> Если среди размеченных решений проекта доля тех, чьё обоснование или отвергнутые альтернативы
-> зафиксированы **только** в транскрипте, окажется ниже **30%** — утверждение считается
-> опровергнутым, ниша занята коммитами и документацией, направление закрывается.
+> If the share of annotated project decisions whose rationale or rejected alternatives are
+> recorded **only** in a transcript is below **30%**, the claim is considered refuted: commits
+> and documentation already fill this niche, and this line of work is closed.
 
-### Как измеряли
+### How it was measured
 
-Взяли **29 решений** проекта — из архитектурных документов, ADR, инструкций, дорожной карты, тем
-коммитов. Список **заморозили до того, как открыли хоть один транскрипт**. Это главная защита от
-самообмана: если составлять список решений, читая диалоги, доля «только в диалоге» получится высокой
-просто по построению.
+We took **29 project decisions** from architectural documents, ADRs, instructions, the roadmap, and
+commit subjects. The list was **frozen before opening a single transcript**. This is the main
+safeguard against self-deception: if you compile a list of decisions while reading conversations,
+the share found "only in a conversation" will be high simply by construction.
 
-Каждое решение разметили по трём независимым осям: где записан **вывод**, где **обоснование**, где
-**отвергнутые альтернативы**. Варианты ответа: код, ADR, документ, коммит, транскрипт, нигде.
-Разметка шла в два прохода, и порядок был принципиален:
+Each decision was annotated along three independent axes: where its **conclusion** was recorded,
+where its **rationale** was recorded, and where its **rejected alternatives** were recorded.
+Possible answers: code, ADR, document, commit, transcript, nowhere. Annotation took two passes, and
+their order was essential:
 
-1. **Проход первый — только репозиторий.** Ищем по коду, документам и коммитам. Закоммичено **до**
-   того, как открыт первый транскрипт.
-2. **Проход второй — транскрипты.** Только теперь смотрим диалоги.
+1. **First pass — repository only.** Search code, documents, and commits. Commit the annotations
+   **before** opening the first transcript.
+2. **Second pass — transcripts.** Only now look at the conversations.
 
-Такой порядок делает невозможным подгонку: решение о том, есть ли обоснование в репозитории,
-принимается в незнании того, что лежит в диалоге. На каждую метку требовалась цитата — файл и
-строка, коммит или диапазон сообщений, — чтобы любую можно было перепроверить, а не принять на веру.
+This order prevents tailoring the result: the decision about whether a rationale exists in the
+repository is made without knowing what the conversation contains. Every label required a citation
+— a file and line, a commit, or a range of messages — so that anyone could verify it rather than
+take it on trust.
 
-### Результат
+### Results
 
-**1 решение из 29. Это 3.4% против порога 30%. Утверждение опровергнуто.**
+**1 decision out of 29. That is 3.4% against a 30% threshold. The claim is refuted.**
 
-Куда на самом деле попадает знание этого проекта:
+Where this project's knowledge actually ends up:
 
-| ось | код | ADR | документ | коммит | транскрипт | нигде |
+| axis | code | ADR | document | commit | transcript | nowhere |
 |---|---|---|---|---|---|---|
-| вывод | 69% | 52% | **100%** | 24% | 0% | 0% |
-| обоснование | 17% | 24% | **86%** | 24% | 10% | 3% |
-| альтернативы | 3% | 7% | **62%** | 14% | 0% | 24% |
+| conclusion | 69% | 52% | **100%** | 24% | 0% | 0% |
+| rationale | 17% | 24% | **86%** | 24% | 10% | 3% |
+| alternatives | 3% | 7% | **62%** | 14% | 0% | 24% |
 
-Исход был предрешён ещё первым проходом: поиск по одному репозиторию оставил пробел всего у семи
-решений из 29, то есть потолок был 24.1% — уже ниже порога, что бы ни лежало в диалогах. Второй
-проход сдвинул одно решение из семи.
+The outcome was already determined by the first pass: searching the repository alone left a gap
+for just seven decisions out of 29, putting the ceiling at 24.1% — already below the threshold,
+whatever the conversations contained. The second pass resolved one of those seven.
 
-Единственное попадание — правило «на каждое изменение модели данных пишем миграцию и проверяем её и
-на существующих данных, и на чистой установке». Само правило записано в инструкции проекта, а
-**причина** — нигде, кроме одного диалога от 1 августа, где объясняется: полный цикл миграции надо
-прогонять потому, что она переносит старые данные в новый формат и добавляет обязательные поля.
+The sole match was the rule "for every data-model change, write a migration and test it both on
+existing data and on a clean installation." The rule itself is recorded in the project
+instructions, but the **reason** appears nowhere except in a conversation from August 1. It
+explains that the full migration cycle must be run because the migration converts old data to a new
+format and adds required fields.
 
-Дополнительная ирония: этот единственный фрагмент лежит в транскрипте Codex, а импортёр, ради
-которого всё затевалось, по принятому решению разбирал бы только формат Claude Code. То есть
-механизм не поймал бы даже то единственное, что нашлось.
+An additional irony: that sole fragment is in a Codex transcript, while the importer that motivated
+the whole effort would, under the adopted decision, parse only the Claude Code format. So the
+mechanism wouldn't have captured even the one piece we found.
 
-### Почему так вышло
+### Why this happened
 
-Причина была названа заранее, в списке смещений, и оказалась решающей: **этот проект необычно
-подробно документирован.** Главный плановый документ на 726 строк приводит проблему и обоснование
-почти для каждого архитектурного выбора. Тексты коммитов содержат абзацы рассуждений — один из них
-объясняет найденный дефект, починку, замер и отдельно снимает необоснованное утверждение о скорости.
+The cause had been identified in advance in the list of biases, and it proved decisive: **this
+project is unusually thoroughly documented.** The main planning document, 726 lines long, gives the
+problem and rationale behind almost every architectural choice. Commit messages contain
+paragraphs of reasoning — one explains a discovered defect, its fix, the measurement, and
+separately withdraws an unsupported speed claim.
 
-Ниша, на которую претендовало утверждение, оказалась занятой. Но занята она **в этом проекте** — и
-шире этого утверждать нечего.
-
----
-
-## 7. Проверка третья: как нашёлся собственный обман
-
-После двух поражений оставался один результат, который проект считал твёрдо установленным и написал
-об этом в трёх документах:
-
-> Ограниченный и объяснённый отбор бьёт полный контекст в разы: F1 0.233 против 0.048.
-
-Смысл был такой: «мы доказали, что подбирать контекст лучше, чем вываливать всё подряд». Именно на
-это опиралось всё обоснование проекта.
-
-**Утверждение оказалось ложным.** При пересмотре постановки задачи выяснилось, что контрольный
-вариант `full` устроен так: каждому элементу присваивается оценка `1.0`, то есть **все элементы
-равны**, никакого ранжирования нет, и дальше бюджет просто обрезает список.
-
-Проверка по сохранённым результатам показала следующее:
-
-- на всех 23 случаях и обоих повторах вариант вернул **один и тот же набор из 17 путей**;
-- это просто первые по алфавиту файлы репозитория: `.claude/agents/frontend-architect.md`,
-  `Claude.md`, `DESIGN.md`…;
-- расход токенов — ровно 5994 во всех 46 строках без исключения.
-
-То есть контрольный вариант **не зависел от вопроса**. Он отвечал одно и то же на любое изменение.
-
-Значит, «0.233 против 0.048» означает буквально следующее: **ранжированный поиск лучше, чем отвечать
-на все вопросы одними и теми же семнадцатью файлами.** Это проверка работоспособности кода, а не
-довод в пользу отбора контекста.
-
-Утверждение снято из всех документов, а обе таблицы с результатами помечены, чтобы строку `full`
-нельзя было прочитать как базлайн в отрыве от текста.
-
-**После этого у проекта не осталось ни одного измеренного преимущества.** И это записано ровно
-такими словами в дорожной карте.
+The niche targeted by the claim was already occupied. But it was occupied **in this project** —
+there is no basis for a broader claim.
 
 ---
 
-## 8. Проверка четвёртая: остановленная
+## 7. Third test: uncovering our own self-deception
 
-Раз выяснилось, что настоящий контроль так и не был проведён, его зарегистрировали и попытались
-провести: дать **настоящей модели** те же 23 случая дважды — один раз со всем корпусом, другой раз с
-пакетом Engram на 6000 токенов — и сравнить, какие файлы она назовёт.
+After two defeats, one result remained that the project considered firmly established and had
+reported in three documents:
 
-Замер **остановлен после 3 успешных вызовов из 92**, по двум причинам.
+> Bounded, explained selection beats full context by a wide margin: F1 of 0.233 versus 0.048.
 
-**Первая — упёрлись в физику.** Корпус проекта — 146 файлов, 805 439 символов, около 201 тысячи
-токенов. Окно модели — 200 тысяч. Не влезает. Тут же обнаружилась и вторая стена: квота подписки
-выдерживает примерно один такой вызов за окно восстановления, а нужно было 46. Это дни календарного
-времени.
+The interpretation was: "we have proved that selecting context is better than dumping everything
+in." The entire justification for the project rested on this.
 
-**Вторая причина важнее.** Базлайн оказался соломенным чучелом. 176 тысяч токенов сырого
-репозитория, вываленных в модель, — это не то, как работает хоть какой-нибудь агент. Настоящий
-соперник, с которым Engram обязан сравниваться, — **агент с поиском по файлам**, то есть обычный
-Claude Code за своей повседневной работой. Его не было ни в одном эксперименте проекта. Победа над
-дампом не сказала бы о ценности продукта ничего.
+**The claim turned out to be false.** When we revisited the experimental setup, we found that the
+`full` control worked as follows: every item received a score of `1.0`, meaning **all items were
+equal**, there was no ranking, and the budget simply truncated the list.
 
-Заодно в этой проверке пришлось снять ещё одно собственное утверждение. Сначала было записано, что
-потолок канала — 125–150 тысяч токенов, то есть «ниже окна модели». Оказалось, что пробы шли по
-возрастанию размера, и отказ был исчерпанием квоты, а не пределом размера. На восстановленном канале
-проходит и 150k, и 175k. Настоящая граница — окно модели, как и следовало ожидать. Вывод исправлен.
+Checking the saved results showed that:
 
-Единственная содержательная строка приводится как наблюдение, а не как результат: на одном случае
-пакет из 6000 токенов назвал 5 верных файлов из 5, а дамп из 176 000 токенов — те же 5 верных плюс 7
-лишних. Один случай ничего не доказывает.
+- across all 23 cases and both repeats, the method returned **the same set of 17 paths**;
+- these were simply the first files in the repository in alphabetical order:
+  `.claude/agents/frontend-architect.md`, `Claude.md`, `DESIGN.md`…;
+- token usage was exactly 5994 in all 46 rows, without exception.
+
+In other words, the control **did not depend on the question**. It gave the same answer to every
+change.
+
+So "0.233 versus 0.048" literally means: **ranked search is better than answering every question
+with the same seventeen files.** That is a code sanity check, not evidence for context selection.
+
+The claim was removed from all documents, and both results tables were annotated so that the
+`full` row could not be read as a baseline without the surrounding explanation.
+
+**After that, the project had no measured advantage left.** The roadmap records this in exactly
+those terms.
 
 ---
 
-## 9. Выводы
+## 8. Fourth test: halted
 
-### Что построено и работает
+Once it became clear that no genuine control comparison had been performed, we registered one and
+attempted it: give a **real model** the same 23 cases twice — once with the entire corpus, once
+with an Engram package of 6000 tokens — and compare which files it names.
 
-Система существует. Провенанс, поэлементное версионирование, немутирующий анализ, обязательное
-человеческое ревью, воспроизводимые пакеты с жёстким бюджетом, импорт GitHub только на чтение,
-канал доставки для внешнего агента, 58 тестов на настоящей базе, зелёный CI. Это не макет.
+The measurement was **halted after 3 successful calls out of 92**, for two reasons.
 
-Отдельно стоит отметить: когда понадобилось завести принципиально новый, не предусмотренный заранее
-источник знания (диалоги с ИИ), он **встал в готовую модель данных без единого изменения схемы**.
-Это независимое подтверждение того, что архитектурные решения были приняты правильно.
+**First, we hit a physical limit.** The project's corpus contains 146 files, 805,439 characters,
+or roughly 201 thousand tokens. The model's context window is 200 thousand. It doesn't fit. A
+second barrier appeared immediately: the subscription quota supports roughly one such call per
+quota-recovery window, while we needed 46. That means days of elapsed time.
 
-### Что проверено и не подтвердилось
+**The second reason matters more.** The baseline turned out to be a straw man. Dumping 176 thousand
+tokens of raw repository text into a model is not how any actual agent works. The real competitor
+Engram must be compared against is **an agent with file search** — ordinary Claude Code doing its
+everyday work. It appeared in none of the project's experiments. Beating a dump would tell us
+nothing about the product's value.
 
-| Утверждение | Как проверено | Итог |
+This test also forced us to withdraw another claim of our own. Initially, we had recorded a channel
+ceiling of 125–150 thousand tokens, supposedly "below the model's context window." It turned out
+that the probes had run in ascending order of size, and the failure was quota exhaustion, not a
+size limit. After the quota recovered, both 150k and 175k went through. The actual boundary is the
+model's context window, as expected. The conclusion was corrected.
+
+The only substantive data point is reported as an observation, not a result: on one case, a
+6000-token package identified 5 correct files out of 5, while a 176,000-token dump identified the
+same 5 correct files plus 7 unnecessary ones. One case proves nothing.
+
+---
+
+## 9. Conclusions
+
+### What has been built and works
+
+The system exists. Provenance, item-level versioning, non-mutating analysis, mandatory human
+review, reproducible packages with a hard budget, read-only GitHub import, a delivery channel for
+an external agent, 58 tests against a real database, passing CI. This is not a mock-up.
+
+One point deserves special mention: when we needed to introduce a fundamentally new knowledge
+source that had not been anticipated (AI conversations), it **fit the existing data model without
+a single schema change**. This independently confirms that the architectural decisions were sound.
+
+### What was tested and not confirmed
+
+| Claim | How it was tested | Outcome |
 |---|---|---|
-| Граф связей улучшает подбор контекста | 23 случая, 5 конфигураций графа, каждый прогон дважды | **Опровергнуто.** Ничья с обычным поиском по F1, проигрыш по полноте |
-| Замысел живёт только в диалогах с ИИ | 29 решений, список заморожен заранее, разметка в два прохода | **Опровергнуто.** 3.4% против порога 30% |
-| Ограниченный отбор бьёт полный контекст | пересмотр собственного контрольного варианта | **Снято.** Контроль был вырожденным |
-| Пакет дешевле самостоятельных раскопок | попытка замера | **Остановлено.** Базлайн оказался соломенным чучелом |
+| A relationship graph improves context selection | 23 cases, 5 graph configurations, each run twice | **Refuted.** Tied with ordinary search on F1, worse recall |
+| Project intent exists only in AI conversations | 29 decisions, list frozen in advance, two-pass annotation | **Refuted.** 3.4% against a 30% threshold |
+| Bounded selection beats full context | review of our own control | **Withdrawn.** The control was degenerate |
+| A package is cheaper than investigating independently | attempted measurement | **Halted.** The baseline turned out to be a straw man |
 
-### Главный вывод, сформулированный ровно по числам
+### The main conclusion, stated exactly as the numbers warrant
 
-**Постановка задачи была верной, требования к провенансу, версионированию и немутированию оказались
-правильными — всё это построено и работает. Ошибочными оказались ставки на конкретные механизмы.**
+**The problem was correctly framed, and the requirements for provenance, versioning, and
+non-mutation were sound — all of this has been built and works. The bets on specific mechanisms
+were wrong.**
 
-Но есть важная оговорка, без которой вывод был бы сильнее, чем показывают числа. Все три
-отрицательных результата получены **на одном репозитории**: 146 файлов, 31 коммит, необычно
-подробная документация, корпус почти помещается в окно модели целиком.
+But there is an important caveat, without which the conclusion would be stronger than the numbers
+support. All three negative results came from **a single repository**: 146 files, 31 commits,
+unusually detailed documentation, and a corpus that almost fits in the model's context window in
+its entirety.
 
-Это **худший из возможных стендов** для инструмента управления контекстом. Здесь у агента просто нет
-той проблемы, которую Engram решает: он может прочитать почти весь проект и найти что угодно
-обычным поиском.
+This is **the worst possible testbed** for a context-management tool. Here, the agent simply
+doesn't face the problem Engram solves: it can read almost the entire project and find anything
+with ordinary search.
 
-Поэтому честная формулировка звучит так:
+The honest formulation is therefore:
 
-> Преимущество **недемонстрируемо на том корпусе, который был доступен**. Корпус, на котором его
-> имело бы смысл искать, — большой проект с настоящим трекером задач и небрежной документацией —
-> выходит за рамки бюджета этой работы.
+> An advantage **cannot be demonstrated on the corpus that was available**. A corpus where it
+> would make sense to look for one — a large project with a real issue tracker and poorly
+> maintained documentation — is beyond the budget of this work.
 
-Это не то же самое, что «продукт не нужен». Но и не то же самое, что «продукт полезен». Второе
-доказано не было, и заявлять его нельзя.
-
----
-
-## 10. Чему научил сам процесс
-
-Эти уроки стоили дороже всего и, пожалуй, полезнее любого из измерений.
-
-**Малая выборка обманывает.** Первый прогон был на 10 случаях. Гибрид был первым с разрывом 0.012, и
-это опубликовали как подтверждение гипотезы. Расширили набор до 23 — порядок перевернулся. Вывод
-пришлось снять.
-
-**Отсюда правило: критерий объявляется до замера.** Оба последующих измерения проводились так:
-сначала в отдельном коммите записывается, какой результат будет считаться опровержением, и только
-потом делается замер. Порядок виден в истории git, а не просто заявлен. Это не формальность — это
-единственное, что делает невозможным подгонку вывода под полученное число.
-
-**Контрольный вариант надо проверять так же придирчиво, как основной.** Вырожденный контроль
-полтора месяца изображал главное достижение проекта. Никто не посмотрел, что он выдаёт один и тот же
-ответ на все вопросы.
-
-**Воспроизводимость требует повторов.** Одиночный прогон не способен обнаружить невоспроизводимость:
-сравнивать не с чем, и метрика тривиально показывает ноль расхождений. Все замеры прогонялись по два
-раза, а абсолютные счётчики брались с первого прогона, чтобы повторы их не удваивали.
-
-**Утверждения о скорости требуют контроля.** Один раз ускорение приписали починке кода. Проверили:
-тайминги на этой машине расходятся втрое-вчетверо между прогонами при побитово одинаковом выводе.
-Утверждение сняли.
-
-**Отрицательный результат с найденным механизмом — это результат.** «Не получилось» — не результат.
-«Не работает, и вот почему: при фиксированном бюджете расширение конкурирует с поиском за одни и те
-же тридцать мест» — результат, и его можно переиспользовать.
+That is not the same as "the product is unnecessary." But neither is it the same as "the product
+is useful." The latter has not been proved and cannot be claimed.
 
 ---
 
-## 11. Техническая часть
+## 10. What the process itself taught us
 
-### Что где лежит
+These lessons cost the most and are perhaps more useful than any of the measurements.
+
+**Small samples mislead.** The first run used 10 cases. The hybrid came first by a margin of 0.012,
+and we published that as confirmation of the hypothesis. Expanding the dataset to 23 reversed the
+ranking. The conclusion had to be withdrawn.
+
+**Hence the rule: declare the criterion before measuring.** Both subsequent measurements followed
+this procedure: first, record in a separate commit what result would count as refutation; only
+then run the measurement. The order is visible in git history, not merely asserted. This is not a
+formality — it is the only thing that prevents tailoring the conclusion to the number obtained.
+
+**Scrutinize the control as closely as the main method.** A degenerate control masqueraded as the
+project's main achievement for a month and a half. Nobody checked that it gave the same answer to
+every question.
+
+**Reproducibility requires repeats.** A single run cannot reveal a failure to reproduce: there is
+nothing to compare it with, so the metric trivially reports zero discrepancies. All measurements
+were run twice, and absolute counts were taken from the first run so that repeats would not double
+them.
+
+**Speed claims require controls.** Once, a speedup was attributed to a code fix. We checked:
+timings on this machine vary by a factor of three to four between runs with bit-for-bit identical
+output. The claim was withdrawn.
+
+**A negative result with an identified mechanism is still a result.** "It didn't work" is not a
+result. "It doesn't work, and here is why: under a fixed budget, expansion competes with search for
+the same thirty slots" is a result, and it can be reused.
+
+---
+
+## 11. Technical details
+
+### Repository layout
 
 ```text
-apps/api/      FastAPI, домен, миграции и тесты
-apps/web/      Next.js и сгенерированный клиент API
-infra/         PostgreSQL + pgvector для разработки
-docs/adr/      Архитектурные решения
-research/      Эталонный набор, результаты замеров и методики
-scripts/       Импорт, эксперименты и утилиты
+apps/api/      FastAPI, domain logic, migrations, and tests
+apps/web/      Next.js and the generated API client
+infra/         PostgreSQL + pgvector for development
+docs/adr/      Architectural decisions
+research/      Reference dataset, measurement results, and methods
+scripts/       Import, experiments, and utilities
 ```
 
-Ключевые документы, если хочется деталей:
+Key documents for more detail:
 
-- [`research/RESULTS.md`](research/RESULTS.md) — полные числа первого эксперимента;
-- [`research/DECISION_PROVENANCE.md`](research/DECISION_PROVENANCE.md) — метод и результат второй
-  проверки;
-- [`ENGRAM_TRUE_PATH_PLAN.md`](ENGRAM_TRUE_PATH_PLAN.md) и
-  [`ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md`](ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md) — постановка и все
-  пересмотры;
-- [`docs/adr/`](docs/adr/) — принятые решения, включая одно, отменённое собственным критерием;
-- [`ROADMAP.md`](ROADMAP.md) — этапы и их состояние.
+- [`research/RESULTS.md`](research/RESULTS.md) — full figures from the first experiment;
+- [`research/DECISION_PROVENANCE.md`](research/DECISION_PROVENANCE.md) — method and results of the
+  second test;
+- [`ENGRAM_TRUE_PATH_PLAN.md`](ENGRAM_TRUE_PATH_PLAN.md) and
+  [`ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md`](ENGRAM_TRUE_PATH_PLAN_ADDENDUM.md) — the problem statement
+  and all revisions;
+- [`docs/adr/`](docs/adr/) — adopted decisions, including one overturned by its own criterion;
+- [`ROADMAP.md`](ROADMAP.md) — stages and their status.
 
-### Как запустить
+### Running the project
 
-Нужны Python 3.11+, Node.js 22+, pnpm 11, Docker и Docker Compose.
+You need Python 3.11+, Node.js 22+, pnpm 11, Docker, and Docker Compose.
 
 ```bash
 docker compose -f infra/docker-compose.yml up -d
@@ -525,38 +538,37 @@ uv sync
 uv run alembic upgrade head
 uv run uvicorn engram.main:app --reload
 
-# в другом терминале, из корня репозитория
+# in another terminal, from the repository root
 pnpm install
 pnpm web:dev
 ```
 
-API поднимется на <http://localhost:8000>, веб-приложение на <http://localhost:3000>.
+The API will be available at <http://localhost:8000>, and the web app at <http://localhost:3000>.
 
-Забрать подтверждённый пакет контекста можно через API или через CLI без зависимостей:
+You can retrieve an approved context package through the API or the dependency-free CLI:
 
 ```bash
 python scripts/engram_context.py --project <uuid> --analysis <uuid> --budget 4000
 python scripts/engram_context.py --project <uuid> --package <uuid>
 ```
 
-### Канал для внешнего ИИ-агента
+### Channel for an external AI agent
 
-Агент, умеющий в MCP, может сам запустить анализ и забрать пакет:
+An MCP-capable agent can initiate analysis and retrieve a package itself:
 
 ```bash
 cd apps/api && uv sync --extra mcp
 claude mcp add engram -- uv --directory apps/api run python -m engram.mcp.server
 ```
 
-Доступные операции: `list_projects`, `analyze_change`, `get_context`, `list_context_packages`.
-Подтверждение кандидатов агенту **намеренно недоступно** — одобрение влияния это то самое
-человеческое решение, вокруг которого построен весь цикл, поэтому `get_context` откажет, пока ревью
-не пройдено.
+Available operations: `list_projects`, `analyze_change`, `get_context`, `list_context_packages`.
+Candidate confirmation is **deliberately unavailable** to the agent — impact approval is the human
+decision around which the whole workflow is built, so `get_context` will refuse until review is
+complete.
 
-### Проверка
+### Checks
 
-Автоматические тесты всегда используют детерминированные заглушки моделей — независимо от локальных
-настроек разработчика.
+Automated tests always use deterministic model mocks, regardless of the developer's local settings.
 
 ```bash
 cd apps/api
@@ -568,26 +580,26 @@ pnpm --filter @engram/web exec eslint .
 pnpm --filter @engram/web exec next build
 ```
 
-### Воспроизвести эксперименты
+### Reproducing the experiments
 
 ```bash
-# первый эксперимент: четыре способа подбора контекста
+# first experiment: four context-selection methods
 ENGRAM_EMBEDDING_PROVIDER=local ENGRAM_LLM_PROVIDER=mock uv run uvicorn engram.main:app
 python scripts/link_python_imports.py <project_uuid> <revision_uuid>
 python scripts/run_retrieval_experiment.py --project <project_uuid> \
     --budget 6000 --max-candidates 30 --repeats 2
 python scripts/evaluate_retrieval.py research/benchmark_cases.json research/results.json
 
-# вторая проверка: где записано обоснование решений
+# second test: where decision rationales are recorded
 python scripts/count_decision_provenance.py research/decision_provenance.json
 ```
 
-### Границы продукта
+### Product boundaries
 
-Engram **не** заменяет GitHub, трекер задач или редактор документации. Внешние системы остаются
-источником истины. Engram их индексирует, связывает, объясняет и выдаёт ограниченный контекст.
-Он не применяет предложения модели и ничего не пишет обратно в репозиторий.
+Engram does **not** replace GitHub, an issue tracker, or a documentation editor. External systems
+remain the source of truth. Engram indexes them, connects them, explains them, and provides bounded
+context. It does not apply model suggestions or write anything back to the repository.
 
-Заморожены до появления хотя бы одного подтверждённого утверждения о ценности: аутентификация и
-роли, совместная работа, дополнительные интеграции, автоисправление, Neo4j, LangGraph и визуальная
-полировка. Список и причины — в [`FROZEN_IDEAS.md`](FROZEN_IDEAS.md).
+Frozen until at least one claim of value has been confirmed: authentication and roles,
+collaboration, additional integrations, automatic fixes, Neo4j, LangGraph, and visual polish.
+The list and reasons are in [`FROZEN_IDEAS.md`](FROZEN_IDEAS.md).
